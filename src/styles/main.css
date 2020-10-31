@@ -15,33 +15,46 @@
 
 #telefono-img {
   width: 200px;
-  height: 400px; 
-  margin-right: 100px;
+  height: 400px;   
 }
 
 .mensaje {    
-    border: 2px solid #000;
-    background-color: #fff;
+        
     border-radius: 25px;
-    padding: 25px;
-    width: 500px;
-    height: 200px;
+    padding: 25px;   
     display: flex;
     align-items: center;
-    padding-top: 25px;    
+     
     flex-direction: column;
     margin-left: 100px;
 }
 
 .mensaje *{
-    font-size: 30px;
+    -webkit-text-stroke: 5px #000;
+    color: #F2F2F2;
+    font-size: 80px;
     font-weight: bold;
-    line-height: 50px;
+    line-height: 80px;
     animation: animation-mensaje 1s ease-out 0s 1;
 }
 
+.mynav{
+    font-size: 25px;
+}
+
+.mynav li:hover a{
+    background-color: #0E60B5;
+    color: #fff;
+    transition: 0.5s;
+    border-radius: 18px;
+}
+
 .mensaje button{
-    font-size: 20px;
+    margin-top: 10px;
+    -webkit-text-stroke: 0px #000;
+    font-weight: 600;
+    border-radius: 25px;
+    font-size: 40px;
 }
 
 .contenedor {
@@ -52,7 +65,7 @@
 .panel-principal{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin-top: 250px;
 }
@@ -62,6 +75,24 @@
         line-height: 5px;                
     }
     100%{        
-        line-height: 50px;
+        line-height: 80px;
     }
+}
+
+.home{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.home img{
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.cabecera{
+    margin-top: 25px;
+    background-color: #F5F5F5;
 }
