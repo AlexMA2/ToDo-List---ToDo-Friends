@@ -67,3 +67,7 @@
         line-height: 80px;
     }
 }
+
+body{
+  overflow-y: hidden;
+}
