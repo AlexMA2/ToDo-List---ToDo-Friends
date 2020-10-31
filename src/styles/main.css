@@ -1,0 +1,67 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#main-img {
+  position: absolute;    
+  z-index: -100;
+  left: 50%;
+  top: 150px;
+  width: 1400px;
+  height: 800px;
+  transform: translateX(-50%);
+}
+
+#telefono-img {
+  width: 200px;
+  height: 400px; 
+  margin-right: 100px;
+}
+
+.mensaje {    
+    border: 2px solid #000;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 25px;
+    width: 500px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    padding-top: 25px;    
+    flex-direction: column;
+    margin-left: 100px;
+}
+
+.mensaje *{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 50px;
+    animation: animation-mensaje 1s ease-out 0s 1;
+}
+
+.mensaje button{
+    font-size: 20px;
+}
+
+.contenedor {
+  width: 1400px;
+  margin: 0px auto;
+}
+
+.panel-principal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px;
+}
+
+@keyframes animation-mensaje{
+    0%{
+        line-height: 5px;                
+    }
+    100%{        
+        line-height: 50px;
+    }
+}
