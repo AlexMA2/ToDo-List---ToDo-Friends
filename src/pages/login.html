@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Esta aplicacion fue creada para ayudar a una persona o a un grupo a orgnizar sus tareas.">
-    <meta name="author"
-        content="Gianela Mallqui, Alex Mamani, Nestor Soto, Renzo Marcos, Martin Rodriguez y Brayan Oroncuy">
-
-    <title> To-Do Friends </title>
-    
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="../styles/cabecera.css">
-    <link rel="stylesheet" href="../styles/main.css">
 
     <link rel="shortcut icon" href="../../res/favicon1.png" type="image/x-icon">    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>    
@@ -20,7 +13,6 @@
     <script src="../../res/jquery/jquery-3.5.1.min.js"></script>
 
 </head>
-
 <body>
     <div class="container-md">
         <header class="row cabecera">
@@ -40,19 +32,13 @@
         </header>
 
     </div>
-
-    <div class="contenedor">
-        <img src="../../res/fondo1jpg.jpg" alt="" id="main-img">
-        <div class="panel-principal">
-            <img src="../../res/celular.png" alt="telefono" id="telefono-img">
-            <div class="mensaje text-center">
-                <h3 class="text-center"> Organiza tus tareas </h3>
-                <h4 class="text-center"> Empecemos! </h4>
-                <a href="login.html" class="btn btn-danger"> Comenzar </a>
-            </div>
-        </div>
+    <div class="login">
+        <h1> Iniciar Sesi&oacute;n</h1>
+        <form method="post">
+            <input type="text" name="u" placeholder="Nombre de usuario" required="required" />
+            <input type="password" name="p" placeholder="Contraseña" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large"> Crear Cuenta </button>
+        </form>
     </div>
-
 </body>
-
 </html>

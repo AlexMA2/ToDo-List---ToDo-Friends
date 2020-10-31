@@ -38,18 +38,7 @@
     animation: animation-mensaje 1s ease-out 0s 1;
 }
 
-.mynav{
-    font-size: 25px;
-}
-
-.mynav li:hover a{
-    background-color: #0E60B5;
-    color: #fff;
-    transition: 0.5s;
-    border-radius: 18px;
-}
-
-.mensaje button{
+.mensaje a{
     margin-top: 10px;
     -webkit-text-stroke: 0px #000;
     font-weight: 600;
@@ -77,22 +66,4 @@
     100%{        
         line-height: 80px;
     }
-}
-
-.home{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-}
-
-.home img{
-    width: 50px;
-    height: 50px;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-.cabecera{
-    margin-top: 25px;
-    background-color: #F5F5F5;
 }
