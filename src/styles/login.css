@@ -1,0 +1,16 @@
+.login{
+    width: 600px;
+    margin: 0px auto;    
+    text-align: center;
+    margin-top: 30px;
+}
+
+.login form{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.login form input{
+    margin-bottom: 15px;
+}
