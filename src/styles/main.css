@@ -9,7 +9,7 @@
   left: 50%;
   top: 150px;
   width: 1400px;
-  height: 800px;
+  height: 700px;
   transform: translateX(-50%);
 }
 
@@ -33,7 +33,7 @@
   font-size: 80px;
   font-weight: bold;
   line-height: 80px;
-  animation: animation-mensaje 1s ease-out 0s 1;
+  animation: animation-mensaje 1.5s ease-out 0s 1;
 }
 
 .mensaje a {
@@ -52,17 +52,20 @@
 .panel-principal {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 150px;
+  justify-content: space-between;
+  align-items: center;  
+  width: 1300px;
+  margin: 0px auto;
 }
 
 @keyframes animation-mensaje {
-  0% {
+  0% {    
     line-height: 5px;
+    color: rgba(255, 255, 255, 0.05);
   }
-  100% {
+  100% {    
     line-height: 80px;
+    color: rgba(255, 255, 255, 1);
   }
 }
 
