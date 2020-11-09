@@ -55,7 +55,7 @@
 }
 
 .menu-activo {
-  visibility: visible;
+  visibility: visible !important;
 }
 
 
