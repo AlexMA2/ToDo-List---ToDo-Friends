@@ -5,58 +5,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Esta aplicacion fue creada para ayudar a una persona o a un grupo a orgnizar sus tareas.">
+    content="Esta aplicacion fue creada para ayudar a una persona o a un grupo a orgnizar sus tareas.">
     <meta name="author"
-        content="Gianela Mallqui, Alex Mamani, Nestor Soto, Renzo Marcos, Martin Rodriguez y Brayan Oroncuy">
+          
+    content="Gianela Mallqui, Alex Mamani, Nestor Soto, Renzo Marcos, Martin Rodriguez y Brayan Oroncuy">
+    
+    <link rel="stylesheet" href="src/styles/cabecera.css">    
 
-    <title> To-Do Friends </title>
-
-    <link rel="stylesheet" href="src/styles/main.css">
-    <link rel="stylesheet" href="src/styles/cabecera.css">
 
     <link rel="shortcut icon" href="res/favicon1.png" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="res/bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
-    
-    <script src="res/jquery/jquery-3.5.1.min.js"></script>    
-    <script src="src/scripts/main.js"></script>
+    <script src="res/jquery/jquery-3.5.1.min.js"></script>
+
+    <title> To-Do Friends </title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body>
-    <div class="container-md">
-        <header class="row cabecera">
-            <div class="home">
-                <a class="logo" href="index.html">
-                    <img src="res/favicon1.png" alt="logo">
-                    <h1> To-Do Friends </h1>
-                </a>
+  
+    <header>
+        <div class="home col-4">
+            <a class="logo" href="index.html">
+                <h1> To-Do Friends </h1>
+            </a>
+        </div>
+        <nav class="navbar nav col-8 mynav">
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/nosotros.html"> Nosotros </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial.html"> Tutorial </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos.html"> Equipos </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/login.html"> Iniciar Sesi&oacute;n </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro.html">Registrarse </a> </li>
+        </nav>
+        <div class="textos">
+            <h1 class="titulo">TO DO LIST</h1>
+            <h3 class="subtitulo">Te ayudamos a organizarte mejor</h3>
+            <a href="#" class="boton">Comenzar</a>
+        </div>
+
+    </header>
+    <main>
+        <section class="acerca-de">
+            <div class="contenedor">
+                <h2 class="sobre-nosotros">QUIENES SOMOS</h2>
+                <h3 class="slogan">Organiza y disfruta</h3>
+                <p class="parrafo">SOMOS BLA BALA BLA BLA</p>
+                <p class="parrafo">BAL BLA BLA </p>
+                <a href="#" class="boton">Comenzar!</a>
             </div>
-            <span class="btn-burger"><i class="fa fa-bars"></i></span>
-            <nav class="navbar nav mynav">
-                <li class="nav-item text-center"><a class="nav-link" href="src/pages/nosotros.html"> Nosotros </a></li>
-                <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial.html"> Tutorial </a></li>
-                <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos.html"> Equipos </a></li>
-                <li class="nav-item text-center"><a class="nav-link" href="src/pages/login.html"> Iniciar Sesi&oacute;n</a></li>
-                <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro.html">Registrarse </a></li>
-            </nav>
-        </header>
+        </section>
+        <section class="galeria">
+            <div class="imagenes none">
+                <img src="1.jpg" alt="">
+            </div>
+            <div class="imagenes">
+                <img src="3.jpg" alt="">
+            </div>
+            <div class="imagenes">
+                <img src="2.jpg" alt="">
+                <div class="encima">
+                    <h2>TO DO FRIENS</h2>
+                    <div></div>
+                </div>
+            </div>
+            <div class="imagenes">
+                <img src="4.jpeg" alt="">
 
-    </div>
-
-    <div class="container-fluid">
-        <img src="res/fondo1.jpg" class="img-fluid" alt="" id="main-img">
-        <div class="panel-principal">
-            <img src="res/phone.png" alt="telefono" id="telefono-img">
-            <div class="mensaje text-center">
-                <h3 class="text-center"> Organiza tus tareas </h3>
-                <h4 class="text-center"> Empecemos! </h4>
-                <a href="src/pages/login.html" class="btn btn-danger"> Comenzar </a>
+            </div>
+            <div class="imagenes none">
+                <img src="5.jpeg" alt="">
+            </div>
+            
+        </section>
+        <section class="miembros">
+            <div class="contenedor">
+                <h2 class="sobre-nosotros">Nuestro equipo</h2>
+                <h3 class="slogan">Conoce a nuestro equipo de trabajo</h3>
+                <div class="cards">
+                    <div class="card">
+                        <img src="AlexCGDesign.png" alt="">
+                        <h4>AlexCGDesign</h4>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </div>
+                    <div class="card">
+                        <img src="AlexCGDesign.png" alt="">
+                        <h4>AlexCGDesign</h4>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </div>
+                    <div class="card">
+                        <img src="AlexCGDesign.png" alt="">
+                        <h4>AlexCGDesign</h4>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="fondo">
+            <div class="sesgoarriba"></div>
+            <div class="contenedor">
+                <h2 class="titulo-patrocinadores">Nuestras herramientas </h2>
+                <h3 class="subtitulo-patrocinadores">Conoce un poco mas acerca de nuestro labor</h3>
+                <div class="clientes">
+                    <div class="cliente">
+                        <img src="logo.png" alt="">
+                    </div>
+                    <div class="cliente">
+                        <img src="logo.png" alt="">
+                    </div>
+                    <div class="cliente">
+                        <img src="logo.png" alt="">
+                    </div>
+                </div>
+                <h3 class="subtitulo-patrocinadores especial">Organizate de manera facil y sencilla</h3>
+            </div>
+            <div class="sesgoabajo-unico"></div>
+        </section>
+    </main>
+    <footer>
+        <div class="contenedor">
+            <h2 class="titulo-footer">Contactanos</h2>
+            <h3 class="subtitulo-footer">Lo apreciariamos mucho</h3>
+            <div class="footer">
+                <form action="">
+                    <input type="text" name="" id="" placeholder="Nombre">
+                    <input type="email" name="" id="" placeholder="Email">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Ingrese su mensaje..."></textarea>
+                    <input type="submit" value="Enviar">
+                </form>
             </div>
         </div>
-    </div>
-
-   
+    </footer>
 
 </body>
 
