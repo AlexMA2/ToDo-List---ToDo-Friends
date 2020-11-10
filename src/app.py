@@ -1,13 +1,16 @@
+#importacion desde consola with "pip install flask"
 from flask import Flask, redirect, render_template, request, url_for
+#importacion desde consola with "pip install falskext-mysql"
 from flaskext.mysql import MySQL
 
+#el programa aún presenta errores de extensión flask para conexión de BBDD
 app=Flask(__name__)
 
 mysql=MySQL()
 app.config["MYSQL_DATABASE_USER"]='root'
 app.config["MYSQL_DATABASE_PASSWORD"]=''
-app.config["MYSQL_DATABASE_DB"]='bbdd'
-#app.config["MYSQL_DATABASE_HOST"]='localhost'
+app.config["MYSQL_DATABASE_DB"]='bbdd' #nombre de la BBDD
+app.config["MYSQL_DATABASE_HOST"]='localhost'
 mysql.init_app(app)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -28,9 +31,9 @@ def login():
 @app.route("/registro", methods=['GET', 'POST'])
 def registro():
     if request.method=='POST':
-        correo=request.form['correo']
-        usuario=request.form['usuario']
-        contrasena=request.form['contrasena']
+        correo=request.form['correo'] #primer campo
+        usuario=request.form['usuario'] #segundo campo
+        contrasena=request.form['contrasena'] #tercer campo
         con=mysql.connect()
         cur=con.cursor()
         cur.execute("INSERT INTO 'registro' ('correo', 'usuario', 'contrasena') VALUES (%s, %s, %s)", (correo, usuario, contrasena))
