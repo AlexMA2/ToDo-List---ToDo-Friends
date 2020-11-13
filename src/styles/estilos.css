@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "open sans";
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+.sesgoabajo {
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 35vh 100vw;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+.sesgoarriba {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-width: 35vh 100vw 0 0;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.contenedor {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 52px 0;
+}
+
+/* Main */
+
+.sobre-nosotros {
+  text-align: center;
+  font-size: 56px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.slogan {
+  font-size: 24px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.parrafo {
+  margin-bottom: 13px;
+  font-weight: 300;
+  text-align: justify;
+  line-height: 24px;
+  color: rgb(24, 16, 16);
+}
+
+.galeria {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.imagenes {
+  width: 20%;
+  height: 500px;
+  position: relative;
+}
+
+.imagenes img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.encima {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 73, 94, 0.815);
+}
+
+.encima h2 {
+  position: relative;
+  top: 45%;
+  text-align: center;
+  color: #fff;
+  margin: 0px 10px 0px 5px;
+}
+
+.encima div {
+  position: relative;
+  display: block;
+  top: 46%;
+  width: 40px;
+  height: 5px;
+  background: #fff;
+  margin: auto;
+}
+
+.cards {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  margin: 20px 0;
+  width: 30%;
+  height: 275px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0px 0px 4px 0 rgba(52, 73, 94, 0.849);
+}
+
+.card img {
+  margin: 0px auto;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.card h4{
+  padding-top: 10px;
+}
+
+.card p{
+  font-style: italic;
+}
+
+.fondo {
+  height: 1200px;
+  position: relative;
+  background-image: url(../../res/fondo.png);
+  background-attachment: fixed;
+  background-position: center;  
+}
+
+.sesgoabajo-unico {
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 35vh 100vw;
+  border-style: solid;
+  border-color: transparent transparent #2c3e50 transparent;
+}
+
+.titulo-patrocinadores,
+.subtitulo-patrocinadores {
+  color: #fff;
+  text-align: center;
+}
+
+.titulo-patrocinadores {
+  font-size: 56px;
+  margin-top: 180px;
+}
+
+.subtitulo-patrocinadores {
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 64px;
+}
+
+.final-patro{  
+  font-size: 35px;
+  color: #fff;
+}
+
+.final-patro a{  
+  cursor: pointer;
+  color: #21ebff;
+  text-decoration: none;
+}
+
+.clientes {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cliente {
+  width: 30%;
+}
+
+.cliente img {
+  border-radius: 20px;
+  width: 100%;
+  height: 265px;
+
+}
+
+.cliente h4{
+  letter-spacing: 2px;
+  color: #FFB27D;
+  text-align: center;
+  font-weight: bold;
+  font-size: 23px;
+  height: 50px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 900px) {
+  .card {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cabecera .textos {
+    margin-top: 130px;
+  }
+
+  .cabecera .titulo {
+    font-size: 75px;
+  }
+
+  .none {
+    display: none;
+  }
+
+  .imagenes {
+    flex-grow: 1;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .clientes{
+    flex-direction: column;    
+    align-items: center;
+    overflow-x: hidden;
+  }
+  .cliente{
+    margin-top: 25px;
+    width: 70%;
+  }
+
+  .fondo{
+    height: 1700px;
+  }
+  
+  .cliente h4{
+    width: 200px;
+    margin-left: 30px;
+  }
+
+}
+
+@media screen and (max-width: 380px) {
+  .cabecera .textos {
+    margin-top: 100px;
+  }
+
+  .cabecera .titulo {
+    font-size: 65px;
+  }
+
+  .cabecera .subtitulo {
+    font-size: 25px;
+    margin-bottom: 32px;
+  }
+
+  .sobre-nosotros {
+    font-size: 46px;
+  }
+
+  .slogan {
+    font-size: 20px;
+  }
+
+  .titulo-patrocinadores {
+    font-size: 46px;
+  }
+
+  .subtitulo-patrocinadores {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1035px){
+  .card{
+    height: 300px;
+  }
+}
+
+@media (max-width: 564px) {
+  .final-patro{
+    font-size: 25px;    
+  }
+}
