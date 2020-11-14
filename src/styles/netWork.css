@@ -1,0 +1,15 @@
+.crearTarea{
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+    transition-duration: .218s;
+    transition-property:background,border,opacity,box-shadow,transform;
+    transition-timing-function: ease-in;
+}
+.trans{
+    background:#fff;
+    border-color: #e0e0e0;
+
+}
