@@ -1,21 +1,25 @@
 <?php
 include("db.php");
-$usuario=$_POST['u'];
-$contraseña=$_POST['p'];
+$usuario=$_POST['user'];
+$contraseña=$_POST['pass'];
 session_start();
-$_SESSION['u']=$usuario;
+$_SESSION['user']=$usuario;
 
+#nombre del server: localhost
+#usuario: root
+#contraseña: 
+#nombre de la BBDD: todolist
 
-$conexion=mysqli_connect("localhost","root","","bbdd");
+$conexion=mysqli_connect("localhost","root","","todolist");
 
-$consulta="SELECT * FROM registro where usuario='$usuario' and contrasena='$contraseña'";
+$consulta="SELECT * FROM usuarios where username='$usuario' and password='$contraseña'";
 $resultado=mysqli_query($conexion,$consulta);
 
 $filas=mysqli_num_rows($resultado);
 
 if($filas){
   
-    header("location:nosotros.html");
+    header("location:../../index.html");
 
 }else{
     ?>
