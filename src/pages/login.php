@@ -12,21 +12,24 @@ $_SESSION['user']=$usuario;
 
 $conexion=mysqli_connect("localhost","root","","todolist");
 
+#nombre de la tabla: usuarios
+
 $consulta="SELECT * FROM usuarios where username='$usuario' and password='$contraseña'";
 $resultado=mysqli_query($conexion,$consulta);
 
 $filas=mysqli_num_rows($resultado);
 
 if($filas){
-  
+    #si logra ingresar, se dirigira a: index.html
     header("location:../../index.html");
 
 }else{
     ?>
     <?php
+    #se redirigirá a la misma página, pero con una señal de error
     include("login.html");
   ?>
-  <h1>ERROR DE AUTENTIFICACION</h1>
+  <h1>USUARIO NO REGISTRADO</h1>
   <?php
 }
 mysqli_free_result($resultado);
