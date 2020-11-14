@@ -1,44 +1,87 @@
 <?php
-include("conexion.php");
+    require_once "conexion.php";
 
-//Registrar usuario
+    $correo = $user = $pass = "";
+    $correo_err = $user_err = $pass_err = "";
 
-if(isset($_POST["registrar"])){
-    $correo = mysqli_real_escape_string($conection, $_POST['correo']);
-    $usuario = mysqli_real_escape_string($conection, $_POST['user']);
-    $contraseña = mysqli_real_escape_string($conection, $_POST['pass']);
-    $contraseña_encriptada = sha1($contraseña);
-    $sqluser = "SELECT iduser FROM usuarios WHERE username = '$usuario'";
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(empty(trim($_POST["user"]))){
+            $user_err = "Por favor ingresar nombre de usuario.";
+        }else{
+            $sql = "SELECT id FROM usuarios WHERE user = ?";
 
-    $resultado_user = $conection->query($sqluser);
-    $filas = $resultado_user->num_rows;
-    if($filas > 0) {
-        echo "<script>
-            alert('El usuario ya existe');
-            window.location = 'login.html';
-        </script>";
-    }else {
-        //insertar información del usuario
-        $sqlusuario = "INSERT INTO usuarios
-                            (correo, username, password)
-                                VALUES('$correo', '$usuario', '$contraseña_encriptada')";
-        $resultadousuario = $conection->query($sqlusuario);
-        if($resultadousuario > 0){
-            echo "<script>
-            alert('Registro exitoso');
-            window.location = 'login.html';
-        </script>";
-        } else{
-            echo "<script>
-            alert('Error al registrarse');
-            window.location = 'registro.php';
-        </script>";
+            if($stmt = mysqli_prepare($link, $sql)){
+                mysqli_stmt_bind_param($stmt, "s", $param_user);
+
+                $param_user = trim($_POST["user"]);
+
+                if(mysqli_stmt_execute($stmt)){
+                    mysqli_stmt_store_result($stmt);
+
+                    if(mysqli_stmt_num_rows($stmt) == 1){
+                        $user_err = "Nombre de usuario ya registrado";
+                    }else{
+                        $user = trim($_POST["user"]);
+                    }
+                }else{
+                    echo "Algo salió mal, inténtalo luego";
+                }
+            }
         }
+
+        if(empty(trim($_POST["correo"]))){
+            $correo_err = "Por favor ingresar correo electrónico.";
+        }else{
+            $sql = "SELECT id FROM usuarios WHERE correo = ?";
+
+            if($stmt = mysqli_prepare($link, $sql)){
+                mysqli_stmt_bind_param($stmt, "s", $param_user);
+
+                $param_correo = trim($_POST["correo"]);
+
+                if(mysqli_stmt_execute($stmt)){
+                    mysqli_stmt_store_result($stmt);
+
+                    if(mysqli_stmt_num_rows($stmt) == 1){
+                        $correo_err = "Correo electrónico ya registrado";
+                    }else{
+                        $correo = trim($_POST["correo"]);
+                    }
+                }else{
+                    echo "Algo salió mal, inténtalo luego";
+                }
+            }
+        }
+
+        if(empty(trim($_POST["pass"]))){
+            $pass_err = "Por favor, ingresar contraseña";
+        }elseif(strlen(trim($_POST["pass"])) < 4){
+            $pass_err = "La contraseña debe tener al menos 4 caracteres.";
+        }else{
+            $pass = trim($_POST["pass"]);
+        }
+
+        if(empty($user_err) && empty($correo_err) && empty($pass_err)){
+            $sql = "INSERT INTO usuarios (correo, username, password) VALUES (?, ?, ?)";
+
+            if($stmt = mysqli_prepare($link, $sql)){
+                mysqli_stmt_bind_param($stmt, "sss", $param_user, $param_correo, $param_pass);
+
+                $param_user = $user;
+                $param_correo = $correo;
+                $param_pass = password_hash($password, PASSWORD_DEAFULT);
+                
+                if(mysqli_stmt_execute($stmt)){
+                    header("location_ index.php");
+                }else{
+                    echo "Algo salió mal, intentar luego.";
+                }
+            }
+        }
+        $mysqli_close($link);
     }
-}
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -80,11 +123,13 @@ if(isset($_POST["registrar"])){
     </div>
     <div class="login">
         <h1> Registrarse </h1>
-        <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="post">
+        <form action="<?php echo htmlspecialchars $_SERVER["PHP_SELF"]; ?>"; method="post">
             <input type="email" name="correo" placeholder="Correo Electrónico" required="required" />
+            <span class="msg-error"><?php echo $correo_err; ?></span>
             <input type="text" name="user" placeholder="Nombre de usuario" required="required" />
+            <span class="msg-error"> <?php echo $correo_err; ?></span>
             <input type="password" name="pass" placeholder="Contraseña" required="required" />
-            <input type="password" name="passr" placeholder="Repetir contraseña" required="required" />
+            <span class = "msg-error"> <?php echo $pass_err; ?></span>
             <button type="submit" name = "registrar" class="btn btn-primary btn-block btn-large"> Crear Cuenta </button>
         </form>
     </div>
