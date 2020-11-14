@@ -21,7 +21,7 @@ $filas=mysqli_num_rows($resultado);
 
 if($filas){
     #si logra ingresar, se dirigira a: index.html
-    header("location:../../index.html");
+    header("location:NetWork.html");
 
 }else{
     ?>
