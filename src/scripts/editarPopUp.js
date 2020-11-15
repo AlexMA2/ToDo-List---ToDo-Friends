@@ -3,8 +3,10 @@ var btnAbrirPopup = document.getElementById('btn-editar'),
 	popup = document.getElementById('popup'),
 	btnCerrarPopup = document.getElementById('btn-cerrar-popup');
 
+
 btnAbrirPopup.addEventListener('click', function () {
 	overlay.classList.add('active');
+	console.log("activo modal");
 	popup.classList.add('active');
 });
 
