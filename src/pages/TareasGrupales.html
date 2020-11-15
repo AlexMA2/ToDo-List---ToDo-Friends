@@ -10,6 +10,7 @@
         content="Gianela Mallqui, Alex Mamani, Nestor Soto, Renzo Marcos, Martin Rodriguez y Brayan Oroncuy">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="res/favicon1.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/editar.css">
     <title>Todo List | Empieza a organizarte</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -157,50 +158,110 @@
                                 <li class="breadcrumb-item active">Tablero</li>
                             </ol>
                         </div>
+                        <!-- aqui comienza el formulario-->
+                        <div class="container p-4">
+                            <div class="row">
+                                <div class="container"><!-- sugerencia usar la clase col-md-4-->
+                                    <div class="card card-body">
+                                        <p>Crear Tarea</p>
+                                        <form action="">
+                                            <div class="form-group">
+                                                <input type="text" name="title" class=" form-control" placeholder=" Título">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="descripcion" rows="4" class="form-control" placeholder="Descrpcion"></textarea>
 
-                        
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="colaborador" class=" form-control" placeholder=" Colaboradores" disabled>
+                                            </div>
+                                            <input type="submit" class="btn btn-light btn-block" name=" guardarTarea" value="Guardar" />
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <table class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Titulo</th>
+                                                <th>Descrpción</th>
+                                                <th>Autores</th>
+                                                <th>Aciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- esto es solo ejemplo-->
+                                            <tr>
+                                                <td>Tarea1</td>
+                                                <td>Descipcion de tarea</td>
+                                                <td> Autor1, autor2</td>
+                                                <td>
+                                                    <!--boton de editar-->
+                                                    <a href="#" class="btn btn-warning" id="btn-editar">
+                                                        <i class="fas fa-pen"></i>
+
+                                                    </a>
+                                                    |
+                                                    <a href="#" class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tarea2</td>
+                                                <td>Descipcion de tarea2</td>
+                                                <td> Autor1, autor2</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning">
+                                                        <i class="fas fa-pen"></i>
+                                                    </a>
+                                                    |
+                                                    <a href="#" class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--opcion de editar-->
+                        <div class="overlay" id="overlay">
+                            <div class="popup" id="popup">
+                                <div class="col sm-4">
+                                    <a href="#" id="btn-cerrar-pop" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                                    <div class="card card-body mx-auto">
+                                        <div class="card card-body">
+                                            <p>Editar Tarea</p>
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <input type="text" name="title" class=" form-control" placeholder=" Título">
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="descripcion" rows="4" class="form-control" placeholder="Descrpcion"></textarea>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="colaborador" class=" form-control" placeholder=" Colaboradores" disabled>
+                                                </div>
+                                                <input type="submit" class="btn btn-config btn-light btn-block" name="guardarTarea" value="Guardar Cambios" />
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Aqui termina el formulario-->
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Tarea 1</h3>
-
-                                <p>Descipcion de tareas</p>
-                            </div>
-                            
-                            <a href="TareasGrupales.html" class="small-box-footer">ver <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Tarea 2<sup style="font-size: 20px"></sup></h3>
-
-                                <p>Descripcion 2</p>
-                            </div>
-                            
-                            <a href="TareasGrupales.html" class="small-box-footer">ver <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Tarea 3</h3>
-
-                                <p>Descripcion 3</p>
-                            </div>
-                            
-                            <a href="TareasGrupales.html" class="small-box-footer">ver <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    
-                </div>
+                
             </div>
 
         </div>
@@ -214,7 +275,7 @@
         </footer>
 
     </div>
-   
+    <script src="../editarPopUp.js"></script>   
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
