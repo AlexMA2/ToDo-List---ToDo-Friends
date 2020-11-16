@@ -14,15 +14,15 @@
     <title>Todo List | Empieza a organizarte</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">   
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">   
+    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -127,17 +127,17 @@
                             </ul>
                         </li>
 
-                        <a href="#"><i class="fas fa-sign-out-alt"></i> Salir</a>
-                    </ul>
-                    
-                        
-                    
+                        <a href=" #"><i class="fas fa-sign-out-alt"></i> Salir</a>
+                            </ul>
+
+
+
                 </nav>
 
-                
-                
+
+
             </div>
-            
+
         </aside>
 
         <div class="content-wrapper">
@@ -159,20 +159,27 @@
                         <!-- aqui comienza el formulario-->
                         <div class="container p-4">
                             <div class="row">
-                                <div class="container"><!-- sugerencia usar la clase col-md-4-->
+                                <div class="container">
+                                    <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
                                         <form action="" id="formGuardarTarea">
                                             <div class="form-group">
-                                                <input type="text" maxlength="32" id="inTitulo" name="title" class=" form-control" placeholder=" T&iacute;tulo" required>
+                                                <input type="text" maxlength="128" minlength="4" id="inTitulo"
+                                                    name="title" class=" form-control" placeholder=" T&iacute;tulo"
+                                                    required>
                                             </div>
                                             <div class="form-group">
-                                                <textarea name="descripcion" maxlength="256" id="inDesc" rows="4" class="form-control" placeholder="Descripci&oacute;n" required></textarea>
+                                                <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
+                                                    class="form-control" placeholder="Descripci&oacute;n"
+                                                    required></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" id="inFecha" name="fecha-limite" class=" form-control" placeholder=" Fecha Limite" >
+                                                <input type="date" id="inFecha" name="fecha-limite"
+                                                    class=" form-control" placeholder=" Fecha Limite">
                                             </div>
-                                            <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea" name=" guardarTarea" value="Guardar" />
+                                            <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
+                                                name=" guardarTarea" value="Guardar" />
 
                                         </form>
                                     </div>
@@ -188,24 +195,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-                                            <!-- esto es solo ejemplo-->
-                                            <tr>
-                                                <td>Tarea1</td>
-                                                <td>Descripcion de tarea</td>
-                                                <td> 30 - 11 - 2020</td>
-                                                <td>
-                                                    <!--boton de editar-->
-                                                    <a href="#" class="btn btn-warning" id="btn-editar">
-                                                        <i class="fas fa-pen"></i>
-
-                                                    </a>
-                                                    |
-                                                    <a href="#" class="btn btn-danger">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                           
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -217,22 +207,27 @@
                         <div class="overlay" id="overlay">
                             <div class="popup" id="popup">
                                 <div class="col sm-4">
-                                    <a href="#" id="btn-cerrar-popup" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                                    <a href="#" class=" btn-cerrar-popup"><i
+                                            class="far fa-times-circle"></i></a>
                                     <div class="card card-body mx-auto">
                                         <div class="card card-body">
                                             <p>Editar Tarea</p>
                                             <form action="#">
                                                 <div class="form-group">
-                                                    <input type="text" name="title" class=" form-control" placeholder=" Título">
+                                                    <input type="text" name="title" class=" form-control"
+                                                        placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="descripcion" rows="4" class="form-control" placeholder="Descrpcion"></textarea>
+                                                    <textarea name="descripcion" rows="4" class="form-control"
+                                                        placeholder="Descrpcion"></textarea>
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" name="colaborador" class=" form-control" placeholder=" Colaboradores" disabled>
+                                                    <input type="date" name="colaborador" class=" form-control"
+                                                        >
                                                 </div>
-                                                <input type="submit" class="btn btn-config btn-light btn-block" name="guardarTarea" value="Guardar Cambios" />
+                                                <input type="submit" class="btn btn-config btn-light btn-block"
+                                                    name="guardarTarea" value="Guardar Cambios" />
 
                                             </form>
                                         </div>
@@ -245,7 +240,7 @@
 
                     </div>
                 </div>
-                
+
             </div>
 
         </div>
@@ -259,15 +254,15 @@
         </footer>
 
     </div>
-    <script src="../scripts/editarPopUp.js"></script>   
-    <script src="../../plugins/jquery/jquery.min.js"></script>
 
+    <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/Tarea.js"></script>
+    <script src="../scripts/dashboard.js"></script>    
+    
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
-    
+
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -275,12 +270,12 @@
     <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
     <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <script src="../../plugins/moment/moment.min.js"></script>  
+    <script src="../../plugins/moment/moment.min.js"></script>
     <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="../../dist/js/adminlte.js"></script>
-    
+
     <script src="../../dist/js/demo.js"></script>
 </body>
 

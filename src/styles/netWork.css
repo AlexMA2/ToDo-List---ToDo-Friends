@@ -5,7 +5,7 @@
     position: relative;
     border-radius: 8px;
     transition-duration: .218s;
-    transition-property:background,border,opacity,box-shadow,transform;
+    transition-property: background,border,opacity,box-shadow,transform;
     transition-timing-function: ease-in;
 }
 .trans{

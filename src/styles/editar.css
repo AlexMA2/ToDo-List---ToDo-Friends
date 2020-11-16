@@ -10,8 +10,8 @@
     display: flex;
     visibility: hidden;
 }
-.overlay.active{
-    visibility: visible;
+.active{
+    visibility: visible !important;
 }
 .popup{
     background: #f8f8f8;
