@@ -172,7 +172,7 @@
   .mynav{
     width: 30%;
     position: absolute;
-    top: 260px;       
+    top: 300px;       
     visibility: hidden;
     display: flex;
     flex-direction: column;    
