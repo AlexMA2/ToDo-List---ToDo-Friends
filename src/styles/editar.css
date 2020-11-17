@@ -49,3 +49,8 @@
 .popup form .btn-config:hover{
     background: rgba(94,125,227,.9);
 }
+
+#inDesc, #inEditDesc{
+    overflow: hidden;
+    resize: none;
+}

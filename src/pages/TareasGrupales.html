@@ -195,7 +195,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -207,24 +207,22 @@
                         <div class="overlay" id="overlay">
                             <div class="popup" id="popup">
                                 <div class="col sm-4">
-                                    <a href="#" class=" btn-cerrar-popup"><i
-                                            class="far fa-times-circle"></i></a>
+                                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                                     <div class="card card-body mx-auto">
                                         <div class="card card-body">
                                             <p>Editar Tarea</p>
-                                            <form action="#">
+                                            <form action="#" id="formEditarTarea">
                                                 <div class="form-group">
-                                                    <input type="text" name="title" class=" form-control"
-                                                        placeholder=" Título">
+                                                    <input type="text" name="title" maxlength="128" minlength="4" class=" form-control"
+                                                        id="inEditTitulo" placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="descripcion" rows="4" class="form-control"
-                                                        placeholder="Descrpcion"></textarea>
+                                                    <textarea name="descripcion" maxlength="256" rows="4" class="form-control"
+                                                        id="inEditDesc" placeholder="Descrpcion"></textarea>
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="date" name="colaborador" class=" form-control"
-                                                        >
+                                                    <input type="date" name="colaborador" id="inEditFecha" class=" form-control">
                                                 </div>
                                                 <input type="submit" class="btn btn-config btn-light btn-block"
                                                     name="guardarTarea" value="Guardar Cambios" />
@@ -257,8 +255,8 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/dashboard.js"></script>    
-    
+    <script src="../scripts/dashboard.js"></script>
+
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
