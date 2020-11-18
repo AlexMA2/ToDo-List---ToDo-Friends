@@ -10,14 +10,14 @@
     display: flex;
     visibility: hidden;
 }
-.overlay.active{
-    visibility: visible;
+.active{
+    visibility: visible !important;
 }
 .popup{
     background: #f8f8f8;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     border-radius: 3px;
-    padding 20px;
+    padding: 20px;
     width: 600px;
 
 }
@@ -26,8 +26,7 @@
     line-height:16px;
     display: block;
     text-align:right;
-    color: #BBBBBB;
-    transition:.3s ease all;
+    color: #BBBBBB;   
 
 }
 .btn-cerrar-popup:hover{
@@ -42,10 +41,14 @@
     background: #5E7DE3;
     border-radius: 3px;
     font-size:16px;
-    cursor:pointer;
-    transition: .3s ease all;
+    cursor:pointer;   
 
 }
 .popup form .btn-config:hover{
     background: rgba(94,125,227,.9);
+}
+
+#inDesc, #inEditDesc{
+    overflow: hidden;
+    resize: none;
 }
