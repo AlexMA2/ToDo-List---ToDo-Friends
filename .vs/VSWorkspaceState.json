@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\res\\bootstrap-4.5.3-dist"
+    "\\src",
+    "\\src\\pages",
+    "\\src\\scripts",
+    "\\src\\styles"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\debug.log",
   "PreviewInSolutionExplorer": false
 }
