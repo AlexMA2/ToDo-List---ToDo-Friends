@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 650px;
+  height: 700px;
   background-image: url(../../res/Skewed.png);
   background-attachment: fixed;
   background-position: center;
@@ -172,7 +172,7 @@
   .mynav{
     width: 30%;
     position: absolute;
-    top: 260px;       
+    top: 300px;       
     visibility: hidden;
     display: flex;
     flex-direction: column;    
