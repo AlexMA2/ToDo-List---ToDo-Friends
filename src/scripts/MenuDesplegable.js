@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
     var btnBurger = $(".btn-burger");
 
     btnBurger.click(function () {

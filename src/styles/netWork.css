@@ -5,11 +5,31 @@
     position: relative;
     border-radius: 8px;
     transition-duration: .218s;
-    transition-property:background,border,opacity,box-shadow,transform;
+    transition-property: background,border,opacity,box-shadow,transform;
     transition-timing-function: ease-in;
 }
 .trans{
     background:#fff;
     border-color: #e0e0e0;
 
+}
+
+.mis-tareas{
+    width: 100%;
+}
+
+.mis-tareas thead tr th:nth-child(1){
+    width: 24%;
+}
+
+.mis-tareas thead tr th:nth-child(2){
+    width: 54%;
+}
+
+.mis-tareas thead tr th:nth-child(3){
+    width: 11%;
+}
+
+.mis-tareas thead tr th:nth-child(4){
+    width: 11%;
 }
