@@ -69,6 +69,7 @@
     height: 120px;
   }
 
+<<<<<<< Updated upstream
   .mynav {
     visibility: hidden;
     width: 200px !important;
@@ -77,6 +78,19 @@
     flex-direction: column;
     margin-left: 60%;
   }
+=======
+.textos a {
+  margin-top: 20px;
+  border: 2px solid rgb(237, 240, 73);
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 40px;
+  color: #b8f473;
+  text-decoration: none;  
+
+}
+>>>>>>> Stashed changes
 
   body {
     overflow-y: scroll;
