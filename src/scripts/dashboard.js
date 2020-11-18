@@ -22,11 +22,11 @@ $(function () {
 			}
 			else if ($(x).hasClass("btn-eliminar")) {
 				//Codigo para eliminar la tarea
+				$(this).remove();
 			}
 		}
 
 	});
-
 
 	$(".btn-cerrar-popup").on("click", function (event) {
 		event.preventDefault();

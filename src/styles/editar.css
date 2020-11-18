@@ -26,8 +26,7 @@
     line-height:16px;
     display: block;
     text-align:right;
-    color: #BBBBBB;
-    transition:.3s ease all;
+    color: #BBBBBB;   
 
 }
 .btn-cerrar-popup:hover{
@@ -42,8 +41,7 @@
     background: #5E7DE3;
     border-radius: 3px;
     font-size:16px;
-    cursor:pointer;
-    transition: .3s ease all;
+    cursor:pointer;   
 
 }
 .popup form .btn-config:hover{
