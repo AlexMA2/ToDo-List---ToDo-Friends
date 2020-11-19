@@ -3,6 +3,6 @@
 $server = "localhost";
 $user ="root";
 $password = "";
-$bd = "phplogin";
+$bd = "todolist";
 
 ?>
