@@ -83,8 +83,7 @@
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"> 
-                            <?php
-                                session_start();           
+                            <?php                                  
                                 echo $_SESSION['user']
                             ?>
                         </a>
@@ -137,14 +136,12 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="../../index.php" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir                                    
                                 </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
+                            </a>                            
                         </li>    
                     </ul>                  
                         
