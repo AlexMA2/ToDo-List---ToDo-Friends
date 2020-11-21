@@ -1,54 +1,58 @@
 .overlay {
-    background: rgba(0,0,0,.3);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    visibility: hidden;
-}
-.active{
-    visibility: visible !important;
-}
-.popup{
-    background: #f8f8f8;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-    border-radius: 3px;
-    padding: 20px;
-    width: 600px;
-
-}
-.btn-cerrar-popup{
-    font-size:16px;
-    line-height:16px;
-    display: block;
-    text-align:right;
-    color: #BBBBBB;   
-
-}
-.btn-cerrar-popup:hover{
-    color:#000;
-}
-.popup form .btn-config{
-    padding: 0 20px;
-    height:40px;
-    line-height:40px;
-    border: none;
-    color:#fff;
-    background: #5E7DE3;
-    border-radius: 3px;
-    font-size:16px;
-    cursor:pointer;   
-
-}
-.popup form .btn-config:hover{
-    background: rgba(94,125,227,.9);
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  visibility: hidden;
 }
 
-#inDesc, #inEditDesc{
-    overflow: hidden;
-    resize: none;
+.active {
+  visibility: visible !important;
+}
+
+.popup {
+  background: #f8f8f8;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  padding: 20px;
+  width: 600px;
+}
+
+.btn-cerrar-popup {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  text-align: right;
+  color: #bbbbbb;
+}
+
+.btn-cerrar-popup:hover {
+  color: #000;
+}
+
+.popup form .btn-config {
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  color: #fff;
+  background: #5e7de3;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popup form .btn-config:hover {
+  background: rgba(94, 125, 227, 0.9);
+}
+
+#inDesc,
+#inEditDesc {
+  overflow: hidden;
+  resize: none;
 }
