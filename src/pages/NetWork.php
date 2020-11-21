@@ -1,6 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
         content="Gianela Mallqui, Alex Mamani, Nestor Soto, Renzo Marcos, Martin Rodriguez y Brayan Oroncuy">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="../../res/favicon1.png" type="image/x-icon">
-    <title>Todo List | &Aacute;rea de Trabajo </title>
+    <title>Todo List | Empieza a organizarte</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -26,6 +26,12 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <?php
+        session_start();           
+        if($_SESSION['user']==NULL){
+            header("location:../../index.php");
+        }
+    ?>
     <div class="wrapper">
 
 
@@ -78,7 +84,12 @@
                         <img src="../../res/perfil.jpg" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">  </a>
+                        <a href="#" class="d-block"> 
+                            <?php
+                                session_start();           
+                                echo $_SESSION['user']
+                            ?>
+                        </a>
                     </div>
                 </div>
 
@@ -96,19 +107,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="tareas.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Temas </p>
+                                        <p> Tareas </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="horarios.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> Horarios</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="guardado.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> Guardado </p>
                                     </a>
@@ -123,19 +134,11 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" ">
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="../../index.html" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i> 
-                                <p>
-                                    Salir
-                                </p>                                
-                            </a>
-                        </li>
 
-                        
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Salir</a>
                     </ul>
                     
                         
@@ -155,7 +158,7 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark"> Temas </h1>
+                            <h1 class="m-0 text-dark">Grupos de trabajo</h1>
                         </div>
                         <div class="col-sm-6">
 
@@ -173,9 +176,9 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3> Tema 1 </h3>
+                                <h3>Tarea 1</h3>
 
-                                <p> Descripcion del Tema 1 </p>
+                                <p>Descipcion de tareas</p>
                             </div>
                             
                             <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
@@ -186,9 +189,9 @@
 
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3> Tema 2 </h3>
+                                <h3>Tarea 2<sup style="font-size: 20px"></sup></h3>
 
-                                <p> Descripcion del Tema 2 </p>
+                                <p>Descripcion 2</p>
                             </div>
                             
                             <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
@@ -198,9 +201,9 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3> Tema 2 </h3>
+                                <h3>Tarea 3</h3>
 
-                                <p> Descripcion del Tema 2 </p>
+                                <p>Descripcion 3</p>
                             </div>
                             
                             <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
