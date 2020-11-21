@@ -1,4 +1,5 @@
 <?php
+    include('config.php');
     #nombre del server: localhost
     #usuario: root
     #contraseña: 

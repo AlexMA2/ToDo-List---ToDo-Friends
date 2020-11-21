@@ -1,5 +1,4 @@
 <?php
-#include("db.php");
 $usuario=$_POST['user'];
 $contraseña=$_POST['pass'];
 $contraseña_encriptada = sha1($contraseña);
@@ -21,7 +20,7 @@ $resultado=mysqli_query($conexion,$consulta);
 $filas=mysqli_num_rows($resultado);
 
 if($filas){
-    #si logra ingresar, se dirigira a: index.html
+    #si logra ingresar, se dirigira a: index.php
     header("location:NetWork.php");
 
 }else{
