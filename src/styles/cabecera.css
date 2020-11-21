@@ -1,0 +1,182 @@
+.btn-burger {
+  display: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.cabecera {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 700px;
+  background-image: url(../../res/Skewed.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
+
+.logo {
+  text-align: center;
+  color: #fff;
+}
+
+.logo h1 {
+  padding-top: 15px;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.mynav {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+.mynav li {
+  padding: 7px;
+  font-size: 30px;
+}
+
+.mynav li a {
+  position: relative;
+  color: #21ebff;
+  overflow: hidden;
+}
+
+.mynav li a::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #21ebff;
+  border-left: 2px solid #21ebff;
+}
+
+.mynav li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid #21ebff;
+  border-right: 2px solid #21ebff;
+}
+
+.mynav li a:hover {
+  box-shadow: 0px 0px 20px #fff;
+}
+
+.mynav li a:hover:before {
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+
+.mynav li a:hover::after {
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+
+.textos {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.textos a {
+  margin-top: 20px;
+  border: 2px solid #f47378;
+  padding: 10px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 40px;
+  color: #f47378;
+  text-decoration: none;
+  animation: alert-boton 10s normal 1s infinite;
+}
+
+.titulo {
+  font-size: 85px;
+}
+
+.subtitulo {
+  font-size: 42px;
+  font-weight: 300;
+  padding-bottom: 15px;
+}
+
+.menu-activo {
+  visibility: visible !important;
+}
+
+@keyframes alert-boton {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+    color: #f47378;
+    border: 2px solid #f47378;
+    box-shadow: 0px 0px 0px #ffcca9;
+  }
+  30% {
+    background-color: #f47378;
+    color: #fff;
+    border: 2px solid #e5151c;
+    box-shadow: 0px 0px 20px #ffcca9;
+  }
+  70% {
+    background-color: rgba(0, 0, 0, 0);
+    color: #f47378;
+    border: 2px solid #f47378;
+    box-shadow: 0px 0px 0px #ffcca9;
+  }
+  100% {
+    background-color: #f47378;
+    color: #fff;
+    border: 2px solid #e5151c;
+    box-shadow: 0px 0px 20px #ffcca9;
+  }
+}
+
+@media (max-width: 1603px) {
+  .mynav li {
+    padding: 5px;
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 1371px) {
+  .mynav li {
+    padding: 5px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1169px) {
+  .mynav {
+    width: 30%;
+    position: absolute;
+    top: 300px;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    height: 400px;
+    background-color: rgba(81, 108, 133, 1);
+  }
+  .btn-burger {
+    display: block;
+  }
+}
