@@ -1,13 +1,14 @@
 $(function () {
 
 	var cambios = new Array(3);
+
 	$(".lista-tareas").on("click", ".item-tarea", function (event) {
 		event.preventDefault();
 		let x = event.target;
 
 		if (x.nodeName === 'A' || x.nodeName === 'I') {
 			if ($(x).hasClass("btn-editar")) {
-
+				//Código para editar una tarea
 				$("#overlay").addClass('active');
 				$("#popup").addClass('active');
 
@@ -18,8 +19,7 @@ $(function () {
 				cambios[0] = $(this).children(".titulo-tarea");
 				cambios[1] = $(this).children(".desc-tarea");
 				cambios[2] = $(this).children(".fecha-tarea");
-
-			}
+			}			
 			else if ($(x).hasClass("btn-eliminar")) {
 				//Codigo para eliminar la tarea
 				$(this).remove();
