@@ -1,7 +1,7 @@
 <?php
-include("db.php");
 $usuario=$_POST['user'];
 $contraseña=$_POST['pass'];
+$contraseña_encriptada = sha1($contraseña);
 session_start();
 $_SESSION['user']=$usuario;
 
@@ -14,22 +14,22 @@ $conexion=mysqli_connect("localhost","root","","todolist");
 
 #nombre de la tabla: usuarios
 
-$consulta="SELECT * FROM usuarios where username='$usuario' and password='$contraseña'";
+$consulta="SELECT * FROM usuarios where username='$usuario' and password='$contraseña_encriptada'";
 $resultado=mysqli_query($conexion,$consulta);
 
 $filas=mysqli_num_rows($resultado);
 
 if($filas){
-    #si logra ingresar, se dirigira a: index.html
-    header("location:NetWork.html");
+    #si logra ingresar, se dirigira a: index.php
+    header("location:NetWork.php");
 
 }else{
     ?>
     <?php
     #se redirigirá a la misma página, pero con una señal de error
     include("login.html");
-  ?>
-  <h1>USUARIO NO REGISTRADO</h1>
+  ?><p/p>
+  <h1 align="center">USUARIO NO REGISTRADO</h1>
   <?php
 }
 mysqli_free_result($resultado);
