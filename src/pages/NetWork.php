@@ -1,6 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +26,12 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <?php
+        session_start();           
+        if($_SESSION['user']==NULL){
+            header("location:../../index.php");
+        }
+    ?>
     <div class="wrapper">
 
 
@@ -78,7 +84,12 @@
                         <img src="../../res/perfil.jpg" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> Username </a>
+                        <a href="#" class="d-block"> 
+                            <?php
+                                session_start();           
+                                echo $_SESSION['user']
+                            ?>
+                        </a>
                     </div>
                 </div>
 
