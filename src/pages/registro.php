@@ -1,40 +1,57 @@
 <?php
-include("conexion.php");
+    include("conexion.php");
+    //Registrar usuario
+    if(isset($_POST["registrar"])){
+        try{                        
+            $correo = htmlentities(addslashes($_POST["correo"]));
+            $usuario = htmlentities(addslashes($_POST["user"]));
+            $contrasena = htmlentities(addslashes($_POST["pass"]));
+            $contra_repe = htmlentities(addslashes($_POST["passr"]));
+            if($contrasena == $contra_repe){
+                session_start();
+                $_SESSION['user']=$usuario;    
+                $contrasena_encriptada = sha1($contrasena);
+                $sqluser = "SELECT `iduser` FROM `usuarios` WHERE `username` = :user OR `correo` = :correo";
+            
+                $resultado_user = $conection->prepare($sqluser);
 
-//Registrar usuario
+                $resultado_user->bindValue(":user", $usuario);
+                $resultado_user->bindValue(":correo", $correo);
+                $resultado_user->execute();
 
-if(isset($_POST["registrar"])){
-    $correo = mysqli_real_escape_string($conection, $_POST['correo']);
-    $usuario = mysqli_real_escape_string($conection, $_POST['user']);
-    $contraseña = mysqli_real_escape_string($conection, $_POST['pass']);
-    $contraseña_encriptada = sha1($contraseña);
-    $sqluser = "SELECT iduser FROM usuarios WHERE username = '$usuario'";
+                $filas = $resultado_user->rowCount();
+                if($filas == 0) {
+                    //insertar información del usuario
+                    $sqlusuario = "INSERT INTO `usuarios` (`correo`, `username`, `password`) VALUES(:correo, :user, :pass)";
+                    $resultadousuario = $conection->prepare($sqlusuario);
 
-    $resultado_user = $conection->query($sqluser);
-    $filas = $resultado_user->num_rows;
-    if($filas > 0) {
-        echo "<script>
-            alert('El usuario ya existe');
-            window.location = 'login.html';
-        </script>";
-    }else {
-        //insertar información del usuario
-        $sqlusuario = "INSERT INTO usuarios
-                            (correo, username, password)
-                                VALUES('$correo', '$usuario', '$contraseña_encriptada')";
-        $resultadousuario = $conection->query($sqlusuario);
-        if($resultadousuario > 0){
-            echo "<script>
-            alert('Registro exitoso');
-            window.location = 'login.html';
-        </script>";
-        } else{
-            echo "<script>
-            alert('Error al registrarse');
-            window.location = 'registro.php';
-        </script>";
-        }
+                    $resultadousuario->bindValue(":correo", $correo);
+                    $resultadousuario->bindValue(":user", $usuario);
+                    $resultadousuario->bindValue(":pass", $contrasena_encriptada);
+                    $resultadousuario->execute();
+
+                    if($resultadousuario > 0){
+                        header("location:NetWork.php");
+                    } 
+                    else{
+                        header("location:registro.html");
+                    }
+
+                    $resultadousuario = null;
+                   
+                }else {
+                    $resultado_user = null;
+                    include("registro.html")
+                    ?>
+                    <h1 class="error-registro"> YA EXISTE UNA CUENTA CON ESE CORREO O CON ESE NOMBRE DE USUARIO</h1>                    
+                    <?php
+                }
+            }
+
+        }   
+        catch(Exception $ex){
+            die("Error al conectar:  $e->getMessage()");
+        } 
     }
-}
 
 ?>
