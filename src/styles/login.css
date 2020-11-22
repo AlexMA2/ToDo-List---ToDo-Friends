@@ -1,3 +1,4 @@
+/**
 .login{
     width: 700px;
     margin: 0px auto;    
@@ -15,4 +16,126 @@
     margin-bottom: 25px;
     padding: 5px
 
+}
+
+**/
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+*{
+    margin: 0;
+    padding: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+
+}
+body{
+    padding: 20px;
+}
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 300;
+    color: #7a7a7a;
+}
+.container-all{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 100px;
+    display:flex;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.container-form{
+    width: 80%;
+    padding: 40px;
+    background: #f7f7f7;
+}
+.title{
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 300;
+    color: #7a7a7a;
+
+}
+input[type="text"],
+input[type="password"]{
+    width: 100%;
+    height: 30px;
+    background: rgba(0,0,0,0);
+    border: 0px;
+    outline: 0px;
+    border-bottom: 1px  solid rgba(0,0,0,0.12);
+    color: #E30F87;
+    font-size: 16px;
+    height: 50px;
+
+}
+.button-submit{
+    width: 100%;
+    height: 50px;
+    margin-top: 60px;
+    color: white;
+    border: 0px;
+    background: linear-gradient(90deg,#BF4222,#E30F87);
+    font-weight: 300;
+    cursor: pointer;
+    font-size: 20px;
+}
+.button-submit:hover{
+    background: linear-gradient(90deg,#E30F87,#BF4222);
+}
+.text-footer{
+    display: block;
+    margin-top: 100px;
+    text-align: center;
+    color: #7a7a7a;
+    font-weight: 300;
+}
+.text-footer a{
+    color: #029EE1;
+    font-weight: 500;
+}
+.container-mensaje{
+    width: 100%;
+    background-image: url(../../res/5.jpeg);
+    background-position: center;
+    background-size:cover;
+    padding: 40px;
+    position: relative;
+}
+.capa{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg,#E30F87,#BF4222);
+    opacity: 0.6;
+}
+.title-mesage{
+    position: relative;
+    top:80px;
+    font-weight: 300;
+    color: white;
+    font-size: 40px;
+}
+.title-desciption{
+    position: relative;
+    top: 110px;
+    color: white;
+    font-size: 20px;
+    font-weight: 200;
+}
+@media screen and(max-width:800px){
+    .container-mensaje{
+        display: none;
+    }
+    .container-form{
+        margin:auto;
+        width: 100%;
+        background: white;
+    }
 }

@@ -131,7 +131,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" ">
+                            <ul class="nav nav-treeview">
                             </ul>
                         </li>
 
