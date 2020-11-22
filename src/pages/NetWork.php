@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../../https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
@@ -26,6 +24,12 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <?php
+        session_start();           
+        if($_SESSION['user']==NULL){
+            header("location:../../index.php");
+        }
+    ?>
     <div class="wrapper">
 
 
@@ -78,7 +82,11 @@
                         <img src="../../res/perfil.jpg" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> Username </a>
+                        <a href="#" class="d-block"> 
+                            <?php                                  
+                                echo $_SESSION['user']
+                            ?>
+                        </a>
                     </div>
                 </div>
 
@@ -98,19 +106,19 @@
                                 <li class="nav-item">
                                     <a href="tareas.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Tareas </p>
+                                        <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="horarios.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Horarios</p>
+                                        <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="guardado.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Guardado </p>
+                                        <p> - </p>
                                     </a>
                                 </li>
                             </ul>
@@ -127,17 +135,18 @@
                             </ul>
                         </li>
 
-                        <a href="#"><i class="fas fa-sign-out-alt"></i> Salir</a>
-                    </ul>
-                    
+                        <li class="nav-item has-treeview">
+                            <a href="../../index.php" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>
+                                    Salir                                    
+                                </p>
+                            </a>                            
+                        </li>    
+                    </ul>                  
                         
-                    
-                </nav>
-
-                
-                
-            </div>
-            
+                </nav>               
+            </div>            
         </aside>
 
         <div class="content-wrapper">
@@ -147,13 +156,13 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Grupos de trabajo</h1>
+                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#"> Inicio </a></li>
-                                <li class="breadcrumb-item active"> Tareas </li>
+                                <li class="breadcrumb-item active"> Temas </li>
                             </ol>
                         </div>
 
@@ -165,9 +174,9 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>Tarea 1</h3>
+                                <h3>Tema 1</h3>
 
-                                <p>Descipcion de tareas</p>
+                                <p>Descipcion 1</p>
                             </div>
                             
                             <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
@@ -178,7 +187,7 @@
 
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>Tarea 2<sup style="font-size: 20px"></sup></h3>
+                                <h3>Tema 2<sup style="font-size: 20px"></sup></h3>
 
                                 <p>Descripcion 2</p>
                             </div>
@@ -190,9 +199,9 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>Tarea 3</h3>
+                                <h3>Tema 3</h3>
 
-                                <p>Descripcion 3</p>
+                                <p>Descripcion 2</p>
                             </div>
                             
                             <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
@@ -234,7 +243,6 @@
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="../../dist/js/adminlte.js"></script>
-    <script src="../../dist/js/pages/dashboard.js"></script>
     <script src="../../dist/js/demo.js"></script>
 </body>
 

@@ -27,7 +27,29 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    if($_SESSION['user']!=NULL){
+        // Inicializar la sesión.
+        // Si está usando session_name("algo"), ¡no lo olvide ahora!
 
+        // Destruir todas las variables de sesión.
+        $_SESSION = array();
+
+        // Si se desea destruir la sesión completamente, borre también la cookie de sesión.
+        // Nota: ¡Esto destruirá la sesión, y no la información de la sesión!
+        if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+            );
+        }
+
+        // Finalmente, destruir la sesión.
+        session_destroy();
+    }
+    ?>
     <header class="cabecera">
         <div class="home">
             <a class="logo" href="index.html">
@@ -108,7 +130,7 @@
                     </div>
                     <div class="card">
                         <img src="res/AlexCGDesign.png" alt="">
-                        <h4> Renzo XXX </br> Marcos De la Torre</h4>
+                        <h4> Renzo Alexis </br> Marcos De la Torre</h4>
                         <p> Estudiante de Ingenier&iacute;a de Software</p>
                     </div>
                     <div class="card">
@@ -118,7 +140,7 @@
                     </div>
                     <div class="card">
                         <img src="res/AlexCGDesign.png" alt="">
-                        <h4> Brayan XXX </br> Oroncuy Fernandez</h4>
+                        <h4> Brayan Richard </br> Oroncuy Fernandez</h4>
                         <p> Estudiante de Ingenier&iacute;a de Software</p>
                     </div>
                 </div>
