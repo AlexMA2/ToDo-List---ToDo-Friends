@@ -1,9 +1,19 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    
+}
 
 .wave{
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	height: 100000%;
+	height: 100%;
 	z-index: -1;
 }
 
@@ -23,6 +33,7 @@
 }
 
 .login-content{
+	margin : 100px 0;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -30,7 +41,7 @@
 }
 
 .img img{
-	width: 500px;
+	width: 100px;
 }
 
 form{
