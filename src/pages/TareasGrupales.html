@@ -96,21 +96,21 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Tareas </p>
+                                        <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Horarios</p>
+                                        <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Guardado </p>
+                                        <p> - </p>
                                     </a>
                                 </li>
                             </ul>
@@ -123,21 +123,22 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" ">
+                            <ul class="nav nav-treeview">
                             </ul>
                         </li>
 
-                        <a href=" #"><i class="fas fa-sign-out-alt"></i> Salir</a>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>
+                                    Salir                                    
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
                             </ul>
-
-
-
+                        </li>                     
                 </nav>
-
-
-
             </div>
-
         </aside>
 
         <div class="content-wrapper">
@@ -166,7 +167,7 @@
                                         <form action="" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
-                                                    name="title" class=" form-control" placeholder=" T&iacute;tulo"
+                                                    name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
                                                     required>
                                             </div>
                                             <div class="form-group">
@@ -175,7 +176,7 @@
                                                     required></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <input type="date" id="inFecha" name="fecha-limite"
+                                                <input type="date" id="inFecha" name="fecha"
                                                     class=" form-control" placeholder=" Fecha Limite">
                                             </div>
                                             <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
@@ -213,7 +214,7 @@
                                             <p>Editar Tarea</p>
                                             <form action="#" id="formEditarTarea">
                                                 <div class="form-group">
-                                                    <input type="text" name="title" maxlength="128" minlength="4" class=" form-control"
+                                                    <input type="text" name="titulo" maxlength="128" minlength="4" class=" form-control"
                                                         id="inEditTitulo" placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
@@ -222,7 +223,7 @@
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="date" name="colaborador" id="inEditFecha" class=" form-control">
+                                                    <input type="date" name="fecha" id="inEditFecha" class=" form-control">
                                                 </div>
                                                 <input type="submit" class="btn btn-config btn-light btn-block"
                                                     name="guardarTarea" value="Guardar Cambios" />

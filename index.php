@@ -27,7 +27,22 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+    if(isset($_SESSION['user'])){      
+        $_SESSION = array();
 
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                    $params["path"], $params["domain"],
+                    $params["secure"], $params["httponly"]
+                    );
+        }
+       
+        session_destroy();
+    }
+    ?>
     <header class="cabecera">
         <div class="home">
             <a class="logo" href="index.html">
@@ -54,18 +69,8 @@
                 <h2 class="sobre-nosotros">¿Qui&eacute;nes somos?</h2>
                 <h3 class="slogan">Organiza y disfruta</h3>
                 <p class="parrafo">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis efficitur diam id auctor.
-                    Duis sit amet massa sapien. Etiam et interdum dui, sit amet imperdiet lacus. Nullam porttitor auctor
-                    ultricies.
-                    Vivamus et velit varius, lacinia ipsum posuere, tempus mauris. Praesent porttitor, nunc at maximus
-                    tincidunt, nisl tortor vestibulum lectus,
-                    eget ornare odio sem eget purus. Nunc id augue augue. Nullam sit amet lacus ac justo consectetur
-                    tempus nec in lectus. Donec suscipit,
-                    nisl vel commodo congue, sapien dui pharetra risus, a volutpat odio felis eget elit. Aenean tempus
-                    dapibus consequat. Curabitur lacinia
-                    felis sit amet massa egestas feugiat. Sed leo erat, condimentum id interdum sed, accumsan quis diam.
-                    Curabitur et dui enim. Integer
-                    ultrices, sem in luctus mollis, dui arcu lacinia dolor, vel interdum ante tortor eget sem.
+                    Somos una plataforma que te ayudara a organizar tus labores diarias.
+                    Organiza tus tareas,pendientes y proyectos etc
 
                 </p>
                 <p class="parrafo">
@@ -123,7 +128,7 @@
                     </div>
                     <div class="card">
                         <img src="res/AlexCGDesign.png" alt="">
-                        <h4> Renzo XXX </br> Marcos De la Torre</h4>
+                        <h4> Renzo Alexis </br> Marcos De la Torre</h4>
                         <p> Estudiante de Ingenier&iacute;a de Software</p>
                     </div>
                     <div class="card">
@@ -133,7 +138,7 @@
                     </div>
                     <div class="card">
                         <img src="res/AlexCGDesign.png" alt="">
-                        <h4> Brayan XXX </br> Oroncuy Fernandez</h4>
+                        <h4> Brayan Richard </br> Oroncuy Fernandez</h4>
                         <p> Estudiante de Ingenier&iacute;a de Software</p>
                     </div>
                 </div>

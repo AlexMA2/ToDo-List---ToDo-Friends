@@ -25,7 +25,7 @@
 <body>
     <header class="cabecera" style="height: 315px;">
         <div class="home">
-            <a class="logo" href="../../index.html">
+            <a class="logo" href="../../index.php">
                 <h1> To-Do Friends </h1>
             </a>
         </div>
@@ -41,12 +41,12 @@
   
     <main class="login">
         <h1> Registrarse </h1>
-        <form method="POST">
+        <form action="registro.php" method="POST">
             <input type="email" name="correo" placeholder="Correo Electrónico" required="required" />
             <input type="text" name="user" placeholder="Nombre de usuario" required="required" />
             <input type="password" name="pass" placeholder="Contraseña" required="required" />
             <input type="password" name="passr" placeholder="Repetir contraseña" required="required" />
-            <button type="submit" class="btn btn-primary btn-block btn-large"> Crear Cuenta </button>
+            <button type="submit" name = "registrar" class="btn btn-primary btn-block btn-large"> Crear Cuenta </button>
         </form>
     </main>
 </body>
