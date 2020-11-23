@@ -179,7 +179,7 @@
                                 <p>Descipcion 1</p>
                             </div>
                             
-                            <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- tarea -->
@@ -192,7 +192,7 @@
                                 <p>Descripcion 2</p>
                             </div>
                             
-                            <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- tarea -->
@@ -204,7 +204,7 @@
                                 <p>Descripcion 2</p>
                             </div>
                             
-                            <a href="TareasGrupales.html" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     

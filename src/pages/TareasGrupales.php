@@ -26,6 +26,12 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <?php
+        session_start();           
+        if($_SESSION['user']==NULL){
+            header("location:../../index.php");
+        }
+    ?>
     <div class="wrapper">
 
 
@@ -78,7 +84,10 @@
                         <img src="../../res/perfil.jpg" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> Username </a>
+                        <a href="#" class="d-block"> 
+                            <?php                                  
+                                echo $_SESSION['user']
+                            ?> </a>
                     </div>
                 </div>
 
@@ -164,7 +173,7 @@
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="" id="formGuardarTarea">
+                                        <form action="guardartarea.php" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -180,7 +189,7 @@
                                                     class=" form-control" placeholder=" Fecha Limite">
                                             </div>
                                             <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
-                                                name=" guardarTarea" value="Guardar" />
+                                                name = "guardarTarea" value ="Guardar Tarea">
 
                                         </form>
                                     </div>
@@ -196,7 +205,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -256,7 +265,7 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/dashboard.js"></script>
+
 
     <script>
         $.widget.bridge('uibutton', $.ui.button)
