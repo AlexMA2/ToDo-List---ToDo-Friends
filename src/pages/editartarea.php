@@ -1,22 +1,5 @@
 <?php
 include("conexion.php");
-#$include("login.php");
-#$usuario=$_POST['user'];
-
-
-/*if  (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $query = "SELECT * FROM `tareas` WHERE `id_task`=:id";
-  $resultadousuario = $conection->prepare($query);
-  $resultadousuario->bindValue(":id", $id);
-  $resultadousuario->execute();
-  if ($resultadousuario->rowCount() == 1) {
-    $row = $resultadousuario->fetch(PDO::FETCH_ASSOC);
-    $title = $row['title'];
-    $description = $row['description'];
-    $fecha = $row['limit_date'];
-  }
-}*/
 
 if (isset($_POST['update'])) {
   try{
@@ -211,26 +194,29 @@ if (isset($_POST['update'])) {
                         <div class="container p-4">
                             <div class="row">
                                 <div class="container">
-                                    <!-- sugerencia usar la clase col-md-4-->
+                                   
                                     <div class="card card-body">
                                         <p>Editar Tarea</p>
                                         <form action="editartarea.php?id=<?php echo $_GET['id']; ?>" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo2" class=" form-control" placeholder=" T&iacute;tulo"
-                                                    required>
+                                                    required value="<?php echo $_GET['t']; ?>">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="descripcion2" maxlength="256" id="inDesc" rows="4"
                                                     class="form-control" placeholder="Descripci&oacute;n"
-                                                    required></textarea>
+                                                    required><?php echo $_GET['d']; ?></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha2"
-                                                    class=" form-control" placeholder=" Fecha Limite">
+                                                    class=" form-control" placeholder=" Fecha Limite" value="<?php echo $_GET['f']; ?>">
                                             </div>
-                                            <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
-                                                name = "update" value ="Guardar Tarea">
+                                            <div class="row">
+                                                <input type="submit" class="col mr-2 btn btn-success btn-block" id="btnGuardarTarea" name = "update" value ="Guardar Edici&oacute;n">
+                                                <a href="TareasGrupales.php" class="col btn btn-warning ml-2">Cancelar edici&oacute;n</a>
+                                            </div>
+                                            
 
                                         </form>
                                     </div>

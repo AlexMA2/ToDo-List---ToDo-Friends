@@ -208,7 +208,7 @@
                                         </thead>
                                         <tbody class="lista-tareas">
                                         <?php
-                                            #$query = "SELECT * FROM tareas WHERE username='$usuario';
+                                           
                                             $query = "SELECT * FROM tareas";
                                             $resultado_tarea = $conection->query($query);
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -218,7 +218,7 @@
                                                 <td><?php echo $row['limit_date']; ?></td>
                                                 <td>
                                                     <abbr title="Modificar Tarea">
-                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
+                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>&t=<?php echo $row['title'];?>&d=<?php echo $row['description'];?>&f=<?php echo $row['limit_date'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
                                                     </abbr>
                                                     <abbr title="Eliminar Tarea">
                                                     <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
@@ -285,7 +285,7 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/dashboard2.0.js"></script>                                      
+                                         
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>

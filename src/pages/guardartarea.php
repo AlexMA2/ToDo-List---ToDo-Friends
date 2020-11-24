@@ -7,9 +7,7 @@ if (isset($_POST['guardarTarea'])) {
     $title = htmlentities(addslashes($_POST['titulo']));
     $description = htmlentities(addslashes($_POST['descripcion']));
     $date = htmlentities(addslashes($_POST['fecha']));
-    #$fecha = $_POST['fecha']
-    #$query = "INSERT INTO tareas(title, description, fecha) VALUES ('$title', '$description', '$fecha')";
-    #WHERE username='$usuario' VALUES (...)
+ 
     $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`) VALUES (:titulo, :descripcion, :fecha)";
     $resultadousuario = $conection->prepare($query);
 
@@ -23,15 +21,7 @@ if (isset($_POST['guardarTarea'])) {
   }catch(Exception $ex){
     die("Error al conectar:  $ex->getMessage()");
   }
-  #$result = mysqli_query($conection, $query);
 
-  #if(!$resultadousuario) {
-   # die("Query Failed.");
-  #}
-
-  #$_SESSION['message'] = 'Task Saved Successfully';
-  #$_SESSION['message_type'] = 'success';
-  #header('Location: index.php');
   
 }
 ?>
