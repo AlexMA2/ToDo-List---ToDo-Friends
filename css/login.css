@@ -6,7 +6,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    
+
 }
 
 .wave{
@@ -16,7 +16,6 @@ body{
 	height: 100%;
 	z-index: -1;
 }
-
 .container{
     width: 100vw;
     height: 100vh;
@@ -33,7 +32,6 @@ body{
 }
 
 .login-content{
-	margin : 100px 0;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -41,7 +39,7 @@ body{
 }
 
 .img img{
-	width: 100px;
+	width: 500px;
 }
 
 form{
@@ -78,6 +76,7 @@ form{
 	justify-content: center;
 	align-items: center;
 }
+
 
 .i i{
 	transition: .3s;
@@ -181,7 +180,6 @@ a:hover{
 .btn:hover{
 	background-position: right;
 }
-
 
 @media screen and (max-width: 1050px){
 	.container{
