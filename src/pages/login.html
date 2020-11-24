@@ -22,7 +22,7 @@
 
     <script src="../scripts/MenuDesplegable.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../styles/login.css">
 
 </head>
 
@@ -35,9 +35,14 @@
         </div>
         <span class="btn-burger"><i class="fa fa-bars"></i></span>
         <nav class="mynav">
-
+            <li class="nav-item text-center"><a class="nav-link" href="caracteristicas.html"> Caracter&iacute;sticas</a>
+            </li>
+            <li class="nav-item text-center"><a class="nav-link" href="tutorial.html"> Tutorial </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="equipos.html"> Trabajos en Equipo </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="login.html"> Iniciar Sesi&oacute;n </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="registro.html">Registrarse </a> </li>
         </nav>
+
     </header>
 
     <img class="wave" src="../../res/wave.png">
@@ -46,33 +51,23 @@
             <img src="../../res/bg.svg">
         </div>
         <div class="login-content">
-            <form action="index.html">
+            <form action="login.php" method="POST">
                 <img src="../../res/avatar.svg">
-                <h2 class="title">BIENVENIDOS</h2>
+                <h2 class="title"> BIENVENIDO </h2>
                 <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
+                    <i class="fas fa-user"></i>
                     <div class="div">
-                        <h5>Usuario</h5>
-                        <input type="text" class="input">
+                        <input type="text" name="user" placeholder="Nombre de usuario" required="required" autocomplete="off" value=""/>                        
                     </div>
                 </div>
                 <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
+                    <i class="fas fa-lock"></i>
+                    <div class="div">                        
+                        <input type="password" name="pass" placeholder="Contraseña" required="required"autocomplete="off" value=""/>
                     </div>
-                    <div class="input-div pass">
-                        <div class="i">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="div">
-                            <h5>Contraseña</h5>
-                            <input type="password" class="input">
-                        </div>
-                    </div>
-                    <a href="#">Olvidaste tu contraseña?</a>
-                    <input type="submit" class="btn" value="Login">
+                </div>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <input type="submit" name="logearte" class="btn" value="Iniciar Sesi&oacute;n">
             </form>
         </div>
     </div>
