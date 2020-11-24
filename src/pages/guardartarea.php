@@ -17,10 +17,11 @@ if (isset($_POST['guardarTarea'])) {
     $resultadousuario->bindValue(":descripcion", $description);
     $resultadousuario->bindValue(":fecha", $date);
     $resultadousuario->execute();
- 
+    
+    header("location:TareasGrupales.php");
 
   }catch(Exception $ex){
-    die("Error al conectar:  $e->getMessage()");
+    die("Error al conectar:  $ex->getMessage()");
   }
   #$result = mysqli_query($conection, $query);
 
@@ -32,6 +33,5 @@ if (isset($_POST['guardarTarea'])) {
   #$_SESSION['message_type'] = 'success';
   #header('Location: index.php');
   
-} 
-
+}
 ?>
