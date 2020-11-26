@@ -1,4 +1,9 @@
 $(function () {
+	console.log("adasdsadsadad");
+	$(".lista-tareas").on("click", function(event){
+		$("#overlay").addClass('active');
+		$("#popup").addClass('active');
+	});
 
 	var cambios = new Array(3);
 
@@ -37,7 +42,7 @@ $(function () {
 		}
 	});	
 
-	crearTarea = (titulo, desc, fecha) => {
+	/*crearTarea = (titulo, desc, fecha) => {
 		let acciones = '';
 		acciones += '<td>';
 		acciones += '<abbr title="Modificar Tarea">';
@@ -103,6 +108,6 @@ $(function () {
 		$("#overlay").removeClass('active');
 		$("#popup").removeClass('active');
 
-	});
+	});*/
 	
 });

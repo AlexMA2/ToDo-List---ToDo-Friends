@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<?php include("conexion.php"); ?>
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -26,6 +28,12 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <?php
+        session_start();           
+        if($_SESSION['user']==NULL){
+            header("location:../../index.php");
+        }
+    ?>
     <div class="wrapper">
 
 
@@ -78,7 +86,10 @@
                         <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> Username </a>
+                        <a href="#" class="d-block"> 
+                            <?php                                  
+                                echo $_SESSION['user']
+                            ?> </a>
                     </div>
                 </div>
 
@@ -164,7 +175,7 @@
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="" id="formGuardarTarea">
+                                        <form action="guardartarea.php" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -180,7 +191,7 @@
                                                     class=" form-control" placeholder=" Fecha Limite">
                                             </div>
                                             <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
-                                                name=" guardarTarea" value="Guardar" />
+                                                name = "guardarTarea" value ="Guardar Tarea">
 
                                         </form>
                                     </div>
@@ -196,7 +207,25 @@
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-
+                                        <?php
+                                           
+                                            $query = "SELECT * FROM tareas";
+                                            $resultado_tarea = $conection->query($query);
+                                            while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                            <tr>
+                                                <td><?php echo $row['title']; ?></td>
+                                                <td><?php echo $row['description']; ?></td>
+                                                <td><?php echo $row['limit_date']; ?></td>
+                                                <td>
+                                                    <abbr title="Modificar Tarea">
+                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>&t=<?php echo $row['title'];?>&d=<?php echo $row['description'];?>&f=<?php echo $row['limit_date'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
+                                                    </abbr>
+                                                    <abbr title="Eliminar Tarea">
+                                                    <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
+                                                    </abbr>
+                                                </td>
+                                            </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -213,21 +242,21 @@
                                     <div class="card card-body mx-auto">
                                         <div class="card card-body">
                                             <p>Editar Tarea</p>
-                                            <form action="#" id="formEditarTarea">
+                                            <form action="editartarea.php" method = "POST" id="formEditarTarea">
                                                 <div class="form-group">
-                                                    <input type="text" name="titulo" maxlength="128" minlength="4" class=" form-control"
+                                                    <input type="text" name="titulo2" maxlength="128" minlength="4" class=" form-control"
                                                         id="inEditTitulo" placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="descripcion" maxlength="256" rows="4" class="form-control"
-                                                        id="inEditDesc" placeholder="Descrpcion"></textarea>
+                                                    <textarea name="descripcion2" maxlength="256" rows="4" class="form-control"
+                                                        id="inEditDesc" placeholder="Descripcion"></textarea>
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="date" name="fecha" id="inEditFecha" class=" form-control">
+                                                    <input type="date" name="fecha2" id="inEditFecha" class=" form-control">
                                                 </div>
                                                 <input type="submit" class="btn btn-config btn-light btn-block"
-                                                    name="guardarTarea" value="Guardar Cambios" />
+                                                    name="update" value="Guardar Cambios" />
 
                                             </form>
                                         </div>
@@ -257,13 +286,11 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/dashboard.js"></script>
-
+                                         
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
-
-
+    
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
@@ -277,6 +304,9 @@
     <script src="../../dist/js/adminlte.js"></script>
 
     <script src="../../dist/js/demo.js"></script>
-</body>
 
+
+
+</body>
 </html>
+

@@ -29,24 +29,17 @@
 <body>
     <?php
     session_start();
-    if($_SESSION['user']!=NULL){
-        // Inicializar la sesión.
-        // Si está usando session_name("algo"), ¡no lo olvide ahora!
-
-        // Destruir todas las variables de sesión.
+    if(isset($_SESSION['user'])){      
         $_SESSION = array();
 
-        // Si se desea destruir la sesión completamente, borre también la cookie de sesión.
-        // Nota: ¡Esto destruirá la sesión, y no la información de la sesión!
         if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-            );
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                    $params["path"], $params["domain"],
+                    $params["secure"], $params["httponly"]
+                );
         }
-
-        // Finalmente, destruir la sesión.
+       
         session_destroy();
     }
     ?>
@@ -81,12 +74,7 @@
 
                 </p>
                 <p class="parrafo">
-                    Sed porta venenatis ornare. Duis eget metus fermentum, iaculis justo quis, placerat justo. Sed eu
-                    mollis est. Ut fringilla justo euismod libero facilisis molestie. Suspendisse elementum lectus eu
-                    finibus interdum. Donec sodales dictum erat, vel lobortis mi vehicula id. Curabitur lobortis leo
-                    ultricies facilisis egestas. Nam quam tellus, tristique a commodo id, fermentum vitae nulla. Cras
-                    tristique enim in mauris vestibulum tincidunt. Donec quis purus ut tortor sodales efficitur. Morbi
-                    non lorem in ex bibendum lobortis sed at felis. Etiam id convallis diam. Fusce sit amet risus urna.
+                   Rellenar con mas info :v
                 </p>
             </div>
         </section>

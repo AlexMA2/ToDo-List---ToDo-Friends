@@ -1,36 +1,41 @@
 <?php
-$usuario=$_POST['user'];
-$contraseña=$_POST['pass'];
-$contraseña_encriptada = sha1($contraseña);
-session_start();
-$_SESSION['user']=$usuario;
+include("conexion.php");
 
-#nombre del server: localhost
-#usuario: root
-#contraseña: 
-#nombre de la BBDD: todolist
+if(isset($_POST["logearte"])){
+  try{
+    session_start();
 
-$conexion=mysqli_connect("localhost","root","","todolist");
+    $usuario= htmlentities(addslashes($_POST['user']));
+    $contrasena=htmlentities(addslashes($_POST['pass']));
+    $contrasena_encriptada = sha1($contrasena);
+    
+    $_SESSION['user']=$usuario;    
 
-#nombre de la tabla: usuarios
+    $consulta="SELECT * FROM `usuarios` where `username`= :user and `password`= :pass";
+    $resultado = $conection->prepare($consulta);
 
-$consulta="SELECT * FROM usuarios where username='$usuario' and password='$contraseña_encriptada'";
-$resultado=mysqli_query($conexion,$consulta);
+    $resultado->bindValue(":user", $usuario);
+    $resultado->bindValue(":pass", $contrasena_encriptada);
 
-$filas=mysqli_num_rows($resultado);
+    $resultado->execute();
 
-if($filas){
-    #si logra ingresar, se dirigira a: index.php
-    header("location:NetWork.php");
+    $filas = $resultado->rowCount();
 
-}else{
-    ?>
-    <?php
-    #se redirigirá a la misma página, pero con una señal de error
-    include("login.html");
-  ?><p/p>
-  <h1 align="center">USUARIO NO REGISTRADO</h1>
-  <?php
+    if($filas > 0){       
+      header("location:NetWork.php");
+
+    }else{      
+      #se redirigirá a la misma página, pero con una señal de error
+      include("login.html");
+      ?>
+      <h1 class="error-login">USUARIO NO REGISTRADO</h1>
+      <?php
+    }
+    
+    $resultado = null;    
+  }
+  catch(Exception $ex){
+    die("Error al conectar:  $e->getMessage()");
+  }
+  
 }
-mysqli_free_result($resultado);
-mysqli_close($conexion);
