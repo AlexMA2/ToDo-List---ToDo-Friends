@@ -27,6 +27,8 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v9.0" nonce="Ksr9PVFr"></script>
     <header class="cabecera" style="height: 315px;">
         <div class="home">
             <a class="logo" href="../../index.php">
@@ -50,7 +52,7 @@
         <div class="img">
             <img src="../../res/bg.svg">
         </div>
-        <!--<div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>-->
+        <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
         
         <div class="login-content">
             <form action="login.php" method="POST">
@@ -74,17 +76,8 @@
         </div>
     </div>
     <script type="text/javascript" src="../scripts/main.js"></script>
-    <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId            : 'your-app-id',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v9.0'
-          });
-        };
-    </script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    
+    
 </body>
 
 
