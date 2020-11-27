@@ -139,7 +139,7 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="../../index.php" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir                                    
