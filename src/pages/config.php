@@ -2,9 +2,9 @@
 <?php
 
 
-$server = "bvem3cmsxg5jgvxubvft-mysql.services.clever-cloud.com";
-$user ="uywfzeidvrl9ed3z";
-$password = "nvAxGcyZxzP7S4TS8Pq0";
-$bd = "bvem3cmsxg5jgvxubvft";
+$server = "bf7fhdjnbgbxcab3jzmo-mysql.services.clever-cloud.com";
+$user ="u309jjiooh9s454g";
+$password = "1WAOBnaOWKBX6dEnpe5P";
+$bd = "bf7fhdjnbgbxcab3jzmo";
 
 ?>
