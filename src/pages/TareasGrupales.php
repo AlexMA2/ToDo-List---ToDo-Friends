@@ -83,7 +83,7 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" alt="User Image">
+                        <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"> 
@@ -236,6 +236,7 @@
                         <!--opcion de editar-->
                         <div class="overlay" id="overlay">
                             <div class="popup" id="popup">
+
                                 <div class="col sm-4">
                                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                                     <div class="card card-body mx-auto">
@@ -260,7 +261,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                
                             </div>
 
                         </div>
