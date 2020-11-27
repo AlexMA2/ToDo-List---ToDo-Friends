@@ -50,6 +50,8 @@
         <div class="img">
             <img src="../../res/bg.svg">
         </div>
+        <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>
+        
         <div class="login-content">
             <form action="login.php" method="POST">
                 <img src="../../res/avatar.svg">
@@ -72,6 +74,17 @@
         </div>
     </div>
     <script type="text/javascript" src="../scripts/main.js"></script>
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : 'your-app-id',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v9.0'
+          });
+        };
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 </body>
 
 
