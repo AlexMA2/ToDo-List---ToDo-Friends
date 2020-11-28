@@ -212,13 +212,13 @@
                                             $query = "SELECT * FROM tareas";
                                             $resultado_tarea = $conection->query($query);
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
-                                            <tr>
+                                            <tr class="item-tarea">
                                                 <td><?php echo $row['title']; ?></td>
                                                 <td><?php echo $row['description']; ?></td>
                                                 <td><?php echo $row['limit_date']; ?></td>
                                                 <td>
                                                     <abbr title="Modificar Tarea">
-                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>&t=<?php echo $row['title'];?>&d=<?php echo $row['description'];?>&f=<?php echo $row['limit_date'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
+                                                    <a href="#" class="btn btn-warning btn-editar"  id="t-<?php echo $row['id_task'];?>"><i class="fas fa-pen btn-editar"  id="ti-<?php echo $row['id_task'];?>"></i></a>
                                                     </abbr>
                                                     <abbr title="Eliminar Tarea">
                                                     <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
@@ -242,7 +242,7 @@
                                     <div class="card card-body mx-auto">
                                         <div class="card card-body">
                                             <p>Editar Tarea</p>
-                                            <form action="editartarea.php" method = "POST" id="formEditarTarea">
+                                            <form action="graneditar.php" method = "POST" id="formEditarTarea">
                                                 <div class="form-group">
                                                     <input type="text" name="titulo2" maxlength="128" minlength="4" class=" form-control"
                                                         id="inEditTitulo" placeholder=" Título">
@@ -286,7 +286,8 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-                                         
+    <script src="../scripts/Tarea.js"></script>
+    <script src="../scripts/activadorPopUp.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
