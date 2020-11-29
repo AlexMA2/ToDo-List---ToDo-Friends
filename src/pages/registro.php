@@ -50,7 +50,7 @@
 
         }   
         catch(Exception $ex){
-            die("Error al conectar:  $e->getMessage()");
+            die("Error al conectar:  $ex->getMessage()");
         } 
     }
 

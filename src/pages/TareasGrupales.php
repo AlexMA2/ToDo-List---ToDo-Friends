@@ -194,6 +194,17 @@
                                                 name = "guardarTarea" value ="Guardar Tarea">
 
                                         </form>
+                                        
+                                        <?php 
+                                            if(isset($_GET["errm"])){
+                                                ?>
+                                                <div class="error-fecha"> 
+                                                    La fecha seleccionada debe mayor a la del dia actual </br>
+                                                    Fecha seleccionada: <?php echo $_GET["errm"]; ?>
+                                                </div>
+                                                <?php
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="container-fluid">
@@ -217,12 +228,14 @@
                                                 <td><?php echo $row['description']; ?></td>
                                                 <td><?php echo $row['limit_date']; ?></td>
                                                 <td>
+                                                    <!--
                                                     <abbr title="Modificar Tarea">
                                                     <a href="#" class="btn btn-warning btn-editar"  id="t-<?php echo $row['id_task'];?>"><i class="fas fa-pen btn-editar"  id="ti-<?php echo $row['id_task'];?>"></i></a>
                                                     </abbr>
                                                     <abbr title="Eliminar Tarea">
                                                     <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
-                                                    </abbr>
+                                                    </abbr>-->
+                                                    <span><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
                                                 </td>
                                             </tr>
                                             <?php } ?>

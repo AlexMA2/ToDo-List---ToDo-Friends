@@ -35,7 +35,7 @@ if(isset($_POST["logearte"])){
     $resultado = null;    
   }
   catch(Exception $ex){
-    die("Error al conectar:  $e->getMessage()");
+    die("Error al conectar: ". $ex->getMessage());
   }
   
 }
