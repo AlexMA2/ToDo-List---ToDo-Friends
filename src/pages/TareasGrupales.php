@@ -144,10 +144,9 @@
                                 <p>
                                     Salir                                    
                                 </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>                     
+                            </a>                            
+                        </li>
+                    </ul>                     
                 </nav>
             </div>
         </aside>
