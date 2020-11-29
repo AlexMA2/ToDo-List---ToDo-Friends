@@ -169,9 +169,9 @@
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
-                        <div class="container p-4">
+                        <div class="container-fluid p-4">
                             <div class="row">
-                                <div class="container">
+                                <div class="container-sm px-4">
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
@@ -196,7 +196,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="container">
+                                <div class="container-fluid">
                                     <table class="table table-bordered mis-tareas">
                                         <thead class="thead-dark">
                                             <tr>
@@ -261,7 +261,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                
+                                </div>
                             </div>
 
                         </div>
