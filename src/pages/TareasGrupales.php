@@ -199,16 +199,48 @@
                                     <table class="table table-bordered mis-tareas">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>T&iacute;tulo</th>
+                                                <th>T&iacute;tulo
+                                                    <div class="float-right">
+                                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'title' && $_GET['tipo'] == 'asc') : ?>
+                                                            <i class="fa fa-caret-up" text-secondary"></i>
+                                                        <?php else : ?>
+                                                            <a href="TareasGrupales.php?columna=title&tipo=asc"><i class="fa fa-caret-up"></i></a>
+                                                        <?php endif; ?>
+
+                                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'title' && $_GET['tipo'] == 'desc') : ?>
+                                                            <i class="fa fa-caret-down text-secondary"></i>
+                                                        <?php else : ?>
+                                                            <a href="TareasGrupales.php?columna=title&tipo=desc"><i class="fa fa-caret-down"></i></a>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </th>
                                                 <th>Descripci&oacute;n</th>
-                                                <th>Fecha L&iacute;mite</th>
+                                                <th style="min-width: 150px;">Fecha L&iacute;mite
+                                                    <div class="float-right">
+                                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'limit_date' && $_GET['tipo'] == 'asc') : ?>
+                                                            <i class="fa fa-caret-up text-secondary"></i>
+                                                        <?php else : ?>
+                                                            <a href="TareasGrupales.php?columna=limit_date&tipo=asc"><i class="fa fa-caret-up"></i></a>
+                                                        <?php endif; ?>
+
+                                                        <?php if (isset($_GET['columna']) && $_GET['columna'] == 'limit_date' && $_GET['tipo'] == 'desc') : ?>
+                                                            <i class="fa fa-caret-down text-secondary"></i>
+                                                        <?php else : ?>
+                                                            <a href="TareasGrupales.php?columna=limit_date&tipo=desc"><i class="fa fa-caret-down"></i></a>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
                                         <?php
+                                            $order="";
+                                            if( isset($_GET['columna'])){
+                                                $order=" order by  ".$_GET['columna']." ".$_GET['tipo'];
+                                            }
                                            
-                                            $query = "SELECT * FROM tareas";
+                                            $query = "SELECT * FROM tareas $order";
                                             $resultado_tarea = $conection->query($query);
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
                                             <tr>
