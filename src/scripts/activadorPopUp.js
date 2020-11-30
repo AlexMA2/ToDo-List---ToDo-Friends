@@ -1,19 +1,16 @@
 $(function(){
     var id;
-    $(".btn-editar").on("click", function(ev){
+    $(".btn-opciones").on("click", function(ev){
         ev.preventDefault();
         $("#overlay").addClass("active");
         $("#popup").addClass("active");
-        let x = ev.target;        
-        if (x.nodeName === 'A') {
-            id = x.id;
-            id = id.substring(2, id.length);
-        }
-        else if(x.nodeName === 'I'){
-            id = x.id;
-            id = id.substring(3, id.length);
-        }
-        
+        id = $(this).data("tid");
+        let titulo = $(this).parent().parent().siblings("td:nth-child(1)").text();
+        let descripcion = $(this).parent().parent().siblings("td:nth-child(2)").text();
+        let fechaLimite = $(this).parent().parent().siblings("td:nth-child(3)").text();        
+        $("#inEditTitulo").val(titulo);
+        $("#inEditDesc").text(descripcion);
+        $("#inEditFecha").val(fechaLimite);
     });
     $(".btn-cerrar-popup").on("click",function(){
         $("#overlay").removeClass("active");
@@ -25,6 +22,22 @@ $(function(){
         
         $('#formEditarTarea').attr('action', urlActual + "?id=" + id);       
         $('#formEditarTarea').submit();
+    });
+
+    $(".btn-eliminar").on("click", function(){
+        
+        let urlActual = $(this).attr('href');
+        $(this).attr('href', urlActual + "?id=" + id);
+        
+
+    });
+
+    $(".btn-archivar").on("click", function(){
+        
+        let urlActual = $(this).attr('href');
+        $(this).attr('href', urlActual + "?id=" + id);
+        
+
     });
 
 });

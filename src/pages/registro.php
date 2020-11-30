@@ -5,7 +5,7 @@
         try{                        
             $correo = htmlentities(addslashes($_POST["correo"]));
             $usuario = htmlentities(addslashes($_POST["user"]));
-            $contrasena = htmlentities(addslashes($_POST["pass"]));
+        $contrasena = htmlentities(addslashes($_POST["pass"]));
             $contra_repe = htmlentities(addslashes($_POST["passr"]));
             if($contrasena == $contra_repe){
                 session_start();

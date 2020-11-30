@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -10,7 +10,8 @@
         content="Gianela Mallqui, Alex Mamani, Nestor Soto, Renzo Marcos, Martin Rodriguez y Brayan Oroncuy">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="../../res/favicon1.png" type="image/x-icon">
-    <title>Todo List | Empieza a organizarte</title>
+    <link rel="stylesheet" href="../styles/editar.css">
+    <title>Todo List | Edita tus datos </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -19,16 +20,19 @@
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
+    <link rel="stylesheet" href="../styles/perfil.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <?php
         session_start();           
-        if($_SESSION['user']==NULL){
+        if(!isset($_SESSION['user'])){
             header("location:../../index.php");
+        }
+        else{
+            include("sacarDatos.php");
         }
     ?>
     <div class="wrapper">
@@ -80,14 +84,13 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
                         <a href="perfilusuario.php" class="d-block">
                             <?php                                  
                                 echo $_SESSION['user']
-                            ?>
-                        </a>
+                            ?> </a>
                     </div>
                 </div>
 
@@ -105,19 +108,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
@@ -145,69 +148,45 @@
                             </a>
                         </li>
                     </ul>
-
                 </nav>
             </div>
         </aside>
 
         <div class="content-wrapper">
+
             <div class="content-header">
-                <div class="container-fluid">
-
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
+                <div class="container">
+                    <div class="row perfil-usuario">
+                        <div class="perfil-foto col-6">
+                            <img src="../../res/perfil.jpg" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
+                                height="350">
+                            <a href="#" class="btn btn-primary"> Cambiar foto de perfil </a>
                         </div>
-                        <div class="col-sm-6">
-
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#"> Inicio </a></li>
-                                <li class="breadcrumb-item active"> Temas </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Tema 1</h3>
-
-                                <p>Descipcion 1</p>
+                        <div class="perfil-datos col-6">
+                            <h3> Nombre de usuario: </h3>
+                            <div class="perfil-nombre">
+                                <form action="actualizarDatos.php?campo=nombre" method="POST">
+                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" disabled value=" <?php echo $usuario;?>" >
+                                    <input type="button" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
+                                </form>                              
                             </div>
-
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Tema 2<sup style="font-size: 20px"></sup></h3>
-
-                                <p>Descripcion 2</p>
+                            <h3> Correo Electrónico: </h3>
+                            <div class="perfil-correo">
+                                <form action="actualizarDatos.php?campo=correo" method="POST">
+                                    <input type="text" id="in-perfil-correo" name="perfil-correo" disabled value=" <?php echo $uCorreo;?>" >
+                                    <input type="button" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
+                                </form>
                             </div>
-
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Tema 3</h3>
-
-                                <p>Descripcion 2</p>
+                            <h3> Cambiar contraseña: </h3>
+                            <div class="perfil-contra">
+                                <form action="actualizarDatos.php?campo=contra" method="POST">
+                                    <input type="text" name="perfil-contra" placeholder="Contraseña nueva" required value="">
+                                    <input type="text" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
+                                    <input type="submit" class="btn btn-primary" name="perfil-guardar-contra" value="Cambiar Contraseña">
+                                </form>
                             </div>
-
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i
-                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -224,13 +203,11 @@
     </div>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
-
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>    
+    <script src="../scripts/perfil.js"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -243,7 +220,11 @@
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="../../dist/js/adminlte.js"></script>
+
     <script src="../../dist/js/demo.js"></script>
+
+
+
 </body>
 
 </html>
