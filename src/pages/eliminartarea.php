@@ -11,7 +11,7 @@ if(isset($_GET['id'])) {
         $resultadousuario->execute();
         header('Location: TareasGrupales.php');
     }catch(Exception $ex){
-        die("Error al conectar:  $ex->getMessage()");
-        }
+        die("Error al conectar: ". $ex->getMessage());
+    }
 }
 ?>
