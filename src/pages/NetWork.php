@@ -30,6 +30,9 @@
         if($_SESSION['user']==NULL){
             header("location:../../index.php");
         }
+        else{
+            include("sacarDatos.php");
+        }
     ?>
     <div class="wrapper">
 
@@ -85,7 +88,7 @@
                     <div class="info">
                         <a href="perfilusuario.php" class="d-block">
                             <?php                                  
-                                echo $_SESSION['user']
+                                echo $uNombre;
                             ?>
                         </a>
                     </div>

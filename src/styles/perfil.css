@@ -36,7 +36,7 @@
     letter-spacing: 2px;
     border: 1px solid #000;
     width: 80%;
-    padding: 6px;
+    padding: 6px 12px 6px 12px;
     margin-right: 5px;
     border-radius: 20px;
     color: #808080;
@@ -85,3 +85,31 @@
     box-shadow: 0px 0px 10px #000;
     padding: 25px;
 }
+
+.perfil-foto form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 50px;
+    height: 0;
+}
+
+.perfil-foto form input{
+    margin-bottom: 10px;
+}
+
+#in-perfil-foto{
+    color: #fff;
+}
+
+#para-animar{    
+    display: none;
+    width: 100%;
+}
+
+#para-animar input[name="perfil-guardar-foto"]{
+    display: flex;
+    justify-content: center;
+    
+}
+

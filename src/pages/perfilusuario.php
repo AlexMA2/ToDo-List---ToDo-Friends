@@ -89,7 +89,7 @@
                     <div class="info">
                         <a href="perfilusuario.php" class="d-block">
                             <?php                                  
-                                echo $_SESSION['user']
+                                echo $uNombre;
                             ?> </a>
                     </div>
                 </div>
@@ -158,30 +158,37 @@
                 <div class="container">
                     <div class="row perfil-usuario">
                         <div class="perfil-foto col-6">
-                            <img src="../../res/perfil.jpg" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
+                            <img src="<?php echo $uFoto?>" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
                                 height="350">
-                            <a href="#" class="btn btn-primary"> Cambiar foto de perfil </a>
+                            <form action="actualizarDatos.php?campo=foto&id=<?php echo $usuarioid;?>" method="POST" enctype="multipart/form-data">
+                                <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto" class="btn btn-primary">
+                                <div id="para-animar">
+                                    <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto" >
+                                    <input type="submit" name="perfil-guardar-foto" id="sub-guardar-foto" value="Guardar foto" class="btn btn-primary">
+                                </div>                                
+                            </form>
+                            
                         </div>
                         <div class="perfil-datos col-6">
                             <h3> Nombre de usuario: </h3>
                             <div class="perfil-nombre">
-                                <form action="actualizarDatos.php?campo=nombre" method="POST">
-                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" disabled value=" <?php echo $usuario;?>" >
-                                    <input type="button" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
+                                <form action="actualizarDatos.php?campo=nombre&id=<?php echo $usuarioid;?>" method="POST">
+                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" value="<?php echo $uNombre;?>" >
+                                    <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
                                 </form>                              
                             </div>
                             <h3> Correo Electrónico: </h3>
                             <div class="perfil-correo">
-                                <form action="actualizarDatos.php?campo=correo" method="POST">
-                                    <input type="text" id="in-perfil-correo" name="perfil-correo" disabled value=" <?php echo $uCorreo;?>" >
-                                    <input type="button" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
+                                <form action="actualizarDatos.php?campo=correo&id=<?php echo $usuarioid;?>" method="POST">
+                                    <input type="email" id="in-perfil-correo" name="perfil-correo" value="<?php echo $uCorreo;?>" >
+                                    <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
                                 </form>
                             </div>
                             <h3> Cambiar contraseña: </h3>
                             <div class="perfil-contra">
-                                <form action="actualizarDatos.php?campo=contra" method="POST">
-                                    <input type="text" name="perfil-contra" placeholder="Contraseña nueva" required value="">
-                                    <input type="text" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
+                                <form action="actualizarDatos.php?campo=contra&id=<?php echo $usuarioid;?>" method="POST">
+                                    <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required value="">
+                                    <input type="password" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
                                     <input type="submit" class="btn btn-primary" name="perfil-guardar-contra" value="Cambiar Contraseña">
                                 </form>
                             </div>
