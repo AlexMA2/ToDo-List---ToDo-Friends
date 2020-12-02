@@ -1,6 +1,4 @@
-﻿<?php include("conexion.php"); ?>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -30,11 +28,11 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <?php
         session_start();           
-        if($_SESSION['user']==NULL){
+        if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
             header("location:../../index.php");
         }
         else{
-            include("sacarDatos.php");
+            include("conexion.php");
         }
     ?>
     <div class="wrapper">
@@ -89,9 +87,9 @@
                         <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="perfilusuario.php" class="d-block">
+                        <a href="#" class="d-block"> 
                             <?php                                  
-                                echo $uNombre;
+                                echo $_SESSION['user']
                             ?> </a>
                     </div>
                 </div>
@@ -145,11 +143,12 @@
                             <a href="../../index.php" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
-                                    Salir
+                                    Salir                                    
                                 </p>
                             </a>
-                        </li>
-                    </ul>
+                            <ul class="nav nav-treeview">
+                            </ul>
+                        </li>                     
                 </nav>
             </div>
         </aside>
@@ -171,13 +170,13 @@
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
-                        <div class="container-fluid p-4">
+                        <div class="container p-4">
                             <div class="row">
-                                <div class="container-sm px-4">
+                                <div class="container">
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="guardartarea.php" method="POST" id="formGuardarTarea">
+                                        <form action="guardartarea.php" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -189,27 +188,16 @@
                                                     required></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <input type="date" id="inFecha" name="fecha" class=" form-control"
-                                                    placeholder=" Fecha Limite">
+                                                <input type="date" id="inFecha" name="fecha"
+                                                    class=" form-control" placeholder=" Fecha Limite">
                                             </div>
                                             <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
-                                                name="guardarTarea" value="Guardar Tarea">
+                                                name = "guardarTarea" value ="Guardar Tarea">
 
                                         </form>
-
-                                        <?php 
-                                            if(isset($_GET["errm"])){
-                                                ?>
-                                        <div class="error-fecha">
-                                            La fecha seleccionada debe mayor a la del dia actual </br>
-                                            Fecha seleccionada: <?php echo $_GET["errm"]; ?>
-                                        </div>
-                                        <?php
-                                            }
-                                        ?>
                                     </div>
                                 </div>
-                                <div class="container-fluid">
+                                <div class="container">
                                     <table class="table table-bordered mis-tareas">
                                         <thead class="thead-dark">
                                             <tr>
@@ -220,30 +208,27 @@
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-                                            <?php
+                                        <?php
                                            
-                                            $query = "SELECT * FROM tareas";
-                                            $resultado_tarea = $conection->query($query);
+                                            $query = "SELECT * FROM tareas WHERE eltema = :tema";
+                                            $resultado_tarea = $conection->prepare($query);
+                                            $resultado_tarea->bindValue(":tema", $_GET["tema"]);
+                                            $resultado_tarea->execute();
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
-                                            <tr class="item-tarea">
+                                            <tr>
                                                 <td><?php echo $row['title']; ?></td>
                                                 <td><?php echo $row['description']; ?></td>
                                                 <td><?php echo $row['limit_date']; ?></td>
                                                 <td>
-                                                    <!--
                                                     <abbr title="Modificar Tarea">
-                                                    <a href="#" class="btn btn-warning btn-editar"  id="t-<?//php echo $row['id_task'];?>"><i class="fas fa-pen btn-editar"  id="ti-<?//php echo $row['id_task'];?>"></i></a>
+                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>&t=<?php echo $row['title'];?>&d=<?php echo $row['description'];?>&f=<?php echo $row['limit_date'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
                                                     </abbr>
                                                     <abbr title="Eliminar Tarea">
                                                     <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
-                                                    </abbr>-->
-                                                    <span class="span-btn-opciones"><i
-                                                            class="fa fa-ellipsis-v btn-opciones"
-                                                            data-tid="<?php echo $row['id_task'];?>"
-                                                            aria-hidden="true"></i></span>
+                                                    </abbr>
                                                 </td>
                                             </tr>
-                                            <?php } ?>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -252,64 +237,33 @@
 
                         </div>
                         <!--opcion de editar-->
-                        <div class="overlay " id="overlay">
-                            <div class="popup " id="popup">
+                        <div class="overlay" id="overlay">
+                            <div class="popup" id="popup">
 
                                 <div class="col sm-4">
                                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
-                                    <div class="row">
-                                        <div class="card card-body col-10">
-
-                                            <form action="graneditar.php" method="POST" id="formEditarTarea">
+                                    <div class="card card-body mx-auto">
+                                        <div class="card card-body">
+                                            <p>Editar Tarea</p>
+                                            <form action="editartarea.php" method = "POST" id="formEditarTarea">
                                                 <div class="form-group">
-                                                    <input type="text" name="titulo2" maxlength="128" minlength="4"
-                                                        class=" form-control" id="inEditTitulo" placeholder=" Título">
+                                                    <input type="text" name="titulo2" maxlength="128" minlength="4" class=" form-control"
+                                                        id="inEditTitulo" placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="descripcion2" maxlength="256" rows="4"
-                                                        class="form-control" id="inEditDesc" placeholder="Descripcion">
-                                                    </textarea>
+                                                    <textarea name="descripcion2" maxlength="256" rows="4" class="form-control"
+                                                        id="inEditDesc" placeholder="Descripcion"></textarea>
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="date" name="fecha2" id="inEditFecha"
-                                                        class=" form-control">
+                                                    <input type="date" name="fecha2" id="inEditFecha" class=" form-control">
                                                 </div>
                                                 <input type="submit" class="btn btn-config btn-light btn-block"
-                                                    name="update" value="Editar Tarea" />
+                                                    name="update" value="Guardar Cambios" />
 
                                             </form>
-
-                                        </div>
-                                        <div class="botones-popup col-2">
-                                            <div class="popup-boton">
-                                                <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
-                                                        aria-hidden="true"></i> Eliminar </a>
-                                            </div>
-                                            <div class="popup-boton">
-                                                <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
-                                                        aria-hidden="true"></i> Archivar </a>
-                                            </div>
-                                            <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
-                                                        aria-hidden="true"></i> Estado </a>
-                                                <div class="nombre-estados">
-                                                    <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
-                                                    <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
-                                                    <input type="radio" name="estado" value="Hecho"> Hecho<br>
-                                                </div>
-                                            </div>
-                                            <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
-                                                        aria-hidden="true"></i> Adjuntar</a>
-                                            </div>
-                                            <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
-                                                        aria-hidden="true"></i> Mover </a>
-                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -335,12 +289,11 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/Tarea.js"></script>
-    <script src="../scripts/activadorPopUp.js"></script>
+                                         
     <script>
-    $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button)
     </script>
-
+    
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
@@ -358,5 +311,5 @@
 
 
 </body>
-
 </html>
+

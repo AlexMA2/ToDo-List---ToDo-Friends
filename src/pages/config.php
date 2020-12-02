@@ -14,4 +14,11 @@ $password = "";
 $bd = "todolist";
 
 
+*/
+
+$server = "localhost";
+$user ="root";
+$password = "";
+$bd = "todolist";
+
 ?>
