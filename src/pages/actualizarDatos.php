@@ -94,10 +94,8 @@
                                     $targetFile = $upload_dir . $nombreArchivo;
                                 }
                                 
-                                if (move_uploaded_file($tmp_dir, $targetFile)) {
-                                    echo "El archivo  ". htmlspecialchars( basename( $tmp_dir)). " ha sido subido";
+                                if (move_uploaded_file($tmp_dir, $targetFile)) {                                  
                                     // Sentencia SQL
-
                                     $sql = "UPDATE `usuarios` SET `Foto`=:foto WHERE `iduser`=:id";
                                     $resultado = $conection->prepare($sql);
                                     $resultado->bindValue(":foto", $targetFile);
@@ -106,7 +104,7 @@
 
 
                                 } else{
-                                    echo "Hubo un error al subir el archivo";
+                                   
                                 }
                             }
                             else{
@@ -114,12 +112,12 @@
                             }
                         }
                         else{
-                            echo "La imagen es demasiado grande";
+                           
                         }
                     
                     }
                     else{
-                        echo "No existe archivo";
+                       
                     }
                 }
             }
