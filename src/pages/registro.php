@@ -1,5 +1,5 @@
 <?php
-    include("conexion.php");
+    require "conexion.php";
     //Registrar usuario
     if(isset($_POST["registrar"])){
         try{                        

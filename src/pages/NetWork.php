@@ -31,7 +31,7 @@
             header("location:../../index.php");
         }
         else{
-            include("sacarDatos.php");
+            require "sacarDatos.php";
         }
     ?>
     <div class="wrapper">

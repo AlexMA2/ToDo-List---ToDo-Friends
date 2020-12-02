@@ -1,9 +1,9 @@
 <?php
-include("conexion.php");
-
-if (isset($_POST['update'])) {
+require "conexion.php";
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+if (!empty(filter_input(INPUT_POST, 'update'))) {
   try{
-    $id = $_GET['id'];
+    
     $title = htmlentities(addslashes($_POST['titulo2']));
     $description = htmlentities(addslashes($_POST['descripcion2']));
     $date = htmlentities(addslashes($_POST['fecha2']));
@@ -18,7 +18,7 @@ if (isset($_POST['update'])) {
     header("location: TareasGrupales.php");
 
   }catch(Exception $ex){
-    die("Error al conectar: ". $ex->getMessage());
+    
   }  
 } 
 ?>

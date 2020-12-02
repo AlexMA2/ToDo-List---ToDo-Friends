@@ -1,4 +1,4 @@
-﻿<?php include("conexion.php"); ?>
+﻿<?php require "conexion.php"; ?>
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -230,13 +230,7 @@
                                                 <td><?php echo $row['description']; ?></td>
                                                 <td><?php echo $row['limit_date']; ?></td>
                                                 <td>
-                                                    <!--
-                                                    <abbr title="Modificar Tarea">
-                                                    <a href="#" class="btn btn-warning btn-editar"  id="t-<?//php echo $row['id_task'];?>"><i class="fas fa-pen btn-editar"  id="ti-<?//php echo $row['id_task'];?>"></i></a>
-                                                    </abbr>
-                                                    <abbr title="Eliminar Tarea">
-                                                    <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
-                                                    </abbr>-->
+                                                    
                                                     <span class="span-btn-opciones"><i
                                                             class="fa fa-ellipsis-v btn-opciones"
                                                             data-tid="<?php echo $row['id_task'];?>"
