@@ -31,7 +31,7 @@
             header("location:../../index.php");
         }
         else{
-            include("sacarDatos.php");
+            include("conexion.php");
         }
     ?>
     <div class="wrapper">
@@ -86,9 +86,9 @@
                         <img src="../../res/perfil.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="perfilusuario.php" class="d-block">
+                        <a href="#" class="d-block">
                             <?php                                  
-                                echo $uNombre;
+                                echo $_SESSION['user']
                             ?>
                         </a>
                     </div>
@@ -154,6 +154,7 @@
         </aside>
 
         <div class="content-wrapper">
+
             <div class="content-header">
                 <div class="container-fluid">
 
@@ -168,48 +169,33 @@
                                 <li class="breadcrumb-item active"> Temas </li>
                             </ol>
                         </div>
+
+
+
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Tema 1</h3>
+                <div class="grupo-temas">
+                   
+                    <?php
+                                           
+                        $query = "SELECT * FROM temas WHERE Usuario = :id";
+                        $resultado_tema = $conection->prepare($query);
+                        $resultado_tema->bindValue(":id", $_SESSION['user']);
+                        $resultado_tema->execute();
+                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <div class="unidad-tema">
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3><?php echo $row['Titulo']; ?></h3>
 
-                                <p>Descipcion 1</p>
-                            </div>
+                                    <p><?php echo $row['Descripcion']; ?></p>
+                                </div>
 
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                                <a href="TareasGrupales.php?tema=<?php echo $row["IDTEMA"]?>" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Tema 2<sup style="font-size: 20px"></sup></h3>
-
-                                <p>Descripcion 2</p>
-                            </div>
-
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Tema 3</h3>
-
-                                <p>Descripcion 2</p>
-                            </div>
-
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+                    </div>      
+                    <?php } ?>
+                    </tbody>
 
                 </div>
             </div>
