@@ -23,7 +23,7 @@ if(isset($_POST["logearte"])){
 
       $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
       $_SESSION['user']=$rpta['iduser'];  
-      header("location:NetWork.php");
+      header("location:NetWork");
 
     }else{      
       #se redirigirá a la misma página, pero con una señal de error

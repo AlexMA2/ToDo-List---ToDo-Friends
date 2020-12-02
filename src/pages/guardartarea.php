@@ -20,14 +20,14 @@ if (!empty(filter_input(INPUT_POST, 'guardarTarea'))) {
      
     }
     else{
-      header("location:TareasGrupales.php?errm=$date");
+      header("location:TareasGrupales?errm=$date");
     }
     
 
   }catch(Exception $ex){
     
   }
-  header("location:TareasGrupales.php");
+  header("location:TareasGrupales");
   
 }
 ?>

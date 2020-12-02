@@ -1,7 +1,7 @@
 <?php
     session_start();           
     if(empty($_SESSION['user'])){
-        header("location:../../index.php");
+        header("location:../../index");
     }
      else{
         require "sacarDatos.php";
@@ -88,7 +88,7 @@
                         <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="perfilusuario.php" class="d-block">
+                        <a href="perfilusuario" class="d-block">
                             <?php                                  
                                 print_r($uNombre);
                             ?> 
@@ -142,7 +142,7 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="../../index.php" class="nav-link">
+                            <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir

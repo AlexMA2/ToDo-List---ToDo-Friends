@@ -45,7 +45,7 @@
                             $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
                             $_SESSION['user']=$rpta['iduser']; 
                            
-                            header("location:NetWork.php");
+                            header("location:NetWork");
                         } 
                         else{
                             header("location:registro.html");

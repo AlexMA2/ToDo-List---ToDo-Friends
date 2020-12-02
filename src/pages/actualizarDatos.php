@@ -121,7 +121,7 @@
                     }
                 }
             }
-            //header("location: perfilusuario.php");
+            header("location: perfilusuario");
         }
         catch(Exception $ex){
             die("Error al conectar: ". $ex->getMessage());

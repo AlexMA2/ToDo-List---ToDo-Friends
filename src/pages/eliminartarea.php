@@ -8,10 +8,10 @@ if(!empty($id)) {
         $resultadousuario = $conection->prepare($query);
         $resultadousuario->bindValue(":id", $id);
         $resultadousuario->execute();
-        header('Location: TareasGrupales.php');
+        header('Location: TareasGrupales');
     }catch(Exception $ex){
         
     }
-    header('Location: TareasGrupales.php');
+    header('Location: TareasGrupales');
 }
 ?>

@@ -22,6 +22,6 @@ if (!empty(filter_input(INPUT_POST, 'update'))) {
   }catch(Exception $ex){
     
   }  
-  header("location: TareasGrupales.php");
+  header("location: TareasGrupales");
 } 
 ?>

@@ -20,6 +20,6 @@ if(!empty($id)) {
     catch(Exception $ex){
         
     }
-    header('Location: TareasGrupales.php');
+    header('Location: TareasGrupales');
 }
 ?>

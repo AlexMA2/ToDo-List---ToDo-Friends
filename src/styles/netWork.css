@@ -65,3 +65,14 @@
 .popup-boton a i {
   text-align: left;
 }
+
+.grupo-temas{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.unidad-tema{
+  width: 20%;
+  margin: 5px 10px 10px 5px;
+}
