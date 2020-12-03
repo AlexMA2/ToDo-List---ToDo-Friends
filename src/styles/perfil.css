@@ -1,0 +1,115 @@
+.perfil-foto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.perfil-foto a{
+    margin-top: 20px;
+    width: 200px;
+}
+
+.perfil-datos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.perfil-datos div{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.perfil-nombre form, 
+.perfil-correo form{
+    width: 100%;
+}
+
+.perfil-nombre form input[name="perfil-nombre"], 
+.perfil-correo form input[name="perfil-correo"]{
+    background-color: #fff;
+    font-size: 25px;
+    letter-spacing: 2px;
+    border: 1px solid #000;
+    width: 80%;
+    padding: 6px 12px 6px 12px;
+    margin-right: 5px;
+    border-radius: 20px;
+    color: #808080;
+}
+
+.perfil-nombre form input[name="perfil-nombre"]:focus, 
+.perfil-correo form input[name="perfil-correo"]:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    border: 2px solid #B21016;    
+    border-radius: 20px;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+
+.perfil-nombre form input[name="perfil-guardar-nombre"], 
+.perfil-correo form input[name="perfil-guardar-correo"]{
+    height: 50px;
+    margin-bottom: 11px;
+}
+
+.perfil-datos h3{
+    color: #fff;
+    padding-top: 55px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.perfil-contra form{
+    display: flex;    
+    flex-direction: column;       
+    width: 70%;    
+}
+
+.perfil-contra form input{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.perfil-usuario{
+    background-color: #343A40;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px #000;
+    padding: 25px;
+}
+
+.perfil-foto form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 50px;
+    height: 0;
+}
+
+.perfil-foto form input{
+    margin-bottom: 10px;
+}
+
+#in-perfil-foto{
+    color: #fff;
+}
+
+#para-animar{    
+    display: none;
+    width: 100%;
+}
+
+#para-animar input[name="perfil-guardar-foto"]{
+    display: flex;
+    justify-content: center;
+    
+}
+

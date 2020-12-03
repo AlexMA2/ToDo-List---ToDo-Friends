@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">   
+    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -28,6 +29,9 @@
         session_start();           
         if($_SESSION['user']==NULL){
             header("location:../../index.php");
+        }
+        else{
+            include("conexion.php");
         }
     ?>
     <div class="wrapper">
@@ -82,7 +86,7 @@
                         <img src="../../res/perfil.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> 
+                        <a href="#" class="d-block">
                             <?php                                  
                                 echo $_SESSION['user']
                             ?>
@@ -139,14 +143,14 @@
                             <a href="../../index.php" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
-                                    Salir                                    
+                                    Salir
                                 </p>
-                            </a>                            
-                        </li>    
-                    </ul>                  
-                        
-                </nav>               
-            </div>            
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
         </aside>
 
         <div class="content-wrapper">
@@ -166,48 +170,33 @@
                             </ol>
                         </div>
 
-                        
+
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Tema 1</h3>
+                <div class="grupo-temas">
+                   
+                    <?php
+                                           
+                        $query = "SELECT * FROM temas WHERE Usuario = :id";
+                        $resultado_tema = $conection->prepare($query);
+                        $resultado_tema->bindValue(":id", $_SESSION['user']);
+                        $resultado_tema->execute();
+                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <div class="unidad-tema">
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3><?php echo $row['Titulo']; ?></h3>
 
-                                <p>Descipcion 1</p>
-                            </div>
-                            
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
+                                    <p><?php echo $row['Descripcion']; ?></p>
+                                </div>
+
+                                <a href="TareasGrupales.php?tema=<?php echo $row["IDTEMA"]?>" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
+                    </div>      
+                    <?php } ?>
+                    </tbody>
 
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Tema 2<sup style="font-size: 20px"></sup></h3>
-
-                                <p>Descripcion 2</p>
-                            </div>
-                            
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- tarea -->
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Tema 3</h3>
-
-                                <p>Descripcion 2</p>
-                            </div>
-                            
-                            <a href="TareasGrupales.php" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
 
@@ -222,15 +211,15 @@
         </footer>
 
     </div>
-   
+
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
-    
+
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -238,7 +227,7 @@
     <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
     <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <script src="../../plugins/moment/moment.min.js"></script>  
+    <script src="../../plugins/moment/moment.min.js"></script>
     <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>

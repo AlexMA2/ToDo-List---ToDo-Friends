@@ -9,7 +9,7 @@
             $contra_repe = htmlentities(addslashes($_POST["passr"]));
             if($contrasena == $contra_repe){
                 session_start();
-                $_SESSION['user']=$usuario;    
+                
                 $contrasena_encriptada = sha1($contrasena);
                 $sqluser = "SELECT `iduser` FROM `usuarios` WHERE `username` = :user OR `correo` = :correo";
             
@@ -31,6 +31,15 @@
                     $resultadousuario->execute();
 
                     if($resultadousuario > 0){
+                        $consulta = "SELECT `iduser` FROM `usuarios` where `username`= :user and `password`= :pass";
+
+                        $resultado = $conection->prepare($consulta);
+
+                        $resultado->bindValue(":user", $usuario);
+                        $resultado->bindValue(":pass", $contrasena_encriptada);      
+
+                        $resultado->execute();
+                        $_SESSION['user']=$usuario;    
                         header("location:NetWork.php");
                     } 
                     else{
@@ -50,7 +59,7 @@
 
         }   
         catch(Exception $ex){
-            die("Error al conectar:  $e->getMessage()");
+            die("Error al conectar:  $ex->getMessage()");
         } 
     }
 

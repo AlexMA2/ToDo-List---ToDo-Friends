@@ -10,7 +10,7 @@
         $conection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(Exception $ex){
-        die("Error al conectar:  $e->getMessage()");
+        die("Error al conectar: ". $ex->getMessage());
     }
 
     
