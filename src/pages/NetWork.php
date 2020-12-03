@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+        session_start();           
+        if(empty($_SESSION['user'])){
+            header("location:../../index");
+        }
+        else{
+            require "sacarDatos.php";
+        }
+    ?>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -25,15 +34,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <?php
-        session_start();           
-        if($_SESSION['user']==NULL){
-            header("location:../../index.php");
-        }
-        else{
-            include("conexion.php");
-        }
-    ?>
+    
     <div class="wrapper">
 
 
@@ -83,12 +84,13 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php print_r($uFoto)?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">
-                            <?php                                  
-                                echo $_SESSION['user']
+                        <a href="perfilusuario" class="d-block">
+                            <?php        
+                                                     
+                                print_r($uNombre);
                             ?>
                         </a>
                     </div>
@@ -140,7 +142,7 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="../../index.php" class="nav-link">
+                            <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir
@@ -186,12 +188,12 @@
                         <div class="unidad-tema">
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3><?php echo $row['Titulo']; ?></h3>
+                                    <h3><?php print_r($row['Titulo']); ?></h3>
 
-                                    <p><?php echo $row['Descripcion']; ?></p>
+                                    <p><?php print_r($row['Descripcion']); ?></p>
                                 </div>
 
-                                <a href="TareasGrupales.php?tema=<?php echo $row["IDTEMA"]?>" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>      
                     <?php } ?>

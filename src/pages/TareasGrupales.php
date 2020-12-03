@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    require "conexion.php";
+    session_start();           
+    if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
+        header("location:../../index.php");
+    }
+    else{
+        require "conexion.php";
+        require "sacarDatos.php";
+    }
+ ?>
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -22,19 +34,11 @@
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <?php
-        session_start();           
-        if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
-            header("location:../../index.php");
-        }
-        else{
-            include("conexion.php");
-        }
-    ?>
+    
     <div class="wrapper">
 
 
@@ -84,13 +88,14 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
+                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> 
+                        <a href="perfilusuario" class="d-block"> 
                             <?php                                  
-                                echo $_SESSION['user']
-                            ?> </a>
+                               print_r($uNombre);
+                            ?> 
+                        </a>
                     </div>
                 </div>
 
@@ -140,7 +145,7 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="../../index.php" class="nav-link">
+                            <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir                                    
@@ -212,20 +217,20 @@
                                            
                                             $query = "SELECT * FROM tareas WHERE eltema = :tema";
                                             $resultado_tarea = $conection->prepare($query);
-                                            $resultado_tarea->bindValue(":tema", $_GET["tema"]);
+                                            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_SPECIAL_CHARS);
+                                            $resultado_tarea->bindValue(":tema", $tema);
                                             $resultado_tarea->execute();
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
                                             <tr>
-                                                <td><?php echo $row['title']; ?></td>
-                                                <td><?php echo $row['description']; ?></td>
-                                                <td><?php echo $row['limit_date']; ?></td>
+                                                <td><?php print_r($row['title']); ?></td>
+                                                <td><?php print_r($row['description']); ?></td>
+                                                <td><?php print_r($row['limit_date']); ?></td>
                                                 <td>
-                                                    <abbr title="Modificar Tarea">
-                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>&t=<?php echo $row['title'];?>&d=<?php echo $row['description'];?>&f=<?php echo $row['limit_date'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
-                                                    </abbr>
-                                                    <abbr title="Eliminar Tarea">
-                                                    <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
-                                                    </abbr>
+                                                    
+                                                    <span class="span-btn-opciones"><i
+                                                            class="fa fa-ellipsis-v btn-opciones"
+                                                            data-tid="<?php print_r($row['id_task']);?>"
+                                                            aria-hidden="true"></i></span>
                                                 </td>
                                             </tr>
                                         <?php } ?>

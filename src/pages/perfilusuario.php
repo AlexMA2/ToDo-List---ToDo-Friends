@@ -1,3 +1,12 @@
+<?php
+    session_start();           
+    if(empty($_SESSION['user'])){
+        header("location:../../index");
+    }
+     else{
+        require "sacarDatos.php";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,15 +35,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <?php
-        session_start();           
-        if(!isset($_SESSION['user'])){
-            header("location:../../index.php");
-        }
-        else{
-            include("sacarDatos.php");
-        }
-    ?>
+    
     <div class="wrapper">
 
 
@@ -84,13 +85,14 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
+                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="perfilusuario.php" class="d-block">
+                        <a href="perfilusuario" class="d-block">
                             <?php                                  
-                                echo $uNombre;
-                            ?> </a>
+                                print_r($uNombre);
+                            ?> 
+                        </a>
                     </div>
                 </div>
 
@@ -140,7 +142,7 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="../../index.php" class="nav-link">
+                            <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir
@@ -158,9 +160,9 @@
                 <div class="container">
                     <div class="row perfil-usuario">
                         <div class="perfil-foto col-6">
-                            <img src="<?php echo $uFoto?>" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
+                            <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
                                 height="350">
-                            <form action="actualizarDatos.php?campo=foto&id=<?php echo $usuarioid;?>" method="POST" enctype="multipart/form-data">
+                            <form action="actualizarDatos.php?campo=foto&id=<?php print_r($usuarioid);?>" method="POST" enctype="multipart/form-data">
                                 <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto" class="btn btn-primary">
                                 <div id="para-animar">
                                     <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto" >
@@ -172,21 +174,21 @@
                         <div class="perfil-datos col-6">
                             <h3> Nombre de usuario: </h3>
                             <div class="perfil-nombre">
-                                <form action="actualizarDatos.php?campo=nombre&id=<?php echo $usuarioid;?>" method="POST">
-                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" value="<?php echo $uNombre;?>" >
+                                <form action="actualizarDatos.php?campo=nombre&id=<?php print_r($usuarioid);?>" method="POST">
+                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" value="<?php print_r($uNombre);?>" >
                                     <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
                                 </form>                              
                             </div>
                             <h3> Correo Electrónico: </h3>
                             <div class="perfil-correo">
-                                <form action="actualizarDatos.php?campo=correo&id=<?php echo $usuarioid;?>" method="POST">
-                                    <input type="email" id="in-perfil-correo" name="perfil-correo" value="<?php echo $uCorreo;?>" >
+                                <form action="actualizarDatos.php?campo=correo&id=<?php print_r($usuarioid);?>" method="POST">
+                                    <input type="email" id="in-perfil-correo" name="perfil-correo" value="<?php print_r($uCorreo);?>" >
                                     <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
                                 </form>
                             </div>
                             <h3> Cambiar contraseña: </h3>
                             <div class="perfil-contra">
-                                <form action="actualizarDatos.php?campo=contra&id=<?php echo $usuarioid;?>" method="POST">
+                                <form action="actualizarDatos.php?campo=contra&id=<?php print_r($usuarioid);?>" method="POST">
                                     <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required value="">
                                     <input type="password" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
                                     <input type="submit" class="btn btn-primary" name="perfil-guardar-contra" value="Cambiar Contraseña">
