@@ -1,10 +1,9 @@
 <?php
 
-include("conexion.php");
-
-if(isset($_GET['id'])) {
-    try{
-        $id = $_GET['id'];
+require "conexion.php";
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+if(!empty($id)) {
+    try{        
         $query = "INSERT INTO tareas_archivadas select * from tareas where id_task = :id";
         $resultado = $conection->prepare($query);
         $resultado->bindValue(":id", $id);
@@ -16,10 +15,11 @@ if(isset($_GET['id'])) {
         $resultado->bindValue(":id", $id);
         $resultado->execute();
         $resultado = null;
-        header('Location: TareasGrupales.php');
+        
     }
     catch(Exception $ex){
-        die("Error al conectar: ". $ex->getMessage());
+        
     }
+    header('Location: TareasGrupales');
 }
 ?>

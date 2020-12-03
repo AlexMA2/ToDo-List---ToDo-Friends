@@ -1,5 +1,5 @@
 <?php
-    include('config.php');
+    require 'config.php';
     #nombre del server: localhost
     #usuario: root
     #contraseña: 
@@ -10,7 +10,7 @@
         $conection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(Exception $ex){
-        die("Error al conectar: ". $ex->getMessage());
+        
     }
 
     

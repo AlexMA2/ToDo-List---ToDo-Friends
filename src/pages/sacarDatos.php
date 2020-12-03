@@ -1,5 +1,5 @@
 <?php
-    include("conexion.php");
+    require "conexion.php";
     $usuarioid = $_SESSION['user'];
     $sql = "SELECT * FROM `usuarios` WHERE `iduser` = :user";
     $resultado = $conection->prepare($sql);

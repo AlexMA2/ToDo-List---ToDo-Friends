@@ -1,8 +1,8 @@
 <?php
 
-include('conexion.php');
+require 'conexion.php';
 
-if (isset($_POST['guardarTarea'])) {
+if (!empty(filter_input(INPUT_POST, 'guardarTarea'))) {
   try{
     $title = htmlentities(addslashes($_POST['titulo']));
     $description = htmlentities(addslashes($_POST['descripcion']));
@@ -16,19 +16,18 @@ if (isset($_POST['guardarTarea'])) {
       $resultadousuario->bindValue(":titulo", $title);
       $resultadousuario->bindValue(":descripcion", $description);
       $resultadousuario->bindValue(":fecha", $date);
-      $resultadousuario->execute();
-      
-      header("location:TareasGrupales.php");
+      $resultadousuario->execute();      
+     
     }
     else{
-      header("location:TareasGrupales.php?errm=$date");
+      header("location:TareasGrupales?errm=$date");
     }
     
 
   }catch(Exception $ex){
-    die("Error al conectar: ". $ex->getMessage());
+    
   }
-
+  header("location:TareasGrupales");
   
 }
 ?>

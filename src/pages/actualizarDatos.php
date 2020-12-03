@@ -1,55 +1,66 @@
 <?php
-    include("conexion.php");
+    require "conexion.php";
 
-    if(isset($_GET["campo"]) && isset($_GET["id"])){
+    $aCambiar = filter_input(INPUT_GET, 'campo', FILTER_SANITIZE_SPECIAL_CHARS);
+    $idu = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+    if(!empty($aCambiar) && !empty($idu)){
         try{
-            $aCambiar = $_GET["campo"];
-            $idu = $_GET["id"];
-            if($aCambiar == "nombre"){
-                if(isset($_POST["perfil-guardar-nombre"])){
-                    $nuevo = $_POST["perfil-nombre"];
-                    $nuevo = trim($nuevo);
-                    $sql = "UPDATE `usuarios` SET `username`=:nombre WHERE `iduser`=:id";
-                    $resultado = $conection->prepare($sql);
-                    $resultado->bindValue(":nombre", $nuevo);
-                    $resultado->bindValue(":id", $idu);
-                    $resultado->execute();
+            
+            if($aCambiar == "nombre"){                
+                if(!empty(filter_input(INPUT_POST, "perfil-guardar-nombre"))){
+                    $nuevo = filter_input(INPUT_POST, "perfil-nombre");
+                    if(!empty($nuevo)){
+                        
+                        $nuevo = trim($nuevo);
+                        $sql = "UPDATE `usuarios` SET `username`=:nombre WHERE `iduser`=:id";
+                        $resultado = $conection->prepare($sql);
+                        $resultado->bindValue(":nombre", $nuevo);
+                        $resultado->bindValue(":id", $idu);
+                        $resultado->execute();
+                    }
+                    
                 }
                 
             }
             else if($aCambiar == "correo"){
-                if(isset($_POST["perfil-guardar-correo"])){
-                    $nuevo = $_POST["perfil-correo"];
-                    $nuevo = trim($nuevo);
-    
-                    $sql = "SELECT `correo` FROM `usuarios` WHERE `correo` = :correo";
-                    $resultado = $conection->prepare($sql);         
-                    $resultado->bindValue(":correo", $nuevo);       
-                    $resultado->execute();
-    
-                    if($resultado->rowCount() == 0){
-                        $sql = "UPDATE `usuarios` SET `correo`=:correo WHERE `iduser`=:id";
-                        $resultado = $conection->prepare($sql);
-                        $resultado->bindValue(":correo", $nuevo);
-                        $resultado->bindValue(":id", $idu);
+                if(!empty(filter_input(INPUT_POST, "perfil-guardar-correo"))){
+                    $nuevo = filter_input(INPUT_POST, "perfil-correo");
+                    if(!empty($nuevo)){
+                        $nuevo = trim($nuevo);    
+                        $sql = "SELECT `correo` FROM `usuarios` WHERE `correo` = :correo";
+                        $resultado = $conection->prepare($sql);         
+                        $resultado->bindValue(":correo", $nuevo);       
                         $resultado->execute();
-                    }    
+
+                        if($resultado->rowCount() == 0){
+                            $sql = "UPDATE `usuarios` SET `correo`=:correo WHERE `iduser`=:id";
+                            $resultado = $conection->prepare($sql);
+                            $resultado->bindValue(":correo", $nuevo);
+                            $resultado->bindValue(":id", $idu);
+                            $resultado->execute();
+                        }  
+                    }                  
+                     
                 }                
                
             }
             else if($aCambiar == "contra"){
-                if(isset($_POST["perfil-guardar-contra"])){
-                    $nuevo = $_POST["perfil-contra"];
-                    $nuevoRepe = $_POST["perfil-contra-repe"];
-                    $nuevo = trim($nuevo);
-                    $nuevoRepe = trim($nuevoRepe);
-                    if($nuevo == $nuevoRepe){
-                        $sql = "UPDATE `usuarios` SET `password`=:contra WHERE `iduser`=:id";
-                        $resultado = $conection->prepare($sql);
-                        $resultado->bindValue(":contra", sha1($nuevo));
-                        $resultado->bindValue(":id", $idu);
-                        $resultado->execute();
+                if(!empty(filter_input(INPUT_POST, "perfil-guardar-contra"))){
+                    $nuevo = filter_input(INPUT_POST, "perfil-contra");
+                    $nuevoRepe = filter_input(INPUT_POST, "perfil-contra-repe");
+                    if(!empty($nuevo) && !empty($nuevoRepe)){
+                        $nuevo = trim($nuevo);
+                        $nuevoRepe = trim($nuevoRepe);
+                        if($nuevo == $nuevoRepe){
+                            $sql = "UPDATE `usuarios` SET `password`=:contra WHERE `iduser`=:id";
+                            $resultado = $conection->prepare($sql);
+                            $resultado->bindValue(":contra", sha1($nuevo));
+                            $resultado->bindValue(":id", $idu);
+                            $resultado->execute();
+                        }
                     }
+                   
                 }
                                                 
             }        
@@ -60,7 +71,7 @@
                     3) Crear un modificador del tamaño de imagenes para seleccionar un circulo.
                 
                 */
-                if(isset($_POST["perfil-guardar-foto"])){
+                if(!empty(filter_input(INPUT_POST, "perfil-guardar-foto"))){
                     $imgFile = $_FILES['perfil-foto']['name'];
                     $tmp_dir = $_FILES['perfil-foto']['tmp_name'];
                     $imgSize = $_FILES['perfil-foto']['size'];
@@ -83,10 +94,8 @@
                                     $targetFile = $upload_dir . $nombreArchivo;
                                 }
                                 
-                                if (move_uploaded_file($tmp_dir, $targetFile)) {
-                                    echo "El archivo  ". htmlspecialchars( basename( $tmp_dir)). " ha sido subido";
+                                if (move_uploaded_file($tmp_dir, $targetFile)) {                                  
                                     // Sentencia SQL
-
                                     $sql = "UPDATE `usuarios` SET `Foto`=:foto WHERE `iduser`=:id";
                                     $resultado = $conection->prepare($sql);
                                     $resultado->bindValue(":foto", $targetFile);
@@ -95,7 +104,7 @@
 
 
                                 } else{
-                                    echo "Hubo un error al subir el archivo";
+                                   
                                 }
                             }
                             else{
@@ -103,16 +112,16 @@
                             }
                         }
                         else{
-                            echo "La imagen es demasiado grande";
+                           
                         }
                     
                     }
                     else{
-                        echo "No existe archivo";
+                       
                     }
                 }
             }
-            //header("location: perfilusuario.php");
+            header("location: perfilusuario");
         }
         catch(Exception $ex){
             die("Error al conectar: ". $ex->getMessage());
