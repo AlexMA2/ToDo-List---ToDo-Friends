@@ -10,6 +10,6 @@ RewriteRule ^(.*)$ $1.html
 #RewriteRule ^([a-z]+)/?$ $1.html [NC]
 Options -Indexes
 
-ErrorDocument 404 /ToDo-List---ToDo-Friends/src/pages/404Error.html
+ErrorDocument 404 /ToDo-List---ToDo-Friends/404Error.html
 
 </IfModule>
