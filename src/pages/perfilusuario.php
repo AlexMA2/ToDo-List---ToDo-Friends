@@ -249,7 +249,16 @@
         var w = ''; 
         var h = '';
         var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
-        console.log(ruta);               
+        var host = ''
+        console.log(ruta);      
+
+        if (location.hostname === "localhost"){
+            host = "http://localhost/ToDo-List---ToDo-Friends/";
+        } 
+        else{
+            host = "https://todolist-todofriends.herokuapp.com/";
+        }
+
         function showCoords(c)
         {
             x = c.x;
@@ -279,7 +288,7 @@
                 type: 'POST',
                 data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
                 success: function(rpt){
-                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/perfilusuario");
+                    window.location.replace(host + "src/pages/perfilusuario");                    
                 }
             });
         }
