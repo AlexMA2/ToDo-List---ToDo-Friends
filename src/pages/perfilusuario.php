@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../styles/perfil.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css">
+
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>  
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -197,6 +202,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="container editor-img">
+                    <?php 
+                        if(!empty(filter_input(INPUT_GET, "errimg"))){
+                           
+                        ?>
+                            
+                            <img src="<?php print_r(filter_input(INPUT_GET, "errimg"))?>" id="target" alt="omg">                            
+                            <input type="button" class="btn btn-success" value="Cortar"  id="btn-cortar-foto">                            
+                            
+                            <script>
+                                $(".editor-img").css("visibility", "visible");
+                            </script>
+                        <?php
+                        }
+                        else{
+                            
+                        ?>
+                        
+                            <script>
+                                $(".editor-img").css("visibility", "hidden");
+                            </script>
+                        <?php
+                        }
+                    ?>
+                </div>
             </div>
 
         </div>
@@ -211,8 +241,50 @@
 
     </div>
 
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>    
+      
+    <script src="../../tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
+    <script>
+        var x = '';
+        var y = '';
+        var w = ''; 
+        var h = '';
+        var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
+        console.log(ruta);               
+        function showCoords(c)
+        {
+            x = c.x;
+            y = c.y;
+            w = c.w;
+            h = c.h;
+        };
+
+        jQuery(function($) {
+            $('#target').Jcrop({
+                onSelect: showCoords,
+                bgColor: 'black',
+                bgOpacity: .4,
+                minSize: [300, 300],
+                setSelect:   [ 100, 100, 50, 50 ],
+                aspectRatio: 1
+            });
+        });
+
+        $("#btn-cortar-foto").on('click', function(){
+            enviar();
+        });
+
+        function enviar(){
+            $.ajax({
+                url: 'cortar.php',
+                type: 'POST',
+                data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
+                success: function(rpt){
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/perfilusuario");
+                }
+            });
+        }
+
+    </script>
     <script src="../scripts/perfil.js"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)
