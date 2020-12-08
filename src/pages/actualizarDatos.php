@@ -1,6 +1,6 @@
 <?php
     require "conexion.php";
-
+    
     session_start();
     $idu = $_SESSION['user'];
     try{
@@ -64,43 +64,50 @@
                 $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); 
                 $targetFile = $upload_dir . $nombreArchivo . '.' . $imgExt;
     
-                $valid_extensions = array('jpeg', 'jpg', 'png'); 
-                $archivo_repe = 0;                        
+                $valid_extensions = array('jpeg', 'jpg', 'png');                                     
                 if(in_array($imgExt, $valid_extensions)){
                     
                     if($imgSize <= 4000000){
+
+                        $rutaArchivo = $nombreArchivo . '-' . strval($idu) . '.' . $imgExt;
+                        $targetFile = $upload_dir . $rutaArchivo;
                         
-                        while (file_exists($targetFile)) {
-                            $archivo_repe +=1;
-                            $rutaArchivo = $nombreArchivo . strval($archivo_repe) . '.' . $imgExt;
-                            $targetFile = $upload_dir . $rutaArchivo;
-                        }
+                        if (!file_exists($targetFile)) {                            
                             
-                        if (move_uploaded_file($tmp_dir, $targetFile)) {                                  
-                            // Sentencia SQL
-                            list($anchoIMG, $altoIMG) = getimagesize($targetFile);
+                            if (move_uploaded_file($tmp_dir, $targetFile)) {                                  
+                                // Sentencia SQL
+                                list($anchoIMG, $altoIMG) = getimagesize($targetFile);
+        
+                                if(($anchoIMG - $altoIMG <= 100 && $anchoIMG - $altoIMG >= 0) || ($altoIMG - $anchoIMG <=100 && $altoIMG - $anchoIMG >= 0)){
     
-                            if(($anchoIMG - $altoIMG <= 200 && $anchoIMG - $altoIMG >= 0) || ($altoIMG - $anchoIMG <=200 && $altoIMG - $anchoIMG >= 0)){
-
-                                $sql = "SELECT `Foto` FROM `usuarios` WHERE `iduser`=:id";
-                                $resultado = $conection->prepare($sql);                               
-                                $resultado->bindValue(":id", $idu);
-                                $resultado->execute();
-
-                                $dato = $resultado->fetch(PDO::FETCH_ASSOC);
-                                unlink($dato['Foto']);
+                                    $sql = "SELECT `Foto` FROM `usuarios` WHERE `iduser`=:id";
+                                    $resultado = $conection->prepare($sql);                               
+                                    $resultado->bindValue(":id", $idu);
+                                    $resultado->execute();
+    
+                                    $dato = $resultado->fetch(PDO::FETCH_ASSOC);
+                                    unlink($dato['Foto']);
+                                   
+                                    $sql = "UPDATE `usuarios` SET `Foto`=:foto WHERE `iduser`=:id";
+                                    $resultado = $conection->prepare($sql);
+                                    $resultado->bindValue(":foto", $targetFile);
+                                    $resultado->bindValue(":id", $idu);
+                                    $resultado->execute();
+                                   
+                                    header("location: perfilusuario");
+                                }
+                                else{                                        
+                                    header("location: perfilusuario?errimg=".$targetFile);
+                                }
                                
-                                $sql = "UPDATE `usuarios` SET `Foto`=:foto WHERE `iduser`=:id";
-                                $resultado = $conection->prepare($sql);
-                                $resultado->bindValue(":foto", $targetFile);
-                                $resultado->bindValue(":id", $idu);
-                                $resultado->execute();
+        
+        
+                            } else{
+                                   
                             }
-                           
-    
-    
-                        } else{
-                               
+                        }
+                        else{ 
+                            echo "ARCHIVO YA EXISTE";
                         }
                     }
                     else{
@@ -118,10 +125,11 @@
                
             }
         }
-    }
+        
+    }     
     catch(Exception $ex){
 
     }
-    header("location: perfilusuario");
+   
 
 ?>
