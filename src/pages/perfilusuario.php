@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../styles/perfil.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css">
+
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>  
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -162,7 +167,7 @@
                         <div class="perfil-foto col-6">
                             <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
                                 height="350">
-                            <form action="actualizarDatos.php?campo=foto&id=<?php print_r($usuarioid);?>" method="POST" enctype="multipart/form-data">
+                            <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
                                 <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto" class="btn btn-primary">
                                 <div id="para-animar">
                                     <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto" >
@@ -174,21 +179,21 @@
                         <div class="perfil-datos col-6">
                             <h3> Nombre de usuario: </h3>
                             <div class="perfil-nombre">
-                                <form action="actualizarDatos.php?campo=nombre&id=<?php print_r($usuarioid);?>" method="POST">
+                                <form action="actualizarDatos.php" method="POST">
                                     <input type="text" id="in-perfil-nombre" name="perfil-nombre" value="<?php print_r($uNombre);?>" >
                                     <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
                                 </form>                              
                             </div>
                             <h3> Correo Electrónico: </h3>
                             <div class="perfil-correo">
-                                <form action="actualizarDatos.php?campo=correo&id=<?php print_r($usuarioid);?>" method="POST">
+                                <form action="actualizarDatos.php" method="POST">
                                     <input type="email" id="in-perfil-correo" name="perfil-correo" value="<?php print_r($uCorreo);?>" >
                                     <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
                                 </form>
                             </div>
                             <h3> Cambiar contraseña: </h3>
                             <div class="perfil-contra">
-                                <form action="actualizarDatos.php?campo=contra&id=<?php print_r($usuarioid);?>" method="POST">
+                                <form action="actualizarDatos.php" method="POST">
                                     <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required value="">
                                     <input type="password" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
                                     <input type="submit" class="btn btn-primary" name="perfil-guardar-contra" value="Cambiar Contraseña">
@@ -196,6 +201,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="container editor-img">
+                    <?php 
+                        if(!empty(filter_input(INPUT_GET, "errimg"))){
+                           
+                        ?>
+                            
+                            <img src="<?php print_r(filter_input(INPUT_GET, "errimg"))?>" id="target" alt="omg">                            
+                            <input type="button" class="btn btn-success" value="Cortar"  id="btn-cortar-foto">                            
+                            
+                            <script>
+                                $(".editor-img").css("visibility", "visible");
+                            </script>
+                        <?php
+                        }
+                        else{
+                            
+                        ?>
+                        
+                            <script>
+                                $(".editor-img").css("visibility", "hidden");
+                            </script>
+                        <?php
+                        }
+                    ?>
                 </div>
             </div>
 
@@ -211,8 +241,59 @@
 
     </div>
 
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>    
+      
+    <script src="../../tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
+    <script>
+        var x = '';
+        var y = '';
+        var w = ''; 
+        var h = '';
+        var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
+        var host = ''
+        console.log(ruta);      
+
+        if (location.hostname === "localhost"){
+            host = "http://localhost/ToDo-List---ToDo-Friends/";
+        } 
+        else{
+            host = "https://todolist-todofriends.herokuapp.com/";
+        }
+
+        function showCoords(c)
+        {
+            x = c.x;
+            y = c.y;
+            w = c.w;
+            h = c.h;
+        };
+
+        jQuery(function($) {
+            $('#target').Jcrop({
+                onSelect: showCoords,
+                bgColor: 'black',
+                bgOpacity: .4,
+                minSize: [300, 300],
+                setSelect:   [ 100, 100, 50, 50 ],
+                aspectRatio: 1
+            });
+        });
+
+        $("#btn-cortar-foto").on('click', function(){
+            enviar();
+        });
+
+        function enviar(){
+            $.ajax({
+                url: 'cortar.php',
+                type: 'POST',
+                data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
+                success: function(rpt){
+                    window.location.replace(host + "src/pages/perfilusuario");                    
+                }
+            });
+        }
+
+    </script>
     <script src="../scripts/perfil.js"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)

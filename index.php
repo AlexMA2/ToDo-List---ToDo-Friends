@@ -51,11 +51,11 @@
         </div>
         <span class="btn-burger"><i class="fa fa-bars"></i></span>
         <nav class="mynav">
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/caracteristicas.html"> Caracter&iacute;sticas </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial.html"> Tutorial </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos.html"> Trabajos en Equipo </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/login.html"> Iniciar Sesi&oacute;n </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro.html">Registrarse </a> </li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/caracteristicas"> Caracter&iacute;sticas </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial"> Tutorial </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos"> Trabajos en Equipo </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/login"> Iniciar Sesi&oacute;n </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro">Registrarse </a> </li>
         </nav>
         <div class="textos">
             <h1 class="titulo">TO DO LIST</h1>
