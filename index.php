@@ -37,7 +37,7 @@
             setcookie(session_name(), '', time() - 42000,
                     $params["path"], $params["domain"],
                     $params["secure"], $params["httponly"]
-                    );
+                );
         }
        
         session_destroy();
@@ -51,11 +51,11 @@
         </div>
         <span class="btn-burger"><i class="fa fa-bars"></i></span>
         <nav class="mynav">
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/caracteristicas.html"> Caracter&iacute;sticas </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial.html"> Tutorial </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos.html"> Trabajos en Equipo </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/login.html"> Iniciar Sesi&oacute;n </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro.php">Registrarse </a> </li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/caracteristicas"> Caracter&iacute;sticas </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial"> Tutorial </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos"> Trabajos en Equipo </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/login"> Iniciar Sesi&oacute;n </a></li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro">Registrarse </a> </li>
         </nav>
         <div class="textos">
             <h1 class="titulo">TO DO LIST</h1>
@@ -74,12 +74,7 @@
 
                 </p>
                 <p class="parrafo">
-                    Sed porta venenatis ornare. Duis eget metus fermentum, iaculis justo quis, placerat justo. Sed eu
-                    mollis est. Ut fringilla justo euismod libero facilisis molestie. Suspendisse elementum lectus eu
-                    finibus interdum. Donec sodales dictum erat, vel lobortis mi vehicula id. Curabitur lobortis leo
-                    ultricies facilisis egestas. Nam quam tellus, tristique a commodo id, fermentum vitae nulla. Cras
-                    tristique enim in mauris vestibulum tincidunt. Donec quis purus ut tortor sodales efficitur. Morbi
-                    non lorem in ex bibendum lobortis sed at felis. Etiam id convallis diam. Fusce sit amet risus urna.
+                   Rellenar con mas info :v
                 </p>
             </div>
         </section>

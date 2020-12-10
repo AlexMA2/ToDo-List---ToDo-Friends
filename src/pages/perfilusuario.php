@@ -1,5 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
+<?php
+    session_start();           
+    if(empty($_SESSION['user'])){
+        header("location:../../index");
+    }
+     else{
+        require "sacarDatos.php";
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -11,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="../../res/favicon1.png" type="image/x-icon">
     <link rel="stylesheet" href="../styles/editar.css">
-    <title>Todo List | Empieza a organizarte</title>
+    <title>Todo List | Edita tus datos </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -20,12 +29,18 @@
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
+    <link rel="stylesheet" href="../styles/perfil.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css">
+
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>  
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    
     <div class="wrapper">
 
 
@@ -75,10 +90,14 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" alt="User Image">
+                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> Username </a>
+                        <a href="perfilusuario" class="d-block">
+                            <?php                                  
+                                print_r($uNombre);
+                            ?> 
+                        </a>
                     </div>
                 </div>
 
@@ -128,15 +147,14 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
-                                    Salir                                    
+                                    Salir
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>                     
+                        </li>
+                    </ul>
                 </nav>
             </div>
         </aside>
@@ -144,102 +162,71 @@
         <div class="content-wrapper">
 
             <div class="content-header">
-                <div class="container-fluid">
-
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Tema de trabajo</h1>
+                <div class="container">
+                    <div class="row perfil-usuario">
+                        <div class="perfil-foto col-6">
+                            <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
+                                height="350">
+                            <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
+                                <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto" class="btn btn-primary">
+                                <div id="para-animar">
+                                    <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto" >
+                                    <input type="submit" name="perfil-guardar-foto" id="sub-guardar-foto" value="Guardar foto" class="btn btn-primary">
+                                </div>                                
+                            </form>
+                            
                         </div>
-                        <div class="col-sm-6">
-
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#"> Inicio </a></li>
-                                <li class="breadcrumb-item active"> Tareas </li>
-                            </ol>
-                        </div>
-                        <!-- aqui comienza el formulario-->
-                        <div class="container p-4">
-                            <div class="row">
-                                <div class="container">
-                                    <!-- sugerencia usar la clase col-md-4-->
-                                    <div class="card card-body">
-                                        <p>Crear Tarea</p>
-                                        <form action="" id="formGuardarTarea">
-                                            <div class="form-group">
-                                                <input type="text" maxlength="128" minlength="4" id="inTitulo"
-                                                    name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
-                                                    required>
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
-                                                    class="form-control" placeholder="Descripci&oacute;n"
-                                                    required></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="date" id="inFecha" name="fecha"
-                                                    class=" form-control" placeholder=" Fecha Limite">
-                                            </div>
-                                            <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
-                                                name=" guardarTarea" value="Guardar" />
-
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                    <table class="table table-bordered mis-tareas">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>T&iacute;tulo</th>
-                                                <th>Descripci&oacute;n</th>
-                                                <th>Fecha L&iacute;mite</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="lista-tareas">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                        <div class="perfil-datos col-6">
+                            <h3> Nombre de usuario: </h3>
+                            <div class="perfil-nombre">
+                                <form action="actualizarDatos.php" method="POST">
+                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" value="<?php print_r($uNombre);?>" >
+                                    <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
+                                </form>                              
                             </div>
-
-                        </div>
-                        <!--opcion de editar-->
-                        <div class="overlay" id="overlay">
-                            <div class="popup" id="popup">
-                                <div class="col sm-4">
-                                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
-                                    <div class="card card-body mx-auto">
-                                        <div class="card card-body">
-                                            <p>Editar Tarea</p>
-                                            <form action="#" id="formEditarTarea">
-                                                <div class="form-group">
-                                                    <input type="text" name="titulo" maxlength="128" minlength="4" class=" form-control"
-                                                        id="inEditTitulo" placeholder=" Título">
-                                                </div>
-                                                <div class="form-group">
-                                                    <textarea name="descripcion" maxlength="256" rows="4" class="form-control"
-                                                        id="inEditDesc" placeholder="Descrpcion"></textarea>
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="date" name="fecha" id="inEditFecha" class=" form-control">
-                                                </div>
-                                                <input type="submit" class="btn btn-config btn-light btn-block"
-                                                    name="guardarTarea" value="Guardar Cambios" />
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                            <h3> Correo Electrónico: </h3>
+                            <div class="perfil-correo">
+                                <form action="actualizarDatos.php" method="POST">
+                                    <input type="email" id="in-perfil-correo" name="perfil-correo" value="<?php print_r($uCorreo);?>" >
+                                    <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
+                                </form>
                             </div>
-
+                            <h3> Cambiar contraseña: </h3>
+                            <div class="perfil-contra">
+                                <form action="actualizarDatos.php" method="POST">
+                                    <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required value="">
+                                    <input type="password" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
+                                    <input type="submit" class="btn btn-primary" name="perfil-guardar-contra" value="Cambiar Contraseña">
+                                </form>
+                            </div>
                         </div>
-                        <!--Aqui termina el formulario-->
-
                     </div>
                 </div>
-
+                <div class="container editor-img">
+                    <?php 
+                        if(!empty(filter_input(INPUT_GET, "errimg"))){
+                           
+                        ?>
+                            
+                            <img src="<?php print_r(filter_input(INPUT_GET, "errimg"))?>" id="target" alt="omg">                            
+                            <input type="button" class="btn btn-success" value="Cortar"  id="btn-cortar-foto">                            
+                            
+                            <script>
+                                $(".editor-img").css("visibility", "visible");
+                            </script>
+                        <?php
+                        }
+                        else{
+                            
+                        ?>
+                        
+                            <script>
+                                $(".editor-img").css("visibility", "hidden");
+                            </script>
+                        <?php
+                        }
+                    ?>
+                </div>
             </div>
 
         </div>
@@ -254,14 +241,63 @@
 
     </div>
 
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/dashboard.js"></script>
-
+      
+    <script src="../../tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
+        var x = '';
+        var y = '';
+        var w = ''; 
+        var h = '';
+        var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
+        var host = ''
+        console.log(ruta);      
 
+        if (location.hostname === "localhost"){
+            host = "http://localhost/ToDo-List---ToDo-Friends/";
+        } 
+        else{
+            host = "https://todolist-todofriends.herokuapp.com/";
+        }
+
+        function showCoords(c)
+        {
+            x = c.x;
+            y = c.y;
+            w = c.w;
+            h = c.h;
+        };
+
+        jQuery(function($) {
+            $('#target').Jcrop({
+                onSelect: showCoords,
+                bgColor: 'black',
+                bgOpacity: .4,
+                minSize: [300, 300],
+                setSelect:   [ 100, 100, 50, 50 ],
+                aspectRatio: 1
+            });
+        });
+
+        $("#btn-cortar-foto").on('click', function(){
+            enviar();
+        });
+
+        function enviar(){
+            $.ajax({
+                url: 'cortar.php',
+                type: 'POST',
+                data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
+                success: function(rpt){
+                    window.location.replace(host + "src/pages/perfilusuario");                    
+                }
+            });
+        }
+
+    </script>
+    <script src="../scripts/perfil.js"></script>
+    <script>
+    $.widget.bridge('uibutton', $.ui.button)
+    </script>
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -276,6 +312,9 @@
     <script src="../../dist/js/adminlte.js"></script>
 
     <script src="../../dist/js/demo.js"></script>
+
+
+
 </body>
 
 </html>
