@@ -242,33 +242,64 @@
 
                         </div>
                         <!--opcion de editar-->
-                        <div class="overlay" id="overlay">
-                            <div class="popup" id="popup">
+                        <div class="overlay " id="overlay">
+                            <div class="popup " id="popup">
 
                                 <div class="col sm-4">
                                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
-                                    <div class="card card-body mx-auto">
-                                        <div class="card card-body">
-                                            <p>Editar Tarea</p>
-                                            <form action="editartarea.php" method = "POST" id="formEditarTarea">
+                                    <div class="row">
+                                        <div class="card card-body col-10">
+
+                                            <form action="graneditar.php" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
-                                                    <input type="text" name="titulo2" maxlength="128" minlength="4" class=" form-control"
-                                                        id="inEditTitulo" placeholder=" Título">
+                                                    <input type="text" name="titulo2" maxlength="128" minlength="4"
+                                                        class=" form-control" id="inEditTitulo" placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="descripcion2" maxlength="256" rows="4" class="form-control"
-                                                        id="inEditDesc" placeholder="Descripcion"></textarea>
+                                                    <textarea name="descripcion2" maxlength="256" rows="4"
+                                                        class="form-control" id="inEditDesc" placeholder="Descripcion">
+                                                    </textarea>
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="date" name="fecha2" id="inEditFecha" class=" form-control">
+                                                    <input type="date" name="fecha2" id="inEditFecha"
+                                                        class=" form-control">
                                                 </div>
                                                 <input type="submit" class="btn btn-config btn-light btn-block"
-                                                    name="update" value="Guardar Cambios" />
+                                                    name="update" value="Editar Tarea" />
 
                                             </form>
+
+                                        </div>
+                                        <div class="botones-popup col-2">
+                                            <div class="popup-boton">
+                                                <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
+                                                        aria-hidden="true"></i> Eliminar </a>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
+                                                        aria-hidden="true"></i> Archivar </a>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
+                                                        aria-hidden="true"></i> Estado </a>
+                                                <div class="nombre-estados">
+                                                    <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
+                                                    <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
+                                                    <input type="radio" name="estado" value="Hecho"> Hecho<br>
+                                                </div>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
+                                                        aria-hidden="true"></i> Adjuntar</a>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
+                                                        aria-hidden="true"></i> Mover </a>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 
