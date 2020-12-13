@@ -27,6 +27,14 @@
 </head>
 
 <body>
+    <script>
+        
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+    </script>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v9.0" nonce="Ksr9PVFr"></script>
     <header class="cabecera" style="height: 315px;">
         <div class="home">
             <a class="logo" href="../../index.php">
@@ -50,6 +58,8 @@
         <div class="img">
             <img src="../../res/bg.svg">
         </div>
+        
+        
         <div class="login-content">
             <form action="login.php" method="POST">
                 <img src="../../res/avatar.svg">
@@ -68,10 +78,35 @@
                 </div>
                 <a href="#">¿Olvidaste tu contraseña?</a>
                 <input type="submit" name="logearte" class="btn" value="Iniciar Sesi&oacute;n">
+                <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div>
             </form>
         </div>
     </div>
     <script type="text/javascript" src="../scripts/main.js"></script>
+    
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+    
+    
 </body>
 
 
