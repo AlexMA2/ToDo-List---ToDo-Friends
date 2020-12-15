@@ -159,7 +159,7 @@
                     </div>
                     
                 </div>         
-                <h2 class="final-patro"> Y muchas otras cosas más. Da click <a href="src/pages/caracteristicas.html">aqu&iacute;</a> para ver todas las caracter&iacute;sticas.</h2>      
+                <h2 class="final-patro"> Y muchas otras cosas más. Da click <a href="src/pages/caracteristicas">aqu&iacute;</a> para ver todas las caracter&iacute;sticas.</h2>      
             </div>
             
         </section>

@@ -81,7 +81,7 @@ if(isset($_POST["logearte"])){
             <li class="nav-item text-center"><a class="nav-link" href="tutorial"> Tutorial </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="equipos"> Trabajos en Equipo </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="login"> Iniciar Sesi&oacute;n </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="registro.html">Registrarse </a> </li>
+            <li class="nav-item text-center"><a class="nav-link" href="registro">Registrarse </a> </li>
         </nav>
 
     </header>
