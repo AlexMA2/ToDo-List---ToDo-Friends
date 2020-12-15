@@ -39,8 +39,14 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     
-    <div class="wrapper">
+    <?php
+        $order = "";
+        if(isset($_GET['columna'])){
+            $order = "order by ".$_GET['columna']." ".$_GET['tipo'];
+        }
+    ?>
 
+    <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
@@ -206,9 +212,19 @@
                                     <table class="table table-bordered mis-tareas">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>T&iacute;tulo</th>
-                                                <th>Descripci&oacute;n</th>
-                                                <th>Fecha L&iacute;mite</th>
+                                                <th>T&iacute;tulo
+                                                    <?php
+                                                        $columna=isset($_GET['columna'])?$_GET['columna']:null;
+                                                        $tipo=isset($_GET['tipo'])?$_GET['tipo']:null;
+                                                    ?>
+                                                    <?php ordenador($columna,'title',$tipo); ?>
+                                                </th>
+                                                <th>Descripci&oacute;n
+                                                    <?php ordenador($columna,'description',$tipo); ?>
+                                                </th>
+                                                <th style="min-width: 160px;">Fecha L&iacute;mite
+                                                    <?php ordenador($columna,'limit_date',$tipo); ?>
+                                                </th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -225,7 +241,7 @@
                                             
                                             $filas = $esteResultado->rowCount();
                                             if($filas != 0){
-                                                $query = "SELECT * FROM tareas WHERE eltema = :tema";
+                                                $query = "SELECT * FROM tareas WHERE eltema = :tema ".$order;
                                                 $resultado_tarea = $conection->prepare($query);
                                                 
                                                 $resultado_tarea->bindValue(":tema", $tema);
@@ -243,17 +259,38 @@
                                                                     aria-hidden="true"></i></span>
                                                         </td>
                                                     </tr>
-                                                <?php 
-                                                }
+                                                <?php
+                                                }   
                                             }
                                             else{
                                                 ?>
                                                 <script>
                                                     window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
                                                 </script>                                                
-                                                <?php    
+                                            <?php    
                                             }
-                                        ?>
+                                            ?>
+
+                                            <?php
+                                                function ordenador($columnaseleccionada, $columnavalor, $tipoordenamiento){
+                                            ?>
+                                                <div class="float-right">
+                                                    <?php if(isset($columnaseleccionada) && $columnaseleccionada==$columnavalor && $tipoordenamiento=='asc'):?>
+                                                        <i class="fa fa-caret-up text-secondary"></i>
+                                                    <?php else: ?>
+                                                        <a href="TareasGrupales?tema=<?php print_r($_SESSION['tema']);?>&columna=<?php print_r($columnavalor);?>&tipo=asc"><i class="fa fa-caret-up"></i></a>
+                                                    <?php endif;?>
+
+                                                    <?php if(isset($columnaseleccionada) && $columnaseleccionada==$columnavalor && $tipoordenamiento=='desc'):?>
+                                                        <i class="fa fa-caret-down text-secondary"></i>
+                                                    <?php else: ?>
+                                                        <a href="TareasGrupales?tema=<?php print_r($_SESSION['tema']);?>&columna=<?php print_r($columnavalor);?>&tipo=desc"><i class="fa fa-caret-down"></i></a>
+                                                    <?php endif;?>
+                                                </div>
+
+                                            <?php 
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
