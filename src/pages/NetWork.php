@@ -50,6 +50,7 @@
                 </li>
             </ul>
 
+
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
@@ -183,7 +184,9 @@
                         $resultado_tema = $conection->prepare($query);
                         $resultado_tema->bindValue(":id", $_SESSION['user']);
                         $resultado_tema->execute();
-                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) { ?>
+                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {                            
+                        ?>
+                            
                         <div class="unidad-tema">
                             <div class="small-box bg-info">
                                 <div class="inner">
