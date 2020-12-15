@@ -214,26 +214,46 @@
                                         </thead>
                                         <tbody class="lista-tareas">
                                         <?php
-                                           
-                                            $query = "SELECT * FROM tareas WHERE eltema = :tema";
-                                            $resultado_tarea = $conection->prepare($query);
-                                            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_SPECIAL_CHARS);
-                                            $resultado_tarea->bindValue(":tema", $tema);
-                                            $resultado_tarea->execute();
-                                            while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
-                                            <tr>
-                                                <td><?php print_r($row['title']); ?></td>
-                                                <td><?php print_r($row['description']); ?></td>
-                                                <td><?php print_r($row['limit_date']); ?></td>
-                                                <td>
-                                                    
-                                                    <span class="span-btn-opciones"><i
-                                                            class="fa fa-ellipsis-v btn-opciones"
-                                                            data-tid="<?php print_r($row['id_task']);?>"
-                                                            aria-hidden="true"></i></span>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+
+                                            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
+                                            $_SESSION['tema'] = $tema;
+                                            $otraQuery = "SELECT `IDTEMA` FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
+                                            $esteResultado = $conection->prepare($otraQuery);
+                                            $esteResultado->bindValue(":id",  $_SESSION['user']);
+                                            $esteResultado->bindValue(":tema",  $tema);
+                                            $esteResultado->execute();
+                                            
+                                            $filas = $esteResultado->rowCount();
+                                            if($filas != 0){
+                                                $query = "SELECT * FROM tareas WHERE eltema = :tema";
+                                                $resultado_tarea = $conection->prepare($query);
+                                                
+                                                $resultado_tarea->bindValue(":tema", $tema);
+                                                $resultado_tarea->execute();
+                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                    <tr class="item-tarea">
+                                                        <td><?php print_r($row['title']); ?></td>
+                                                        <td><?php print_r($row['description']); ?></td>
+                                                        <td><?php print_r($row['limit_date']); ?></td>
+                                                        <td>
+                                                            
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fa fa-ellipsis-v btn-opciones"
+                                                                    data-tid="<?php print_r($row['id_task']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                <?php 
+                                                }
+                                            }
+                                            else{
+                                                ?>
+                                                <script>
+                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                                                </script>                                                
+                                                <?php    
+                                            }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -325,7 +345,8 @@
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-                                         
+    <script src="../scripts/Tarea.js"></script>
+    <script src="../scripts/activadorPopUp.js"></script>                                              
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>

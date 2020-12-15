@@ -37,10 +37,12 @@ if (!empty(filter_input(INPUT_POST, 'guardarTarea'))) {
     }
     
     
+    
 
   }catch(Exception $ex){
     
   }
+  
   header("location:TareasGrupales?tema=".$_SESSION['tema']);
   
 }
