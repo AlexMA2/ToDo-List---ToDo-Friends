@@ -131,5 +131,6 @@
 
     }
    
+    header("Location: perfilusuario");
 
 ?>
