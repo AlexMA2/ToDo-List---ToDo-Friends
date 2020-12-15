@@ -1,27 +1,47 @@
 <?php
 
-include('conexion.php');
-
-if (isset($_POST['guardarTarea'])) {
-  try{
-    $title = htmlentities(addslashes($_POST['titulo']));
-    $description = htmlentities(addslashes($_POST['descripcion']));
-    $date = htmlentities(addslashes($_POST['fecha']));
- 
-    $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`) VALUES (:titulo, :descripcion, :fecha)";
-    $resultadousuario = $conection->prepare($query);
-
-    $resultadousuario->bindValue(":titulo", $title);
-    $resultadousuario->bindValue(":descripcion", $description);
-    $resultadousuario->bindValue(":fecha", $date);
-    $resultadousuario->execute();
+require 'conexion.php';
+session_start();      
+if (!empty(filter_input(INPUT_POST, 'guardarTarea'))) {
+  try{    
+    $title = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+    $description = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_SPECIAL_CHARS);
+    $date = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_SPECIAL_CHARS);    
     
-    header("location:TareasGrupales.php");
+    if(!empty($date)){
+      $hoy = date("Y-m-d");
+      if($hoy <= $date){
+        $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`, `eltema`) VALUES (:titulo, :descripcion, :fecha, :tema)";
+        $resultadousuario = $conection->prepare($query);
+  
+        $resultadousuario->bindValue(":titulo", $title);
+        $resultadousuario->bindValue(":descripcion", $description);
+        $resultadousuario->bindValue(":fecha", $date);
+        $resultadousuario->bindValue(":tema", $_SESSION['tema']);
+        $resultadousuario->execute();      
+       
+      }
+      else{
+        header("location:TareasGrupales?errm=$date");
+      }
+    }
+    else{
+      $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`, `eltema`) VALUES (:titulo, :descripcion, :fecha, :tema)";
+      $resultadousuario = $conection->prepare($query);
+  
+      $resultadousuario->bindValue(":titulo", $title);
+      $resultadousuario->bindValue(":descripcion", $description);
+      $resultadousuario->bindValue(":fecha", "Sin fecha límite");
+      $resultadousuario->bindValue(":tema", $_SESSION['tema']);
+      $resultadousuario->execute();      
+    }
+    
+    
 
   }catch(Exception $ex){
-    die("Error al conectar:  $ex->getMessage()");
+    
   }
-
+  header("location:TareasGrupales?tema=".$_SESSION['tema']);
   
 }
 ?>

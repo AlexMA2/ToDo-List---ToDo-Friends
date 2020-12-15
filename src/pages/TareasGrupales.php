@@ -1,4 +1,14 @@
-﻿<?php include("conexion.php"); ?>
+﻿<?php
+    require "conexion.php";
+    session_start();           
+    if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
+        header("location:../../index.php");
+    }
+    else{
+        require "conexion.php";
+        require "sacarDatos.php";
+    }
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -24,16 +34,11 @@
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <?php
-        session_start();           
-        if($_SESSION['user']==NULL){
-            header("location:../../index.php");
-        }
-    ?>
+    
     <div class="wrapper">
 
 
@@ -83,13 +88,14 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../res/perfil.jpg" alt="User Image" class="img-circle elevation-2">
+                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> 
+                        <a href="perfilusuario" class="d-block"> 
                             <?php                                  
-                                echo $_SESSION['user']
-                            ?> </a>
+                               print_r($uNombre);
+                            ?> 
+                        </a>
                     </div>
                 </div>
 
@@ -139,7 +145,7 @@
                         </li>
 
                         <li class="nav-item has-treeview">
-                            <a href="../../index.php" class="nav-link">
+                            <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
                                     Salir                                    
@@ -209,23 +215,25 @@
                                         <tbody class="lista-tareas">
                                         <?php
                                            
-                                            $query = "SELECT * FROM tareas";
-                                            $resultado_tarea = $conection->query($query);
+                                            $query = "SELECT * FROM tareas WHERE eltema = :tema";
+                                            $resultado_tarea = $conection->prepare($query);
+                                            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_SPECIAL_CHARS);
+                                            $resultado_tarea->bindValue(":tema", $tema);
+                                            $resultado_tarea->execute();
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
                                             <tr>
-                                                <td><?php echo $row['title']; ?></td>
-                                                <td><?php echo $row['description']; ?></td>
-                                                <td><?php echo $row['limit_date']; ?></td>
+                                                <td><?php print_r($row['title']); ?></td>
+                                                <td><?php print_r($row['description']); ?></td>
+                                                <td><?php print_r($row['limit_date']); ?></td>
                                                 <td>
-                                                    <abbr title="Modificar Tarea">
-                                                    <a href="editartarea.php?id=<?php echo $row['id_task'];?>&t=<?php echo $row['title'];?>&d=<?php echo $row['description'];?>&f=<?php echo $row['limit_date'];?>" class="btn btn-warning btn-editar"><i class="fas fa-pen btn-editar"></i></a>
-                                                    </abbr>
-                                                    <abbr title="Eliminar Tarea">
-                                                    <a href="eliminartarea.php?id=<?php echo $row['id_task'];?>" class="btn btn-danger btn-eliminar"><i class="fas fa-trash btn-eliminar"></i></a>
-                                                    </abbr>
+                                                    
+                                                    <span class="span-btn-opciones"><i
+                                                            class="fa fa-ellipsis-v btn-opciones"
+                                                            data-tid="<?php print_r($row['id_task']);?>"
+                                                            aria-hidden="true"></i></span>
                                                 </td>
                                             </tr>
-                                            <?php } ?>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -234,34 +242,65 @@
 
                         </div>
                         <!--opcion de editar-->
-                        <div class="overlay" id="overlay">
-                            <div class="popup" id="popup">
+                        <div class="overlay " id="overlay">
+                            <div class="popup " id="popup">
 
                                 <div class="col sm-4">
                                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
-                                    <div class="card card-body mx-auto">
-                                        <div class="card card-body">
-                                            <p>Editar Tarea</p>
-                                            <form action="editartarea.php" method = "POST" id="formEditarTarea">
+                                    <div class="row">
+                                        <div class="card card-body col-10">
+
+                                            <form action="graneditar.php" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
-                                                    <input type="text" name="titulo2" maxlength="128" minlength="4" class=" form-control"
-                                                        id="inEditTitulo" placeholder=" Título">
+                                                    <input type="text" name="titulo2" maxlength="128" minlength="4"
+                                                        class=" form-control" id="inEditTitulo" placeholder=" Título">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea name="descripcion2" maxlength="256" rows="4" class="form-control"
-                                                        id="inEditDesc" placeholder="Descripcion"></textarea>
+                                                    <textarea name="descripcion2" maxlength="256" rows="4"
+                                                        class="form-control" id="inEditDesc" placeholder="Descripcion">
+                                                    </textarea>
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="date" name="fecha2" id="inEditFecha" class=" form-control">
+                                                    <input type="date" name="fecha2" id="inEditFecha"
+                                                        class=" form-control">
                                                 </div>
                                                 <input type="submit" class="btn btn-config btn-light btn-block"
-                                                    name="update" value="Guardar Cambios" />
+                                                    name="update" value="Editar Tarea" />
 
                                             </form>
+
+                                        </div>
+                                        <div class="botones-popup col-2">
+                                            <div class="popup-boton">
+                                                <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
+                                                        aria-hidden="true"></i> Eliminar </a>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
+                                                        aria-hidden="true"></i> Archivar </a>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
+                                                        aria-hidden="true"></i> Estado </a>
+                                                <div class="nombre-estados">
+                                                    <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
+                                                    <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
+                                                    <input type="radio" name="estado" value="Hecho"> Hecho<br>
+                                                </div>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
+                                                        aria-hidden="true"></i> Adjuntar</a>
+                                            </div>
+                                            <div class="popup-boton">
+                                                <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
+                                                        aria-hidden="true"></i> Mover </a>
+                                            </div>
                                         </div>
                                     </div>
-                                
+
+                                </div>
                             </div>
 
                         </div>
