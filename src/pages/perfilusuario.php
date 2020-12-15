@@ -288,7 +288,7 @@
                 type: 'POST',
                 data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
                 success: function(rpt){
-                    window.location.replace(host + "https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");                    
+                    window.location.replace("https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");                    
                 }
             });
         }
