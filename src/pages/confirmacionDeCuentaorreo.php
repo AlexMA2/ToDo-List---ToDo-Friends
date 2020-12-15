@@ -1,5 +1,5 @@
 <?php
- if(isset($_POST["registrar"])){
+    /*
      if(!empty($_POST['correo'])){
         $correo = htmlentities(addslashes($_POST["correo"]));
          $usuario= htmlentities(addslashes($_POST['user']));
@@ -17,6 +17,6 @@
             echo"<h4>error en correo </h4>";
         }
 
-     }
  }
+ */
  ?> 
