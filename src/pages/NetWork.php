@@ -30,11 +30,13 @@
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../../src/styles/editar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    
+
     <div class="wrapper">
 
 
@@ -159,10 +161,67 @@
 
             <div class="content-header">
                 <div class="container-fluid">
+                    <div class="overlay " id="overlay">
+                        <div class="popup " id="popup">
 
+                            <div class="col sm-4">
+                                <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                                <div class="row">
+                                    <div class="card card-body col-10">
+
+                                        <form action="CrearTema.php" method="POST" id="CTema">
+                                            <div class="form-group">
+                                                <input type="text" name="Titulo3" maxlength="128" minlength="4"
+                                                    class=" form-control" id="inTemaTitulo" placeholder=" Título">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="Descripcion3" maxlength="256" rows="4"
+                                                    class="form-control" id="inTemaDesc" placeholder="Descripcion">
+                                                    </textarea>
+                                            </div>
+                                            <input type="submit" class="btn btn-config btn-light btn-block"
+                                                name="CrearTema" value="Crear Tema" />
+
+                                        </form>
+
+                                    </div>
+                                    <div class="botones-popup col-2">
+                                        <div class="popup-boton">
+                                            <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i
+                                                    class="fa fa-trash" aria-hidden="true"></i> Eliminar </a>
+                                        </div>
+                                        <div class="popup-boton">
+                                            <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i
+                                                    class="fa fa-archive" aria-hidden="true"></i> Archivar </a>
+                                        </div>
+                                        <div class="popup-boton">
+                                            <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
+                                                    aria-hidden="true"></i> Estado </a>
+                                            <div class="nombre-estados">
+                                                <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
+                                                <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
+                                                <input type="radio" name="estado" value="Hecho"> Hecho<br>
+                                            </div>
+                                        </div>
+                                        <div class="popup-boton">
+                                            <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
+                                                    aria-hidden="true"></i> Adjuntar</a>
+                                        </div>
+                                        <div class="popup-boton">
+                                            <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
+                                                    aria-hidden="true"></i> Mover </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-2">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 row">
                             <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
+                            <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
+                            <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
 
@@ -177,7 +236,7 @@
                     </div>
                 </div>
                 <div class="grupo-temas">
-                   
+
                     <?php
                                            
                         $query = "SELECT * FROM temas WHERE Usuario = :id";
@@ -186,18 +245,19 @@
                         $resultado_tema->execute();
                         while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {                            
                         ?>
-                            
-                        <div class="unidad-tema">
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3><?php print_r($row['Titulo']); ?></h3>
 
-                                    <p><?php print_r($row['Descripcion']); ?></p>
-                                </div>
+                    <div class="unidad-tema">
+                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDTEMA"]);?>">
+                            <div class="inner">
+                                <h3><?php print_r($row['Titulo']); ?></h3>
 
-                                <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver <i class="fas fa-arrow-circle-right"></i></a>
+                                <p><?php print_r($row['Descripcion']); ?></p>
+                            </div>
+
+                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver
+                                <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                    </div>      
+                    </div>
                     <?php } ?>
                     </tbody>
 
@@ -237,6 +297,64 @@
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="../../dist/js/adminlte.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    <script src="../scripts/activadorPopUp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script>
+    var laid = "tema";
+    $(".miTema").on("click", function(){
+        laid = $(this).attr("id");
+
+    });
+    var panel = document.getElementById(laid);
+    const pickr = Pickr.create({
+        el: '.color-picker',
+        theme: 'classic', // or 'monolith', or 'nano'
+
+        swatches: [
+            'rgba(244, 67, 54, 1)',
+            'rgba(233, 30, 99, 0.95)',
+            'rgba(156, 39, 176, 0.9)',
+            'rgba(103, 58, 183, 0.85)',
+            'rgba(63, 81, 181, 0.8)',
+            'rgba(33, 150, 243, 0.75)',
+            'rgba(3, 169, 244, 0.7)',
+            'rgba(0, 188, 212, 0.7)',
+            'rgba(0, 150, 136, 0.75)',
+            'rgba(76, 175, 80, 0.8)',
+            'rgba(139, 195, 74, 0.85)',
+            'rgba(205, 220, 57, 0.9)',
+            'rgba(255, 235, 59, 0.95)',
+            'rgba(255, 193, 7, 1)'
+        ],
+
+        components: {
+
+            // Main components
+            preview: true,
+            opacity: true,
+            hue: true,
+
+            // Input / output Options
+            interaction: {
+                hex: true,
+                rgba: false,
+                hsla: false,
+                hsva: false,
+                cmyk: false,
+                input: true,
+                clear: true,
+                save: true
+            }
+        }
+    });
+
+    pickr.on('change', (...args) => {
+        let color = args[0].toRGBA();
+        console.log(color);
+        var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
+        $(panel).attr('style','background-color: '+ color2 +'!important'); 
+    });
+    </script>
 </body>
 
 </html>
