@@ -185,33 +185,6 @@
                                         </form>
 
                                     </div>
-                                    <div class="botones-popup col-2">
-                                        <div class="popup-boton">
-                                            <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i
-                                                    class="fa fa-trash" aria-hidden="true"></i> Eliminar </a>
-                                        </div>
-                                        <div class="popup-boton">
-                                            <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i
-                                                    class="fa fa-archive" aria-hidden="true"></i> Archivar </a>
-                                        </div>
-                                        <div class="popup-boton">
-                                            <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
-                                                    aria-hidden="true"></i> Estado </a>
-                                            <div class="nombre-estados">
-                                                <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
-                                                <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
-                                                <input type="radio" name="estado" value="Hecho"> Hecho<br>
-                                            </div>
-                                        </div>
-                                        <div class="popup-boton">
-                                            <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
-                                                    aria-hidden="true"></i> Adjuntar</a>
-                                        </div>
-                                        <div class="popup-boton">
-                                            <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
-                                                    aria-hidden="true"></i> Mover </a>
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
