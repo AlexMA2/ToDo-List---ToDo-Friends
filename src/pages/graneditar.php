@@ -1,12 +1,13 @@
 <?php
 require "conexion.php";
+session_start();
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if (!empty(filter_input(INPUT_POST, 'update'))) {
   try{
     
-    $title = htmlentities(addslashes($_POST['titulo2']));
-    $description = htmlentities(addslashes($_POST['descripcion2']));
-    $date = htmlentities(addslashes($_POST['fecha2']));
+    $title = filter_input(INPUT_POST, 'titulo2', FILTER_SANITIZE_SPECIAL_CHARS);
+    $description = filter_input(INPUT_POST, 'descripcion2', FILTER_SANITIZE_SPECIAL_CHARS);
+    $date = filter_input(INPUT_POST, 'fecha2', FILTER_SANITIZE_SPECIAL_CHARS);
 
     $hoy = date("Y-m-d");
     if($hoy <= $date){
@@ -22,6 +23,7 @@ if (!empty(filter_input(INPUT_POST, 'update'))) {
   }catch(Exception $ex){
     
   }  
-  header("location: TareasGrupales");
+ 
+  header("location: TareasGrupales?tema=".$_SESSION['tema']);
 } 
 ?>

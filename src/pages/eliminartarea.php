@@ -1,6 +1,7 @@
 <?php
 
 require "conexion.php";
+session_start();      
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 if(!empty($id)) {
     try{        
@@ -12,6 +13,6 @@ if(!empty($id)) {
     }catch(Exception $ex){
         
     }
-    header('Location: TareasGrupales');
+    header("location:TareasGrupales?tema=".$_SESSION['tema']);
 }
 ?>
