@@ -1,12 +1,16 @@
 ﻿<?php
-        session_start();           
-        if(empty($_SESSION['user'])){
-            header("location:../../index");
-        }
-        else{
-            require "sacarDatos.php";
-        }
-    ?>
+    session_start();           
+    if(empty($_SESSION['user'])){
+        header("location:../../index");
+    }
+    else{
+        require "sacarDatos.php";
+    }
+    $query = "SELECT * FROM temas WHERE Usuario = :id";
+    $resultado_tema = $conection->prepare($query);
+    $resultado_tema->bindValue(":id", $_SESSION['user']);
+    $resultado_tema->execute();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -109,6 +113,7 @@
                                     Tablero
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
+                                
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
@@ -193,14 +198,15 @@
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
                             <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
+                            <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#"> Inicio </a></li>
-                                <li class="breadcrumb-item active"> Temas </li>
+                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
+                                <li class="breadcrumb-item active"> Tema </li>
                             </ol>
                         </div>
 
@@ -210,12 +216,8 @@
                 </div>
                 <div class="grupo-temas">
 
-                    <?php
-                                           
-                        $query = "SELECT * FROM temas WHERE Usuario = :id";
-                        $resultado_tema = $conection->prepare($query);
-                        $resultado_tema->bindValue(":id", $_SESSION['user']);
-                        $resultado_tema->execute();
+                    <?php                                           
+                       
                         while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {                            
                         ?>
 

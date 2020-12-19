@@ -134,7 +134,7 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>                       
                                 <p>
                                     Mis Equipos
                                     <i class="fas fa-angle-left right"></i>
@@ -158,6 +158,22 @@
             </div>
         </aside>
 
+        <?php
+            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
+            $_SESSION['tema'] = $tema;
+            $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
+            $esteResultado = $conection->prepare($otraQuery);
+            $esteResultado->bindValue(":id",  $_SESSION['user']);
+            $esteResultado->bindValue(":tema",  $tema);
+            $esteResultado->execute();
+             
+            while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
+                $nombreTema = $otrosDatos['Titulo'];
+            }
+
+            $filas = $esteResultado->rowCount();
+        ?>
+
         <div class="content-wrapper">
 
             <div class="content-header">
@@ -165,13 +181,13 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Tema de trabajo</h1>
+                            <h1 class="m-0 text-dark"><?php print_r($nombreTema)?></h1>
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#"> Inicio </a></li>
-                                <li class="breadcrumb-item active"> Tareas </li>
+                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
+                                <li class="breadcrumb-item active"> Tema </li>
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
@@ -214,16 +230,7 @@
                                         </thead>
                                         <tbody class="lista-tareas">
                                         <?php
-
-                                            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
-                                            $_SESSION['tema'] = $tema;
-                                            $otraQuery = "SELECT `IDTEMA` FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
-                                            $esteResultado = $conection->prepare($otraQuery);
-                                            $esteResultado->bindValue(":id",  $_SESSION['user']);
-                                            $esteResultado->bindValue(":tema",  $tema);
-                                            $esteResultado->execute();
-                                            
-                                            $filas = $esteResultado->rowCount();
+                                           
                                             if($filas != 0){
                                                 $query = "SELECT * FROM tareas WHERE eltema = :tema";
                                                 $resultado_tarea = $conection->prepare($query);
