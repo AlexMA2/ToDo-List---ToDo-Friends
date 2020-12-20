@@ -2,11 +2,11 @@
     require "conexion.php";
     session_start();           
     if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
-        header("location:../../index.php");
+        header("location: NetWork");
     }
-    else{
-        require "conexion.php";
-        require "sacarDatos.php";
+    else{        
+        require "sacarDatos.php";       
+        list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
  ?>
 
@@ -161,17 +161,33 @@
         <?php
             $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
             $_SESSION['tema'] = $tema;
-            $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
-            $esteResultado = $conection->prepare($otraQuery);
-            $esteResultado->bindValue(":id",  $_SESSION['user']);
-            $esteResultado->bindValue(":tema",  $tema);
-            $esteResultado->execute();
-             
-            while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
-                $nombreTema = $otrosDatos['Titulo'];
-            }
+            if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
+                $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
+                $esteResultado = $conection->prepare($otraQuery);
+                $esteResultado->bindValue(":id",  $_SESSION['user']);
+                $esteResultado->bindValue(":tema",  $tema);
+                $esteResultado->execute();
+                
+                while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
+                    $nombreTema = $otrosDatos['Titulo'];
+                }
 
-            $filas = $esteResultado->rowCount();
+                $filas = $esteResultado->rowCount();
+            }
+            else{
+                $otraQuery = "SELECT * FROM temas WHERE Grupo = :id AND IDTEMA = :tema";
+                $esteResultado = $conection->prepare($otraQuery);
+                $esteResultado->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT) );
+                $esteResultado->bindValue(":tema",  $tema);
+                $esteResultado->execute();
+                
+                while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
+                    $nombreTema = $otrosDatos['Titulo'];
+                }
+
+                $filas = $esteResultado->rowCount();
+            }
+            
         ?>
 
         <div class="content-wrapper">
@@ -197,7 +213,7 @@
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="guardartarea.php" method = "POST" id="formGuardarTarea">
+                                        <form action="guardartarea.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -277,7 +293,7 @@
                                     <div class="row">
                                         <div class="card card-body col-10">
 
-                                            <form action="graneditar.php" method="POST" id="formEditarTarea">
+                                            <form action="graneditar.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
                                                     <input type="text" name="titulo2" maxlength="128" minlength="4"
                                                         class=" form-control" id="inEditTitulo" placeholder=" Título">
@@ -300,11 +316,11 @@
                                         </div>
                                         <div class="botones-popup col-2">
                                             <div class="popup-boton">
-                                                <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
+                                                <a href="eliminartarea.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
                                                         aria-hidden="true"></i> Eliminar </a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
+                                                <a href="archivartareas.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
                                                         aria-hidden="true"></i> Archivar </a>
                                             </div>
                                             <div class="popup-boton">

@@ -19,7 +19,12 @@ if(!empty($id)) {
         $resultado->execute();
         
         $resultado = null;
-        header("location:TareasGrupales?tema=".$_SESSION['tema']);
+        if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
+            header("location:TareasGrupales?tema=".$_SESSION['tema']);
+          } 
+          else{
+            header("location:TareasGrupales?tema=".$_SESSION['tema']."&grupo=".filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
+          }
     }
     catch(Exception $ex){
         

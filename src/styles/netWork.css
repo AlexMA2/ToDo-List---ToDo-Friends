@@ -66,7 +66,8 @@
   text-align: left;
 }
 
-.grupo-temas{
+.grupo-temas,
+.grupo-grupos{
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -74,10 +75,76 @@
 
 .unidad-tema{
   width: 20%;
-  margin: 5px 10px 10px 5px;
+  margin: 5px 10px 10px 5px;  
 }
 
-.casilla{
+.unidad-tema div h3{
+  overflow: hidden;
+}
+
+.nav-arbol{
+  margin: 5px;
+  padding: 5px; 
+  list-style: none;
+  width: 100%;
+}
+
+.nav-li{
+  
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.nav-arbol-hoja{
+  display: flex;
+  flex-direction: row;  
+  color: #fff;
+  font-size: 16px;  
+  padding: 10px;
+}
+
+.nav-arbol-hoja:hover{
+  background-color: rgba(0,0,0,0.5);
+}
+
+.nav-arbol-hoja a{
+  width: 50%;
+  margin: -5px 60px 0px 13px;
+}
+
+.nav-arbol-hoja i{
+  cursor: pointer;
+}
+
+.desplegable{
+  list-style: none;
+  display: none;
+  transition: 1s;
+  padding: 10px;
+}
+
+.desplegable li{
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
+  padding: 5px;
+}
+
+.desplegable li i{
+  margin-right: 15px;
+}
+
+.unidad-grupo{
+  width: 40%;
+  margin: 10px auto 10px 15px;  
+}
+
+.inner-derecha{
+  border-left: 2px solid #0C515C;
+  padding: 15px;
+}
+
+.small-box h3{
+  white-space: normal !important;
 }
