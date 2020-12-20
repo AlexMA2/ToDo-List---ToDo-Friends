@@ -100,6 +100,7 @@
                 </div>
 
                 <nav class="mt-2">
+                    <!--
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
@@ -110,22 +111,23 @@
                                     Tablero
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
+                                
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="tareas.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="horarios.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="guardado.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
@@ -134,7 +136,7 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>                       
+                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
                                     Mis Equipos
                                     <i class="fas fa-angle-left right"></i>
@@ -148,12 +150,57 @@
                             <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
-                                    Salir                                    
+                                    Salir
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                        </li>
+                    </ul>
+                    -->
+                    <ul class="nav-arbol">
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-table"></i>
+                                <a href="NetWork"> Tablero </a>
+                                <i class="fas fa-angle-left right desplegador"></i>
+                            </div>
+                            <ul class="nav desplegable">
+                                <li class="text-wrap"> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
+                                </li>
+                                <li> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">Primero</a>
+                                </li>
+                               
                             </ul>
-                        </li>                     
+                        </li>
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-users"></i>
+                                <a href="misequipos"> Mis equipos </a>
+                                <i class="fas fa-angle-left right desplegador"></i>
+                            </div>
+                            <ul class="nav desplegable">
+                                <li> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">PrimeroPrimeroP(19)</a>
+                                </li>
+                                <li> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">Primero</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-door-open"></i>
+                                <a href="../../"> Salir </a>
+
+                            </div>
+                        </li>
+                    </ul>                   
                 </nav>
             </div>
         </aside>
