@@ -14,6 +14,7 @@
                 $resultado->bindValue(":nombre", $nuevo);
                 $resultado->bindValue(":id", $idu);
                 $resultado->execute();
+                header("Location: perfilusuario");
             }
             
         }
@@ -32,6 +33,7 @@
                     $resultado->bindValue(":correo", $nuevo);
                     $resultado->bindValue(":id", $idu);
                     $resultado->execute();
+                    header("Location: perfilusuario");
                 }  
             }                  
              
@@ -48,6 +50,7 @@
                     $resultado->bindValue(":contra", sha1($nuevo));
                     $resultado->bindValue(":id", $idu);
                     $resultado->execute();
+                    header("Location: perfilusuario");
                 }
             }
            
@@ -131,5 +134,6 @@
 
     }
    
+    
 
 ?>

@@ -19107,7 +19107,7 @@ html.maximized-card {
   font-weight: bold;
   margin: 0 0 10px 0;
   padding: 0;
-  white-space: nowrap;
+  
 }
 
 @media (min-width: 992px) {
