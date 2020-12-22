@@ -23,7 +23,11 @@ if (!empty(filter_input(INPUT_POST, 'update'))) {
   }catch(Exception $ex){
     
   }  
- 
-  header("location: TareasGrupales?tema=".$_SESSION['tema']);
+  if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
+    header("location:TareasGrupales?tema=".$_SESSION['tema']);
+  } 
+  else{
+    header("location:TareasGrupales?tema=".$_SESSION['tema']."&grupo=".filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
+  }
 } 
 ?>
