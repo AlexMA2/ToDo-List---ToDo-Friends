@@ -154,12 +154,11 @@
                             <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
-                                    Salir                                    
+                                    Salir
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>                     
+                        </li>
+                    </ul>                     
                 </nav>
             </div>
         </aside>
@@ -220,7 +219,7 @@
                                                     <?php ordenador($columna,'title',$tipo); ?>
                                                 </th>
                                                 <th>Descripci&oacute;n
-                                                    <?php ordenador($columna,'description',$tipo); ?>
+                                                    <?php #ordenador($columna,'description',$tipo); ?>
                                                 </th>
                                                 <th style="min-width: 160px;">Fecha L&iacute;mite
                                                     <?php ordenador($columna,'limit_date',$tipo); ?>
@@ -270,7 +269,7 @@
                                             <?php    
                                             }
                                             ?>
-
+                                            
                                             <?php
                                                 function ordenador($columnaseleccionada, $columnavalor, $tipoordenamiento){
                                             ?>
