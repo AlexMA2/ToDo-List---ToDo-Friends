@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../../plugins/datatable/jquery.dataTables.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     
 </head>
@@ -54,7 +55,7 @@
                 </li>
             </ul>
 
-
+            <!--
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
@@ -66,6 +67,7 @@
                     </div>
                 </div>
             </form>
+            -->
 
             <ul class="navbar-nav ml-auto">
 
@@ -282,12 +284,12 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <table class="table table-bordered mis-tareas">
+                                    <table class="table table-bordered mis-tareas" class="display" id="mitabla">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>T&iacute;tulo</th>
                                                 <th>Descripci&oacute;n</th>
-                                                <th>Fecha L&iacute;mite</th>
+                                                <th style="min-width: 120px;" >Fecha L&iacute;mite</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -432,8 +434,30 @@
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="../../dist/js/adminlte.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
+    <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+		$('#mitabla').DataTable({
+			//"order": [[1, "asc"]],
+			"language":{
+				"lengthMenu": "Mostrar _MENU_ tareas",
+				"info": "Página _PAGE_ de _PAGES_",
+				"infoEmpty": "No hay tareas disponibles",
+				"infoFiltered": "(filtrada de _MAX_ tareas)",
+				"loadingRecords": "Cargando...",
+				"processing":     "Procesando...",
+				"search": "Buscar:",
+				"zeroRecords":    "No se encontraron tareas coincidentes",
+				"paginate": {
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+				},					
+			}
+		});	
+	});	
+    </script>
 
 
 
