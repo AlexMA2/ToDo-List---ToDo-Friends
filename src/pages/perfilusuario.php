@@ -164,6 +164,10 @@
                             No podr&aacute;s volver a recuperar la cuenta y todos los datos 
                             se perder&aacute;n.
                         </p>
+                       <div class="row">   
+                            <a href="borrarCuenta.php" class="btn btn-secondary mx-2"> S&iacute;, estoy seguro</a>    
+                            <a href="perfilusuario" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
+                        </div> 
                        
                    </div>
                 </div>
