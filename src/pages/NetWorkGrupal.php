@@ -5,13 +5,14 @@
         header("location:../../index");
     }
     else{
-        require "sacarDatos.php";
+        require "sacarDatos.php";               
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
     $query = "SELECT * FROM temas WHERE Grupo = :id";
     $resultado_tema = $conection->prepare($query);
     $resultado_tema->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
     $resultado_tema->execute();
+    list ($gID, $gNombre, $gDesc, $gDueno) = getInfoSobreGrupo(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
     //$_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
 ?>
 <!DOCTYPE html>
@@ -36,8 +37,10 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
-    <link rel="stylesheet" href="../../src/styles/editar.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
+    <link rel="stylesheet" href="../styles/editar.css">
+
+    <link rel="stylesheet" href="../styles/chat.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -51,7 +54,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -170,15 +174,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">Primero</a>
+                                    <a href="#" class="text-truncate">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -188,15 +192,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li>
@@ -223,14 +227,17 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method="POST" id="CTema">
+                                        <form
+                                            action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>"
+                                            method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo3" maxlength="16" minlength="4"
                                                     class=" form-control" id="inTemaTitulo" placeholder=" Título">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion3" maxlength="32" rows="4"
-                                                    class="form-control" id="inTemaDesc" placeholder="Descripcion"></textarea>
+                                                    class="form-control" id="inTemaDesc"
+                                                    placeholder="Descripcion"></textarea>
                                             </div>
                                             <input type="submit" class="btn btn-config btn-light btn-block"
                                                 name="CrearTema" value="Crear Tema Grupal" />
@@ -277,7 +284,8 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>&grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));?>" class="small-box-footer"> Ver
+                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>&grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));?>"
+                                class="small-box-footer"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -285,8 +293,10 @@
                     </tbody>
 
                 </div>
+                
+                
             </div>
-
+            <div id="Elchat"></div>                
         </div>
 
         <footer class="main-footer">
@@ -306,7 +316,29 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-
+    <script src="../../chatSocketAchex/chatSocketAchex.js"></script>
+    <script>
+    $('#Elchat').ChatSocket({
+        elnombre: '<?php print_r($uNombre)?>',
+        Room: '<?php print_r($gNombre)?>',
+        lblTitulChat: " Chat Grupal ",
+        lblCampoEntrada: "Escribe un mensaje...",
+        lblEnviar: "Enviar",
+        urlImg: '<?php print_r($uFoto)?>' ,
+        btnEntrar: "btnEntrar",
+        btnEnviar: "btnEnviar",
+        lblBtnEnviar: "Enviar",
+        lblTxtEntrar: "txtEntrar",
+        lblTxtEnviar: "txtMensaje",
+        lblBtnEntrar: "Entrar al chat",
+        idDialogo: "DialogoEntrada",
+        classChat: "chat-grupal-todo",
+        idOnline: "ListaOnline",
+        lblUsuariosOnline: "Usuarios Conectados",
+        lblEntradaNombre: "Nombre:",
+        panelColor: "success",        
+    });
+    </script>
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -322,6 +354,8 @@
     <script src="../../dist/js/demo.js"></script>
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
+
     <script>
     var laid = "tema";
     $(".miTema").on("click", function() {
