@@ -153,11 +153,34 @@
             </div>
         </aside>
 
+        <div class="overlay " id="overlay">
+            <div class="popup " id="popup">
+
+                <div class="col sm-2">
+                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                   <div class="info-eliminar-cuenta">
+                        <h3> ¿Est&aacute;s seguro de querer eliminar t&uacute; cuenta?</h3>
+                        <p> 
+                            No podr&aacute;s volver a recuperar la cuenta y todos los datos 
+                            se perder&aacute;n.
+                        </p>
+                       <div class="row">   
+                            <a href="borrarCuenta.php" class="btn btn-secondary mx-2"> S&iacute;, estoy seguro</a>    
+                            <a href="perfilusuario" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
+                        </div> 
+                       
+                   </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="content-wrapper">
 
             <div class="content-header">
                 <div class="container">
                     <div class="row perfil-usuario">
+
                         <div class="perfil-foto col-6">
                             <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle"
                                 width="350" height="350">
@@ -173,6 +196,7 @@
 
                         </div>
                         <div class="perfil-datos col-6">
+
                             <h3> Nombre de usuario: </h3>
                             <div class="perfil-nombre">
                                 <form action="actualizarDatos.php" method="POST">
@@ -203,6 +227,7 @@
                                 </form>
                             </div>
                         </div>
+                        <a href="#" class="btn-eliminar-cuenta"><i class="fa fa-trash"></i> Eliminar cuenta</a>
                     </div>
                 </div>
                 <div class="container editor-img">
