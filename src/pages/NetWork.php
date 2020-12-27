@@ -50,7 +50,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -169,15 +170,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">Primero</a>
+                                    <a href="#" class="text-truncate">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -187,15 +188,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li>
@@ -229,7 +230,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion3" maxlength="32" rows="4"
-                                                    class="form-control" id="inTemaDesc" placeholder="Descripcion"></textarea>
+                                                    class="form-control" id="inTemaDesc"
+                                                    placeholder="Descripcion"></textarea>
                                             </div>
                                             <input type="submit" class="btn btn-config btn-light btn-block"
                                                 name="CrearTema" value="Crear Tema" />
@@ -351,7 +353,7 @@
 
         components: {
 
-            // Main components
+            // Main components  
             preview: true,
             opacity: true,
             hue: true,
