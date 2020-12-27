@@ -1,5 +1,6 @@
 $(function(){
     var id;
+    
     $(".btn-opciones").on("click", function(ev){
         ev.preventDefault();
         $("#overlay").addClass("active");
@@ -17,27 +18,51 @@ $(function(){
         $("#popup").removeClass("active");
     });
 
-    $(".btn-config").on("click", function(){
-        let urlActual = $('#formEditarTarea').attr('action');     
+    $(".btn-editar").on("click", function(){
         
-        $('#formEditarTarea').attr('action', urlActual + "&id=" + id);       
-        $('#formEditarTarea').submit();
+        if(id !== undefined){
+            let inEditTitulo = $("#inEditTitulo").val();
+            let inEditDesc = $("#inEditDesc").val();
+            let inEditFecha = $("#inEditFecha").val();
+            
+            $.ajax({
+                url: 'graneditar.php',
+                type: 'POST',
+                data: "idTarea=" + id + "&titulo2=" + inEditTitulo + "&descripcion2=" + inEditDesc + "&fecha2=" + inEditFecha,
+                success: function(rpt) {       
+                    
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/TareasGrupales");
+                }
+            });    
+        }
     });
 
     $(".btn-eliminar").on("click", function(){
+        if(id !== undefined){
+            $.ajax({
+                url: 'eliminartarea.php',
+                type: 'POST',
+                data: 'idTarea=' + id,
+                success: function(rpt) {                   
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/TareasGrupales");
+                }
+            });    
+        }
         
-        let urlActual = $(this).attr('href');
-        $(this).attr('href', urlActual + "&id=" + id);
-        
-
     });
 
     $(".btn-archivar").on("click", function(){
-        
-        let urlActual = $(this).attr('href');
-        $(this).attr('href', urlActual + "&id=" + id);
-        
-
+        if(id !== undefined){
+            $.ajax({
+                url: 'archivartareas.php',
+                type: 'POST',
+                data: 'idTarea=' + id,
+                success: function(rpt) {
+                   
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/TareasGrupales");
+                }
+            });    
+        }
     });
 
     $(".desplegador").on("click", function(){
@@ -99,5 +124,30 @@ $(function(){
         
     })
 
+    $(".btn-ver-tema").on('click', function(){
+        const idTema = $(this).attr('id');
+        setTema(idTema, 'tema');
+    });       
+
+    $(".btn-ver-grupo").on('click', function(){
+        const idGrupo = $(this).attr('id');
+        setTema(idGrupo, 'grupo');
+    });
+    
+    function setTema(id, variable){
+        $.ajax({
+            url: 'colocarVariable.php',
+            type: 'POST',
+            data: 'idVar=' + id + "&variable=" + variable,
+            success: function(rpt) {
+                if(variable == "tema"){
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/TareasGrupales");
+                }
+                else if(variable == "grupo"){
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWorkGrupal");
+                }
+            }
+        });
+    }
 
 });

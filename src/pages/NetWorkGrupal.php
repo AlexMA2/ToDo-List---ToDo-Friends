@@ -2,7 +2,7 @@
     session_start();
     require "conexion.php";           
     if(empty($_SESSION['user'])){
-        header("location:../../index");
+        header("location:../..");
     }
     else{
         require "sacarDatos.php";               
@@ -10,10 +10,10 @@
     }
     $query = "SELECT * FROM temas WHERE Grupo = :id";
     $resultado_tema = $conection->prepare($query);
-    $resultado_tema->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
+    $resultado_tema->bindValue(":id", $_SESSION['grupo']);
     $resultado_tema->execute();
-    list ($gID, $gNombre, $gDesc, $gDueno) = getInfoSobreGrupo(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
-    //$_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
+    list ($gID, $gNombre, $gDesc, $gDueno) = getInfoSobreGrupo($_SESSION['grupo']);
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -284,8 +284,7 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>&grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));?>"
-                                class="small-box-footer"> Ver
+                            <a href="TareasGrupales" id="<?php print_r($row["IDTEMA"]);?>" class="small-box-footer btn-ver-tema"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

@@ -42,12 +42,8 @@ if (!empty(filter_input(INPUT_POST, 'guardarTarea'))) {
   }catch(Exception $ex){
     
   }
-  if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
-    header("location:TareasGrupales?tema=".$_SESSION['tema']);
-  } 
-  else{
-    header("location:TareasGrupales?tema=".$_SESSION['tema']."&grupo=".filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
-  }
+  
+  header("location:TareasGrupales");
   
 }
 ?>

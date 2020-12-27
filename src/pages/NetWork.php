@@ -1,5 +1,8 @@
 ﻿<?php
-    session_start();           
+    session_start();    
+    if(isset($_SESSION['grupo'])){      
+       unset($_SESSION['grupo']);
+    }       
     require "conexion.php";
     if(empty($_SESSION['user'])){
         header("location:../../index");
@@ -278,7 +281,7 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver
+                            <a href="TareasGrupales" class="small-box-footer btn-ver-tema" id="<?php print_r($row["IDTEMA"]);?>"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -301,13 +304,11 @@
     </div>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
-
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -323,7 +324,7 @@
     <script src="../../dist/js/demo.js"></script>
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script>
+    <script>/*
     var laid = "tema";
     $(".miTema").on("click", function() {
         laid = $(this).attr("id");
@@ -377,7 +378,7 @@
         console.log(color);
         var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
         $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });
+    });*/
     </script>
 </body>
 

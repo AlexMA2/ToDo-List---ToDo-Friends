@@ -1,8 +1,8 @@
 <?php
 require "conexion.php";
 session_start();
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-if (!empty(filter_input(INPUT_POST, 'update'))) {
+$id = filter_input(INPUT_POST, 'idTarea', FILTER_SANITIZE_NUMBER_INT);
+if (!empty($id)) {
   try{
     
     $title = filter_input(INPUT_POST, 'titulo2', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -23,11 +23,6 @@ if (!empty(filter_input(INPUT_POST, 'update'))) {
   }catch(Exception $ex){
     
   }  
-  if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
-    header("location:TareasGrupales?tema=".$_SESSION['tema']);
-  } 
-  else{
-    header("location:TareasGrupales?tema=".$_SESSION['tema']."&grupo=".filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
-  }
+  
 } 
 ?>

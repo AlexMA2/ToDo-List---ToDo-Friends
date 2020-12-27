@@ -272,53 +272,53 @@
 
     <script src="../../tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
     <script>
-    var x = '';
-    var y = '';
-    var w = '';
-    var h = '';
-    var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
-    var host = ''
-    console.log(ruta);
+        var x = '';
+        var y = '';
+        var w = '';
+        var h = '';
+        var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
+        var host = ''
+        console.log(ruta);
 
-    if (location.hostname === "localhost") {
-        host = "http://localhost/ToDo-List---ToDo-Friends/";
-    } else {
-        host = "https://todolist-todofriends.herokuapp.com/";
-    }
+        if (location.hostname === "localhost") {
+            host = "http://localhost/ToDo-List---ToDo-Friends/";
+        } else {
+            host = "https://todolist-todofriends.herokuapp.com/";
+        }
 
-    function showCoords(c) {
-        x = c.x;
-        y = c.y;
-        w = c.w;
-        h = c.h;
-    };
+        function showCoords(c) {
+            x = c.x;
+            y = c.y;
+            w = c.w;
+            h = c.h;
+        };
 
-    jQuery(function($) {
-        $('#target').Jcrop({
-            onSelect: showCoords,
-            bgColor: 'black',
-            bgOpacity: .4,
-            minSize: [300, 300],
-            setSelect: [100, 100, 50, 50],
-            aspectRatio: 1
+        jQuery(function($) {
+            $('#target').Jcrop({
+                onSelect: showCoords,
+                bgColor: 'black',
+                bgOpacity: .4,
+                minSize: [300, 300],
+                setSelect: [100, 100, 50, 50],
+                aspectRatio: 1
+            });
         });
-    });
 
-    $("#btn-cortar-foto").on('click', function() {
-        enviar();
-    });
-
-    function enviar() {
-        $.ajax({
-            url: 'cortar.php',
-            type: 'POST',
-            data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
-            success: function(rpt) {
-                window.location.replace(
-                    "https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");
-            }
+        $("#btn-cortar-foto").on('click', function() {
+            enviar();
         });
-    }
+
+        function enviar() {
+            $.ajax({
+                url: 'cortar.php',
+                type: 'POST',
+                data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
+                success: function(rpt) {
+                    window.location.replace(
+                        "https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");
+                }
+            });
+        }
     </script>
     <script src="../scripts/perfil.js"></script>
     <script src="../scripts/activadorPopUp.js"></script>
