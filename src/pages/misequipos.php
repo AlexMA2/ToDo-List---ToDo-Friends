@@ -1,21 +1,20 @@
-﻿<?php
-    session_start();           
+<?php
+    session_start();         
     require "conexion.php";
     if(empty($_SESSION['user'])){
         header("location:../../index");
     }
     else{
-        require "sacarDatos.php";
+        require "sacarDatos.php";  
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
-    $query = "SELECT * FROM temas WHERE Usuario = :id";
-    $resultado_tema = $conection->prepare($query);
-    $resultado_tema->bindValue(":id", $_SESSION['user']);
-    $resultado_tema->execute();
+    $query = "SELECT * FROM grupos WHERE Dueno = :id";
+    $resultado_misgrupos = $conection->prepare($query);
+    $resultado_misgrupos->bindValue(":id", $_SESSION['user']);
+    $resultado_misgrupos->execute();
 ?>
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +39,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
@@ -169,13 +167,13 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li class="text-wrap"> 
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
+                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
                                 <li> 
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">Primero</a>
+                                    <a href="#">Primero</a>
                                 </li>
                                
                             </ul>
@@ -222,17 +220,19 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form action="CrearTema.php" method="POST" id="CTema">
+                                        <form action="crearGrupo.php" method="POST" id="CTema">
                                             <div class="form-group">
-                                                <input type="text" name="Titulo3" maxlength="16" minlength="4"
-                                                    class=" form-control" id="inTemaTitulo" placeholder=" Título">
+                                                <input type="text" name="Titulo4" maxlength="128" minlength="4" required
+                                                    class=" form-control" id="inTemaTitulo" placeholder="Nombre del grupo">
                                             </div>
                                             <div class="form-group">
-                                                <textarea name="Descripcion3" maxlength="32" rows="4"
-                                                    class="form-control" id="inTemaDesc" placeholder="Descripcion"></textarea>
+                                                <textarea name="Descripcion4" maxlength="256" rows="4"
+                                                 class="form-control" id="inTemaDesc" value="Descripcion" placeholder="Descripcion"></textarea>
+                                                
                                             </div>
+                                           
                                             <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearTema" value="Crear Tema" />
+                                                name="CrearGrupo" value="Crear grupo" />
 
                                         </form>
 
@@ -244,9 +244,10 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
-                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
-                            <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
-                            <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
+                            <h1 class="m-0 text-dark">  Mis Equipos </h1>
+                            <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
+                            <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
+                            
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
@@ -261,22 +262,34 @@
 
                     </div>
                 </div>
-                <div class="grupo-temas">
+                <div class="grupo-grupos">
 
                     <?php                                           
                        
-                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {                            
+                        while($row = $resultado_misgrupos->fetch(PDO::FETCH_ASSOC)) {                            
                         ?>
 
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDTEMA"]);?>">
-                            <div class="inner">
-                                <h3><?php print_r($row['Titulo']); ?></h3>
-
-                                <p><?php print_r($row['Descripcion']); ?></p>
+                    <div class="unidad-grupo">
+                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDGRUPO"]);?>">
+                            <div class="inner row">
+                                <div class="inner-izquierda col-8">
+                                    <h3><?php print_r($row['Nombre']); ?></h3>
+                                    <p><?php print_r($row['Descripcion']); ?></p>
+                                </div>
+                                <div class="inner-derecha col-4">
+                                    <p>Dueño: <?php if($_SESSION['user'] == $row['Dueno']){
+                                        print_r("Tú");
+                                    }
+                                    else{print_r($row['Dueno']);} ?></p>
+                                    <p>Temas: <?php print_r($row['Temas']); ?> </p>
+                                    <p>Tareas: <?php print_r($row['Tareas']); ?> </p>
+                                    <p>Miembros: <?php print_r($row['Miembros']); ?> </p>
+                                    <p>Creado el: <?php print_r($row['Creacion']); ?> </p>
+                                </div>                               
+                                
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver
+                            <a href="NetWorkGrupal?grupo=<?php print_r($row["IDGRUPO"]);?>" class="small-box-footer"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -301,7 +314,7 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-
+                             
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -378,5 +391,4 @@
     });
     </script>
 </body>
-
 </html>

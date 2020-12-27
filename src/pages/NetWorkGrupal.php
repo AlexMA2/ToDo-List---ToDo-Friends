@@ -1,6 +1,6 @@
-﻿<?php
-    session_start();           
-    require "conexion.php";
+<?php
+    session_start();
+    require "conexion.php";           
     if(empty($_SESSION['user'])){
         header("location:../../index");
     }
@@ -8,10 +8,11 @@
         require "sacarDatos.php";
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
-    $query = "SELECT * FROM temas WHERE Usuario = :id";
+    $query = "SELECT * FROM temas WHERE Grupo = :id";
     $resultado_tema = $conection->prepare($query);
-    $resultado_tema->bindValue(":id", $_SESSION['user']);
+    $resultado_tema->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
     $resultado_tema->execute();
+    //$_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
 ?>
 <!DOCTYPE html>
 <html>
@@ -222,7 +223,7 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form action="CrearTema.php" method="POST" id="CTema">
+                                        <form action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo3" maxlength="16" minlength="4"
                                                     class=" form-control" id="inTemaTitulo" placeholder=" Título">
@@ -232,7 +233,7 @@
                                                     class="form-control" id="inTemaDesc" placeholder="Descripcion"></textarea>
                                             </div>
                                             <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearTema" value="Crear Tema" />
+                                                name="CrearTema" value="Crear Tema Grupal" />
 
                                         </form>
 
@@ -276,7 +277,7 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver
+                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>&grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));?>" class="small-box-footer"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>

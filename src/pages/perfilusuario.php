@@ -1,10 +1,12 @@
 <?php
-    session_start();           
+    session_start();       
+    require "conexion.php";    
     if(empty($_SESSION['user'])){
         header("location:../../index");
     }
      else{
         require "sacarDatos.php";
+        list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
 ?>
 <!DOCTYPE html>
@@ -35,12 +37,12 @@
     <link rel="stylesheet" href="../../tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css">
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>  
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    
+
     <div class="wrapper">
 
 
@@ -96,110 +98,136 @@
                         <a href="perfilusuario" class="d-block">
                             <?php                                  
                                 print_r($uNombre);
-                            ?> 
+                            ?>
                         </a>
                     </div>
                 </div>
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav-arbol">
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-table"></i>
+                                <a href="NetWork"> Tablero </a>
+                                <i class="fas fa-angle-left right desplegador"></i>
+                            </div>
+                            <ul class="nav desplegable">
+                                <li class="text-wrap">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
+                                </li>
+                                <li>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">Primero</a>
+                                </li>
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Tablero
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Mis Equipos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-users"></i>
+                                <a href="misequipos"> Mis equipos </a>
+                                <i class="fas fa-angle-left right desplegador"></i>
+                            </div>
+                            <ul class="nav desplegable">
+                                <li>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">PrimeroPrimeroP(19)</a>
+                                </li>
+                                <li>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">Primero</a>
+                                </li>
+
                             </ul>
                         </li>
+                        <li>
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-door-open"></i>
+                                <a href="../../"> Salir </a>
 
-                        <li class="nav-item has-treeview">
-                            <a href="../../index" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>
-                                    Salir
-                                </p>
-                            </a>
+                            </div>
                         </li>
                     </ul>
                 </nav>
             </div>
         </aside>
 
+        <div class="overlay " id="overlay">
+            <div class="popup " id="popup">
+
+                <div class="col sm-2">
+                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                   <div class="info-eliminar-cuenta">
+                        <h3> ¿Est&aacute;s seguro de querer eliminar t&uacute; cuenta?</h3>
+                        <p> 
+                            No podr&aacute;s volver a recuperar la cuenta y todos los datos 
+                            se perder&aacute;n.
+                        </p>
+                       <div class="row">   
+                            <a href="borrarCuenta.php" class="btn btn-secondary mx-2"> S&iacute;, estoy seguro</a>    
+                            <a href="perfilusuario" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
+                        </div> 
+                       
+                   </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="content-wrapper">
 
             <div class="content-header">
                 <div class="container">
                     <div class="row perfil-usuario">
+
                         <div class="perfil-foto col-6">
-                            <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle" width="350"
-                                height="350">
+                            <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle"
+                                width="350" height="350">
                             <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
-                                <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto" class="btn btn-primary">
+                                <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto"
+                                    class="btn btn-primary">
                                 <div id="para-animar">
-                                    <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto" >
-                                    <input type="submit" name="perfil-guardar-foto" id="sub-guardar-foto" value="Guardar foto" class="btn btn-primary">
-                                </div>                                
+                                    <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto">
+                                    <input type="submit" name="perfil-guardar-foto" id="sub-guardar-foto"
+                                        value="Guardar foto" class="btn btn-primary">
+                                </div>
                             </form>
-                            
+
                         </div>
                         <div class="perfil-datos col-6">
+
                             <h3> Nombre de usuario: </h3>
                             <div class="perfil-nombre">
                                 <form action="actualizarDatos.php" method="POST">
-                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre" value="<?php print_r($uNombre);?>" >
-                                    <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre" class="btn btn-primary" value="Cambiar">
-                                </form>                              
+                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre"
+                                        value="<?php print_r($uNombre);?>">
+                                    <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre"
+                                        class="btn btn-primary" value="Cambiar">
+                                </form>
                             </div>
                             <h3> Correo Electrónico: </h3>
                             <div class="perfil-correo">
                                 <form action="actualizarDatos.php" method="POST">
-                                    <input type="email" id="in-perfil-correo" name="perfil-correo" value="<?php print_r($uCorreo);?>" >
-                                    <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo" class="btn btn-primary" value="Cambiar">
+                                    <input type="email" id="in-perfil-correo" name="perfil-correo"
+                                        value="<?php print_r($uCorreo);?>">
+                                    <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo"
+                                        class="btn btn-primary" value="Cambiar">
                                 </form>
                             </div>
                             <h3> Cambiar contraseña: </h3>
                             <div class="perfil-contra">
                                 <form action="actualizarDatos.php" method="POST">
-                                    <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required value="">
-                                    <input type="password" name="perfil-contra-repe" placeholder="Confirmar contraseña nueva" required value="">
-                                    <input type="submit" class="btn btn-primary" name="perfil-guardar-contra" value="Cambiar Contraseña">
+                                    <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required
+                                        value="">
+                                    <input type="password" name="perfil-contra-repe"
+                                        placeholder="Confirmar contraseña nueva" required value="">
+                                    <input type="submit" class="btn btn-primary" name="perfil-guardar-contra"
+                                        value="Cambiar Contraseña">
                                 </form>
                             </div>
                         </div>
+                        <a href="#" class="btn-eliminar-cuenta"><i class="fa fa-trash"></i> Eliminar cuenta</a>
                     </div>
                 </div>
                 <div class="container editor-img">
@@ -207,23 +235,23 @@
                         if(!empty(filter_input(INPUT_GET, "errimg"))){
                            
                         ?>
-                            
-                            <img src="<?php print_r(filter_input(INPUT_GET, "errimg"))?>" id="target" alt="omg">                            
-                            <input type="button" class="btn btn-success" value="Cortar"  id="btn-cortar-foto">                            
-                            
-                            <script>
-                                $(".editor-img").css("visibility", "visible");
-                            </script>
-                        <?php
+
+                    <img src="<?php print_r(filter_input(INPUT_GET, "errimg"))?>" id="target" alt="omg">
+                    <input type="button" class="btn btn-success" value="Cortar" id="btn-cortar-foto">
+
+                    <script>
+                    $(".editor-img").css("visibility", "visible");
+                    </script>
+                    <?php
                         }
                         else{
                             
                         ?>
-                        
-                            <script>
-                                $(".editor-img").css("visibility", "hidden");
-                            </script>
-                        <?php
+
+                    <script>
+                    $(".editor-img").css("visibility", "hidden");
+                    </script>
+                    <?php
                         }
                     ?>
                 </div>
@@ -241,60 +269,59 @@
 
     </div>
 
-      
+
     <script src="../../tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
     <script>
-        var x = '';
-        var y = '';
-        var w = ''; 
-        var h = '';
-        var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
-        var host = ''
-        console.log(ruta);      
+    var x = '';
+    var y = '';
+    var w = '';
+    var h = '';
+    var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
+    var host = ''
+    console.log(ruta);
 
-        if (location.hostname === "localhost"){
-            host = "http://localhost/ToDo-List---ToDo-Friends/";
-        } 
-        else{
-            host = "https://todolist-todofriends.herokuapp.com/";
-        }
+    if (location.hostname === "localhost") {
+        host = "http://localhost/ToDo-List---ToDo-Friends/";
+    } else {
+        host = "https://todolist-todofriends.herokuapp.com/";
+    }
 
-        function showCoords(c)
-        {
-            x = c.x;
-            y = c.y;
-            w = c.w;
-            h = c.h;
-        };
+    function showCoords(c) {
+        x = c.x;
+        y = c.y;
+        w = c.w;
+        h = c.h;
+    };
 
-        jQuery(function($) {
-            $('#target').Jcrop({
-                onSelect: showCoords,
-                bgColor: 'black',
-                bgOpacity: .4,
-                minSize: [300, 300],
-                setSelect:   [ 100, 100, 50, 50 ],
-                aspectRatio: 1
-            });
+    jQuery(function($) {
+        $('#target').Jcrop({
+            onSelect: showCoords,
+            bgColor: 'black',
+            bgOpacity: .4,
+            minSize: [300, 300],
+            setSelect: [100, 100, 50, 50],
+            aspectRatio: 1
         });
+    });
 
-        $("#btn-cortar-foto").on('click', function(){
-            enviar();
+    $("#btn-cortar-foto").on('click', function() {
+        enviar();
+    });
+
+    function enviar() {
+        $.ajax({
+            url: 'cortar.php',
+            type: 'POST',
+            data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
+            success: function(rpt) {
+                window.location.replace(
+                    "https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");
+            }
         });
-
-        function enviar(){
-            $.ajax({
-                url: 'cortar.php',
-                type: 'POST',
-                data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
-                success: function(rpt){
-                    window.location.replace("https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");                    
-                }
-            });
-        }
-
+    }
     </script>
     <script src="../scripts/perfil.js"></script>
+    <script src="../scripts/activadorPopUp.js"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>

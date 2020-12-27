@@ -6,4 +6,9 @@ $(function () {
         $("#para-animar").fadeIn(1000);
     });    
 
+    $(".btn-eliminar-cuenta").on('click', function(){
+        $("#overlay").addClass("active");
+        $("#popup").addClass("active");
+    });
+
 });

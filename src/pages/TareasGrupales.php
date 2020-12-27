@@ -2,11 +2,11 @@
     require "conexion.php";
     session_start();           
     if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
-        header("location:../../index.php");
+        header("location: NetWork");
     }
-    else{
-        require "conexion.php";
-        require "sacarDatos.php";
+    else{        
+        require "sacarDatos.php";       
+        list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
  ?>
 
@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../../plugins/datatable/jquery.dataTables.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     
 </head>
@@ -54,7 +55,7 @@
                 </li>
             </ul>
 
-
+            <!--
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
@@ -66,6 +67,7 @@
                     </div>
                 </div>
             </form>
+            -->
 
             <ul class="navbar-nav ml-auto">
 
@@ -100,6 +102,7 @@
                 </div>
 
                 <nav class="mt-2">
+                    <!--
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
@@ -110,22 +113,23 @@
                                     Tablero
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
+                                
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="tareas.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="horarios.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="guardado.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p> - </p>
                                     </a>
@@ -148,15 +152,92 @@
                             <a href="../../index" class="nav-link">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <p>
-                                    Salir                                    
+                                    Salir
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                        </li>
+                    </ul>
+                    -->
+                    <ul class="nav-arbol">
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-table"></i>
+                                <a href="NetWork"> Tablero </a>
+                                <i class="fas fa-angle-left right desplegador"></i>
+                            </div>
+                            <ul class="nav desplegable">
+                                <li class="text-wrap"> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
+                                </li>
+                                <li> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">Primero</a>
+                                </li>
+                               
                             </ul>
-                        </li>                     
+                        </li>
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-users"></i>
+                                <a href="misequipos"> Mis equipos </a>
+                                <i class="fas fa-angle-left right desplegador"></i>
+                            </div>
+                            <ul class="nav desplegable">
+                                <li> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">PrimeroPrimeroP(19)</a>
+                                </li>
+                                <li> 
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a href="#">Primero</a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-door-open"></i>
+                                <a href="../../"> Salir </a>
+
+                            </div>
+                        </li>
+                    </ul>                   
                 </nav>
             </div>
         </aside>
+
+        <?php
+            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
+            $_SESSION['tema'] = $tema;
+            if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
+                $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
+                $esteResultado = $conection->prepare($otraQuery);
+                $esteResultado->bindValue(":id",  $_SESSION['user']);
+                $esteResultado->bindValue(":tema",  $tema);
+                $esteResultado->execute();
+                
+                while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
+                    $nombreTema = $otrosDatos['Titulo'];
+                }
+
+                $filas = $esteResultado->rowCount();
+            }
+            else{
+                $otraQuery = "SELECT * FROM temas WHERE Grupo = :id AND IDTEMA = :tema";
+                $esteResultado = $conection->prepare($otraQuery);
+                $esteResultado->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT) );
+                $esteResultado->bindValue(":tema",  $tema);
+                $esteResultado->execute();
+                
+                while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
+                    $nombreTema = $otrosDatos['Titulo'];
+                }
+
+                $filas = $esteResultado->rowCount();
+            }
+            
+        ?>
 
         <div class="content-wrapper">
 
@@ -165,13 +246,13 @@
 
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Tema de trabajo</h1>
+                            <h1 class="m-0 text-dark"><?php print_r($nombreTema)?></h1>
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#"> Inicio </a></li>
-                                <li class="breadcrumb-item active"> Tareas </li>
+                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
+                                <li class="breadcrumb-item active"> Tema </li>
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
@@ -181,7 +262,7 @@
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="guardartarea.php" method = "POST" id="formGuardarTarea">
+                                        <form action="guardartarea.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -203,27 +284,18 @@
                                     </div>
                                 </div>
                                 <div class="container">
-                                    <table class="table table-bordered mis-tareas">
+                                    <table class="table table-bordered mis-tareas" class="display" id="mitabla">
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>T&iacute;tulo</th>
                                                 <th>Descripci&oacute;n</th>
-                                                <th>Fecha L&iacute;mite</th>
+                                                <th style="min-width: 120px;" >Fecha L&iacute;mite</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
                                         <?php
-
-                                            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
-                                            $_SESSION['tema'] = $tema;
-                                            $otraQuery = "SELECT `IDTEMA` FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
-                                            $esteResultado = $conection->prepare($otraQuery);
-                                            $esteResultado->bindValue(":id",  $_SESSION['user']);
-                                            $esteResultado->bindValue(":tema",  $tema);
-                                            $esteResultado->execute();
-                                            
-                                            $filas = $esteResultado->rowCount();
+                                           
                                             if($filas != 0){
                                                 $query = "SELECT * FROM tareas WHERE eltema = :tema";
                                                 $resultado_tarea = $conection->prepare($query);
@@ -270,7 +342,7 @@
                                     <div class="row">
                                         <div class="card card-body col-10">
 
-                                            <form action="graneditar.php" method="POST" id="formEditarTarea">
+                                            <form action="graneditar.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
                                                     <input type="text" name="titulo2" maxlength="128" minlength="4"
                                                         class=" form-control" id="inEditTitulo" placeholder=" Título">
@@ -293,11 +365,11 @@
                                         </div>
                                         <div class="botones-popup col-2">
                                             <div class="popup-boton">
-                                                <a href="eliminartarea.php" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
+                                                <a href="eliminartarea.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
                                                         aria-hidden="true"></i> Eliminar </a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="archivartareas.php" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
+                                                <a href="archivartareas.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
                                                         aria-hidden="true"></i> Archivar </a>
                                             </div>
                                             <div class="popup-boton">
@@ -362,8 +434,30 @@
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="../../dist/js/adminlte.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
+    <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+		$('#mitabla').DataTable({
+			//"order": [[1, "asc"]],
+			"language":{
+				"lengthMenu": "Mostrar _MENU_ tareas",
+				"info": "Página _PAGE_ de _PAGES_",
+				"infoEmpty": "No hay tareas disponibles",
+				"infoFiltered": "(filtrada de _MAX_ tareas)",
+				"loadingRecords": "Cargando...",
+				"processing":     "Procesando...",
+				"search": "Buscar:",
+				"zeroRecords":    "No se encontraron tareas coincidentes",
+				"paginate": {
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+				},					
+			}
+		});	
+	});	
+    </script>
 
 
 
