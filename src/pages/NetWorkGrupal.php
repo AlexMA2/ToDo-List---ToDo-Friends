@@ -12,7 +12,7 @@
     $resultado_tema = $conection->prepare($query);
     $resultado_tema->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
     $resultado_tema->execute();
-    //$_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
+    $_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
 ?>
 <!DOCTYPE html>
 <html>
@@ -284,10 +284,29 @@
                     <?php } ?>
                     </tbody>
 
-                </div>
-            </div>
 
+                </div>
+                
+            </div>
+            <div class="card card-body col-6">
+
+                                        <form action="guardarAmigos.php" method="POST" id="guardarAmigo">
+                                            
+                                            
+                                            <p>Añadir amigos</p>
+                                            <div class="form-group">
+                                            <input type="email" name="emailAmigo"
+                                                    class="form-control" id="idEmailAmigo" placeholder="Escriba el correo a añadir">
+                                            </div>
+                                            <input type="submit" class="btn btn-config btn-light btn-block"
+                                                name="btnAddAmigo" value="Agregar Amigo" />
+
+                                        </form>
+
+            </div>
         </div>
+        
+
 
         <footer class="main-footer">
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>

@@ -288,6 +288,7 @@
                                 </div>                               
                                 
                             </div>
+                            
 
                             <a href="NetWorkGrupal?grupo=<?php print_r($row["IDGRUPO"]);?>" class="small-box-footer"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
