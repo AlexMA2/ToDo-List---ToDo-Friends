@@ -23,5 +23,5 @@
 
         }
     }
-    header("Location: equipos");
+    header("Location: misequipos");
 ?>

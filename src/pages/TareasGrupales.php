@@ -269,7 +269,7 @@
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="guardartarea.php" method = "POST" id="formGuardarTarea">
+                                        <form action="#" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -284,7 +284,7 @@
                                                 <input type="date" id="inFecha" name="fecha"
                                                     class=" form-control" placeholder=" Fecha Limite">
                                             </div>
-                                            <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
+                                            <input type="button" class="btn btn-success btn-guardar btn-block" id="btnGuardarTarea"
                                                 name = "guardarTarea" value ="Guardar Tarea">
 
                                         </form>
