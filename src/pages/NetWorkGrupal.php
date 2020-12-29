@@ -288,7 +288,63 @@
                 </div>
                 
             </div>
-            <div class="card card-body col-6">
+            <!-- aqui la consulta sql-->
+            
+             
+        
+            <!-- aqui termina la consulta-->
+            <!-- aqui comienza mostrar contactos-->
+            <div class="card card-body col-4">
+                                    <table class="table table-bordered " class="display" id="mitabla">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Nombre de usuario</th>
+                                                <th>Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="lista-tareas">
+                                        <?php
+                                           
+                                            if($_SESSION['grupo'] != 0){
+                                                $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
+                                                $resultado_tarea = $conection->prepare($query);
+                                                
+                                                $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
+                                                $resultado_tarea->execute();
+                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
+                                                    list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
+                                                    ?>
+                                                    
+                                                    <tr class="item-tarea">
+                                                        <td><?php print_r($uNombre2); ?></td>
+                                                        
+                                                        <td>
+                                                            
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fa fa-ellipsis-v btn-opciones"
+                                                                    data-tid="<?php print_r($uID2);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                <?php 
+                                                }
+                                            }
+                                            else{
+                                                ?>
+                                                <script>
+                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                                                </script>                                                
+                                                <?php    
+                                            }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                
+
+            <!-- aqui termina motrar contactos-->
+            <!-- aqui comienza añadir contactos-->
+            <br>
+            <div class="card card-body">
 
                                         <form action="guardarAmigos.php" method="POST" id="guardarAmigo">
                                             
@@ -305,6 +361,8 @@
 
             </div>
         </div>
+        </div>
+        <!-- aqui termina añadir contactos-->
         
 
 
