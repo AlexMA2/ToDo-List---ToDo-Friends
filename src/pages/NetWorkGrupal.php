@@ -13,7 +13,7 @@
     $resultado_tema->bindValue(":id", $_SESSION['grupo']);
     $resultado_tema->execute();
     list ($gID, $gNombre, $gDesc, $gDueno) = getInfoSobreGrupo($_SESSION['grupo']);
-    
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -284,27 +284,104 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales" id="<?php print_r($row["IDTEMA"]);?>" class="small-box-footer btn-ver-tema"> Ver
+                            <a href="TareasGrupales" id="<?php print_r($row["IDTEMA"]);?>"
+                                class="small-box-footer btn-ver-tema"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <?php } ?>
                     </tbody>
 
-                </div>
-                
-                
-            </div>
-            <div id="Elchat"></div>                
-        </div>
 
-        <footer class="main-footer">
-            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
-            Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 1.0
+                </div>
+
+
             </div>
-        </footer>
+            <div id="Elchat"></div>
+        </div>
+        <!-- aqui la consulta sql-->
+
+
+
+        <!-- aqui termina la consulta-->
+        <!-- aqui comienza mostrar contactos-->
+        <div class="card card-body col-4">
+            <table class="table table-bordered " class="display" id="mitabla">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody class="lista-tareas">
+                    <?php
+                                           
+                                            if($_SESSION['grupo'] != 0){
+                                                $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
+                                                $resultado_tarea = $conection->prepare($query);
+                                                
+                                                $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
+                                                $resultado_tarea->execute();
+                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
+                                                    list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
+                                                    ?>
+
+                    <tr class="item-tarea">
+                        <td><?php print_r($uNombre2); ?></td>
+
+                        <td>
+
+                            <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
+                                    data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
+                        </td>
+                    </tr>
+                    <?php 
+                                                }
+                                            }
+                                            else{
+                                                ?>
+                    <script>
+                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                    </script>
+                    <?php    
+                                            }
+                                        ?>
+                </tbody>
+            </table>
+
+
+            <!-- aqui termina motrar contactos-->
+            <!-- aqui comienza añadir contactos-->
+            <br>
+            <div class="card card-body">
+
+                <form action="guardarAmigos.php" method="POST" id="guardarAmigo">
+
+
+                    <p>Añadir amigos</p>
+                    <div class="form-group">
+                        <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
+                            placeholder="Escriba el correo a añadir">
+                    </div>
+                    <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
+                        value="Agregar Amigo" />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- aqui termina añadir contactos-->
+
+
+
+    <footer class="main-footer">
+        <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+        Todos los derechos reservados.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Versi&oacute;n</b> 1.0
+        </div>
+    </footer>
 
     </div>
 
@@ -323,7 +400,7 @@
         lblTitulChat: " Chat Grupal ",
         lblCampoEntrada: "Escribe un mensaje...",
         lblEnviar: "Enviar",
-        urlImg: '<?php print_r($uFoto)?>' ,
+        urlImg: '<?php print_r($uFoto)?>',
         btnEntrar: "btnEntrar",
         btnEnviar: "btnEnviar",
         lblBtnEnviar: "Enviar",
@@ -335,7 +412,7 @@
         idOnline: "ListaOnline",
         lblUsuariosOnline: "Usuarios Conectados",
         lblEntradaNombre: "Nombre:",
-        panelColor: "success",        
+        panelColor: "success",
     });
     </script>
 
