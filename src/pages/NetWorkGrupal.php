@@ -12,7 +12,7 @@
     $resultado_tema = $conection->prepare($query);
     $resultado_tema->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
     $resultado_tema->execute();
-    //$_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
+    $_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
 ?>
 <!DOCTYPE html>
 <html>
@@ -284,10 +284,87 @@
                     <?php } ?>
                     </tbody>
 
-                </div>
-            </div>
 
+                </div>
+                
+            </div>
+            <!-- aqui la consulta sql-->
+            
+             
+        
+            <!-- aqui termina la consulta-->
+            <!-- aqui comienza mostrar contactos-->
+            <div class="card card-body col-4">
+                                    <table class="table table-bordered " class="display" id="mitabla">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Nombre de usuario</th>
+                                                <th>Accion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="lista-tareas">
+                                        <?php
+                                           
+                                            if($_SESSION['grupo'] != 0){
+                                                $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
+                                                $resultado_tarea = $conection->prepare($query);
+                                                
+                                                $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
+                                                $resultado_tarea->execute();
+                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
+                                                    list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
+                                                    ?>
+                                                    
+                                                    <tr class="item-tarea">
+                                                        <td><?php print_r($uNombre2); ?></td>
+                                                        
+                                                        <td>
+                                                            
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fa fa-ellipsis-v btn-opciones"
+                                                                    data-tid="<?php print_r($uID2);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                <?php 
+                                                }
+                                            }
+                                            else{
+                                                ?>
+                                                <script>
+                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                                                </script>                                                
+                                                <?php    
+                                            }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                
+
+            <!-- aqui termina motrar contactos-->
+            <!-- aqui comienza añadir contactos-->
+            <br>
+            <div class="card card-body">
+
+                                        <form action="guardarAmigos.php" method="POST" id="guardarAmigo">
+                                            
+                                            
+                                            <p>Añadir amigos</p>
+                                            <div class="form-group">
+                                            <input type="email" name="emailAmigo"
+                                                    class="form-control" id="idEmailAmigo" placeholder="Escriba el correo a añadir">
+                                            </div>
+                                            <input type="submit" class="btn btn-config btn-light btn-block"
+                                                name="btnAddAmigo" value="Agregar Amigo" />
+
+                                        </form>
+
+            </div>
         </div>
+        </div>
+        <!-- aqui termina añadir contactos-->
+        
+
 
         <footer class="main-footer">
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
