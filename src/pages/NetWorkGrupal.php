@@ -316,36 +316,36 @@
                 <tbody class="lista-tareas">
                     <?php
                                            
-                                            if($_SESSION['grupo'] != 0){
-                                                $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
-                                                $resultado_tarea = $conection->prepare($query);
-                                                
-                                                $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
-                                                $resultado_tarea->execute();
-                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
-                                                    list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
-                                                    ?>
+                        if($_SESSION['grupo'] != 0){
+                            $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
+                            $resultado_tarea = $conection->prepare($query);
+                            
+                            $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
+                            $resultado_tarea->execute();
+                            while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
+                                list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
+                                ?>
 
-                    <tr class="item-tarea">
-                        <td><?php print_r($uNombre2); ?></td>
+                            <tr class="item-tarea">
+                                <td><?php print_r($uNombre2); ?></td>
 
-                        <td>
+                                <td>
 
-                            <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
-                                    data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
-                        </td>
-                    </tr>
+                                    <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
+                                            data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
+                                </td>
+                            </tr>
                     <?php 
-                                                }
-                                            }
-                                            else{
-                                                ?>
+                            }
+                        }
+                        else{
+                            ?>
                     <script>
-                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                        window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
                     </script>
                     <?php    
-                                            }
-                                        ?>
+                        }
+                    ?>
                 </tbody>
             </table>
 
@@ -355,7 +355,7 @@
             <br>
             <div class="card card-body">
 
-                <form action="guardarAmigos.php" method="POST" id="guardarAmigo">
+                <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
 
 
                     <p>Añadir amigos</p>
@@ -394,9 +394,10 @@
     </script>
     <script src="../../chatSocketAchex/chatSocketAchex.js"></script>
     <script>
+    
     $('#Elchat').ChatSocket({
         elnombre: '<?php print_r($uNombre)?>',
-        Room: '<?php print_r($gNombre)?>',
+        Room: '<?php print_r($gNombre . "-" . $gID)?>',
         lblTitulChat: " Chat Grupal ",
         lblCampoEntrada: "Escribe un mensaje...",
         lblEnviar: "Enviar",
