@@ -289,12 +289,9 @@
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <?php } ?>
-                    </tbody>
-
+                    <?php } ?>                   
 
                 </div>
-
 
             </div>
             <div id="Elchat"></div>

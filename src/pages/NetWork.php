@@ -286,8 +286,7 @@
                         </div>
                     </div>
                     <?php } ?>
-                    </tbody>
-
+                    
                 </div>
             </div>
 
