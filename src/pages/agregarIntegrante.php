@@ -19,17 +19,17 @@ session_start();
         $filas = $resultado->rowCount();
 
         if($filas == 1){
-        header("location: misequipos");
+            header("location: misequipos");
 
         }else{
             $query = "INSERT INTO `otro_grupos` (`FKgrupo`, `FKusuario`) VALUES (:IDGrupo, :IDUser)";
-        $resultadousuario = $conection->prepare($query);
-    
-        $resultadousuario->bindValue(":IDGrupo", $_SESSION['grupo']);
-        $resultadousuario->bindValue(":IDUser", $ID2);
-        $resultadousuario->execute();      
+            $resultadousuario = $conection->prepare($query);
+        
+            $resultadousuario->bindValue(":IDGrupo", $_SESSION['grupo']);
+            $resultadousuario->bindValue(":IDUser", $ID2);
+            $resultadousuario->execute();      
 
-        header("location: NetWorkGrupal?grupo=".$_SESSION['grupo']);
+            header("location: NetWorkGrupal");
         } 
         //var_dump($ID2, $Nombre2, $Correo2, $Foto2);
         

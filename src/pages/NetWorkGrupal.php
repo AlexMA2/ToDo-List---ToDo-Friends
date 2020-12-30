@@ -2,17 +2,18 @@
     session_start();
     require "conexion.php";           
     if(empty($_SESSION['user'])){
-        header("location:../../index");
+        header("location:../..");
     }
     else{
-        require "sacarDatos.php";
+        require "sacarDatos.php";               
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
     $query = "SELECT * FROM temas WHERE Grupo = :id";
     $resultado_tema = $conection->prepare($query);
-    $resultado_tema->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
+    $resultado_tema->bindValue(":id", $_SESSION['grupo']);
     $resultado_tema->execute();
-    $_SESSION['grupo'] = filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT);
+    list ($gID, $gNombre, $gDesc, $gDueno) = getInfoSobreGrupo($_SESSION['grupo']);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,8 +37,10 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
-    <link rel="stylesheet" href="../../src/styles/editar.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
+    <link rel="stylesheet" href="../styles/editar.css">
+
+    <link rel="stylesheet" href="../styles/chat.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -51,7 +54,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -170,15 +174,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">Primero</a>
+                                    <a href="#" class="text-truncate">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -188,15 +192,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li>
@@ -223,14 +227,17 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method="POST" id="CTema">
+                                        <form
+                                            action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>"
+                                            method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo3" maxlength="16" minlength="4"
                                                     class=" form-control" id="inTemaTitulo" placeholder=" Título">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion3" maxlength="32" rows="4"
-                                                    class="form-control" id="inTemaDesc" placeholder="Descripcion"></textarea>
+                                                    class="form-control" id="inTemaDesc"
+                                                    placeholder="Descripcion"></textarea>
                                             </div>
                                             <input type="submit" class="btn btn-config btn-light btn-block"
                                                 name="CrearTema" value="Crear Tema Grupal" />
@@ -277,102 +284,101 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>&grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));?>" class="small-box-footer"> Ver
+                            <a href="TareasGrupales" id="<?php print_r($row["IDTEMA"]);?>"
+                                class="small-box-footer btn-ver-tema"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <?php } ?>
-                    </tbody>
-
+                    <?php } ?>                   
 
                 </div>
-                
+
             </div>
-            <!-- aqui la consulta sql-->
-            
-             
-        
-            <!-- aqui termina la consulta-->
-            <!-- aqui comienza mostrar contactos-->
-            <div class="card card-body col-4">
-                                    <table class="table table-bordered " class="display" id="mitabla">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Nombre de usuario</th>
-                                                <th>Accion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="lista-tareas">
-                                        <?php
+            <div id="Elchat"></div>
+        </div>
+        <!-- aqui la consulta sql-->
+
+
+
+        <!-- aqui termina la consulta-->
+        <!-- aqui comienza mostrar contactos-->
+        <div class="card card-body col-4">
+            <table class="table table-bordered " class="display" id="mitabla">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre de usuario</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody class="lista-tareas">
+                    <?php
                                            
-                                            if($_SESSION['grupo'] != 0){
-                                                $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
-                                                $resultado_tarea = $conection->prepare($query);
-                                                
-                                                $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
-                                                $resultado_tarea->execute();
-                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
-                                                    list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
-                                                    ?>
-                                                    
-                                                    <tr class="item-tarea">
-                                                        <td><?php print_r($uNombre2); ?></td>
-                                                        
-                                                        <td>
-                                                            
-                                                            <span class="span-btn-opciones"><i
-                                                                    class="fa fa-ellipsis-v btn-opciones"
-                                                                    data-tid="<?php print_r($uID2);?>"
-                                                                    aria-hidden="true"></i></span>
-                                                        </td>
-                                                    </tr>
-                                                <?php 
-                                                }
-                                            }
-                                            else{
-                                                ?>
-                                                <script>
-                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
-                                                </script>                                                
-                                                <?php    
-                                            }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                
+                        if($_SESSION['grupo'] != 0){
+                            $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
+                            $resultado_tarea = $conection->prepare($query);
+                            
+                            $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
+                            $resultado_tarea->execute();
+                            while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
+                                list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
+                                ?>
+
+                            <tr class="item-tarea">
+                                <td><?php print_r($uNombre2); ?></td>
+
+                                <td>
+
+                                    <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
+                                            data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
+                                </td>
+                            </tr>
+                    <?php 
+                            }
+                        }
+                        else{
+                            ?>
+                    <script>
+                        window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                    </script>
+                    <?php    
+                        }
+                    ?>
+                </tbody>
+            </table>
+
 
             <!-- aqui termina motrar contactos-->
             <!-- aqui comienza añadir contactos-->
             <br>
             <div class="card card-body">
 
-                                        <form action="guardarAmigos.php" method="POST" id="guardarAmigo">
-                                            
-                                            
-                                            <p>Añadir amigos</p>
-                                            <div class="form-group">
-                                            <input type="email" name="emailAmigo"
-                                                    class="form-control" id="idEmailAmigo" placeholder="Escriba el correo a añadir">
-                                            </div>
-                                            <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="btnAddAmigo" value="Agregar Amigo" />
+                <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
 
-                                        </form>
+
+                    <p>Añadir amigos</p>
+                    <div class="form-group">
+                        <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
+                            placeholder="Escriba el correo a añadir">
+                    </div>
+                    <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
+                        value="Agregar Amigo" />
+
+                </form>
 
             </div>
         </div>
+    </div>
+    <!-- aqui termina añadir contactos-->
+
+
+
+    <footer class="main-footer">
+        <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+        Todos los derechos reservados.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Versi&oacute;n</b> 1.0
         </div>
-        <!-- aqui termina añadir contactos-->
-        
-
-
-        <footer class="main-footer">
-            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
-            Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 1.0
-            </div>
-        </footer>
+    </footer>
 
     </div>
 
@@ -383,7 +389,30 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-
+    <script src="../../chatSocketAchex/chatSocketAchex.js"></script>
+    <script>
+    
+    $('#Elchat').ChatSocket({
+        elnombre: '<?php print_r($uNombre)?>',
+        Room: '<?php print_r($gNombre . "-" . $gID)?>',
+        lblTitulChat: " Chat Grupal ",
+        lblCampoEntrada: "Escribe un mensaje...",
+        lblEnviar: "Enviar",
+        urlImg: '<?php print_r($uFoto)?>',
+        btnEntrar: "btnEntrar",
+        btnEnviar: "btnEnviar",
+        lblBtnEnviar: "Enviar",
+        lblTxtEntrar: "txtEntrar",
+        lblTxtEnviar: "txtMensaje",
+        lblBtnEntrar: "Entrar al chat",
+        idDialogo: "DialogoEntrada",
+        classChat: "chat-grupal-todo",
+        idOnline: "ListaOnline",
+        lblUsuariosOnline: "Usuarios Conectados",
+        lblEntradaNombre: "Nombre:",
+        panelColor: "success",
+    });
+    </script>
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -399,6 +428,8 @@
     <script src="../../dist/js/demo.js"></script>
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+
+
     <script>
     var laid = "tema";
     $(".miTema").on("click", function() {

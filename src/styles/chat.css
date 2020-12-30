@@ -1,0 +1,52 @@
+#Elchat{
+    max-width: 325px;
+    position: sticky;
+    top: 75%;
+    left: 72%;
+}
+
+.chat-grupal-todo{
+    
+}
+
+.chatpluginchat{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: unset;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.chatpluginchat li{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 10px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.chat-img{
+    width: 30;
+}
+
+.chatpluginchat li span img{
+    width: 45px;
+    height: 45px;
+}
+
+.chat-body{
+    width: 60%;   
+}
+
+.panel-body{
+    background-color: #fff;
+}
+
+.chat-body div strong{
+    padding-right: 15px;
+}
+
+#Contenido{
+    word-break: break-all;
+}

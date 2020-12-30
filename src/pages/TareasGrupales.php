@@ -1,8 +1,9 @@
 ﻿<?php
     require "conexion.php";
     session_start();           
-    if(!isset($_SESSION['user']) || !isset($_GET['tema']) ){
-        header("location: NetWork");
+    
+    if(empty($_SESSION['user']) || empty($_SESSION['tema']) ){
+        header("location: ../..");
     }
     else{        
         require "sacarDatos.php";       
@@ -47,7 +48,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -208,9 +209,11 @@
         </aside>
 
         <?php
-            $tema = filter_input(INPUT_GET, 'tema', FILTER_SANITIZE_NUMBER_INT);
-            $_SESSION['tema'] = $tema;
-            if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
+            
+            $tema = $_SESSION['tema'];
+            
+            if(empty($_SESSION['grupo'])){
+                // Validar que el tema pertenece al usuario
                 $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
                 $esteResultado = $conection->prepare($otraQuery);
                 $esteResultado->bindValue(":id",  $_SESSION['user']);
@@ -219,19 +222,22 @@
                 
                 while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
                     $nombreTema = $otrosDatos['Titulo'];
+                    $descripcionTema = $otrosDatos['Descripcion'];
                 }
 
                 $filas = $esteResultado->rowCount();
             }
             else{
+                // Validar que el tema le pertenece al grupo
                 $otraQuery = "SELECT * FROM temas WHERE Grupo = :id AND IDTEMA = :tema";
                 $esteResultado = $conection->prepare($otraQuery);
-                $esteResultado->bindValue(":id", filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT) );
+                $esteResultado->bindValue(":id", $_SESSION['grupo']);
                 $esteResultado->bindValue(":tema",  $tema);
                 $esteResultado->execute();
                 
                 while($otrosDatos = $esteResultado->fetch(PDO::FETCH_ASSOC)){
                     $nombreTema = $otrosDatos['Titulo'];
+                    $descripcionTema = $otrosDatos['Descripcion'];
                 }
 
                 $filas = $esteResultado->rowCount();
@@ -245,8 +251,9 @@
                 <div class="container-fluid">
 
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark"><?php print_r($nombreTema)?></h1>
+                        <div class="col-sm-6 row">
+                            <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
+                            <p class="mx-2 text-muted pt-2"><?php print_r("- « $descripcionTema »")?></p>
                         </div>
                         <div class="col-sm-6">
 
@@ -262,7 +269,7 @@
                                     <!-- sugerencia usar la clase col-md-4-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="guardartarea.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method = "POST" id="formGuardarTarea">
+                                        <form action="#" method = "POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -277,7 +284,7 @@
                                                 <input type="date" id="inFecha" name="fecha"
                                                     class=" form-control" placeholder=" Fecha Limite">
                                             </div>
-                                            <input type="submit" class="btn btn-success btn-block" id="btnGuardarTarea"
+                                            <input type="button" class="btn btn-success btn-guardar btn-block" id="btnGuardarTarea"
                                                 name = "guardarTarea" value ="Guardar Tarea">
 
                                         </form>
@@ -342,7 +349,7 @@
                                     <div class="row">
                                         <div class="card card-body col-10">
 
-                                            <form action="graneditar.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" method="POST" id="formEditarTarea">
+                                            <form action="#" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
                                                     <input type="text" name="titulo2" maxlength="128" minlength="4"
                                                         class=" form-control" id="inEditTitulo" placeholder=" Título">
@@ -357,7 +364,7 @@
                                                     <input type="date" name="fecha2" id="inEditFecha"
                                                         class=" form-control">
                                                 </div>
-                                                <input type="submit" class="btn btn-config btn-light btn-block"
+                                                <input type="button" class="btn btn-config btn-editar btn-light btn-block"
                                                     name="update" value="Editar Tarea" />
 
                                             </form>
@@ -365,11 +372,11 @@
                                         </div>
                                         <div class="botones-popup col-2">
                                             <div class="popup-boton">
-                                                <a href="eliminartarea.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
+                                                <a href="#" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
                                                         aria-hidden="true"></i> Eliminar </a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="archivartareas.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
+                                                <a href="#" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
                                                         aria-hidden="true"></i> Archivar </a>
                                             </div>
                                             <div class="popup-boton">
@@ -418,7 +425,7 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="../scripts/Tarea.js"></script>
-    <script src="../scripts/activadorPopUp.js"></script>                                              
+                                
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -436,7 +443,7 @@
     <script src="../../dist/js/adminlte.js"></script>
     <script src="../../dist/js/demo.js"></script>
     <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
-
+    <script src="../scripts/activadorPopUp.js"></script>                                                         
     <script>
     $(document).ready(function(){
 		$('#mitabla').DataTable({

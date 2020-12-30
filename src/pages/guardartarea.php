@@ -2,52 +2,44 @@
 
 require 'conexion.php';
 session_start();      
-if (!empty(filter_input(INPUT_POST, 'guardarTarea'))) {
-  try{    
-    $title = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
-    $description = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_SPECIAL_CHARS);
-    $date = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_SPECIAL_CHARS);    
-    
-    if(!empty($date)){
-      $hoy = date("Y-m-d");
-      if($hoy <= $date){
-        $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`, `eltema`) VALUES (:titulo, :descripcion, :fecha, :tema)";
-        $resultadousuario = $conection->prepare($query);
+
+try{    
+  $title = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+  $description = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_SPECIAL_CHARS);
+  $date = filter_input(INPUT_POST, 'fecha', FILTER_SANITIZE_SPECIAL_CHARS);    
   
-        $resultadousuario->bindValue(":titulo", $title);
-        $resultadousuario->bindValue(":descripcion", $description);
-        $resultadousuario->bindValue(":fecha", $date);
-        $resultadousuario->bindValue(":tema", $_SESSION['tema']);
-        $resultadousuario->execute();      
-       
-      }
-      else{
-        header("location:TareasGrupales?errm=$date");
-      }
-    }
-    else{
+  if(!empty($date)){
+    $hoy = date("Y-m-d");
+    if($hoy <= $date){
       $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`, `eltema`) VALUES (:titulo, :descripcion, :fecha, :tema)";
       $resultadousuario = $conection->prepare($query);
-  
+
       $resultadousuario->bindValue(":titulo", $title);
       $resultadousuario->bindValue(":descripcion", $description);
-      $resultadousuario->bindValue(":fecha", "Sin fecha límite");
+      $resultadousuario->bindValue(":fecha", $date);
       $resultadousuario->bindValue(":tema", $_SESSION['tema']);
       $resultadousuario->execute();      
+     
     }
-    
-    
-    
-
-  }catch(Exception $ex){
-    
+    else{
+      
+    }
   }
-  if(empty(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))){
-    header("location:TareasGrupales?tema=".$_SESSION['tema']);
-  } 
   else{
-    header("location:TareasGrupales?tema=".$_SESSION['tema']."&grupo=".filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT));
+    $query = "INSERT INTO `tareas` (`title`, `description`, `limit_date`, `eltema`) VALUES (:titulo, :descripcion, :fecha, :tema)";
+    $resultadousuario = $conection->prepare($query);
+
+    $resultadousuario->bindValue(":titulo", $title);
+    $resultadousuario->bindValue(":descripcion", $description);
+    $resultadousuario->bindValue(":fecha", "Sin fecha límite");
+    $resultadousuario->bindValue(":tema", $_SESSION['tema']);
+    $resultadousuario->execute();      
   }
   
+  
+  
+}catch(Exception $ex){
+  
 }
+  
 ?>

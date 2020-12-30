@@ -1,5 +1,8 @@
 ﻿<?php
-    session_start();           
+    session_start();    
+    if(isset($_SESSION['grupo'])){      
+       unset($_SESSION['grupo']);
+    }       
     require "conexion.php";
     if(empty($_SESSION['user'])){
         header("location:../../index");
@@ -50,7 +53,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -169,15 +173,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">Primero</a>
+                                    <a href="#" class="text-truncate">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -187,15 +191,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li>
@@ -229,7 +233,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion3" maxlength="32" rows="4"
-                                                    class="form-control" id="inTemaDesc" placeholder="Descripcion"></textarea>
+                                                    class="form-control" id="inTemaDesc"
+                                                    placeholder="Descripcion"></textarea>
                                             </div>
                                             <input type="submit" class="btn btn-config btn-light btn-block"
                                                 name="CrearTema" value="Crear Tema" />
@@ -276,13 +281,12 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales?tema=<?php print_r($row["IDTEMA"]);?>" class="small-box-footer"> Ver
+                            <a href="TareasGrupales" class="small-box-footer btn-ver-tema" id="<?php print_r($row["IDTEMA"]);?>"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <?php } ?>
-                    </tbody>
-
+                    
                 </div>
             </div>
 
@@ -299,13 +303,11 @@
     </div>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
-
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -321,7 +323,7 @@
     <script src="../../dist/js/demo.js"></script>
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script>
+    <script>/*
     var laid = "tema";
     $(".miTema").on("click", function() {
         laid = $(this).attr("id");
@@ -351,7 +353,7 @@
 
         components: {
 
-            // Main components
+            // Main components  
             preview: true,
             opacity: true,
             hue: true,
@@ -375,7 +377,7 @@
         console.log(color);
         var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
         $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });
+    });*/
     </script>
 </body>
 
