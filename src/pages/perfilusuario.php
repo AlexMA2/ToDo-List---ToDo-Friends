@@ -182,16 +182,10 @@
                     <div class="row perfil-usuario">
 
                         <div class="perfil-foto col-6">
-                            <img src="<?php print_r($uFoto)?>" alt="foto-perfil" class="img-thumbnail img-circle"
-                                width="350" height="350">
+                            <img src="<?php print_r($uFoto)?>" id="foto-userperfil" alt="foto-perfil" class="img-thumbnail img-circle" width="350" height="350">
                             <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
-                                <input type="button" value="Cambiar foto de perfil" id="btn-perfil-foto"
-                                    class="btn btn-primary">
-                                <div id="para-animar">
-                                    <input type="file" accept="image/*" id="in-perfil-foto" name="perfil-foto">
-                                    <input type="submit" name="perfil-guardar-foto" id="sub-guardar-foto"
-                                        value="Guardar foto" class="btn btn-primary">
-                                </div>
+                                <input type="button" value="Cambiar foto de perfil" id="sub-subir-foto"
+                                    class="btn btn-primary">                              
                             </form>
 
                         </div>
@@ -230,31 +224,7 @@
                         <a href="#" class="btn-eliminar-cuenta"><i class="fa fa-trash"></i> Eliminar cuenta</a>
                     </div>
                 </div>
-                <div class="container editor-img">
-                    <?php 
-                        if(!empty(filter_input(INPUT_GET, "errimg"))){
-                           
-                        ?>
-
-                    <img src="<?php print_r(filter_input(INPUT_GET, "errimg"))?>" id="target" alt="omg">
-                    <input type="button" class="btn btn-success" value="Cortar" id="btn-cortar-foto">
-
-                    <script>
-                    $(".editor-img").css("visibility", "visible");
-                    </script>
-                    <?php
-                        }
-                        else{
-                            
-                        ?>
-
-                    <script>
-                    $(".editor-img").css("visibility", "hidden");
-                    </script>
-                    <?php
-                        }
-                    ?>
-                </div>
+                
             </div>
 
         </div>
@@ -268,59 +238,7 @@
         </footer>
 
     </div>
-
-
-    <script src="../../tapmodo-Jcrop-1902fbc/js/jquery.Jcrop.min.js"></script>
-    <script>
-        var x = '';
-        var y = '';
-        var w = '';
-        var h = '';
-        var ruta = '<?php print_r(filter_input(INPUT_GET, "errimg"))?>';
-        var host = ''
-        console.log(ruta);
-
-        if (location.hostname === "localhost") {
-            host = "http://localhost/ToDo-List---ToDo-Friends/";
-        } else {
-            host = "https://todolist-todofriends.herokuapp.com/";
-        }
-
-        function showCoords(c) {
-            x = c.x;
-            y = c.y;
-            w = c.w;
-            h = c.h;
-        };
-
-        jQuery(function($) {
-            $('#target').Jcrop({
-                onSelect: showCoords,
-                bgColor: 'black',
-                bgOpacity: .4,
-                minSize: [300, 300],
-                setSelect: [100, 100, 50, 50],
-                aspectRatio: 1
-            });
-        });
-
-        $("#btn-cortar-foto").on('click', function() {
-            enviar();
-        });
-
-        function enviar() {
-            $.ajax({
-                url: 'cortar.php',
-                type: 'POST',
-                data: 'x=' + x + '&y=' + y + '&w=' + w + '&h=' + h + '&ruta=' + ruta,
-                success: function(rpt) {
-                    window.location.replace(
-                        "https://todolist-todofriends.herokuapp.com/src/pages/perfilusuario");
-                }
-            });
-        }
-    </script>
-    <script src="../scripts/perfil.js"></script>
+    
     <script src="../scripts/activadorPopUp.js"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -339,8 +257,9 @@
     <script src="../../dist/js/adminlte.js"></script>
 
     <script src="../../dist/js/demo.js"></script>
-
-
+    
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script src="../scripts/imagen.js"></script>
 
 </body>
 
