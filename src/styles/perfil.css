@@ -132,3 +132,10 @@
   justify-content: center;
   align-items: center;
 }
+
+#foto-userperfil{
+  max-width: 350px;
+  min-width: 350px;
+  max-height: 350px;
+  min-height: 350px;
+}

@@ -18,14 +18,13 @@ $(function () {
         $("#popup").removeClass("active");
     });
 
-    function getAbsolutePath() {
-        //Creditos a https://cybmeta.com/obtener-la-url-de-la-pagina-actual-con-javascript-y-sus-componentes#:~:text=Obtener%20la%20URL%20actual%20completa,En%20window.
+    function getAbsolutePath() {       
         var loc = window.location;
         var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
         return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
     }
 
-    var ruta = getAbsolutePath();
+    const ruta = getAbsolutePath();
 
     $(".btn-editar").on("click", function () {
 
