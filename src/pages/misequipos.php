@@ -298,6 +298,56 @@
                     </tbody>
 
                 </div>
+                <div class="grupo-grupos">
+
+                    <?php
+                        $consulta="SELECT * FROM `otro_grupos` where `FKusuario`= :IDUser";
+                        $resultado = $conection->prepare($consulta);
+                
+
+                        $resultado->bindValue(":IDUser", $_SESSION['user']);
+                
+                        $resultado->execute();
+                
+                        $filas = $resultado->rowCount();
+
+                        while($rpta=$resultado->fetch(PDO::FETCH_ASSOC)) {
+                            
+                            $query = "SELECT * FROM grupos WHERE IDGRUPO = :id";
+                            $resultado_grupos = $conection->prepare($query);
+                            $resultado_grupos->bindValue(":id", $rpta['FKgrupo']);
+                            $resultado_grupos->execute();
+                            while($row2 = $resultado_grupos->fetch(PDO::FETCH_ASSOC)) {
+
+                        ?>
+
+                    <div class="unidad-grupo">
+                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row2 ["IDGRUPO"]);?>">
+                            <div class="inner row">
+                                <div class="inner-izquierda col-8">
+                                    <h3><?php print_r($row2['Nombre']); ?></h3>
+                                    <p><?php print_r($row2['Descripcion']); ?></p>
+                                </div>
+                                <div class="inner-derecha col-4">
+                                    <p>autor: <?php print_r($rpta['FKusuario']); ?></p>
+                                    <p>Temas: <?php print_r($row2['Temas']); ?> </p>
+                                    <p>Tareas: <?php print_r($row2['Tareas']); ?> </p>
+                                    <p>Miembros: <?php print_r($row2['Miembros']); ?> </p>
+                                    <p>Creado el: <?php print_r($row2['Creacion']); ?> </p>
+                                </div>                               
+                                
+                            </div>
+                            
+
+                            <a href="NetWorkGrupal" id="<?php print_r($row2["IDGRUPO"]);?>" class="small-box-footer btn-ver-grupo"> Ver grupo
+                                <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <?php }
+                } ?>
+                    </tbody>
+
+                </div>
             </div>
 
         </div>
