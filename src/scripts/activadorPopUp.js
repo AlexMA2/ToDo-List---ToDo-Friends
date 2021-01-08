@@ -18,6 +18,23 @@ $(function () {
         $("#popup").removeClass("active");
     });
 
+    
+    $(".btn-opcion2").on("click", function (ev) {
+        ev.preventDefault();
+        $("#overlay2").addClass("active");
+        $("#popup2").addClass("active");
+        id1 = $(this).data("id1");
+        /*let titulo2 = $(this).parent().parent().siblings("td:nth-child(1)").text();
+        let descripcion2 = $(this).parent().parent().siblings("td:nth-child(2)").text();
+        $("#editTemaTitulo").val(titulo2);
+        $("#editTemaDesc").text(descripcion2);*/
+    });
+    $(".btn-cerrar-popup2").on("click", function () {
+        $("#overlay2").removeClass("active");
+        $("#popup2").removeClass("active");
+    });
+
+
     function getAbsolutePath() {       
         var loc = window.location;
         var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
@@ -44,6 +61,25 @@ $(function () {
         }
     });
 
+
+    $(".btn-editar-tema").on("click", function () {
+        if (id1 !== undefined) {
+            let editTemaTitulo = $("#editTemaTitulo").val();
+            let editTemaDesc = $("#editTemaDesc").val();
+            console.log(id1 + " xdxdxd ");
+            $.ajax({
+                url: 'editarTema.php',
+                type: 'POST',
+                data: "IDTEMA=" + id1 + "&Titulo4=" + editTemaTitulo + "&Descripcion4=" + editTemaDesc,
+                success: function (rpt) {
+                    window.location.replace(ruta + "NetWork");
+                }
+            });
+        }
+    });
+
+    
+
     $(".btn-eliminar").on("click", function () {
         if (id !== undefined) {
             $.ajax({
@@ -57,6 +93,22 @@ $(function () {
         }
 
     });
+
+    $(".btn-eliminar-tema").on("click", function () {
+        let id = $(this).attr("id");
+        if (id !== undefined) {
+            $.ajax({
+                url: 'eliminarTema.php',
+                type: 'POST',
+                data: 'IDTEMA=' + id,
+                success: function (rpt) {
+                    window.location.replace(ruta + "NetWork");
+                }
+            });
+        }
+
+    });
+
 
     $(".btn-archivar").on("click", function () {
         if (id !== undefined) {
@@ -166,13 +218,14 @@ $(function () {
             data: 'idVar=' + id + "&variable=" + variable,
             success: function (rpt) {
                 if (variable == "tema") {
-                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/TareasGrupales");
+                    window.location.replace(ruta + "TareasGrupales");
                 }
                 else if (variable == "grupo") {
-                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWorkGrupal");
+                    window.location.replace(ruta + "NetWorkGrupal");
                 }
             }
         });
     }
 
+    console.log(ruta);
 });
