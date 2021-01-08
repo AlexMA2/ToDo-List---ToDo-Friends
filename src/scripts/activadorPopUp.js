@@ -227,5 +227,4 @@ $(function () {
         });
     }
 
-    console.log(ruta);
 });

@@ -148,3 +148,22 @@
 .small-box h3{
   white-space: normal !important;
 }
+
+.label-success{
+  color: #45a727;
+}
+
+.opciones-chat{
+  display: none;
+  text-align: right;
+  margin-right: 5px;
+
+}
+
+.opciones-chat i{
+  cursor: pointer;
+}
+
+.chat-grupal-todo{
+  overflow: hidden;
+}
