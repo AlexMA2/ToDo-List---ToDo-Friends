@@ -11,16 +11,18 @@
                 $tabla->bindValue(":nombre", $titulo_grupo);
                 $tabla->bindValue(":descrip", $descripcion_grupo);
                 $tabla->bindValue(":dueno", $_SESSION['user']);
-                $tabla->bindValue(":creac", date('d-m-Y'));
+                $tabla->bindValue(":creac", date('Y-m-d'));
                 $tabla->execute();
-
-                echo $titulo_grupo . $descripcion_grupo . $_SESSION['user'] . date('d-m-Y');
+                
 
             }
             catch(Exception $ex){                
-                echo $ex->getMessage();
+               
             }
+
         }
     }
+
+    header("Location: NetWorkGrupal");
    
 ?>
