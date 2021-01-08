@@ -289,7 +289,7 @@
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    <?php } ?>                   
+                    <?php } ?>
 
                 </div>
 
@@ -324,22 +324,27 @@
                                 list ($uID2, $uNombre2, $uCorreo2, $uFoto2) = getInfoSobre($row['FKusuario']);
                                 ?>
 
-                            <tr class="item-tarea">
-                                <td><?php print_r($uNombre2); ?></td>
+                    <tr class="item-tarea">
+                        <td><?php print_r($uNombre2); ?></td>
 
-                                <td>
+                        <td>
 
-                                    <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
-                                            data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
-                                </td>
-                            </tr>
+                            <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
+                                    data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
+                        </td>
+                    </tr>
                     <?php 
                             }
                         }
                         else{
                             ?>
                     <script>
-                        window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                    function getAbsolutePath() {
+                        var loc = window.location;
+                        var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+                        return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+                    }
+                    window.location.replace(getAbsolutePath() + "misequipos");
                     </script>
                     <?php    
                         }
@@ -392,7 +397,6 @@
     </script>
     <script src="../../chatSocketAchex/chatSocketAchex.js"></script>
     <script>
-    
     $('#Elchat').ChatSocket({
         elnombre: '<?php print_r($uNombre)?>',
         Room: '<?php print_r($gNombre . "-" . $gID)?>',

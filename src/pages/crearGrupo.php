@@ -23,6 +23,6 @@
         }
     }
 
-    header("Location: NetWorkGrupal");
+    header("Location: misequipos");
    
 ?>
