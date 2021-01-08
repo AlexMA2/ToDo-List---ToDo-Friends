@@ -103,62 +103,7 @@
                 </div>
 
                 <nav class="mt-2">
-                    <!--
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Tablero
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                                
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Mis Equipos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="../../index" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>
-                                    Salir
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                    -->
+                   
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
