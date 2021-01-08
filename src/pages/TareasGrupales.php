@@ -56,20 +56,6 @@
                 </li>
             </ul>
 
-            <!--
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            -->
-
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
@@ -273,8 +259,13 @@
                                             else{
                                                 ?>
                                                 <script>
-                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
-                                                </script>                                                
+                                                    function getAbsolutePath() {
+                                                        var loc = window.location;
+                                                        var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+                                                        return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+                                                    }
+                                                    window.location.replace(getAbsolutePath() + "misequipos");
+                                                </script>                                             
                                                 <?php    
                                             }
                                         ?>
