@@ -218,13 +218,14 @@ $(function () {
             data: 'idVar=' + id + "&variable=" + variable,
             success: function (rpt) {
                 if (variable == "tema") {
-                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/TareasGrupales");
+                    window.location.replace(ruta + "TareasGrupales");
                 }
                 else if (variable == "grupo") {
-                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWorkGrupal");
+                    window.location.replace(ruta + "NetWorkGrupal");
                 }
             }
         });
     }
 
+    console.log(ruta);
 });
