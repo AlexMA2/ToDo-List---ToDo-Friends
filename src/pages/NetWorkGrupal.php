@@ -240,11 +240,10 @@
 
 
             </div>
-            <div id="Elchat"></div>
-        </div>
-       
+            <!-- aqui comienza añadir integrante -->
         <div class="card card-body col-4">
             <table class="table table-bordered " class="display" id="mitabla">
+            <h4> Intregantes</h4>
                 <thead class="thead-dark">
                     <tr>
                         <th>Nombre de usuario</th>
@@ -268,9 +267,9 @@
                                     <td><?php print_r($uNombre2); ?></td>
 
                                     <td>
-
-                                        <span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones"
-                                                data-tid="<?php print_r($uID2);?>" aria-hidden="true"></i></span>
+                                    <!-- aqui pongan su wea-->
+                                    <i class="fas fa-minus-circle"></i> | 
+                                    <a style="text-decoration:none" class="fas fa-trash " href="#" > 
                                     </td>
                                 </tr>
                             <?php 
@@ -298,20 +297,24 @@
                 <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
 
 
-                    <p>Añadir amigos</p>
+                    <p>Añadir integrantes</p>
                     <div class="form-group">
                         <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
                             placeholder="Escriba el correo a añadir">
                     </div>
                     <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
-                        value="Agregar Amigo" />
+                        value="Agregar integrante" />
 
                 </form>
 
             </div>
         </div>
+        <!-- aqui termina añadir contactos-->
+            <div id="Elchat"></div>
+        </div>
+       
     </div>
-    <!-- aqui termina añadir contactos-->
+    
 
 
 
