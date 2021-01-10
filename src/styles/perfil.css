@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 50%;
 }
 
 .perfil-foto a {
@@ -15,6 +16,12 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+  width: 50%;
+}
+
+.perfil-usuario-main {
+  display: flex;
+  flex-direction: row;
 }
 
 .perfil-datos div {
@@ -80,6 +87,8 @@
 }
 
 .perfil-usuario {
+  display: flex;
+  flex-direction: column;
   background-color: #343a40;
   border-radius: 25px;
   box-shadow: 0px 0px 10px #000;
@@ -112,30 +121,121 @@
   justify-content: center;
 }
 
-.editor-img{
+.editor-img {
   visibility: hidden;
 }
 
-.btn-eliminar-cuenta{
+.btn-eliminar-cuenta {
   text-align: left;
   font-size: 18px;
-  color: #F8A1A4;
+  color: #f8a1a4;
 }
 
-.btn-eliminar-cuenta:hover{  
-  color: #F47378;
+.btn-eliminar-cuenta:hover {
+  color: #f47378;
 }
 
-.info-eliminar-cuenta{
+.info-eliminar-cuenta {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#foto-userperfil{
-  max-width: 350px;
-  min-width: 350px;
-  max-height: 350px;
-  min-height: 350px;
+@media (max-width: 1271px) {
+  .perfil-usuario-main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-eliminar-cuenta {
+    text-align: center;
+  }
+
+  .perfil-datos {
+    align-items: center;
+    margin-bottom: 15px;
+    width: auto;
+  }
+
+  .perfil-foto{
+    width: auto;
+  }
+
+  .perfil-datos div {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 150%;
+  }
+
+  .perfil-nombre form,
+  .perfil-correo form {
+    text-align: center;
+  }
+
+  .perfil-nombre form input[name="perfil-nombre"],
+  .perfil-correo form input[name="perfil-correo"] {
+    margin-bottom: 15px;
+  }
+
+  #sub-subir-foto {
+    width: 175px;
+  }
+}
+
+@media (max-width: 701px) {
+  .perfil-datos h3 {
+    width: 300px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 650px) {
+  .perfil-nombre form,
+  .perfil-correo form {
+    flex-direction: column;
+  }
+
+  .perfil-nombre form input[name="perfil-nombre"],
+  .perfil-correo form input[name="perfil-correo"] {
+    width: 75%;
+  }
+
+  .perfil-nombre form input[type="submit"],
+  .perfil-correo form input[type="submit"] {
+    width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .perfil-datos div {
+    width: 100%;
+  }
+
+  .perfil-datos div form {
+    width: 100%;
+  }
+
+  .perfil-nombre form input[name="perfil-nombre"],
+  .perfil-correo form input[name="perfil-correo"],
+  .perfil-contra form input[name="perfil-contra"],
+  .perfil-contra form input[name="perfil-contra-repe"] {
+    width: 100%;
+  }
+
+  .perfil-nombre form input[type="submit"],
+  .perfil-correo form input[type="submit"] {
+    width: 50%;
+  }
+}
+
+@media (max-width: 355px) {
+  .perfil-datos {
+    width: 250px;
+  }
+  .perfil-datos h3 {
+    font-size: 20px;
+    width: 250px;
+  }
 }
