@@ -23,6 +23,6 @@
         }
     }
 
-    header("Location: misequipos");
+    header("Location: MisEquipos");
    
 ?>
