@@ -22,13 +22,14 @@ session_start();
             header("location: misequipos");
 
         }else{
+            $_SESSION['mensaje']="";
             $query = "INSERT INTO `otro_grupos` (`FKgrupo`, `FKusuario`) VALUES (:IDGrupo, :IDUser)";
             $resultadousuario = $conection->prepare($query);
         
             $resultadousuario->bindValue(":IDGrupo", $_SESSION['grupo']);
             $resultadousuario->bindValue(":IDUser", $ID2);
             $resultadousuario->execute();      
-
+            
             header("location: NetWorkGrupal");
         } 
         //var_dump($ID2, $Nombre2, $Correo2, $Foto2);
@@ -36,7 +37,8 @@ session_start();
         
      }
      catch(Exception $ex){
-         echo "error";
+        header("location: NetWorkGrupal");
+        $_SESSION['mensaje']= "error al Añadir";
 
      }    
     }
