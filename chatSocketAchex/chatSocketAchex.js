@@ -65,7 +65,16 @@ $.fn.extend({
     function IniciarConexion() {
       conex = '{"setID":"' + Room + '","passwd":"' + pass + '"}';
       ws = new WebSocket("wss://achex.ca:4010");
-      ws.onopen = function () { ws.send(conex); }
+      ws.onopen = function () {
+        ws.send(conex);
+        const PING_TIME = 25;
+
+        // Función que hace un ping (el parámetro es un callback vacío)
+        const ping = () => ws.ping(() => { });
+
+        // Establecer la ejecución periódica del ping. Para cancelar, utilizar clearInterval
+        setInterval(ping, PING_TIME * 1000);
+      }
       ws.onmessage = function (Mensajes) {
         var MensajesObtenidos = Mensajes.data;
         var obj = jQuery.parseJSON(MensajesObtenidos);
@@ -83,8 +92,12 @@ $.fn.extend({
         }
 
       }
-      ws.onclose = function () {
-        alert("Conexión cerrada");
+      ws.onclose = function (ev) {
+        console.log("Conexión cerrada", ev.reason);
+      }
+
+      ws.onerror = function(event) {
+        console.log("WebSocket error observed:", event);
       }
     }
     IniciarConexion();
@@ -172,23 +185,23 @@ $.fn.extend({
 
     $("#minimizar-chat").on('click', function (ev) {
       ev.preventDefault();
-      if($(this).hasClass("fa-minus")){
-        $(".cuerpo-chat").css("display","none");
-        $("#ElchatlistaOnline").css("display","none");
+      if ($(this).hasClass("fa-minus")) {
+        $(".cuerpo-chat").css("display", "none");
+        $("#ElchatlistaOnline").css("display", "none");
         $("#Elchat").css("top", "90%");
         $(this).removeClass("fa-minus");
-        $(this).addClass("fa-plus");   
-       
+        $(this).addClass("fa-plus");
+
       }
-      else{
+      else {
         $("#Elchat").css("top", "75%");
         $(".cuerpo-chat").css("display", "block");
         $("#ElchatlistaOnline").css("display", "block");
         $(this).removeClass("fa-plus");
-        $(this).addClass("fa-minus");        
+        $(this).addClass("fa-minus");
 
-      }         
-      
+      }
+
     });
   }
 });

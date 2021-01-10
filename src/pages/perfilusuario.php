@@ -34,8 +34,7 @@
     <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../styles/perfil.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="../../tapmodo-Jcrop-1902fbc/css/jquery.Jcrop.css">
-
+    
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 

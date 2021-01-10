@@ -76,6 +76,8 @@ $(function () {
             
             const imgsrc = result.info.secure_url;
             
+            const antiguaURL = imagen.attr("src");
+
             let parametros = result.info.coordinates.custom[0];
             let px = parametros[0];
             let py = parametros[1];
@@ -89,7 +91,7 @@ $(function () {
             nuevaURL = nuevaURL + valores[7];            
 
             imagen.attr("src", nuevaURL);
-            enviarImagen(nuevaURL);
+            enviarImagen(nuevaURL, antiguaURL);
 
         }
     });
@@ -106,13 +108,14 @@ $(function () {
 
     const ruta = getAbsolutePath();
 
-    function enviarImagen(source) {
+    function enviarImagen(source, antigua) {
         $.ajax({
             url: 'subirImagen.php',
             type: 'POST',
-            data: 'src=' + source,
+            data: 'src=' + source + "&antigua=" + antigua,
             success: function (rpt) {
-                window.location.replace(ruta + "perfilusuario");                
+                console.log(rpt);
+                                
             }
         });
     }
