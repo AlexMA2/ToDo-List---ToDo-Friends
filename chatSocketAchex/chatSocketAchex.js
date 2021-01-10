@@ -93,7 +93,7 @@ $.fn.extend({
 
       }
       ws.onclose = function (ev) {
-        console.log("Conexión cerrada", ev.reason);
+        console.log("Conexión cerrada", ev.code);
       }
 
       ws.onerror = function(event) {
