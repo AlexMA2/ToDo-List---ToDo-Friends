@@ -328,7 +328,7 @@
                                             else{
                                                 ?>
                                                 <script>
-                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                                                    //window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
                                                 </script>                                                
                                                 <?php    
                                             }
@@ -383,9 +383,9 @@
                                                 <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
                                                         aria-hidden="true"></i> Estado </a>
                                                 <div class="nombre-estados">
-                                                    <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
-                                                    <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
-                                                    <input type="radio" name="estado" value="Hecho"> Hecho<br>
+                                                    <input type="radio" name="estado" value="Sin hacer" id="r1"> Sin hacer<br>
+                                                    <input type="radio" name="estado" value="Haciendo"id="r2"> Haciendo<br>
+                                                    <input type="radio" name="estado" value="Hecho" id="r3"> Hecho<br>
                                                 </div>
                                             </div>
                                             <div class="popup-boton">

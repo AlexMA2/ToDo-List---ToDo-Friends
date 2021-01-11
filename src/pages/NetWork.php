@@ -281,7 +281,7 @@
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
 
-                            <a href="TareasGrupales" class="small-box-footer btn-ver-tema" id="<?php print_r($row["IDTEMA"]);?>"> Ver
+                            <a href="#" class="small-box-footer btn-ver-tema" id="<?php print_r($row["IDTEMA"]);?>"> Ver
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
