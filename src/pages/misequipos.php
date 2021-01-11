@@ -15,6 +15,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,11 +35,13 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
-    <link rel="stylesheet" href="../../src/styles/editar.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
+    <link rel="stylesheet" href="../styles/editar.css">
+    <link rel="stylesheet" href="../styles/MisEquipos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
@@ -48,7 +51,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -103,62 +107,7 @@
                 </div>
 
                 <nav class="mt-2">
-                    <!--
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Tablero
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                                
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Mis Equipos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="../../index" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>
-                                    Salir
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                    -->
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
@@ -167,15 +116,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li class="text-wrap"> 
+                                <li class="text-wrap">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
+                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -185,15 +134,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li>
@@ -223,14 +172,16 @@
                                         <form action="crearGrupo.php" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo4" maxlength="128" minlength="4" required
-                                                    class=" form-control" id="inTemaTitulo" placeholder="Nombre del grupo">
+                                                    class=" form-control" id="inTemaTitulo"
+                                                    placeholder="Nombre del grupo">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion4" maxlength="256" rows="4"
-                                                 class="form-control" id="inTemaDesc" value="Descripcion" placeholder="Descripcion"></textarea>
-                                                
+                                                    class="form-control" id="inTemaDesc" value="Descripcion"
+                                                    placeholder="Descripcion"></textarea>
+
                                             </div>
-                                           
+
                                             <input type="submit" class="btn btn-config btn-light btn-block"
                                                 name="CrearGrupo" value="Crear grupo" />
 
@@ -243,11 +194,11 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-sm-6 row">
-                            <h1 class="m-0 text-dark">  Mis Equipos </h1>
+                        <div class="col-sm-6 row main-details-team">
+                            <h1 class="m-0 text-dark"> Mis Equipos </h1>
                             <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
-                            
+
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
@@ -264,51 +215,63 @@
                 </div>
                 <div class="grupo-grupos">
 
+                    <!-- Imprimir grupos donde tu eres el Lider -->
                     <?php                                           
                        
                         while($row = $resultado_misgrupos->fetch(PDO::FETCH_ASSOC)) {                            
-                        ?>
-
+                    ?>
                     <div class="unidad-grupo">
-                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDGRUPO"]);?>">
+                        <div class="small-box bg-info miTema">
+                            <div class="titulo-grupo">
+                                <i class="fas fa-users"></i>
+                                <h3><?php print_r($row['Nombre']); ?></h3>
+                            </div>
+
                             <div class="inner row">
-                                <div class="inner-izquierda col-8">
-                                    <h3><?php print_r($row['Nombre']); ?></h3>
+                                <div class="inner-izquierda col-7">
                                     <p><?php print_r($row['Descripcion']); ?></p>
                                 </div>
-                                <div class="inner-derecha col-4">
-                                    <p>Dueño: <?php if($_SESSION['user'] == $row['Dueno']){
+                                <div class="inner-derecha col-5">
+                                    <p>Dueño: <span><?php if($_SESSION['user'] == $row['Dueno']){
                                         print_r("Tú");
                                     }
-                                    else{print_r($row['Dueno']);} ?></p>
-                                    <p>Temas: <?php print_r($row['Temas']); ?> </p>
-                                    <p>Tareas: <?php print_r($row['Tareas']); ?> </p>
-                                    <p>Miembros: <?php print_r($row['Miembros']); ?> </p>
-                                    <p>Creado el: <?php print_r($row['Creacion']); ?> </p>
-                                </div>                               
-                                
+                                    else{
+                                        print_r(getInfoSobre($row['Dueno'])[1]);                                        
+                                    } ?></span></p>
+                                    <p>Temas: <span><?php print_r($row['Temas']); ?></span> </p>
+                                    <p>Tareas: <span><?php print_r($row['Tareas']); ?></span> </p>
+                                    <p>Miembros: <span><?php print_r($row['Miembros']); ?> </span></p>
+                                    <p>Creado el: <span><?php print_r($row['Creacion']); ?></span> </p>
+                                </div>
+
                             </div>
-                            
-
-                            <a href="NetWorkGrupal" id="<?php print_r($row["IDGRUPO"]);?>" class="small-box-footer btn-ver-grupo"> Ver grupo
-                                <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
+                        <div class="botones-grupo">
+                            <a href="NetWorkGrupal" id="del-<?php print_r($row["IDGRUPO"]);?>"
+                                class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="NetWorkGrupal" id="ver-<?php print_r($row["IDGRUPO"]);?>"
+                                class="small-box-footer btn-ver-grupo"> Ver equipo
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>    
+                            <a href="NetWorkGrupal" id="edi-<?php print_r($row["IDGRUPO"]);?>"
+                                class="small-box-footer btn-editar-grupo"> Editar equipo
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        </div>
+                        
                     </div>
-                    <?php } ?>
-                    </tbody>
 
-                </div>
-                <div class="grupo-grupos">
-
+                    <?php 
+                        } 
+                    ?>
+                    <!-- Imprimir grupos donde tu eres un participante -->
                     <?php
                         $consulta="SELECT * FROM `otro_grupos` where `FKusuario`= :IDUser";
-                        $resultado = $conection->prepare($consulta);
-                
-
-                        $resultado->bindValue(":IDUser", $_SESSION['user']);
-                
-                        $resultado->execute();
-                
+                        $resultado = $conection->prepare($consulta);              
+                        $resultado->bindValue(":IDUser", $_SESSION['user']);                
+                        $resultado->execute();                
                         $filas = $resultado->rowCount();
 
                         while($rpta=$resultado->fetch(PDO::FETCH_ASSOC)) {
@@ -318,36 +281,45 @@
                             $resultado_grupos->bindValue(":id", $rpta['FKgrupo']);
                             $resultado_grupos->execute();
                             while($row2 = $resultado_grupos->fetch(PDO::FETCH_ASSOC)) {
-
                         ?>
 
-                    <div class="unidad-grupo">
-                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row2 ["IDGRUPO"]);?>">
-                            <div class="inner row">
-                                <div class="inner-izquierda col-8">
+                        <div class="unidad-grupo">
+                            <div class="small-box bg-info miTema">
+                                <div class="titulo-grupo">
+                                    <i class="fas fa-users"></i>
                                     <h3><?php print_r($row2['Nombre']); ?></h3>
-                                    <p><?php print_r($row2['Descripcion']); ?></p>
                                 </div>
-                                <div class="inner-derecha col-4">
-                                    <p>autor: <?php print_r($rpta['FKusuario']); ?></p>
-                                    <p>Temas: <?php print_r($row2['Temas']); ?> </p>
-                                    <p>Tareas: <?php print_r($row2['Tareas']); ?> </p>
-                                    <p>Miembros: <?php print_r($row2['Miembros']); ?> </p>
-                                    <p>Creado el: <?php print_r($row2['Creacion']); ?> </p>
-                                </div>                               
-                                
-                            </div>
-                            
 
-                            <a href="NetWorkGrupal" id="<?php print_r($row2["IDGRUPO"]);?>" class="small-box-footer btn-ver-grupo"> Ver grupo
+                                <div class="inner row">
+                                    <div class="inner-izquierda col-7">
+                                        <p><?php print_r($row2['Descripcion']); ?></p>
+                                    </div>
+                                    <div class="inner-derecha col-5">
+                                        <p>Dueño: <span><?php if($_SESSION['user'] == $row2['Dueno']){
+                                            print_r("Tú");
+                                        }
+                                        else{
+                                            print_r(getInfoSobre($row2['Dueno'])[1]);         
+                                        } ?></span></p>
+                                        <p>Temas: <span><?php print_r($row2['Temas']); ?></span> </p>
+                                        <p>Tareas: <span><?php print_r($row2['Tareas']); ?></span> </p>
+                                        <p>Miembros: <span><?php print_r($row2['Miembros']); ?> </span></p>
+                                        <p>Creado el: <span><?php print_r($row2['Creacion']); ?></span> </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <a href="NetWorkGrupal" id="<?php print_r($row2["IDGRUPO"]);?>"
+                                class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                    </div>
                     <?php }
-                } ?>
-                    </tbody>
+                        } 
+                    ?>
 
                 </div>
+
             </div>
 
         </div>
@@ -365,7 +337,7 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-                             
+
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -442,4 +414,5 @@
     });
     </script>
 </body>
+
 </html>
