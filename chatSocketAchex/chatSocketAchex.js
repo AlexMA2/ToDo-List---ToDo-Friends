@@ -52,19 +52,29 @@ $.fn.extend({
     var idOnline = opciones.idOnline;
     var lblUsuariosOnline = opciones.lblUsuariosOnline;
     var lblEntradaNombre = opciones.lblEntradaNombre;
-    var panelColor = opciones.panelColor;    
+    var panelColor = opciones.panelColor;
     if ($('#' + idOnline).length == 0) {
       idOnline = idChat + "listaOnline";
+      let opcChat = "<div class='opciones-chat'><i class='fas fa-minus' id='minimizar-chat'></i></div>";
+      $('#' + idChat).append(opcChat);
       $('#' + idChat).append('<br/><div id="' + idOnline + '"></div>');
-
     }
 
 
 
     function IniciarConexion() {
       conex = '{"setID":"' + Room + '","passwd":"' + pass + '"}';
-      ws = new WebSocket("ws://achex.ca:4010");
-      ws.onopen = function () { ws.send(conex); }
+      ws = new WebSocket("wss://achex.ca:4010");
+      ws.onopen = function () {
+        ws.send(conex);
+        const PING_TIME = 25;
+
+        // Función que hace un ping (el parámetro es un callback vacío)
+        const ping = () => ws.ping(() => { });
+
+        // Establecer la ejecución periódica del ping. Para cancelar, utilizar clearInterval
+        setInterval(ping, PING_TIME * 1000);
+      }
       ws.onmessage = function (Mensajes) {
         var MensajesObtenidos = Mensajes.data;
         var obj = jQuery.parseJSON(MensajesObtenidos);
@@ -82,18 +92,24 @@ $.fn.extend({
         }
 
       }
-      ws.onclose = function () {
-        alert("Conexión cerrada");
+      ws.onclose = function (ev) {
+        console.log("Conexión cerrada", ev.code);
+      }
+
+      ws.onerror = function(event) {
+        console.log("WebSocket error observed:", event);
       }
     }
     IniciarConexion();
-    function iniciarChat() {     
-      
+    function iniciarChat() {
+
       //Nombre = $('#' + lblTxtEntrar).val();     
       Nombre = opciones.elnombre;
+
       $('#' + idDialogo).hide();
       $('#' + idOnline).show();
 
+      $(".opciones-chat").css("display", "block");
       CrearChat();
       UsuarioOnline();
       getOnline();
@@ -101,31 +117,26 @@ $.fn.extend({
 
     //idChat = DialogoEntrada
     // idOnline = ElchatlistaOnline
-    
-    function cerrarChat(){
-      $('#' + idDialogo).show();
-      $('#' + idOnline).hide();
-
-      $("#Elchat").empty();
-      CrearEntrada();
-    }
 
     function CrearEntrada() {
+
       $('#' + idChat).append('<div id="' + idDialogo + '" class="' + classChat + '" id="InputNombre"><div class="panel-footer" style="margin-top:100px;"><div class="input-group"><span class="input-group-btn"><button id="' + btnEntrar + '" class="btn btn-success btn-sm" >' + lblBtnEntrar + '</button></span></div></div></div>');
       $('#' + idOnline).append(' <div class="panel panel-' + panelColor + '"><div class="panel-body"><ul class="list-group" id="listaOnline"></ul></div><div class="panel-footer"><div class="input-group"><div></div></span></div></div></div>');
-      
-      $("#" + lblTxtEntrar).keyup(function (e) { 
-        if (e.keyCode == 13) { 
-          iniciarChat(); 
-        } 
+
+      $("#" + lblTxtEntrar).keyup(function (e) {
+        if (e.keyCode == 13) {
+          console.log("Iniciando chat");
+          iniciarChat();
+        }
       });
       $("#" + btnEntrar).click(function () {
+        console.log("Iniciando chat");
         iniciarChat();
       });
-      
+
     }
     function CrearChat() {
-      $('#' + idChat).append('<div class="' + classChat + '"><div class="panel panel-' + panelColor + '"><div class="panel-body"><ul class="chatpluginchat"></ul></div><div class="panel-footer"><div class="input-group"><input id="'
+      $('#' + idChat).append('<div class="' + classChat + ' cuerpo-chat"><div class="panel panel-' + panelColor + '"><div class="panel-body"><ul class="chatpluginchat"></ul></div><div class="panel-footer"><div class="input-group"><input id="'
         + lblTxtEnviar + '" type="text" class="form-control input-sm" placeholder="' + lblCampoEntrada + '" /><span class="input-group-btn"><button  class="btn btn-warning btn-sm" id="' + btnEnviar + '">' + lblEnviar + '</button></span></div></div></div></div><li class="left clearfix itemtemplate" style="display:none"><span class="chat-img pull-left"><img src="' + urlImg + '" alt="User Avatar" class="img-circle" id="Foto"/></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" id="Nombre">Nombre</strong><small class="pull-right text-muted"><span class="glyphicon glyphicon-asterisk"></span><span id="Tiempo">12 mins ago</span></small></div> <p id="Contenido">Contenido</p></div></li>');
 
       $("#" + lblTxtEnviar).keyup(function (e) { if (e.keyCode == 13) { EnviarMensaje(); } });
@@ -138,7 +149,7 @@ $.fn.extend({
       $("#" + lblTxtEnviar).val('');
 
     };
-    function UsuarioOnline() {     
+    function UsuarioOnline() {
       ws.send('{"to":"' + Room + '","Nombre":"' + Nombre + '"}');
     }
     function AgregarItem(Obj) {
@@ -168,8 +179,29 @@ $.fn.extend({
     }
 
 
-    CrearEntrada();    
+    CrearEntrada();
     // Fin
 
+
+    $("#minimizar-chat").on('click', function (ev) {
+      ev.preventDefault();
+      if ($(this).hasClass("fa-minus")) {
+        $(".cuerpo-chat").css("display", "none");
+        $("#ElchatlistaOnline").css("display", "none");
+        $("#Elchat").css("top", "90%");
+        $(this).removeClass("fa-minus");
+        $(this).addClass("fa-plus");
+
+      }
+      else {
+        $("#Elchat").css("top", "75%");
+        $(".cuerpo-chat").css("display", "block");
+        $("#ElchatlistaOnline").css("display", "block");
+        $(this).removeClass("fa-plus");
+        $(this).addClass("fa-minus");
+
+      }
+
+    });
   }
 });
