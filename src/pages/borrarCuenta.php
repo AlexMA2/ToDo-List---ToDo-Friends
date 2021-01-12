@@ -2,17 +2,30 @@
 
     session_start();
     require "conexion.php";
-    $id = $_SESSION['user'];
-    if(!empty($id)) {
-        try{        
-            $query = "DELETE FROM `usuarios` WHERE `iduser` = :id";
-            $resultadousuario = $conection->prepare($query);
-            $resultadousuario->bindValue(":id", $id);
-            $resultadousuario->execute();
-            header('Location: ../..');
-        }catch(Exception $ex){
-            
+    
+    $iduser = filter_input(INPUT_POST, 'iduser');
+    if($iduser == -1){
+        eliminarCuenta($_SESSION['user'], $conection);        
+    }   
+    else{
+        eliminarCuenta($iduser, $conection);        
+    }    
+
+    header("location:../..");
+
+    function eliminarCuenta($iduser,$conection){
+        if(!empty($iduser)) {
+            try{        
+                $query = "DELETE FROM `usuarios` WHERE `iduser` = :id";
+                $resultadousuario = $conection->prepare($query);
+                $resultadousuario->bindValue(":id", $iduser);
+                $resultadousuario->execute();
+                
+            }catch(Exception $ex){
+                
+            }
+          
         }
-      
     }
+
 ?>
