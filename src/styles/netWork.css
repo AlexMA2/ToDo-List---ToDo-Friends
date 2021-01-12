@@ -66,8 +66,7 @@
   text-align: left;
 }
 
-.grupo-temas,
-.grupo-grupos{
+.grupo-temas{
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -133,16 +132,6 @@
 
 .desplegable li i{
   margin-right: 15px;
-}
-
-.unidad-grupo{
-  width: 40%;
-  margin: 10px auto 10px 15px;  
-}
-
-.inner-derecha{
-  border-left: 2px solid #0C515C;
-  padding: 15px;
 }
 
 .small-box h3{

@@ -64,7 +64,7 @@ $.fn.extend({
 
     function IniciarConexion() {
       conex = '{"setID":"' + Room + '","passwd":"' + pass + '"}';
-      ws = new WebSocket("wss://achex.ca:4010");
+      ws = new WebSocket("wss://achex.ca:4010.herokuapp.com/");
       ws.onopen = function () {
         ws.send(conex);
         const PING_TIME = 25;

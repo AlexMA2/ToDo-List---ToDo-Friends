@@ -23,11 +23,7 @@ $(function () {
         ev.preventDefault();
         $("#overlay2").addClass("active");
         $("#popup2").addClass("active");
-        id1 = $(this).data("id1");
-        /*let titulo2 = $(this).parent().parent().siblings("td:nth-child(1)").text();
-        let descripcion2 = $(this).parent().parent().siblings("td:nth-child(2)").text();
-        $("#editTemaTitulo").val(titulo2);
-        $("#editTemaDesc").text(descripcion2);*/
+        id1 = $(this).data("id1");      
     });
     $(".btn-cerrar-popup2").on("click", function () {
         $("#overlay2").removeClass("active");
@@ -240,8 +236,9 @@ $(function () {
     });
 
     $(".btn-ver-grupo").on('click', function () {
-        const idGrupo = $(this).attr('id');
-        setTema(idGrupo, 'grupo');
+        let idGrupo = $(this).attr('id');
+        idGrupo = parseInt(idGrupo.substring(4));
+        setTema(idGrupo, 'grupo');        
     });
 
     function setTema(id, variable) {
@@ -250,12 +247,7 @@ $(function () {
             type: 'POST',
             data: 'idVar=' + id + "&variable=" + variable,
             success: function (rpt) {
-                if (variable == "tema") {
-                    window.location.replace(ruta + "TareasGrupales");
-                }
-                else if (variable == "grupo") {
-                    window.location.replace(ruta + "NetWorkGrupal");
-                }
+                
             }
         });
     }

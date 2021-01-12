@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../styles/perfil.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    
+
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
@@ -125,7 +125,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="misequipos"> Mis equipos </a>
+                                <a href="MisEquipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -157,18 +157,18 @@
 
                 <div class="col sm-2">
                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
-                   <div class="info-eliminar-cuenta">
+                    <div class="info-eliminar-cuenta">
                         <h3> ¿Est&aacute;s seguro de querer eliminar t&uacute; cuenta?</h3>
-                        <p> 
-                            No podr&aacute;s volver a recuperar la cuenta y todos los datos 
+                        <p>
+                            No podr&aacute;s volver a recuperar la cuenta y todos los datos
                             se perder&aacute;n.
                         </p>
-                       <div class="row">   
-                            <a href="borrarCuenta.php" class="btn btn-secondary mx-2"> S&iacute;, estoy seguro</a>    
-                            <a href="perfilusuario" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
-                        </div> 
-                       
-                   </div>
+                        <div class="row">
+                            <a href="borrarCuenta.php" class="btn btn-secondary mx-2"> S&iacute;, estoy seguro</a>
+                            <a href="perfilusuario" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -177,53 +177,57 @@
         <div class="content-wrapper">
 
             <div class="content-header">
-                <div class="container">
-                    <div class="row perfil-usuario">
-
-                        <div class="perfil-foto col-6">
-                            <img src="<?php print_r($uFoto)?>" id="foto-userperfil" alt="foto-perfil" class="img-thumbnail img-circle" width="350" height="350">
-                            <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
-                                <input type="button" value="Cambiar foto de perfil" id="sub-subir-foto"
-                                    class="btn btn-primary">                              
-                            </form>
-
-                        </div>
-                        <div class="perfil-datos col-6">
-
-                            <h3> Nombre de usuario: </h3>
-                            <div class="perfil-nombre">
-                                <form action="actualizarDatos.php" method="POST">
-                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre"
-                                        value="<?php print_r($uNombre);?>">
-                                    <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre"
-                                        class="btn btn-primary" value="Cambiar">
+                <div class="container-xl">
+                    <div class="perfil-usuario">
+                        <div class="perfil-usuario-main">
+                            <div class="perfil-foto">
+                                <img src="<?php print_r($uFoto)?>" id="foto-userperfil" alt="foto-perfil"
+                                    class="img-thumbnail img-circle" width="350" height="350">
+                                <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
+                                    <input type="button" value="Cambiar foto de perfil" id="sub-subir-foto"
+                                        class="btn btn-primary">
                                 </form>
+
                             </div>
-                            <h3> Correo Electrónico: </h3>
-                            <div class="perfil-correo">
-                                <form action="actualizarDatos.php" method="POST">
-                                    <input type="email" id="in-perfil-correo" name="perfil-correo"
-                                        value="<?php print_r($uCorreo);?>">
-                                    <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo"
-                                        class="btn btn-primary" value="Cambiar">
-                                </form>
-                            </div>
-                            <h3> Cambiar contraseña: </h3>
-                            <div class="perfil-contra">
-                                <form action="actualizarDatos.php" method="POST">
-                                    <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required
-                                        value="">
-                                    <input type="password" name="perfil-contra-repe"
-                                        placeholder="Confirmar contraseña nueva" required value="">
-                                    <input type="submit" class="btn btn-primary" name="perfil-guardar-contra"
-                                        value="Cambiar Contraseña">
-                                </form>
+                            <div class="perfil-datos">
+
+                                <h3> Nombre de usuario: </h3>
+                                <div class="perfil-nombre">
+                                    <form action="actualizarDatos.php" method="POST">
+                                        <input type="text" id="in-perfil-nombre" name="perfil-nombre"
+                                            value="<?php print_r($uNombre);?>">
+                                        <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre"
+                                            class="btn btn-primary" value="Cambiar">
+                                    </form>
+                                </div>
+                                <h3> Correo Electrónico: </h3>
+                                <div class="perfil-correo">
+                                    <form action="actualizarDatos.php" method="POST">
+                                        <input type="email" id="in-perfil-correo" name="perfil-correo"
+                                            value="<?php print_r($uCorreo);?>">
+                                        <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo"
+                                            class="btn btn-primary" value="Cambiar">
+                                    </form>
+                                </div>
+                                <h3> Cambiar contraseña: </h3>
+                                <div class="perfil-contra">
+                                   
+                                    <form action="actualizarDatos.php" method="POST">
+                                        <input type="password" name="perfil-contra" placeholder="Contraseña nueva"
+                                            required value="">
+                                        <input type="password" name="perfil-contra-repe"
+                                            placeholder="Confirmar contraseña nueva" required value="">
+                                        <input type="submit" class="btn btn-primary" name="perfil-guardar-contra"
+                                            value="Cambiar Contraseña">
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <a href="#" class="btn-eliminar-cuenta"><i class="fa fa-trash"></i> Eliminar cuenta</a>
                     </div>
+
                 </div>
-                
+
             </div>
 
         </div>
@@ -237,7 +241,7 @@
         </footer>
 
     </div>
-    
+
     <script src="../scripts/activadorPopUp.js"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -256,7 +260,7 @@
     <script src="../../dist/js/adminlte.js"></script>
 
     <script src="../../dist/js/demo.js"></script>
-    
+
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script src="../scripts/imagen.js"></script>
 
