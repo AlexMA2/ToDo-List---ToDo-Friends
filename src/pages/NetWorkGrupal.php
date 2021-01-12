@@ -134,7 +134,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="misequipos"> Mis equipos </a>
+                                <a href="MisEquipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -260,7 +260,7 @@
                     </thead>
                     <tbody class="lista-tareas">
                         <tr>
-                            <td><i class="fas fa-crown"></i><?php    print_r($uNombre5); ?></td>
+                            <td><?php    print_r($uNombre5); ?></td>
                             <?php
                             if($_SESSION['user']==$uID5){
 
@@ -299,10 +299,11 @@
                                     ?>
                             <td>
                                 <!-- aqui pongan su wea-->
-                                <i class="fas fa-minus-circle"></i> |
+                                <i class="fas fa-microphone"></i> |
+                                <i class="fas fa-microphone-slash"></i> |
                                 <a style="text-decoration:none" class="btn btn-danger"
                                     href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i
-                                        class="fas fa-trash"></i> </a>
+                                        class="fa fa-trash"></i> </a>
                             </td>
                             <?php                                
                                     }
@@ -320,7 +321,7 @@
                             return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash)
                                 .length - pathName.length));
                         }
-                        window.location.replace(getAbsolutePath() + "misequipos");
+                        window.location.replace(getAbsolutePath() + "MisEquipos");
                         </script>
                         <?php    
                         }
@@ -335,27 +336,34 @@
             ?>
                 <div class="card card-body">
 
-                    <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
+                    ?>
+                    <div class="card card-body">
+
+                        <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
 
 
-                        <p>Añadir integrantes</p>
-                        <div class="form-group">
-                            <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
-                                placeholder="Escriba el correo a añadir">
-                        </div>
-                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
-                            value="Agregar integrante" />
-                        <?php
+                            <p>Añadir integrantes</p>
+                            <div class="form-group">
+                                <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
+                                    placeholder="Escriba el correo a añadir">
+                            </div>
+                            <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
+                                value="Agregar integrante" />
+                            <?php
                     if(empty($_SESSION['mensaje'])){
                     }else{
                         ?>
-                        <h4 class="fs-2"><?php print_r($_SESSION['mensaje']);?></h4>
-                        <?php
+                            <h4 class="fs-2"><?php print_r($_SESSION['mensaje']);?></h4>
+                            <?php
                     }
 
                     ?>
-                    </form>
+                        </form>
 
+                    </div>
+                    <?php                                
+            }
+            ?>
                 </div>
                 <?php                                
             }
@@ -374,7 +382,7 @@
         <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
         Todos los derechos reservados.
         <div class="float-right d-none d-sm-inline-block">
-            <b>Versi&oacute;n</b> 1.0
+            <b>Versi&oacute;n</b> 2.0
         </div>
     </footer>
 

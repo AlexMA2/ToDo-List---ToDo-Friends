@@ -19,7 +19,7 @@ session_start();
         $filas = $resultado->rowCount();
 
         if($filas == 1){
-            header("location: misequipos");
+            header("location: MisEquipos");
 
         }else{
             $_SESSION['mensaje']="";
