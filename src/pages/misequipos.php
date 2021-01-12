@@ -317,7 +317,7 @@
                     <?php }
                         } 
                     ?>
-
+                    <!-- aqui termina mostrar grupos que e añadieron-->
                 </div>
 
             </div>

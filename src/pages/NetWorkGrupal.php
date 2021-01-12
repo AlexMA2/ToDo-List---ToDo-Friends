@@ -354,6 +354,10 @@
 
             </div>
             <?php                                
+            }else{
+            ?>
+            <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i class="fa fa-trash">SALIR</i> </a>
+            <?php
             }
             ?>
         </div>
