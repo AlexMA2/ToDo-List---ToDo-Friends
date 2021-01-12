@@ -29,12 +29,12 @@
 <?php
 require "conexion.php";
 $bienvenido = "BIENVENIDO";
-if(isset($_POST["logearte"])){
+if(!empty(filter_input(INPUT_POST, 'logearte'))){
   try{
     session_start();
     
-    $usuario= htmlentities(addslashes($_POST['user']));
-    $contrasena=htmlentities(addslashes($_POST['pass']));
+    $usuario = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
+    $contrasena = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_SPECIAL_CHARS);
     $contrasena_encriptada = sha1($contrasena);        
 
     $consulta="SELECT * FROM `usuarios` where `correo`= :user and `password`= :pass";
@@ -50,7 +50,8 @@ if(isset($_POST["logearte"])){
     if($filas == 1){      
 
       $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
-      $_SESSION['user']=$rpta['iduser'];  
+      $_SESSION['user'] = $rpta['iduser'];  
+      $_SESSION['nivel'] = $rpta['Nivel'];
       header("location:NetWork");
 
     }else{      
@@ -70,7 +71,7 @@ if(isset($_POST["logearte"])){
 <body>
     <header class="cabecera" style="height: 315px;">
         <div class="home">
-            <a class="logo" href="../../index">
+            <a class="logo" href="../..">
                 <h1> To-Do Friends </h1>
             </a>
         </div>
