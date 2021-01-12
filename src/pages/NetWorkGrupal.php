@@ -271,7 +271,9 @@
                                     <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment"></i></a> |
                                     <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment-slash"></i></a>
                                 </div>
-                                    <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
+                                <div class="float-right">
+                                    <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
+                                </div>
                                 </td>
                                 <?php                                
                                 }
@@ -303,8 +305,10 @@
                                         <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment"></i></a> |
                                         <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment-slash"></i></a>
                                     </div>
-                                        <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
-                                </td>
+                                    <div class="float-right">
+                                        <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i class="fas fa-user-times"></i> </a> 
+                                    </div>    
+                                    </td>
                                 <?php                                
                                     }
                                 ?>
