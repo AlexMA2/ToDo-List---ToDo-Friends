@@ -109,62 +109,7 @@
                 </div>
 
                 <nav class="mt-2">
-                    <!--
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Tablero
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                                
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Mis Equipos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="../../index" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>
-                                    Salir
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                    -->
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
@@ -187,7 +132,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="MisEquipos"> Mis equipos </a>
+                                <a href="misequipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -202,6 +147,20 @@
 
                             </ul>
                         </li>
+                        <?php
+                            if($_SESSION['nivel'] == 1){
+                            ?>
+                            <li class="nav-li">
+                                <div class="nav-arbol-hoja">
+                                    <i class="fas fa-users-cog"></i>
+                                    <a href="panelAdmin"> Administrador </a>                                    
+                                </div>                               
+                            </li>
+                            <?php
+                            }              
+                                   
+                        ?>                       
+                        
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -209,6 +168,7 @@
 
                             </div>
                         </li>
+                        
                     </ul>
                 </nav>
             </div>
@@ -261,38 +221,9 @@
                                 <li class="breadcrumb-item active"> Tema </li>
                             </ol>
                         </div>
-                        <!--Botón de editar Temas-->
-                        <div class="overlay " id="overlay2">
-                            <div class="popup " id="popup2">
 
-                                <div class="col sm-4">
-                                    <a href="#" class=" btn-cerrar-popup2"><i class="far fa-times-circle"></i></a>
-                                    <div class="row">
-                                        <div class="card card-body col-12">
 
-                                            <form action="#" method="POST" id="formEditarTema">
-                                                <div class="form-group">
-                                                    <input type="text" name="Titulo4" maxlength="16" minlength="4"
-                                                        class=" form-control" id="editTemaTitulo"
-                                                        placeholder="Nuevo Título">
-                                                </div>
-                                                <div class="form-group">
-                                                    <textarea name="Descripcion4" maxlength="32" rows="4"
-                                                        class="form-control" id="editTemaDesc"
-                                                        placeholder="Nueva Descripcion"></textarea>
-                                                </div>
-                                                <input type="button"
-                                                    class="btn btn-config btn-editar-tema btn-light btn-block"
-                                                    name="EditarTema" value="Editar Tema" />
 
-                                            </form>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="grupo-temas">
@@ -305,15 +236,7 @@
                     <div class="unidad-tema">
                         <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDTEMA"]);?>">
                             <div class="inner">
-                                <div class="popup-boton row">
-                                    <h3><?php print_r($row['Titulo']); ?></h3>
-                                    <a href="#" id="<?php print_r($row ["IDTEMA"]);?>"
-                                        class="btn-eliminar-tema btn btn-secondary col-2"><i class="fa fa-trash"
-                                            aria-hidden="true"></i></a>
-                                    <a href="#" data-id1="<?php print_r($row['IDTEMA']);?>"
-                                        class="btn-opcion2 btn btn-secondary col-2"><i
-                                            class="fas fa-pencil-alt"></i></a>
-                                </div>
+                                <h3><?php print_r($row['Titulo']); ?></h3>
 
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
@@ -334,7 +257,7 @@
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
+                <b>Versi&oacute;n</b> 1.0
             </div>
         </footer>
 

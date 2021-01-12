@@ -1,7 +1,7 @@
 <?php
     session_start();       
     require "conexion.php";    
-    if(empty($_SESSION['user'])){
+    if(empty($_SESSION['user']) || $_SESSION['nivel'] != 1){
         header("location:../..");
     }
      else{
@@ -33,7 +33,8 @@
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../styles/perfil.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/panelAdmin.css">
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -152,7 +153,8 @@
                             <?php
                             }              
                                    
-                        ?>  
+                        ?> 
+
 
                         <li>
                             <div class="nav-arbol-hoja">
@@ -161,6 +163,7 @@
 
                             </div>
                         </li>
+                        
                     </ul>
                 </nav>
             </div>
@@ -172,14 +175,14 @@
                 <div class="col sm-2">
                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                    <div class="info-eliminar-cuenta">
-                        <h3> ¿Est&aacute;s seguro de querer eliminar t&uacute; cuenta?</h3>
+                        <h3> ¿Est&aacute;s seguro sobre eliminar esta cuenta?</h3>
                         <p> 
-                            No podr&aacute;s volver a recuperar la cuenta y todos los datos 
+                            No se podr&aacute; volver a recuperar la cuenta y todos sus datos 
                             se perder&aacute;n.
                         </p>
                        <div class="row">   
-                            <a href="#" class="btn btn-secondary mx-2 confirmar-eliminar-micuenta"> S&iacute;, estoy seguro</a>    
-                            <a href="perfilusuario" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
+                            <a href="#" class="btn btn-secondary mx-2 confirmar-eliminar-cuenta"> S&iacute;, estoy seguro</a>    
+                            <a href="panelAdmin" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
                         </div> 
                        
                    </div>
@@ -189,55 +192,53 @@
         </div>
 
         <div class="content-wrapper">
-
             <div class="content-header">
-                <div class="container">
-                    <div class="row perfil-usuario">
-
-                        <div class="perfil-foto col-6">
-                            <img src="<?php print_r($uFoto)?>" id="foto-userperfil" alt="foto-perfil" class="img-thumbnail img-circle" width="350" height="350">
-                            <form action="actualizarDatos.php" method="POST" enctype="multipart/form-data">
-                                <input type="button" value="Cambiar foto de perfil" id="sub-subir-foto"
-                                    class="btn btn-primary">                              
-                            </form>
-
+                <div class="container-fluid row">
+                    <div class="panel-usuarios col-6">
+                        <h2 class="text-center"> Lista de Usuarios </h2>
+                        <div class="lista-usuarios">
+                            <table class="table table-bordered mis-tareas" class="display" id="mitabla">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width: 10%;" class="text-center"> ID </th>
+                                        <th style="width: 15%;" class="text-center"> Foto </th>
+                                        <th style="width: 25%;" class="text-center"> Nombre de Usuario </th>
+                                        <th style="width: 25%;" class="text-center"> Correo </th>
+                                        <th class="text-center"> Acciones </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tabla-usuarios">
+                                    <?php                                           
+                                       
+                                        $query = "SELECT * FROM usuarios";
+                                        $resultado = $conection->query($query);                
+                                        $resultado->execute();
+                                        while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
+                                            if($row['iduser'] != $_SESSION['user']){
+                                                ?>
+                                                <tr id="<?php print_r($row['iduser']); ?>">
+                                                    <td class="text-center"><?php print_r($row['iduser']); ?></td>
+                                                    <td class="text-center"><img src="<?php print_r($row['Foto']); ?>" alt="user-img" width="50" height="50"></td>
+                                                    <td><?php print_r($row['username']); ?></td>
+                                                    <td><?php print_r($row['correo']); ?></td>
+                                                    <td class="text-center user-opciones">
+                                                        <a href="#" class="btn-eliminar-cuenta"><i class="fas fa-ban mx-2"></i></a>
+                                                        <a href="#" class="btn-ver-historial"><i class="fas fa-history mx-2"></i></a>                                                        
+                                                    </td>
+                                                </tr>
+                                                <?php 
+                                            }
+                                        
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="perfil-datos col-6">
-
-                            <h3> Nombre de usuario: </h3>
-                            <div class="perfil-nombre">
-                                <form action="actualizarDatos.php" method="POST">
-                                    <input type="text" id="in-perfil-nombre" name="perfil-nombre"
-                                        value="<?php print_r($uNombre);?>">
-                                    <input type="submit" id="btn-perfil-nombre" name="perfil-guardar-nombre"
-                                        class="btn btn-primary" value="Cambiar">
-                                </form>
-                            </div>
-                            <h3> Correo Electrónico: </h3>
-                            <div class="perfil-correo">
-                                <form action="actualizarDatos.php" method="POST">
-                                    <input type="email" id="in-perfil-correo" name="perfil-correo"
-                                        value="<?php print_r($uCorreo);?>">
-                                    <input type="submit" id="btn-perfil-correo" name="perfil-guardar-correo"
-                                        class="btn btn-primary" value="Cambiar">
-                                </form>
-                            </div>
-                            <h3> Cambiar contraseña: </h3>
-                            <div class="perfil-contra">
-                                <form action="actualizarDatos.php" method="POST">
-                                    <input type="password" name="perfil-contra" placeholder="Contraseña nueva" required
-                                        value="">
-                                    <input type="password" name="perfil-contra-repe"
-                                        placeholder="Confirmar contraseña nueva" required value="">
-                                    <input type="submit" class="btn btn-primary" name="perfil-guardar-contra"
-                                        value="Cambiar Contraseña">
-                                </form>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-eliminar-micuenta"><i class="fa fa-trash"></i> Eliminar cuenta</a>
+                    </div>
+                    <div class="panel-grupos col-6">
+                        <h2 class="text-center"> Lista de Grupos </h2>
                     </div>
                 </div>
-                
             </div>
 
         </div>
@@ -246,12 +247,12 @@
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
+                <b>Versi&oacute;n</b> 1.0
             </div>
         </footer>
 
     </div>
-    
+
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="../scripts/perfil.js"></script>
     <script>
@@ -271,7 +272,7 @@
     <script src="../../dist/js/adminlte.js"></script>
 
     <script src="../../dist/js/demo.js"></script>
-    
+
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script src="../scripts/imagen.js"></script>
 
