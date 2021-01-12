@@ -71,7 +71,7 @@
 
                             $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
                             $_SESSION['user']=$rpta['iduser']; 
-                           
+                            $_SESSION['nivel'] = $rpta['Nivel'];
                             header("location:NetWork");
                         } 
                         else{
