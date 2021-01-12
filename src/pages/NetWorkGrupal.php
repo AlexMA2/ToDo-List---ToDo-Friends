@@ -134,7 +134,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="misequipos"> Mis equipos </a>
+                                <a href="MisEquipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -316,7 +316,7 @@
                                 var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
                                 return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
                             }
-                            window.location.replace(getAbsolutePath() + "misequipos");
+                            window.location.replace(getAbsolutePath() + "MisEquipos");
                         </script>
                         <?php    
                         }
