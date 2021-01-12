@@ -13,6 +13,7 @@
     $resultado_tema->bindValue(":id", $_SESSION['grupo']);
     $resultado_tema->execute();
     list ($gID, $gNombre, $gDesc, $gDueno) = getInfoSobreGrupo($_SESSION['grupo']);
+    list($uID5, $uNombre5, $uCorreo5, $uFoto5)= getInfoSobre($gDueno);
 
 ?>
 <!DOCTYPE html>
@@ -251,6 +252,17 @@
                     </tr>
                 </thead>
                 <tbody class="lista-tareas">
+                <tr>
+                            <td><?php    print_r($uNombre5); ?></td>
+
+                            <td>
+                                <!-- aqui pongan su wea-->
+                                <i class="fas fa-minus-circle"></i> | 
+                                <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-trash"></i> </a> 
+                                </td>   
+                </tr>                                     
+                                                     
+                                                 
                     <?php
                                            
                         if($_SESSION['grupo'] != 0){
