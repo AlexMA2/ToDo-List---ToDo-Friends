@@ -142,6 +142,39 @@ $(function () {
 
     });
 
+    $("#r1").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=1&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+    $("#r2").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=2&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+    $("#r3").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=3&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
     $(".desplegador").on("click", function () {
         let valor = $(this).parent().siblings(".desplegable").css("display");
         if (valor === "block") {
