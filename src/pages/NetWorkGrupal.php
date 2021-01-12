@@ -260,7 +260,7 @@
                     </thead>
                     <tbody class="lista-tareas">
                         <tr>
-                            <td><?php    print_r($uNombre5); ?></td>
+                            <td><i class="fas fa-crown"></i><?php    print_r($uNombre5); ?></td>
                             <?php
                             if($_SESSION['user']==$uID5){
 
@@ -336,34 +336,27 @@
             ?>
                 <div class="card card-body">
 
-                    ?>
-                    <div class="card card-body">
-
-                        <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
+                    <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
 
 
-                            <p>Añadir integrantes</p>
-                            <div class="form-group">
-                                <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
-                                    placeholder="Escriba el correo a añadir">
-                            </div>
-                            <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
-                                value="Agregar integrante" />
-                            <?php
+                        <p>Añadir integrantes</p>
+                        <div class="form-group">
+                            <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
+                                placeholder="Escriba el correo a añadir">
+                        </div>
+                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
+                            value="Agregar integrante" />
+                        <?php
                     if(empty($_SESSION['mensaje'])){
                     }else{
                         ?>
-                            <h4 class="fs-2"><?php print_r($_SESSION['mensaje']);?></h4>
-                            <?php
+                        <h4 class="fs-2"><?php print_r($_SESSION['mensaje']);?></h4>
+                        <?php
                     }
 
                     ?>
-                        </form>
+                    </form>
 
-                    </div>
-                    <?php                                
-            }
-            ?>
                 </div>
                 <?php                                
             }
