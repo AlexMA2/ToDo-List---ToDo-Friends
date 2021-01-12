@@ -359,6 +359,10 @@
 
                 </div>
                 <?php                                
+            }else{?>
+                <a style="text-decoration:none" class="btn btn-danger"
+                                    href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i class="fas fa-sign-out-alt"></i>Salir de grupo </a>
+            <?php
             }
             ?>
             </div>
