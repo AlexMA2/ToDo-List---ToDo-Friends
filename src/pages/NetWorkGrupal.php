@@ -271,9 +271,7 @@
                                     <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment"></i></a> |
                                     <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment-slash"></i></a>
                                 </div>
-                                <div class="float-right">
                                     <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
-                                </div>
                                 </td>
                                 <?php                                
                                 }
@@ -305,9 +303,7 @@
                                         <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment"></i></a> |
                                         <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment-slash"></i></a>
                                     </div>
-                                    <div class="float-right">
                                         <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
-                                    </div> 
                                 </td>
                                 <?php                                
                                     }
