@@ -238,7 +238,7 @@ $(function () {
     $(".btn-ver-grupo").on('click', function () {
         let idGrupo = $(this).attr('id');
         idGrupo = parseInt(idGrupo.substring(4));
-        setTema(idGrupo, 'grupo');        
+        setTema(idGrupo, 'grupo');
     });
 
     function setTema(id, variable) {

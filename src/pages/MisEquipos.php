@@ -254,13 +254,13 @@
                             <a href="NetWorkGrupal" id="ver-<?php print_r($row["IDGRUPO"]);?>"
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
-                            </a>    
+                            </a>
                             <a href="#" id="edi-<?php print_r($row["IDGRUPO"]);?>"
                                 class="small-box-footer btn-editar-grupo"> Editar equipo
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         </div>
-                        
+
                     </div>
 
                     <?php 
@@ -283,41 +283,41 @@
                             while($row2 = $resultado_grupos->fetch(PDO::FETCH_ASSOC)) {
                         ?>
 
-                        <div class="unidad-grupo">
-                            <div class="small-box bg-info miTema">
-                                <div class="titulo-grupo">
-                                    <i class="fas fa-users"></i>
-                                    <h3><?php print_r($row2['Nombre']); ?></h3>
-                                </div>
+                    <div class="unidad-grupo">
+                        <div class="small-box bg-info miTema">
+                            <div class="titulo-grupo">
+                                <i class="fas fa-users"></i>
+                                <h3><?php print_r($row2['Nombre']); ?></h3>
+                            </div>
 
-                                <div class="inner row">
-                                    <div class="inner-izquierda col-7">
-                                        <p><?php print_r($row2['Descripcion']); ?></p>
-                                    </div>
-                                    <div class="inner-derecha col-5">
-                                        <p>Dueño: <span><?php if($_SESSION['user'] == $row2['Dueno']){
+                            <div class="inner row">
+                                <div class="inner-izquierda col-7">
+                                    <p><?php print_r($row2['Descripcion']); ?></p>
+                                </div>
+                                <div class="inner-derecha col-5">
+                                    <p>Dueño: <span><?php if($_SESSION['user'] == $row2['Dueno']){
                                             print_r("Tú");
                                         }
                                         else{
-                                            print_r(getInfoSobre($row2['Dueno'])[1]);         
+                                            print_r(getInfoSobre($row2['Dueno'])[1]);
                                         } ?></span></p>
-                                        <p>Temas: <span><?php print_r($row2['Temas']); ?></span> </p>
-                                        <p>Tareas: <span><?php print_r($row2['Tareas']); ?></span> </p>
-                                        <p>Miembros: <span><?php print_r($row2['Miembros']); ?> </span></p>
-                                        <p>Creado el: <span><?php print_r($row2['Creacion']); ?></span> </p>
-                                    </div>
-
+                                    <p>Temas: <span><?php print_r($row2['Temas']); ?></span> </p>
+                                    <p>Tareas: <span><?php print_r($row2['Tareas']); ?></span> </p>
+                                    <p>Miembros: <span><?php print_r($row2['Miembros']); ?> </span></p>
+                                    <p>Creado el: <span><?php print_r($row2['Creacion']); ?></span> </p>
                                 </div>
-                            </div>
 
-                            <a href="NetWorkGrupal" id="<?php print_r($row2["IDGRUPO"]);?>"
-                                class="small-box-footer btn-ver-grupo"> Ver equipo
-                                <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
+
+                        <a href="NetWorkGrupal" id="ver-<?php print_r($row2["IDGRUPO"]);?>"
+                            class="small-box-footer btn-ver-grupo"> Ver equipo
+                            <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
                     <?php }
                         } 
                     ?>
-
+                    <!-- aqui termina mostrar grupos que e añadieron-->
                 </div>
 
             </div>
@@ -358,8 +358,7 @@
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script>
-    /*
-    var laid = "tema";
+    /*var laid = "tema";
     $(".miTema").on("click", function() {
         laid = $(this).attr("id");
 
