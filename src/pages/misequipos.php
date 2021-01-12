@@ -12,9 +12,15 @@
     $resultado_misgrupos = $conection->prepare($query);
     $resultado_misgrupos->bindValue(":id", $_SESSION['user']);
     $resultado_misgrupos->execute();
+
+    $query2 = "SELECT * FROM otro_grupos WHERE FKusuario = :id2";
+    $resultado_misgrupos2 = $conection->prepare($query2);
+    $resultado_misgrupos2->bindValue(":id2", $_SESSION['user']);
+    $resultado_misgrupos2->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +45,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
@@ -48,7 +55,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -167,15 +175,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li class="text-wrap"> 
+                                <li class="text-wrap">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
+                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -185,15 +193,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li>
@@ -223,14 +231,16 @@
                                         <form action="crearGrupo.php" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo4" maxlength="128" minlength="4" required
-                                                    class=" form-control" id="inTemaTitulo" placeholder="Nombre del grupo">
+                                                    class=" form-control" id="inTemaTitulo"
+                                                    placeholder="Nombre del grupo">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion4" maxlength="256" rows="4"
-                                                 class="form-control" id="inTemaDesc" value="Descripcion" placeholder="Descripcion"></textarea>
-                                                
+                                                    class="form-control" id="inTemaDesc" value="Descripcion"
+                                                    placeholder="Descripcion"></textarea>
+
                                             </div>
-                                           
+
                                             <input type="submit" class="btn btn-config btn-light btn-block"
                                                 name="CrearGrupo" value="Crear grupo" />
 
@@ -244,10 +254,10 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
-                            <h1 class="m-0 text-dark">  Mis Equipos </h1>
-                            <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
+                            <h1 class="m-0 text-dark"> Mis Equipos </h1>
+                            <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount() + $resultado_misgrupos2->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
-                            
+
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
@@ -285,12 +295,13 @@
                                     <p>Tareas: <?php print_r($row['Tareas']); ?> </p>
                                     <p>Miembros: <?php print_r($row['Miembros']); ?> </p>
                                     <p>Creado el: <?php print_r($row['Creacion']); ?> </p>
-                                </div>                               
-                                
-                            </div>
-                            
+                                </div>
 
-                            <a href="NetWorkGrupal" id="<?php print_r($row["IDGRUPO"]);?>" class="small-box-footer btn-ver-grupo"> Ver grupo
+                            </div>
+
+
+                            <a href="NetWorkGrupal" id="<?php print_r($row["IDGRUPO"]);?>"
+                                class="small-box-footer btn-ver-grupo"> Ver grupo
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -329,17 +340,20 @@
                                     <p><?php print_r($row2['Descripcion']); ?></p>
                                 </div>
                                 <div class="inner-derecha col-4">
-                                    <p>autor: <?php print_r($rpta['FKusuario']); ?></p>
+                                    <p>Autor: <?php list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($row2['Dueno']);
+                                                print_r($uNombre);
+                                                ?></p>
                                     <p>Temas: <?php print_r($row2['Temas']); ?> </p>
                                     <p>Tareas: <?php print_r($row2['Tareas']); ?> </p>
                                     <p>Miembros: <?php print_r($row2['Miembros']); ?> </p>
                                     <p>Creado el: <?php print_r($row2['Creacion']); ?> </p>
-                                </div>                               
-                                
-                            </div>
-                            
+                                </div>
 
-                            <a href="NetWorkGrupal" id="<?php print_r($row2["IDGRUPO"]);?>" class="small-box-footer btn-ver-grupo"> Ver grupo
+                            </div>
+
+
+                            <a href="NetWorkGrupal" id="<?php print_r($row2["IDGRUPO"]);?>"
+                                class="small-box-footer btn-ver-grupo"> Ver grupo
                                 <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -365,7 +379,7 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
 
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-                             
+
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -442,4 +456,5 @@
     });
     </script>
 </body>
+
 </html>

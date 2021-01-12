@@ -111,7 +111,7 @@
                 </div>
 
                 <nav class="mt-2">
-                   
+
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
@@ -242,28 +242,43 @@
 
             </div>
             <!-- aqui comienza añadir integrante -->
-        <div class="card card-body col-4">
-            <table class="table table-bordered " class="display" id="mitabla">
-            <h4> Intregantes</h4>
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Nombre de usuario</th>
-                        <th>Accion</th>
-                    </tr>
-                </thead>
-                <tbody class="lista-tareas">
-                <tr>
-                            <td><?php    print_r($uNombre5); ?></td>
+            <div class="card card-body col-4">
+                <table class="table table-bordered " class="display" id="mitabla">
+                    <h4> Intregantes</h4>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre de usuario</th>
+                            <?php
+                            if($_SESSION['user']==$uID5){
 
+                        ?>
+                            <th>Accion</th>
+                            <?php                                
+                        }
+                        ?>
+                        </tr>
+                    </thead>
+                    <tbody class="lista-tareas">
+                        <tr>
+                            <td><i class="fas fa-crown"></i><?php    print_r($uNombre5); ?></td>
+                            <?php
+                            if($_SESSION['user']==$uID5){
+
+                            ?>
                             <td>
                                 <!-- aqui pongan su wea-->
-                                <i class="fas fa-minus-circle"></i> | 
-                                <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-trash"></i> </a> 
-                                </td>   
-                </tr>                                     
-                                                     
-                                                 
-                    <?php
+                                <i class="fas fa-minus-circle"></i> |
+                                <a style="text-decoration:none" class="btn btn-danger"
+                                    href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i
+                                        class="fas fa-trash"></i> </a>
+                            </td>
+                            <?php                                
+                                }
+                                ?>
+                        </tr>
+
+
+                        <?php
                                            
                         if($_SESSION['grupo'] != 0){
                             $query = "SELECT * FROM otro_grupos WHERE FKgrupo = :grupo";
@@ -276,66 +291,82 @@
                                 $_SESSION['userDelete']=$uID2;
                                 ?>
 
-                                <tr class="item-tarea">
-                                    <td><?php print_r($uNombre2); ?></td>
+                        <tr class="item-tarea">
+                            <td><?php print_r($uNombre2); ?></td>
+                            <?php
+                                    if($_SESSION['user']==$uID5){
 
-                                    <td>
-                                    <!-- aqui pongan su wea-->
-                                    <i class="fas fa-minus-circle"></i> | 
-                                    <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i class="fas fa-trash"></i> </a> 
-                                    </td>
-                                </tr>
-                            <?php 
+                                    ?>
+                            <td>
+                                <!-- aqui pongan su wea-->
+                                <i class="fas fa-minus-circle"></i> |
+                                <a style="text-decoration:none" class="btn btn-danger"
+                                    href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i
+                                        class="fas fa-trash"></i> </a>
+                            </td>
+                            <?php                                
+                                    }
+                                    ?>
+                        </tr>
+                        <?php 
                             }
                         }
                         else{
                         ?>
                         <script>
-                            function getAbsolutePath() {
-                                var loc = window.location;
-                                var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-                                return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-                            }
-                            window.location.replace(getAbsolutePath() + "misequipos");
+                        function getAbsolutePath() {
+                            var loc = window.location;
+                            var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+                            return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash)
+                                .length - pathName.length));
+                        }
+                        window.location.replace(getAbsolutePath() + "misequipos");
                         </script>
                         <?php    
                         }
                     ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-            <br>
-            <div class="card card-body">
+                <br>
+                <?php
+            if($_SESSION['user']==$uID5){
 
-                <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
+            ?>
+                <div class="card card-body">
+
+                    <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
 
 
-                    <p>Añadir integrantes</p>
-                    <div class="form-group">
-                        <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
-                            placeholder="Escriba el correo a añadir">
-                    </div>
-                    <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
-                        value="Agregar integrante" />
-                    <?php
+                        <p>Añadir integrantes</p>
+                        <div class="form-group">
+                            <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
+                                placeholder="Escriba el correo a añadir">
+                        </div>
+                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
+                            value="Agregar integrante" />
+                        <?php
                     if(empty($_SESSION['mensaje'])){
                     }else{
                         ?>
                         <h4 class="fs-2"><?php print_r($_SESSION['mensaje']);?></h4>
-                    <?php
+                        <?php
                     }
 
                     ?>
-                </form>
+                    </form>
 
+                </div>
+                <?php                                
+            }
+            ?>
             </div>
-        </div>
-        <!-- aqui termina añadir contactos-->
+            <!-- aqui termina añadir contactos-->
             <div id="Elchat"></div>
         </div>
-       
+
     </div>
-    
+
 
 
 
