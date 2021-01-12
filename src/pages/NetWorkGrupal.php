@@ -267,12 +267,13 @@
                             ?>
                             <td>
                                 <!-- aqui pongan su wea-->
-                                <i class="fas fa-minus-circle"></i> |
-                                <a style="text-decoration:none" class="btn btn-danger"
-                                    href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i
-                                        class="fas fa-trash"></i> </a>
-                            </td>
-                            <?php                                
+                                <div class="float-left">
+                                    <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment"></i></a> |
+                                    <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment-slash"></i></a>
+                                </div>
+                                    <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
+                                </td>
+                                <?php                                
                                 }
                                 ?>
                         </tr>
@@ -295,19 +296,18 @@
                             <td><?php print_r($uNombre2); ?></td>
                             <?php
                                     if($_SESSION['user']==$uID5){
-
-                                    ?>
-                            <td>
-                                <!-- aqui pongan su wea-->
-                                <i class="fas fa-microphone"></i> |
-                                <i class="fas fa-microphone-slash"></i> |
-                                <a style="text-decoration:none" class="btn btn-danger"
-                                    href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i
-                                        class="fa fa-trash"></i> </a>
-                            </td>
-                            <?php                                
+                            ?>
+                                <td>
+                                    <!-- aqui pongan su wea-->
+                                    <div class="float-left">
+                                        <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment"></i></a> |
+                                        <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i class="fas fa-comment-slash"></i></a>
+                                    </div>
+                                        <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-user-times"></i> </a> 
+                                </td>
+                                <?php                                
                                     }
-                                    ?>
+                                ?>
                         </tr>
                         <?php 
                             }
