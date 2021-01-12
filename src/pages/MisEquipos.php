@@ -358,6 +358,7 @@
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script>
+    /*
     var laid = "tema";
     $(".miTema").on("click", function() {
         laid = $(this).attr("id");
@@ -411,7 +412,7 @@
         console.log(color);
         var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
         $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });
+    });*/
     </script>
 </body>
 
