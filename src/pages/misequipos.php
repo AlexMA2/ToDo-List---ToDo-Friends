@@ -130,7 +130,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="MisEquipos"> Mis equipos </a>
+                                <a href="misequipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -247,7 +247,7 @@
                             </div>
                         </div>
                         <div class="botones-grupo">
-                            <a href="NetWorkGrupal" id="del-<?php print_r($row["IDGRUPO"]);?>"
+                            <a href="#" id="del-<?php print_r($row["IDGRUPO"]);?>"
                                 class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -255,7 +255,7 @@
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>    
-                            <a href="NetWorkGrupal" id="edi-<?php print_r($row["IDGRUPO"]);?>"
+                            <a href="#" id="edi-<?php print_r($row["IDGRUPO"]);?>"
                                 class="small-box-footer btn-editar-grupo"> Editar equipo
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
@@ -328,7 +328,7 @@
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 1.0
+                <b>Versi&oacute;n</b> 2.0
             </div>
         </footer>
 

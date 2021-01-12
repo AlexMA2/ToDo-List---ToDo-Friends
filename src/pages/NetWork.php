@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     session_start();    
     if(isset($_SESSION['grupo'])){      
        unset($_SESSION['grupo']);
@@ -334,7 +334,7 @@
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 1.0
+                <b>Versi&oacute;n</b> 2.0
             </div>
         </footer>
 
