@@ -257,8 +257,9 @@
 
                             <td>
                                 <!-- aqui pongan su wea-->
-                                <i class="fas fa-minus-circle"></i> | 
-                                <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-trash"></i> </a> 
+                                <i class="fas fa-microphone"></i> |
+                                <i class="fas fa-microphone-slash"></i> |
+                                <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fa fa-trash"></i> </a> 
                                 </td>   
                 </tr>                                     
                                                      
@@ -281,8 +282,9 @@
 
                                     <td>
                                     <!-- aqui pongan su wea-->
-                                    <i class="fas fa-minus-circle"></i> | 
-                                    <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i class="fas fa-trash"></i> </a> 
+                                    <i class="fas fa-microphone"></i> |
+                                    <i class="fas fa-microphone-slash"></i> | 
+                                    <a style="text-decoration:none" class="btn btn-danger" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i class="fa fa-trash"></i> </a> 
                                     </td>
                                 </tr>
                             <?php 
