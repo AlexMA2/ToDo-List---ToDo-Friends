@@ -309,10 +309,20 @@
 
                             </div>
                         </div>
-
-                        <a href="NetWorkGrupal" id="ver-<?php print_r($row2["IDGRUPO"]);?>"
-                            class="small-box-footer btn-ver-grupo"> Ver equipo
-                            <i class="fas fa-arrow-circle-right"></i></a>
+                        <div class="botones-grupo">
+                            <a href="#" id="del-<?php print_r($row2["IDGRUPO"]);?>"
+                                class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="NetWorkGrupal" id="ver-<?php print_r($row2["IDGRUPO"]);?>"
+                                class="small-box-footer btn-ver-grupo"> Ver equipo
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                            <a href="#" id="edi-<?php print_r($row2["IDGRUPO"]);?>"
+                                class="small-box-footer btn-editar-grupo"> Editar equipo
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        </div>                       
                     </div>
                     <?php }
                         } 
