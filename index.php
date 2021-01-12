@@ -79,7 +79,7 @@
 
                 </p>
                 <p class="parrafo">
-                   Rellenar con mas info :v
+                Guarda tus cosas en tu teléfono, tablet y ordenador. Todo lo que añadas se sincronizará en todos tus dispositivos para que lo tengas siempre a tu disposición.
                 </p>
             </div>
         </section>
