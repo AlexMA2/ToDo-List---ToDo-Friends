@@ -18,19 +18,6 @@ $(function () {
         $("#popup").removeClass("active");
     });
 
-    
-    $(".btn-opcion2").on("click", function (ev) {
-        ev.preventDefault();
-        $("#overlay2").addClass("active");
-        $("#popup2").addClass("active");
-        id1 = $(this).data("id1");      
-    });
-    $(".btn-cerrar-popup2").on("click", function () {
-        $("#overlay2").removeClass("active");
-        $("#popup2").removeClass("active");
-    });
-
-
     function getAbsolutePath() {       
         var loc = window.location;
         var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
@@ -57,25 +44,6 @@ $(function () {
         }
     });
 
-
-    $(".btn-editar-tema").on("click", function () {
-        if (id1 !== undefined) {
-            let editTemaTitulo = $("#editTemaTitulo").val();
-            let editTemaDesc = $("#editTemaDesc").val();
-            console.log(id1 + " xdxdxd ");
-            $.ajax({
-                url: 'editarTema.php',
-                type: 'POST',
-                data: "IDTEMA=" + id1 + "&Titulo4=" + editTemaTitulo + "&Descripcion4=" + editTemaDesc,
-                success: function (rpt) {
-                    window.location.replace(ruta + "NetWork");
-                }
-            });
-        }
-    });
-
-    
-
     $(".btn-eliminar").on("click", function () {
         if (id !== undefined) {
             $.ajax({
@@ -89,22 +57,6 @@ $(function () {
         }
 
     });
-
-    $(".btn-eliminar-tema").on("click", function () {
-        let id = $(this).attr("id");
-        if (id !== undefined) {
-            $.ajax({
-                url: 'eliminarTema.php',
-                type: 'POST',
-                data: 'IDTEMA=' + id,
-                success: function (rpt) {
-                    window.location.replace(ruta + "NetWork");
-                }
-            });
-        }
-
-    });
-
 
     $(".btn-archivar").on("click", function () {
         if (id !== undefined) {
@@ -136,39 +88,6 @@ $(function () {
             }
         });
 
-    });
-
-    $("#r1").on("click", function() {
-        $.ajax({
-            url: 'estadoTarea.php',
-            type: 'POST',
-            data: "valor=1&idTarea=" + id,
-            success: function (rpt) {
-                console.log(rpt);
-            }
-        });      
-    });
-
-    $("#r2").on("click", function() {
-        $.ajax({
-            url: 'estadoTarea.php',
-            type: 'POST',
-            data: "valor=2&idTarea=" + id,
-            success: function (rpt) {
-                console.log(rpt);
-            }
-        });      
-    });
-
-    $("#r3").on("click", function() {
-        $.ajax({
-            url: 'estadoTarea.php',
-            type: 'POST',
-            data: "valor=3&idTarea=" + id,
-            success: function (rpt) {
-                console.log(rpt);
-            }
-        });      
     });
 
     $(".desplegador").on("click", function () {
@@ -236,8 +155,7 @@ $(function () {
     });
 
     $(".btn-ver-grupo").on('click', function () {
-        let idGrupo = $(this).attr('id');
-        idGrupo = parseInt(idGrupo.substring(4));
+        const idGrupo = $(this).attr('id');
         setTema(idGrupo, 'grupo');
     });
 
@@ -247,7 +165,12 @@ $(function () {
             type: 'POST',
             data: 'idVar=' + id + "&variable=" + variable,
             success: function (rpt) {
-                
+                if (variable == "tema") {
+                    window.location.replace(ruta + "TareasGrupales");
+                }
+                else if (variable == "grupo") {
+                    window.location.replace(ruta + "NetWorkGrupal");
+                }
             }
         });
     }

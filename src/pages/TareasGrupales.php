@@ -56,6 +56,20 @@
                 </li>
             </ul>
 
+            <!--
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
+                        aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            -->
+
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
@@ -89,7 +103,62 @@
                 </div>
 
                 <nav class="mt-2">
-                   
+                    <!--
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Tablero
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                                
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="tareas.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p> - </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="horarios.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p> - </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="guardado.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p> - </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                                <p>
+                                    Mis Equipos
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="../../index" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>
+                                    Salir
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                    -->
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
@@ -112,7 +181,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="MisEquipos"> Mis equipos </a>
+                                <a href="misequipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -127,6 +196,19 @@
                                
                             </ul>
                         </li>
+                        <?php
+                            if($_SESSION['nivel'] == 1){
+                            ?>
+                            <li class="nav-li">
+                                <div class="nav-arbol-hoja">
+                                    <i class="fas fa-users-cog"></i>
+                                    <a href="panelAdmin"> Administrador </a>                                    
+                                </div>                               
+                            </li>
+                            <?php
+                            }              
+                                   
+                        ?>  
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -259,13 +341,8 @@
                                             else{
                                                 ?>
                                                 <script>
-                                                    function getAbsolutePath() {
-                                                        var loc = window.location;
-                                                        var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-                                                        return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-                                                    }
-                                                    window.location.replace(getAbsolutePath() + "MisEquipos");
-                                                </script>                                             
+                                                    window.location.replace("http://localhost/ToDo-List---ToDo-Friends/src/pages/NetWork");
+                                                </script>                                                
                                                 <?php    
                                             }
                                         ?>
@@ -319,9 +396,9 @@
                                                 <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
                                                         aria-hidden="true"></i> Estado </a>
                                                 <div class="nombre-estados">
-                                                    <input type="radio" name="estado" value="Sin hacer" id="r1"> Sin hacer<br>
-                                                    <input type="radio" name="estado" value="Haciendo"id="r2"> Haciendo<br>
-                                                    <input type="radio" name="estado" value="Hecho" id="r3"> Hecho<br>
+                                                    <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
+                                                    <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
+                                                    <input type="radio" name="estado" value="Hecho"> Hecho<br>
                                                 </div>
                                             </div>
                                             <div class="popup-boton">
@@ -352,7 +429,7 @@
             <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
+                <b>Versi&oacute;n</b> 1.0
             </div>
         </footer>
 
