@@ -13,7 +13,6 @@
                 $tabla->bindValue(":dueno", $_SESSION['user']);
                 $tabla->bindValue(":creac", date('Y-m-d'));
                 $tabla->execute();
-                
 
             }
             catch(Exception $ex){                
