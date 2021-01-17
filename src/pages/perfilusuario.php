@@ -57,7 +57,7 @@
                 </li>
             </ul>
 
-
+<!--
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
@@ -69,12 +69,13 @@
                     </div>
                 </div>
             </form>
-
+-->
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
+                    Todo Friends
+                        <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
             </ul>
@@ -243,7 +244,7 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Versi&oacute;n</b> 2.0

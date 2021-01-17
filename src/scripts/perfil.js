@@ -12,6 +12,12 @@ $(function () {
         $("#popup").addClass("active");
     });
 
+    $(".btn-eliminar-grupo").on('click', function () {
+        id = $(this).parent().siblings("td:nth-child(1)").text();
+        $("#overlay").addClass("active");
+        $("#popup").addClass("active");
+    });
+
     $(".btn-eliminar-micuenta").on('click', function () {
         $("#overlay").addClass("active");
         $("#popup").addClass("active");
@@ -22,6 +28,27 @@ $(function () {
             console.log(id);
             $.ajax({
                 url: 'borrarCuenta.php',
+                type: 'POST',
+                data: 'IDGRUPO=' + id,
+                success: function () {
+                    $("#" + id).empty();
+                    $("#overlay").removeClass("active");
+                    $("#popup").removeClass("active");
+
+                }
+
+            });
+        }
+
+
+    });
+
+
+    $(".confirmar-eliminar-grupo").on('click', function () {
+        if (id !== undefined) {
+            console.log(id);
+            $.ajax({
+                url: 'borrarGrupo.php',
                 type: 'POST',
                 data: 'iduser=' + id,
                 success: function () {
@@ -36,8 +63,6 @@ $(function () {
 
 
     });
-
-    
 
     $(".confirmar-eliminar-micuenta").on('click', function () {
         $.ajax({
