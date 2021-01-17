@@ -74,7 +74,8 @@
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
+                    Todo Friends
+                        <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
             </ul>
@@ -181,7 +182,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="misequipos"> Mis equipos </a>
+                                <a href="MisEquipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -266,13 +267,13 @@
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
                             <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
-                            <p class="mx-2 text-muted pt-2"><?php print_r("- « $descripcionTema »")?></p>
+                            <p class="mx-2 text-muted pt-2"><?php print_r(" $descripcionTema ")?></p>
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tema </li>
+                                <li class="breadcrumb-item active"> Tareas </li>
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
@@ -295,7 +296,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha"
-                                                    class=" form-control" placeholder=" Fecha Limite">
+                                                    class=" form-control" placeholder=" Fecha L&iacute;mite">
                                             </div>
                                             <input type="button" class="btn btn-success btn-guardar btn-block" id="btnGuardarTarea"
                                                 name = "guardarTarea" value ="Guardar Tarea">
@@ -307,10 +308,10 @@
                                     <table class="table table-bordered mis-tareas" class="display" id="mitabla">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>T&iacute;tulo</th>
-                                                <th>Descripci&oacute;n</th>
-                                                <th style="min-width: 120px;" >Fecha L&iacute;mite</th>
-                                                <th>Acciones</th>
+                                                <th class="text-center">T&iacute;tulo</th>
+                                                <th class="text-center">Descripci&oacute;n</th>
+                                                <th class="text-center" style="min-width: 100px;">Fecha L&iacute;mite</th>
+                                                <th class="text-center" style="min-width: 45px;"></th>
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
@@ -431,10 +432,10 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 1.0
+                <b>Versi&oacute;n</b> 2.0
             </div>
         </footer>
 
@@ -467,18 +468,20 @@
 		$('#mitabla').DataTable({
 			//"order": [[1, "asc"]],
 			"language":{
-				"lengthMenu": "Mostrar _MENU_ tareas",
-				"info": "Página _PAGE_ de _PAGES_",
-				"infoEmpty": "No hay tareas disponibles",
-				"infoFiltered": "(filtrada de _MAX_ tareas)",
+                "EmptyTable": 'No existen tareas',
+                "lengthMenu": "Mostrar _MENU_ tareas",
+                "info": "",
+				"infoEmpty": "",
+				"infoFiltered": "",
 				"loadingRecords": "Cargando...",
 				"processing":     "Procesando...",
-				"search": "Buscar:",
-				"zeroRecords":    "No se encontraron tareas coincidentes",
-				"paginate": {
-					"next":       "Siguiente",
-					"previous":   "Anterior"
-				},					
+                "search": "",
+                "searchPlaceholder": "Buscar",
+				"zeroRecords":    "No se encontraron tareas",
+                "paginate": {
+                    "next":       ">",
+					"previous":   "<"
+                },					
 			}
 		});	
 	});	

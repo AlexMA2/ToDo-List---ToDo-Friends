@@ -50,7 +50,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button">
+                    <i class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -60,7 +61,7 @@
 
 
             <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
+                <!--<div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
                         aria-label="Search">
                     <div class="input-group-append">
@@ -68,14 +69,15 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                </div>
+                </div>-->
             </form>
 
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
+                    Todo Friends
+                        <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
             </ul>
@@ -126,7 +128,7 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="misequipos"> Mis equipos </a>
+                                <a href="MisEquipos"> Mis equipos </a>
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
@@ -175,14 +177,36 @@
                 <div class="col sm-2">
                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                    <div class="info-eliminar-cuenta">
-                        <h3> ¿Est&aacute;s seguro sobre eliminar esta cuenta?</h3>
+                        <h3> ¿Est&aacute;s seguro(a) de eliminar este usuario?</h3>
                         <p> 
-                            No se podr&aacute; volver a recuperar la cuenta y todos sus datos 
+                            No se podr&aacute; volver a recuperar el usuario y todos sus datos 
                             se perder&aacute;n.
                         </p>
                        <div class="row">   
-                            <a href="#" class="btn btn-secondary mx-2 confirmar-eliminar-cuenta"> S&iacute;, estoy seguro</a>    
+                            <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-cuenta"> S&iacute;, estoy seguro(a)</a>    
                             <a href="panelAdmin" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
+                        </div> 
+                       
+                   </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="overlay " id="overlay">
+            <div class="popup " id="popup">
+
+                <div class="col sm-2">
+                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                   <div class="info-eliminar-grupo">
+                        <h3> ¿Est&aacute;s seguro de eliminar este grupo?</h3>
+                        <p> 
+                            No se podr&aacute; volver a recuperar el grupo y todos sus datos 
+                            se perder&aacute;n.
+                        </p>
+                       <div class="row">   
+                            <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-grupo"> S&iacute;, estoy seguro(a)</a>    
+                            <a href="panelAdmin" class="btn btn-primary mx-2"> No, no quiero eliminarlo </a>      
                         </div> 
                        
                    </div>
@@ -195,16 +219,16 @@
             <div class="content-header">
                 <div class="container-fluid row">
                     <div class="panel-usuarios col-6">
-                        <h2 class="text-center"> Lista de Usuarios </h2>
+                        <h2 class="text-center"> Lista de usuarios </h2>
                         <div class="lista-usuarios">
                             <table class="table table-bordered mis-tareas" class="display" id="mitabla">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th style="width: 10%;" class="text-center"> ID </th>
-                                        <th style="width: 15%;" class="text-center"> Foto </th>
-                                        <th style="width: 25%;" class="text-center"> Nombre de Usuario </th>
+                                        <!--<th style="width: 10%;" class="text-center"> ID </th>-->
+                                        <th style="width: 10%;" class="text-center"> Foto </th>
+                                        <th style="width: 25%;" class="text-center"> Usuario </th>
                                         <th style="width: 25%;" class="text-center"> Correo </th>
-                                        <th class="text-center"> Acciones </th>
+                                        <th style="width: 15%;" class="text-center"> Acci&oacute;n </th>
                                     </tr>
                                 </thead>
                                 <tbody class="tabla-usuarios">
@@ -216,13 +240,13 @@
                                         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
                                             if($row['iduser'] != $_SESSION['user']){
                                                 ?>
-                                                <tr id="<?php print_r($row['iduser']); ?>">
-                                                    <td class="text-center"><?php print_r($row['iduser']); ?></td>
+                                                <!-- <tr id="<?php print_r($row['iduser']); ?>">
+                                                    <td class="text-center"><?php print_r($row['iduser']); ?></td> -->
                                                     <td class="text-center"><img src="<?php print_r($row['Foto']); ?>" alt="user-img" width="50" height="50"></td>
                                                     <td><?php print_r($row['username']); ?></td>
                                                     <td><?php print_r($row['correo']); ?></td>
                                                     <td class="text-center user-opciones">
-                                                        <a href="#" class="btn-eliminar-cuenta"><i class="fas fa-ban mx-2"></i></a>
+                                                        <a href="#" class="btn-eliminar-cuenta"><i class="fas fa-trash mx-2"></i></a>
                                                         <a href="#" class="btn-ver-historial"><i class="fas fa-history mx-2"></i></a>                                                        
                                                     </td>
                                                 </tr>
@@ -236,7 +260,42 @@
                         </div>
                     </div>
                     <div class="panel-grupos col-6">
-                        <h2 class="text-center"> Lista de Grupos </h2>
+                        <h2 class="text-center"> Lista de grupos </h2>
+                        <div class="lista-grupos">
+                            <table class="table table-bordered mis-tareas" class="display" id="mitabla">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <!--<th style="width: 10%;" class="text-center"> ID </th>-->
+                                        <th style="width: 25%;" class="text-center"> Nombre </th>
+                                        <th style="width: 10%;" class="text-center"> Temas </th>
+                                        <th style="width: 10%;" class="text-center"> Miembros </th>
+                                        <th style="width: 10%;" class="text-center"> Creaci&oacute;n </th>
+                                        <th style="width: 10%;" class="text-center"> Acci&oacute;n </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tabla-grupos">
+                                    <?php                                           
+                                       
+                                        $query = "SELECT * FROM grupos";
+                                        $resultado = $conection->query($query);                
+                                        $resultado->execute();
+                                        while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
+                                                ?>
+                                                    <td><?php print_r($row['Nombre']); ?></td>
+                                                    <td><?php print_r($row['Temas']); ?></td>
+                                                    <td><?php print_r($row['Miembros']); ?></td>
+                                                    <td><?php print_r($row['Creacion']); ?></td>
+                                                    <td class="text-center user-opciones">
+                                                        <a href="#" class="btn-eliminar-grupo"><i class="fas fa-trash mx-2"></i></a>                                                     
+                                                    </td>
+                                                </tr>
+                                                <?php 
+                                        
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -244,10 +303,10 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 1.0
+                <b>Versi&oacute;n</b> 2.0
             </div>
         </footer>
 

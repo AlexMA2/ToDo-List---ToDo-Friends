@@ -64,7 +64,7 @@
                 </li>
             </ul>
 
-
+            <!--
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
@@ -76,12 +76,13 @@
                     </div>
                 </div>
             </form>
-
+-->
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
+                        Todo Friends
+                        <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
             </ul>
@@ -178,15 +179,16 @@
                                             method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo3" maxlength="16" minlength="4"
-                                                    class=" form-control" id="inTemaTitulo" placeholder=" Título">
+                                                    class=" form-control" id="inTemaTitulo"
+                                                    placeholder=" T&iacute;tulo">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion3" maxlength="32" rows="4"
                                                     class="form-control" id="inTemaDesc"
-                                                    placeholder="Descripcion"></textarea>
+                                                    placeholder="Descripci&oacute;n"></textarea>
                                             </div>
                                             <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearTema" value="Crear Tema Grupal" />
+                                                name="CrearTema" value="Crear Tema" />
 
                                         </form>
 
@@ -198,8 +200,10 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
-                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
+                            <!--
                             <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
+                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
+                        -->
                             <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
                             <!--div class="color-picker"></div-->
                         </div>
@@ -207,7 +211,7 @@
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tema </li>
+                                <li class="breadcrumb-item active"> Temas del equipo </li>
                             </ol>
                         </div>
 
@@ -236,151 +240,8 @@
                         </div>
                     </div>
                     <?php } ?>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
+              
 
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-12">
-                            <div class="inner">
-                                <h3>hahahahashahah</h3>
-
-                                <p>gdsgsdgsdgsdgsdgsdg</p>
-                            </div>
-
-                            <a href="TareasGrupales" id="12" class="small-box-footer btn-ver-tema"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                   
                 </div>
 
 
@@ -388,15 +249,15 @@
             <!-- aqui comienza añadir integrante -->
             <div class="card card-body col-4 add-member">
                 <table class="table table-bordered " class="display" id="mitabla">
-                    <h4> Intregantes</h4>
+                    <h4 class="text-center"> Integrantes</h4>
                     <thead class="thead-dark">
                         <tr>
-                            <th>Nombre de usuario</th>
+                            <th class="text-center">Nombre de usuario</th>
                             <?php
                             if($_SESSION['user']==$uID5){
 
                         ?>
-                            <th>Accion</th>
+                            <th class="text-center">Acci&oacute;n</th>
                             <?php                                
                         }
                         ?>
@@ -404,23 +265,26 @@
                     </thead>
                     <tbody class="lista-tareas">
                         <tr>
-                            <td><i class="fas fa-crown"></i><?php    print_r($uNombre5); ?></td>
+                            <td><?php print_r($uNombre5) ;?>
+                                <div class="float-right">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                            </td>
                             <?php
                             if($_SESSION['user']==$uID5){
-
                             ?>
                             <td>
                                 <!-- aqui pongan su wea-->
                                 <div class="float-left">
-                                    <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i
-                                            class="fas fa-comment"></i></a> |
-                                    <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
+                                            class="fas fa-comment"></i></a>
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
                                             class="fas fa-comment-slash"></i></a>
                                 </div>
                                 <div class="float-right">
                                     <a style="text-decoration:none" class="btn btn-danger btn-sm"
                                         href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i
-                                            class="fas fa-user-times"></i> </a>
+                                            class="fas fa-trash"></i> </a>
                                 </div>
                             </td>
                             <?php                                
@@ -450,15 +314,15 @@
                             <td>
                                 <!-- aqui pongan su wea-->
                                 <div class="float-left">
-                                    <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i
-                                            class="fas fa-comment"></i></a> |
-                                    <a style="text-decoration:none" class="btn btn-sm" href="NetworkGrupal"><i
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
+                                            class="fas fa-comment"></i></a>
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
                                             class="fas fa-comment-slash"></i></a>
                                 </div>
                                 <div class="float-right">
                                     <a style="text-decoration:none" class="btn btn-danger btn-sm"
                                         href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i
-                                            class="fas fa-user-times"></i> </a>
+                                            class="fas fa-trash"></i> </a>
                                 </div>
                             </td>
                             <?php                                
@@ -484,11 +348,9 @@
                     ?>
                     </tbody>
                 </table>
-
                 <br>
                 <?php
             if($_SESSION['user']==$uID5){
-
             ?>
                 <div class="card card-body">
 
@@ -498,10 +360,10 @@
                         <p>Añadir integrantes</p>
                         <div class="form-group">
                             <input type="email" name="emailAmigo" class="form-control" id="idEmailAmigo"
-                                placeholder="Escriba el correo a añadir">
+                                placeholder="Escribe el correo">
                         </div>
                         <input type="submit" class="btn btn-config btn-light btn-block" name="btnAddAmigo"
-                            value="Agregar integrante" />
+                            value="Añadir" />
                         <?php
                     if(empty($_SESSION['mensaje'])){
                     }else{
@@ -518,7 +380,7 @@
             }else{?>
                 <a style="text-decoration:none" class="btn btn-danger"
                     href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i
-                        class="fas fa-sign-out-alt"></i>Salir de grupo </a>
+                        class="fas fa-sign-out-alt"></i> Salir del grupo </a>
                 <?php
             }
             ?>
@@ -586,7 +448,7 @@
 
 
     <footer class="main-footer">
-        <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+        <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
         Todos los derechos reservados.
         <div class="float-right d-none d-sm-inline-block">
             <b>Versi&oacute;n</b> 2.0
