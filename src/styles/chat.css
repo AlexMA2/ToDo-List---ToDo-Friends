@@ -1,15 +1,42 @@
-#Elchat{
+#Michat{
+    display: none;
     max-width: 325px;
-    position: sticky;
-    top: 75%;
-    left: 72%;
+    position: fixed;
+    bottom: 50px;    
+    right: 50px;
+    z-index: 2000;
 }
 
-.chat-grupal-todo{
-    
+.btn-chat {    
+    width: 50px;    
+    position: fixed;
+    display: flex;
+    bottom: 50px;    
+    right: 50px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
 
-.chatpluginchat{
+.btn-chat span{
+    visibility: hidden;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #d84126;
+    margin-bottom: 2px;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.btn-chat i{
+    font-size: 30px;
+}
+
+.chatpluginchat {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -18,35 +45,59 @@
     overflow-y: scroll;
 }
 
-.chatpluginchat li{
+.chatpluginchat li {
     display: flex;
     flex-direction: row;
     padding: 0px 10px;
     justify-content: space-evenly;
     align-items: center;
+    border-bottom: 1px solid #acacac;
 }
 
-.chat-img{
+.chat-img {
     width: 30;
 }
 
-.chatpluginchat li span img{
+.chatpluginchat li span img {
     width: 45px;
     height: 45px;
 }
 
-.chat-body{
-    width: 60%;   
+.chat-body {
+    width: 60%;
 }
 
-.panel-body{
+.panel-body {
     background-color: #fff;
 }
 
-.chat-body div strong{
+.chat-body div strong {
     padding-right: 15px;
 }
 
-#Contenido{
+#Contenido {
     word-break: break-all;
+}
+
+.opciones-chat {
+    display: block;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.opciones-chat i {
+    cursor: pointer;
+}
+
+.chat-grupal-todo {
+    overflow: hidden;
+}
+
+.label-success {
+    color: #45a727;
+}
+
+#btnEnviar{
+    margin-top: 3px;
+    margin-left: 2px;
 }
