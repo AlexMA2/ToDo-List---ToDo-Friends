@@ -122,6 +122,12 @@
   color: #F8A1A4;
 }
 
+.btn-eliminar-grupo{
+  text-align: left;
+  font-size: 18px;
+  color: #F8A1A4;
+}
+
 .btn-eliminar-micuenta{
   text-align: left;
   font-size: 18px;
@@ -132,11 +138,22 @@
   color: #F47378;
 }
 
+.btn-eliminar-grupo:hover{  
+  color: #F47378;
+}
+
 .btn-eliminar-micuenta:hover{  
   color: #F47378;
 }
 
 .info-eliminar-cuenta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-eliminar-grupo{
   display: flex;
   flex-direction: column;
   justify-content: center;
