@@ -221,8 +221,8 @@
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Mis Equipos </li>
+                                <li class="breadcrumb-item active"><a href="NetWork"> Mis Equipos </a></li>
+                                <li class="breadcrumb-item"> Temas del equipo </li>
                             </ol>
                         </div>
 

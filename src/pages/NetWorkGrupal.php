@@ -64,19 +64,6 @@
                 </li>
             </ul>
 
-            <!--
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
--->
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
@@ -210,7 +197,7 @@
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
+                                <li class="breadcrumb-item"><a href="MisEquipos"> Equipos </a></li>
                                 <li class="breadcrumb-item active"> Temas del equipo </li>
                             </ol>
                         </div>
@@ -240,7 +227,7 @@
                         </div>
                     </div>
                     <?php } ?>
-              
+
 
                 </div>
 
@@ -390,7 +377,7 @@
 
         </div>
 
-        <div class="btn-chat">
+        <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
             <span class="notificaciones"></span>
             <i class="fas fa-comment-dots"></i>
         </div>
@@ -412,7 +399,9 @@
             <div class="chat-grupal-todo cuerpo-chat">
                 <div class="panel panel-success">
                     <div class="panel-body">
-                        <ul class="chatpluginchat"></ul>
+                        <ul class="chatpluginchat">
+
+                        </ul>
                     </div>
                     <div class="panel-footer">
                         <div class="input-group">
@@ -444,9 +433,6 @@
 
     </div>
 
-
-
-
     <footer class="main-footer">
         <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
         Todos los derechos reservados.
@@ -464,30 +450,7 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="../scripts/MiChat.js"></script>
-    <script>
-    /*
-    $('#Elchat').ChatSocket({
-        elnombre: '<?php print_r($uNombre)?>',
-        Room: '<?php print_r($gNombre . "-" . $gID)?>',
-        lblTitulChat: " Chat Grupal ",
-        lblCampoEntrada: "Escribe un mensaje...",
-        lblEnviar: "Enviar",
-        urlImg: '<?php print_r($uFoto)?>',
-        btnEntrar: "btnEntrar",
-        btnEnviar: "btnEnviar",
-        lblBtnEnviar: "Enviar",
-        lblTxtEntrar: "txtEntrar",
-        lblTxtEnviar: "txtMensaje",
-        lblBtnEntrar: "Entrar al chat",
-        idDialogo: "DialogoEntrada",
-        classChat: "chat-grupal-todo",
-        idOnline: "ListaOnline",
-        lblUsuariosOnline: "Usuarios Conectados",
-        lblEntradaNombre: "Nombre:",
-        panelColor: "success",
-    });*/
-    </script>
+    <script src="../scripts/MiChat.js"></script>    
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -504,8 +467,8 @@
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
-
     <script>
+    /*
     var laid = "tema";
     $(".miTema").on("click", function() {
         laid = $(this).attr("id");
@@ -559,7 +522,7 @@
         console.log(color);
         var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
         $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });
+    });*/
     </script>
 </body>
 

@@ -1,8 +1,8 @@
 #Michat{
     display: none;
-    max-width: 325px;
+    width: 325px;
     position: fixed;
-    bottom: 50px;    
+    bottom: 65px;    
     right: 50px;
     z-index: 2000;
 }
@@ -11,7 +11,7 @@
     width: 50px;    
     position: fixed;
     display: flex;
-    bottom: 50px;    
+    bottom: 65px;    
     right: 50px;
     flex-direction: column;
     align-items: center;
@@ -80,13 +80,16 @@
 }
 
 .opciones-chat {
+    background-color: #0F0F0F;
     display: block;
     text-align: right;
     margin-right: 5px;
 }
 
 .opciones-chat i {
+    color: #fff;
     cursor: pointer;
+    padding-right: 10px;
 }
 
 .chat-grupal-todo {
