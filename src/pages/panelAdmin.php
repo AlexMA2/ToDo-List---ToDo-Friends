@@ -183,8 +183,8 @@
                             se perder&aacute;n.
                         </p>
                        <div class="row">   
-                            <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-cuenta"> S&iacute;, estoy seguro(a)</a>    
-                            <a href="panelAdmin" class="btn btn-primary mx-2"> No, no quiero eliminarla </a>      
+                            <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-cuenta">S&iacute;, estoy seguro(a)</a>    
+                            <a href="panelAdmin" class="btn btn-primary mx-2">No, no quiero eliminarlo </a>      
                         </div> 
                        
                    </div>
@@ -193,20 +193,21 @@
 
         </div>
 
-        <div class="overlay " id="overlay">
-            <div class="popup " id="popup">
+        <div class="overlay " id="overlaygrupo">
+            <div class="popup " id="popupgrupo">
 
                 <div class="col sm-2">
-                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                    <a href="#" class="btn-cerrar-popupgrupo"><i class="far fa-times-circle"></i></a>
+                    <!--<a href="#"></a>-->
                    <div class="info-eliminar-grupo">
-                        <h3> ¿Est&aacute;s seguro de eliminar este grupo?</h3>
+                        <h3> ¿Est&aacute;s seguro(a) de eliminar este equipo?</h3>
                         <p> 
-                            No se podr&aacute; volver a recuperar el grupo y todos sus datos 
+                            No se podr&aacute; volver a recuperar el equipo y todos sus datos 
                             se perder&aacute;n.
                         </p>
                        <div class="row">   
-                            <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-grupo"> S&iacute;, estoy seguro(a)</a>    
-                            <a href="panelAdmin" class="btn btn-primary mx-2"> No, no quiero eliminarlo </a>      
+                            <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-grupo">S&iacute;, estoy seguro(a)</a>    
+                            <a href="panelAdmin" class="btn btn-primary mx-2">No, no quiero eliminarlo </a>      
                         </div> 
                        
                    </div>
@@ -224,11 +225,11 @@
                             <table class="table table-bordered mis-tareas" class="display" id="mitabla">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <!--<th style="width: 10%;" class="text-center"> ID </th>-->
+                                        <th style="width: 10%;" class="text-center"> ID </th>
                                         <th style="width: 10%;" class="text-center"> Foto </th>
                                         <th style="width: 25%;" class="text-center"> Usuario </th>
                                         <th style="width: 25%;" class="text-center"> Correo </th>
-                                        <th style="width: 15%;" class="text-center"> Acci&oacute;n </th>
+                                        <th style="width: 10%;" class="text-center"> Acci&oacute;n </th>
                                     </tr>
                                 </thead>
                                 <tbody class="tabla-usuarios">
@@ -240,14 +241,13 @@
                                         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
                                             if($row['iduser'] != $_SESSION['user']){
                                                 ?>
-                                                <!-- <tr id="<?php print_r($row['iduser']); ?>">
-                                                    <td class="text-center"><?php print_r($row['iduser']); ?></td> -->
+                                                <tr id="<?php print_r($row['iduser']); ?>">
+                                                    <td class="text-center"><?php print_r($row['iduser']); ?></td>
                                                     <td class="text-center"><img src="<?php print_r($row['Foto']); ?>" alt="user-img" width="50" height="50"></td>
                                                     <td><?php print_r($row['username']); ?></td>
                                                     <td><?php print_r($row['correo']); ?></td>
                                                     <td class="text-center user-opciones">
-                                                        <a href="#" class="btn-eliminar-cuenta"><i class="fas fa-trash mx-2"></i></a>
-                                                        <a href="#" class="btn-ver-historial"><i class="fas fa-history mx-2"></i></a>                                                        
+                                                        <a href="#" class="btn-eliminar-cuenta"><i class="fas fa-trash mx-2"></i></a>                                                       
                                                     </td>
                                                 </tr>
                                                 <?php 
@@ -260,13 +260,13 @@
                         </div>
                     </div>
                     <div class="panel-grupos col-6">
-                        <h2 class="text-center"> Lista de grupos </h2>
+                        <h2 class="text-center"> Lista de equipos </h2>
                         <div class="lista-grupos">
                             <table class="table table-bordered mis-tareas" class="display" id="mitabla">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <!--<th style="width: 10%;" class="text-center"> ID </th>-->
-                                        <th style="width: 25%;" class="text-center"> Nombre </th>
+                                        <th style="width: 10%;" class="text-center"> ID </th>
+                                        <th style="width: 20%;" class="text-center"> Nombre </th>
                                         <th style="width: 10%;" class="text-center"> Temas </th>
                                         <th style="width: 10%;" class="text-center"> Miembros </th>
                                         <th style="width: 10%;" class="text-center"> Creaci&oacute;n </th>
@@ -281,6 +281,8 @@
                                         $resultado->execute();
                                         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
                                                 ?>
+                                                    <tr id="<?php print_r($row['IDGRUPO']); ?>">
+                                                    <td class="text-center"><?php print_r($row['IDGRUPO']); ?></td>
                                                     <td><?php print_r($row['Nombre']); ?></td>
                                                     <td><?php print_r($row['Temas']); ?></td>
                                                     <td><?php print_r($row['Miembros']); ?></td>

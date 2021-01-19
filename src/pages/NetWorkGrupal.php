@@ -210,7 +210,7 @@
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Temas del equipo </li>
+                                <li class="breadcrumb-item active"> Temas del equipo</li> 
                             </ol>
                         </div>
 

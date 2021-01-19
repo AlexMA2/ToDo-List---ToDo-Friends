@@ -18,7 +18,11 @@ $(function () {
         $("#popup").removeClass("active");
     });
 
-    
+    $(".btn-cerrar-popupgrupo").on("click", function () {
+        $("#overlaygrupo").removeClass("active");
+        $("#popupgrupo").removeClass("active");
+    });
+
     $(".btn-opcion2").on("click", function (ev) {
         ev.preventDefault();
         $("#overlay2").addClass("active");
