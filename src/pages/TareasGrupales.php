@@ -288,13 +288,17 @@
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
                                                     required>
+                                                    <!--
                                                     <button type="button" id="titleButton" class="btn btn-info">active</button>
+                                                    -->
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
                                                     class="form-control" placeholder="Descripci&oacute;n"
-                                                    required></textarea>
+                                                    required></textarea><!--
                                                     <button type="button" id="descripButton" class="btn btn-info">active2</button>
+                                                    esto es para el boton 1
+                                                    -->
                                             </div>
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha"
