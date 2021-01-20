@@ -12,7 +12,7 @@ const iniciar = (e) => {
 if(!('webkitSpeechRecognition' in window)){
     alert('No se puede usar la api para reconocimiento de voz');
 }else{
-    alert('si puede usar la api');
+    //alert('si puede usar la api');
     rec = new webkitSpeechRecognition()
 	rec.lang = 'es-PE'
 	rec.continuous = true
