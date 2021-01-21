@@ -14,8 +14,8 @@ $(function () {
 
     $(".btn-eliminar-grupo").on('click', function () {
         id = $(this).parent().siblings("td:nth-child(1)").text();
-        $("#overlay").addClass("active");
-        $("#popup").addClass("active");
+        $("#overlaygrupo").addClass("active");
+        $("#popupgrupo").addClass("active");
     });
 
     $(".btn-eliminar-micuenta").on('click', function () {
@@ -29,7 +29,7 @@ $(function () {
             $.ajax({
                 url: 'borrarCuenta.php',
                 type: 'POST',
-                data: 'IDGRUPO=' + id,
+                data: 'iduser=' + id,
                 success: function () {
                     $("#" + id).empty();
                     $("#overlay").removeClass("active");
@@ -50,11 +50,11 @@ $(function () {
             $.ajax({
                 url: 'borrarGrupo.php',
                 type: 'POST',
-                data: 'iduser=' + id,
+                data: 'IDGRUPO=' + id,
                 success: function () {
                     $("#" + id).empty();
-                    $("#overlay").removeClass("active");
-                    $("#popup").removeClass("active");
+                    $("#overlaygrupo").removeClass("active");
+                    $("#popupgrupo").removeClass("active");
 
                 }
 
