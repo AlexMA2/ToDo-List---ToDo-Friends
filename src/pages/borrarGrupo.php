@@ -12,8 +12,6 @@
         eliminarGrupo($idgrupo, $conection);        
     }    
 
-    header("location:../..");
-
     function eliminarGrupo($idgrupo,$conection){
         if(!empty($idgrupo)) {
             try{        
