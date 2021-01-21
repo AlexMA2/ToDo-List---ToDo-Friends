@@ -1,15 +1,11 @@
-const $titulo = document.querySelector('#titleButton')
-const $text = document.querySelector('#inTitulo')
-const Ttitulo=()=>{
-	
-	
-	
-	//const $text=document.querySelector('inTitulo')
+const $descripcion = document.querySelector('#descripButton')
+const $text2 = document.querySelector('#inDesc')
+const tdescripcion=()=>{
 	
 	const iniciar = (e) => {
 		
 		for (i = e.resultIndex; i < e.results.length; i++) {
-			$text.value = e.results[i][0].transcript
+			$text2.value = e.results[i][0].transcript
 		}
 	}
 	if(!('webkitSpeechRecognition' in window)){
@@ -24,6 +20,8 @@ const Ttitulo=()=>{
 		rec.start()
 	}	
     
+
 }
 
-$titulo.addEventListener('click', Ttitulo)
+
+$descripcion.addEventListener('click',tdescripcion)
