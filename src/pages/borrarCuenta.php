@@ -11,7 +11,6 @@
         eliminarCuenta($iduser, $conection);        
     }    
 
-    
     function eliminarCuenta($iduser,$conection){
         if(!empty($iduser)) {
             try{        
