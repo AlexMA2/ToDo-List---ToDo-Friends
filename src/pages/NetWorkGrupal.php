@@ -161,9 +161,7 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form
-                                            action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>"
-                                            method="POST" id="CTema">
+                                        <form action="" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo3" maxlength="16" minlength="4"
                                                     class=" form-control" id="inTemaTitulo"
@@ -174,8 +172,8 @@
                                                     class="form-control" id="inTemaDesc"
                                                     placeholder="Descripci&oacute;n"></textarea>
                                             </div>
-                                            <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearTema" value="Crear Tema" />
+                                            <input type="button" class="btn btn-config btn-light btn-block"
+                                                name="CrearTema" id="btn-crear-temagrupal" value="Crear Tema" />
 
                                         </form>
 

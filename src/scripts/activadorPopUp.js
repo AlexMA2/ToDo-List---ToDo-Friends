@@ -105,6 +105,37 @@ $(function () {
 
     });
 
+    $("#btn-crear-tema").on("click", function(){
+        let tit = $("#inTemaTitulo").val();
+        let desc = $("#inTemaDesc").val();
+        $.ajax({
+            url: 'CrearTema.php',
+            type: 'POST',
+            data: 'Titulo3=' + tit + '&Descripcion3=' + desc,
+            success: function (rpt) {                
+                console.log(rpt);
+                if(rpt === "Aceptado"){
+                    window.location.replace(ruta + "NetWork");
+                }
+                else{
+                    console.log(rpt);
+                }
+            }
+        });
+    });
+
+    $("#btn-crear-temagrupal").on("click", function(){
+        let tit = $("#inTemaTitulo").val();
+        let desc = $("#inTemaDesc").val();
+        $.ajax({
+            url: 'CrearTema.php',
+            type: 'POST',
+            data: 'Titulo3=' + tit + '&Descripcion3=' + desc,
+            success: function (rpt) {
+                window.location.replace(ruta + "NetWorkGrupal");
+            }
+        });
+    });
 
     $(".btn-archivar").on("click", function () {
         if (id !== undefined) {
@@ -131,8 +162,8 @@ $(function () {
             type: 'POST',
             data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
             success: function (rpt) {
-                //console.log(rpt);
-                window.location.replace(ruta + "TareasGrupales");
+                console.log(rpt);
+                //window.location.replace(ruta + "TareasGrupales");
             }
         });
 

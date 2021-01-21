@@ -199,7 +199,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
                             <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
-                            <p class="mx-2 text-muted pt-2"><?php print_r(" $descripcionTema ")?></p>
+                            <p class="mx-2 text-muted pt-2">«<?php print_r(" $descripcionTema ");?>»</p>
                         </div>
                         <div class="col-sm-6">
 
@@ -223,8 +223,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
-                                                    class="form-control" placeholder="Descripci&oacute;n"
-                                                    required></textarea>
+                                                    class="form-control" placeholder="Descripci&oacute;n"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha" class=" form-control"
@@ -244,7 +243,7 @@
                                                 <th class="text-center">Descripci&oacute;n</th>
                                                 <th class="text-center" style="min-width: 100px;">Fecha L&iacute;mite
                                                 </th>
-                                                <th class="text-center" style="min-width: 45px;"></th>
+                                                <th class="text-center" style="min-width: 45px;"> Opciones </th>
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
@@ -260,8 +259,8 @@
                                             <tr class="item-tarea">
                                                 <td><?php print_r($row['title']); ?></td>
                                                 <td><?php print_r($row['description']); ?></td>
-                                                <td><?php print_r($row['limit_date']); ?></td>
-                                                <td>
+                                                <td class="text-center"><?php print_r($row['limit_date']); ?></td>
+                                                <td class="text-center">
 
                                                     <span class="span-btn-opciones"><i
                                                             class="fa fa-ellipsis-v btn-opciones"
@@ -370,65 +369,64 @@
         <?php 
 
             if(!empty($_SESSION['grupo'])){
-                ?>
-        <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
-            <span class="notificaciones"></span>
-            <i class="fas fa-comment-dots"></i>
-        </div>
-        <div id="Michat">
-            <div class='opciones-chat'>
-                <i class='fas fa-minus' id='minimizar-chat'></i>
-            </div>
-
-            <div class="panel panel-success">
-                <div class="panel-body">
-                    <ul class="list-group" id="listaOnline"></ul>
+            ?>
+                <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
+                    <span class="notificaciones"></span>
+                    <i class="fas fa-comment-dots"></i>
                 </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <div></div>
+                <div id="Michat">
+                    <div class='opciones-chat'>
+                        <i class='fas fa-minus' id='minimizar-chat'></i>
                     </div>
-                </div>
-            </div>
-            <div class="chat-grupal-todo cuerpo-chat">
-                <div class="panel panel-success">
-                    <div class="panel-body">
-                        <ul class="chatpluginchat">
 
-                        </ul>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input id="txtMensaje" type="text" class="form-control input-sm"
-                                placeholder="Escribe un mensaje..." />
-                            <span class="input-group-btn">
-                                <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
-                            </span>
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            <ul class="list-group" id="listaOnline"></ul>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <div></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <li class="left clearfix itemtemplate" style="display:none">
-                <span class="chat-img pull-left">
-                    <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
-                </span>
-                <div class="chat-body clearfix">
-                    <div class="header">
-                        <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
-                        <small class="pull-right text-muted">
-                            <span class="glyphicon glyphicon-asterisk"></span>
-                            <span id="Tiempo">12 mins ago</span>
-                        </small>
-                    </div>
-                    <p id="Contenido">Contenido</p>
-                </div>
-            </li>
-        </div>
+                    <div class="chat-grupal-todo cuerpo-chat">
+                        <div class="panel panel-success">
+                            <div class="panel-body">
+                                <ul class="chatpluginchat">
 
-        <?php
-            }
-        
-        ?>
+                                </ul>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="input-group">
+                                    <input id="txtMensaje" type="text" class="form-control input-sm"
+                                        placeholder="Escribe un mensaje..." />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <li class="left clearfix itemtemplate" style="display:none">
+                        <span class="chat-img pull-left">
+                            <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
+                                <small class="pull-right text-muted">
+                                    <span class="glyphicon glyphicon-asterisk"></span>
+                                    <span id="Tiempo">12 mins ago</span>
+                                </small>
+                            </div>
+                            <p id="Contenido">Contenido</p>
+                        </div>
+                    </li>
+                </div>
+
+            <?php
+            }            
+            ?>
 
 
     </div>
@@ -445,7 +443,15 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="../scripts/Tarea.js"></script>
-    <script src="../scripts/MiChat.js"></script>    
+    <?php 
+
+        if(!empty($_SESSION['grupo'])){
+        ?>
+            <script src="../scripts/MiChat.js"></script>    
+        <?php
+        }
+    ?>
+    
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>

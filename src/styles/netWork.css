@@ -38,10 +38,6 @@
   cursor: pointer;
 }
 
-.span-btn-opciones {
-  margin-left: 28px;
-}
-
 /* Popup de panel de control */
 
 .botones-popup {
@@ -70,11 +66,12 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-left: 10px;
 }
 
 .unidad-tema{
-  width: 20%;
-  margin: 5px 10px 10px 5px;  
+  width: 24%;
+  margin: 5px 10px 10px 5px;    
 }
 
 .unidad-tema div h3{
@@ -140,4 +137,9 @@
 
 .add-member{
   margin-bottom: -1rem;
+}
+
+.miTema > div{
+  overflow: hidden;
+  min-height: 150px;
 }
