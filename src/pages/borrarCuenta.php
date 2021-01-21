@@ -11,8 +11,7 @@
         eliminarCuenta($iduser, $conection);        
     }    
 
-    //header("location:../..");
-
+    
     function eliminarCuenta($iduser,$conection){
         if(!empty($iduser)) {
             try{        
