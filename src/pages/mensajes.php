@@ -43,7 +43,7 @@
                 $cntdr++;
             }
     
-            if($cntdr - $len === 1){
+            if($cntdr - $len <= 1){
                 echo "NO";
             }
             else if($cntdr - $len > 1){
@@ -52,6 +52,14 @@
             
             
     
+        }
+        else if($hacer === "eliminar"){
+            $sql = "DELETE FROM `mensaje` WHERE `Receptor` = :receptor";
+            
+            $tabla = $conection->prepare($sql);        
+            $tabla->bindValue(":receptor", $_SESSION['grupo']);        
+            $tabla->execute();
+
         }
     }   
 

@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="../styles/chat.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -185,10 +187,9 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
-                            <!--
+
+                            <h1 class="text-dark titulo-principal"> Temas de Trabajo </h1>
                             <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
-                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
-                        -->
                             <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
                             <!--div class="color-picker"></div-->
                         </div>
@@ -405,6 +406,11 @@
                         <div class="input-group">
                             <input id="txtMensaje" type="text" class="form-control input-sm"
                                 placeholder="Escribe un mensaje..." />
+                            <span class="emojis">
+                                <i class="fas fa-smile-beam"></i>
+                                <emoji-picker></emoji-picker>
+                            </span>
+                            
                             <span class="input-group-btn">
                                 <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
                             </span>
@@ -448,7 +454,7 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="../scripts/MiChat.js"></script>    
+    <script src="../scripts/MiChat.js"></script>
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>

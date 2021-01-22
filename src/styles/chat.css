@@ -104,3 +104,22 @@
     margin-top: 3px;
     margin-left: 2px;
 }
+
+emoji-picker{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    bottom: 110px;
+    right: 40px;
+    
+}
+
+.emojis{
+    margin: 5px 5px 0px 5px;    
+}
+
+.emojis i{
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(114, 116, 26);
+}

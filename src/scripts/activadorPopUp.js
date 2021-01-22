@@ -39,6 +39,27 @@ $(function () {
 
     const ruta = getAbsolutePath();
 
+    //Ajax con las tareas
+
+    $(".btn-guardar").on("click", function () {
+
+
+        let inTitulo = $("#inTitulo").val();
+        let inDesc = $("#inDesc").val();
+        let inFecha = $("#inFecha").val();
+
+        $.ajax({
+            url: 'guardartarea.php',
+            type: 'POST',
+            data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
+            success: function (rpt) {
+                console.log(rpt);
+                //window.location.replace(ruta + "TareasGrupales");
+            }
+        });
+
+    });
+
     $(".btn-editar").on("click", function () {
 
         if (id !== undefined) {
@@ -57,6 +78,68 @@ $(function () {
         }
     });
 
+    $(".btn-eliminar").on("click", function () {
+        if (id !== undefined) {
+            $.ajax({
+                url: 'eliminartarea.php',
+                type: 'POST',
+                data: 'idTarea=' + id,
+                success: function (rpt) {
+                    window.location.replace(ruta + "TareasGrupales");
+                }
+            });
+        }
+
+    });
+
+    $(".btn-archivar").on("click", function () {
+        if (id !== undefined) {
+            $.ajax({
+                url: 'archivartareas.php',
+                type: 'POST',
+                data: 'idTarea=' + id,
+                success: function (rpt) {
+                    window.location.replace(ruta + "TareasGrupales");
+                }
+            });
+        }
+    });
+
+    $("#r1").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=1&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+    $("#r2").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=2&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+    $("#r3").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=3&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+
+    //Ajax con temas
 
     $(".btn-editar-tema").on("click", function () {
         if (id1 !== undefined) {
@@ -72,22 +155,6 @@ $(function () {
                 }
             });
         }
-    });
-
-    
-
-    $(".btn-eliminar").on("click", function () {
-        if (id !== undefined) {
-            $.ajax({
-                url: 'eliminartarea.php',
-                type: 'POST',
-                data: 'idTarea=' + id,
-                success: function (rpt) {
-                    window.location.replace(ruta + "TareasGrupales");
-                }
-            });
-        }
-
     });
 
     $(".btn-eliminar-tema").on("click", function () {
@@ -124,6 +191,13 @@ $(function () {
         });
     });
 
+    $(".btn-ver-tema").on('click', function () {
+        const idTema = $(this).attr('id');
+        setTema(idTema, 'tema');
+    });
+
+    //Ajax con temas grupales
+
     $("#btn-crear-temagrupal").on("click", function(){
         let tit = $("#inTemaTitulo").val();
         let desc = $("#inTemaDesc").val();
@@ -135,73 +209,10 @@ $(function () {
                 window.location.replace(ruta + "NetWorkGrupal");
             }
         });
-    });
+    });   
 
-    $(".btn-archivar").on("click", function () {
-        if (id !== undefined) {
-            $.ajax({
-                url: 'archivartareas.php',
-                type: 'POST',
-                data: 'idTarea=' + id,
-                success: function (rpt) {
-                    window.location.replace(ruta + "TareasGrupales");
-                }
-            });
-        }
-    });
-
-    $(".btn-guardar").on("click", function () {
-
-
-        let inTitulo = $("#inTitulo").val();
-        let inDesc = $("#inDesc").val();
-        let inFecha = $("#inFecha").val();
-
-        $.ajax({
-            url: 'guardartarea.php',
-            type: 'POST',
-            data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
-            success: function (rpt) {
-                console.log(rpt);
-                //window.location.replace(ruta + "TareasGrupales");
-            }
-        });
-
-    });
-
-    $("#r1").on("click", function() {
-        $.ajax({
-            url: 'estadoTarea.php',
-            type: 'POST',
-            data: "valor=1&idTarea=" + id,
-            success: function (rpt) {
-                console.log(rpt);
-            }
-        });      
-    });
-
-    $("#r2").on("click", function() {
-        $.ajax({
-            url: 'estadoTarea.php',
-            type: 'POST',
-            data: "valor=2&idTarea=" + id,
-            success: function (rpt) {
-                console.log(rpt);
-            }
-        });      
-    });
-
-    $("#r3").on("click", function() {
-        $.ajax({
-            url: 'estadoTarea.php',
-            type: 'POST',
-            data: "valor=3&idTarea=" + id,
-            success: function (rpt) {
-                console.log(rpt);
-            }
-        });      
-    });
-
+    //Funciones de la barra principal
+    
     $(".desplegador").on("click", function () {
         let valor = $(this).parent().siblings(".desplegable").css("display");
         if (valor === "block") {
@@ -261,15 +272,32 @@ $(function () {
 
     })
 
-    $(".btn-ver-tema").on('click', function () {
-        const idTema = $(this).attr('id');
-        setTema(idTema, 'tema');
-    });
+    // Ajax con grupos
+    
 
     $(".btn-ver-grupo").on('click', function () {
         let idGrupo = $(this).attr('id');
         idGrupo = parseInt(idGrupo.substring(4));
         setTema(idGrupo, 'grupo');
+    });
+
+    $(".btn-crear-grupo").on('click', function(){
+        let tit = $("#inGrupoTitulo").val();
+        let desc = $("#inGrupoDesc").val();
+
+        $.ajax({
+            url: 'crearGrupo.php',
+            type: 'POST',
+            data: 'Titulo4=' + tit + '&Descripcion4=' + desc,
+            success: function(rpt){
+                if(rpt === "Aceptado"){
+                    window.location.replace(ruta + "MisEquipos");
+                }
+                else{
+                    console.log(rpt);
+                }
+            }
+        });
     });
 
     function setTema(id, variable) {

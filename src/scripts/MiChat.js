@@ -11,13 +11,13 @@ $(function () {
         }
 
     });
-
+    
     $(".btn-chat").on('click', function () {
         $(this).hide();
         $("#Michat").show();
         contadorMensajes = 0;
         notificarChat();
-        $(".chatpluginchat").animate({ scrollTop: $(this).prop("scrollHeight")}, 1000);
+        //$(".chatpluginchat").animate({ scrollTop: $(this).prop("scrollHeight")}, 1000);
     });
 
     function notificarChat() {
@@ -36,12 +36,14 @@ $(function () {
     $("#txtMensaje").keyup(function (e) {
         if (e.keyCode == 13) {
             let grup = $('.btn-chat').attr('id');
+            $("emoji-picker").css("display", "none");
             EnviarMensaje(grup);
         }
     });
 
     $("#btnEnviar").click(function () {
         let grup = $('.btn-chat').attr('id');
+        $("emoji-picker").css("display", "none");
         EnviarMensaje(grup);
     });
 
@@ -71,8 +73,8 @@ $(function () {
             url: 'mensajes.php',
             type: 'POST',
             data: 'do=actualizar&length=' + longitud,
-            success: function (rpt) {
-                if (rpt !== "NO") {
+            success: function (rpt) {               
+                if (rpt !== "NO") {                   
                     let otro = JSON.parse(rpt);
                     if (rpt !== null) {
                         if (rpt.length > 0) {
@@ -96,7 +98,7 @@ $(function () {
             notificarChat();
             
         }        
-        $(".chatpluginchat").animate({ scrollTop: $('.chatpluginchat')[0].scrollHeight}, 1000);
+        //$(".chatpluginchat").animate({ scrollTop: $('.chatpluginchat')[0].scrollHeight}, 1000);
 
         $(".itemtemplate").clone().appendTo(".chatpluginchat");
         $('.chatpluginchat .itemtemplate').show(10);
@@ -107,6 +109,39 @@ $(function () {
         $('.chatpluginchat .itemtemplate').removeClass("itemtemplate");
     }
 
+    const tiempo = 1000*60*60;
+
+    function basurero(){
+        $.ajax({
+            url: 'mensajes.php',
+            type: 'POST',
+            data: 'do=eliminar',
+            success: function (rpt) {                
+                actualizar();
+                $(".chatpluginchat").empty();
+            }
+        });
+
+    }
+
     setInterval(actualizar, 500);
+
+    setInterval(basurero, tiempo);
+
+    $(".emojis i").on('click', function(){
+        if($("emoji-picker").css("display") === "none"){
+            $("emoji-picker").css("display", "block");
+        }
+        else{
+            $("emoji-picker").css("display", "none");
+        }
+        
+    });
+
+    document.querySelector('emoji-picker').addEventListener('emoji-click', event => escribirEmoji(event.detail.emoji.unicode));
+
+    function escribirEmoji(emoticono){
+        $("#txtMensaje").val($("#txtMensaje").val() + emoticono);
+    }
 
 })
