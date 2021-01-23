@@ -276,7 +276,7 @@ $(function () {
             desplegable.css("display", "none");
         }
 
-    })
+    });
 
     // Ajax con grupos
     
@@ -304,6 +304,8 @@ $(function () {
                 }
             }
         });
+
+    });
 
     $(".btn-eliminar-migrupo").on('click', function () {
         
