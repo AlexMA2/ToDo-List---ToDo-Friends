@@ -64,8 +64,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
-                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-th-large"></i>
                     </a>
                 </li>
             </ul>
@@ -133,21 +132,6 @@
 
                             </ul>
                         </li>
-
-                        <?php
-                            if($_SESSION['nivel'] == 1){
-                            ?>
-                            <li class="nav-li">
-                                <div class="nav-arbol-hoja">
-                                    <i class="fas fa-users-cog"></i>
-                                    <a href="panelAdmin"> Administrador </a>                                    
-                                </div>                               
-                            </li>
-                            <?php
-                            }              
-                                   
-                        ?>
-
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -187,7 +171,6 @@
 
                                             <input type="button" class="btn btn-config btn-light btn-block btn-crear-grupo"
                                                 name="CrearGrupo" value="Crear equipo" />
-
                                         </form>
 
                                     </div>
@@ -201,15 +184,15 @@
                             
                             <h1 class="text-dark titulo-principal"> Mis Equipos </h1>
                             <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
-                            
                             <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
+
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item active"><a href="NetWork"> Mis Equipos </a></li>
-                                <li class="breadcrumb-item"> Temas del equipo </li>
+                                <li class="breadcrumb-item"> Temas del equipo </li>n
                             </ol>
                         </div>
 
@@ -252,7 +235,7 @@
                         </div>
                         <div class="botones-grupo">
                             <a href="#" id="del-<?php print_r($row["IDGRUPO"]);?>"
-                                class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
+                                class="small-box-footer btn-eliminar-migrupo"> Eliminar equipo
                                 <i class="fas fa-trash"></i>
                             </a>
                             <a href="NetWorkGrupal" id="ver-<?php print_r($row["IDGRUPO"]);?>"
@@ -313,19 +296,11 @@
 
                             </div>
                         </div>
-                        <div class="botones-grupo">
-                            <a href="#" id="del-<?php print_r($row2["IDGRUPO"]);?>"
-                                class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
-                                <i class="fas fa-trash"></i>
-                            </a>
+                        <div class="botones-grupo">                            
                             <a href="NetWorkGrupal" id="ver-<?php print_r($row2["IDGRUPO"]);?>"
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                            <a href="#" id="edi-<?php print_r($row2["IDGRUPO"]);?>"
-                                class="small-box-footer btn-editar-grupo"> Editar equipo
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
+                            </a>                            
                         </div>                       
                     </div>
                     <?php }
@@ -339,7 +314,7 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Versi&oacute;n</b> 2.0

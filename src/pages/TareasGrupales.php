@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     require "conexion.php";
     session_start();           
     
@@ -214,7 +214,7 @@
                         <div class="container p-4">
                             <div class="row">
                                 <div class="container">
-                                    <!-- sugerencia usar la clase col-md-4-->
+                                    <!-- sugerencia usar la clase col-md-4--><!-- aqui para lo de reconocimiento de voz-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
                                         <form action="#" method="POST" id="formGuardarTarea">
@@ -222,10 +222,16 @@
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
                                                     required>
+                                                    
+                                                    <button type="button" id="titleButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
+                                                    
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
-                                                    class="form-control" placeholder="Descripci&oacute;n"></textarea>
+                                                    class="form-control" placeholder="Descripci&oacute;n"
+                                                    required></textarea>
+                                                    <button type="button" id="descripButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
+                                                   
                                             </div>
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha" class=" form-control"
@@ -500,8 +506,8 @@
     });
     </script>
 
-
-
+    <script src="../scripts/reconocimientoPorVoz.js"></script>
+    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
 </body>
 
 </html>

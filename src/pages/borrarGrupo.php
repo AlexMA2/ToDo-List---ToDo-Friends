@@ -3,9 +3,9 @@
     session_start();
     require "conexion.php";
     
-    $iduser = filter_input(INPUT_POST, 'iduser');
+    //$iduser = filter_input(INPUT_POST, 'iduser');
     $idgrupo = filter_input(INPUT_POST, 'IDGRUPO');
-    if($iduser == -1){
+    if($idgrupo == -1){
         eliminarGrupo($_SESSION['grupo'], $conection);        
     }   
     else{

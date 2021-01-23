@@ -18,19 +18,6 @@ $(function () {
         $("#popup").removeClass("active");
     });
 
-    
-    $(".btn-opcion2").on("click", function (ev) {
-        ev.preventDefault();
-        $("#overlay2").addClass("active");
-        $("#popup2").addClass("active");
-        id1 = $(this).data("id1");      
-    });
-    $(".btn-cerrar-popup2").on("click", function () {
-        $("#overlay2").removeClass("active");
-        $("#popup2").removeClass("active");
-    });
-
-
     function getAbsolutePath() {       
         var loc = window.location;
         var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
@@ -212,7 +199,26 @@ $(function () {
     });   
 
     //Funciones de la barra principal
-    
+
+    $(".btn-guardar").on("click", function () {
+
+
+        let inTitulo = $("#inTitulo").val();
+        let inDesc = $("#inDesc").val();
+        let inFecha = $("#inFecha").val();
+
+        $.ajax({
+            url: 'guardartarea.php',
+            type: 'POST',
+            data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
+            success: function (rpt) {
+                //console.log(rpt);
+                window.location.replace(ruta + "TareasGrupales");
+            }
+        });
+
+    });
+
     $(".desplegador").on("click", function () {
         let valor = $(this).parent().siblings(".desplegable").css("display");
         if (valor === "block") {
@@ -298,6 +304,22 @@ $(function () {
                 }
             }
         });
+
+    $(".btn-eliminar-migrupo").on('click', function () {
+        
+        let idGrupo = $(this).attr('id');
+        idGrupo = parseInt(idGrupo.substring(4));
+        let unidadGrupo = $(this).parent().parent();
+        $.ajax({
+            url: 'eliminarGrupo.php',
+            type: 'POST',
+            data: 'idGrupo=' + idGrupo,
+            success: function(rpt){
+                unidadGrupo.remove();
+            } 
+           
+        });
+
     });
 
     function setTema(id, variable) {
@@ -306,7 +328,12 @@ $(function () {
             type: 'POST',
             data: 'idVar=' + id + "&variable=" + variable,
             success: function (rpt) {
-                
+                if (variable == "tema") {
+                    window.location.replace(ruta + "TareasGrupales");
+                }
+                else if (variable == "grupo") {
+                    window.location.replace(ruta + "NetWorkGrupal");
+                }
             }
         });
     }
