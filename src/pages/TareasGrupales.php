@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="../../plugins/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../styles/chat.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 
 </head>
 
@@ -370,61 +372,65 @@
 
             if(!empty($_SESSION['grupo'])){
             ?>
-                <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
-                    <span class="notificaciones"></span>
-                    <i class="fas fa-comment-dots"></i>
+        <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
+            <span class="notificaciones"></span>
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        <div id="Michat">
+            <div class='opciones-chat'>
+                <i class='fas fa-minus' id='minimizar-chat'></i>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <ul class="list-group" id="listaOnline"></ul>
                 </div>
-                <div id="Michat">
-                    <div class='opciones-chat'>
-                        <i class='fas fa-minus' id='minimizar-chat'></i>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <div></div>
                     </div>
-
-                    <div class="panel panel-success">
-                        <div class="panel-body">
-                            <ul class="list-group" id="listaOnline"></ul>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat-grupal-todo cuerpo-chat">
-                        <div class="panel panel-success">
-                            <div class="panel-body">
-                                <ul class="chatpluginchat">
-
-                                </ul>
-                            </div>
-                            <div class="panel-footer">
-                                <div class="input-group">
-                                    <input id="txtMensaje" type="text" class="form-control input-sm"
-                                        placeholder="Escribe un mensaje..." />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <li class="left clearfix itemtemplate" style="display:none">
-                        <span class="chat-img pull-left">
-                            <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
-                        </span>
-                        <div class="chat-body clearfix">
-                            <div class="header">
-                                <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
-                                <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-asterisk"></span>
-                                    <span id="Tiempo">12 mins ago</span>
-                                </small>
-                            </div>
-                            <p id="Contenido">Contenido</p>
-                        </div>
-                    </li>
                 </div>
+            </div>
+            <div class="chat-grupal-todo cuerpo-chat">
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <ul class="chatpluginchat">
 
-            <?php
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="txtMensaje" type="text" class="form-control input-sm"
+                                placeholder="Escribe un mensaje..." />
+                            <span class="emojis">
+                                <i class="fas fa-smile-beam"></i>
+                                <emoji-picker></emoji-picker>
+                            </span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li class="left clearfix itemtemplate" style="display:none">
+                <span class="chat-img pull-left">
+                    <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
+                        <small class="pull-right text-muted">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            <span id="Tiempo">12 mins ago</span>
+                        </small>
+                    </div>
+                    <p id="Contenido">Contenido</p>
+                </div>
+            </li>
+        </div>
+
+        <?php
             }            
             ?>
 
@@ -447,11 +453,11 @@
 
         if(!empty($_SESSION['grupo'])){
         ?>
-            <script src="../scripts/MiChat.js"></script>    
-        <?php
+    <script src="../scripts/MiChat.js"></script>
+    <?php
         }
     ?>
-    
+
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>

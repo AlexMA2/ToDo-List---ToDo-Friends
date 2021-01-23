@@ -188,7 +188,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
 
-                            <h1 class="text-dark titulo-principal"> Temas de Trabajo </h1>
+                            <h1 class="text-dark titulo-principal"> Temas de Trabajo de Equipo </h1>
                             <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
                             <!--div class="color-picker"></div-->
