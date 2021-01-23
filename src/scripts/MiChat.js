@@ -67,6 +67,7 @@ $(function () {
     let primeraVez = true;
 
     function actualizar() {
+        console.log("Actualizar chat");
         const longitud = $(".chatpluginchat li").length;
 
         $.ajax({
@@ -112,6 +113,7 @@ $(function () {
     const tiempo = 1000*60*60;
 
     function basurero(){
+        console.log("Llamando al basurero");
         $.ajax({
             url: 'mensajes.php',
             type: 'POST',
@@ -124,7 +126,7 @@ $(function () {
 
     }
 
-    setInterval(actualizar, 500);
+    setInterval(actualizar, 2000);
 
     setInterval(basurero, tiempo);
 
