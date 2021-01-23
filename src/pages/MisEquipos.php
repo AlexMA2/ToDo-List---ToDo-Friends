@@ -60,7 +60,7 @@
                 </li>
             </ul>
 
-<!--
+
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
@@ -72,13 +72,12 @@
                     </div>
                 </div>
             </form>
--->
+
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
-                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-th-large"></i>
                     </a>
                 </li>
             </ul>
@@ -146,21 +145,6 @@
 
                             </ul>
                         </li>
-
-                        <?php
-                            if($_SESSION['nivel'] == 1){
-                            ?>
-                            <li class="nav-li">
-                                <div class="nav-arbol-hoja">
-                                    <i class="fas fa-users-cog"></i>
-                                    <a href="panelAdmin"> Administrador </a>                                    
-                                </div>                               
-                            </li>
-                            <?php
-                            }              
-                                   
-                        ?>
-
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -189,17 +173,17 @@
                                             <div class="form-group">
                                                 <input type="text" name="Titulo4" maxlength="128" minlength="4" required
                                                     class=" form-control" id="inTemaTitulo"
-                                                    placeholder="Nombre">
+                                                    placeholder="Nombre del grupo">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion4" maxlength="256" rows="4"
                                                     class="form-control" id="inTemaDesc" value="Descripcion"
-                                                    placeholder="Descripci&oacute;n"></textarea>
+                                                    placeholder="Descripcion"></textarea>
 
                                             </div>
 
                                             <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearGrupo" value="Crear equipo" />
+                                                name="CrearGrupo" value="Crear grupo" />
 
                                         </form>
 
@@ -211,18 +195,17 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-6 row main-details-team">
-                            <!--
                             <h1 class="m-0 text-dark"> Mis Equipos </h1>
                             <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
-                            -->
                             <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
+
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Mis Equipos </li>
+                                <li class="breadcrumb-item active"> Tema </li>
                             </ol>
                         </div>
 
@@ -265,7 +248,7 @@
                         </div>
                         <div class="botones-grupo">
                             <a href="#" id="del-<?php print_r($row["IDGRUPO"]);?>"
-                                class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
+                                class="small-box-footer btn-eliminar-migrupo"> Eliminar equipo
                                 <i class="fas fa-trash"></i>
                             </a>
                             <a href="NetWorkGrupal" id="ver-<?php print_r($row["IDGRUPO"]);?>"
@@ -326,19 +309,11 @@
 
                             </div>
                         </div>
-                        <div class="botones-grupo">
-                            <a href="#" id="del-<?php print_r($row2["IDGRUPO"]);?>"
-                                class="small-box-footer btn-eliminar-grupo"> Eliminar equipo
-                                <i class="fas fa-trash"></i>
-                            </a>
+                        <div class="botones-grupo">                            
                             <a href="NetWorkGrupal" id="ver-<?php print_r($row2["IDGRUPO"]);?>"
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                            <a href="#" id="edi-<?php print_r($row2["IDGRUPO"]);?>"
-                                class="small-box-footer btn-editar-grupo"> Editar equipo
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
+                            </a>                            
                         </div>                       
                     </div>
                     <?php }
@@ -352,7 +327,7 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Versi&oacute;n</b> 2.0
