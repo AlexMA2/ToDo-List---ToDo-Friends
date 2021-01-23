@@ -26,6 +26,27 @@ $(function () {
 
     const ruta = getAbsolutePath();
 
+    //Ajax con las tareas
+
+    $(".btn-guardar").on("click", function () {
+
+
+        let inTitulo = $("#inTitulo").val();
+        let inDesc = $("#inDesc").val();
+        let inFecha = $("#inFecha").val();
+
+        $.ajax({
+            url: 'guardartarea.php',
+            type: 'POST',
+            data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
+            success: function (rpt) {
+                console.log(rpt);
+                //window.location.replace(ruta + "TareasGrupales");
+            }
+        });
+
+    });
+
     $(".btn-editar").on("click", function () {
 
         if (id !== undefined) {
@@ -70,6 +91,114 @@ $(function () {
             });
         }
     });
+
+    $("#r1").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=1&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+    $("#r2").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=2&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+    $("#r3").on("click", function() {
+        $.ajax({
+            url: 'estadoTarea.php',
+            type: 'POST',
+            data: "valor=3&idTarea=" + id,
+            success: function (rpt) {
+                console.log(rpt);
+            }
+        });      
+    });
+
+
+    //Ajax con temas
+
+    $(".btn-editar-tema").on("click", function () {
+        if (id1 !== undefined) {
+            let editTemaTitulo = $("#editTemaTitulo").val();
+            let editTemaDesc = $("#editTemaDesc").val();
+            console.log(id1 + " xdxdxd ");
+            $.ajax({
+                url: 'editarTema.php',
+                type: 'POST',
+                data: "IDTEMA=" + id1 + "&Titulo4=" + editTemaTitulo + "&Descripcion4=" + editTemaDesc,
+                success: function (rpt) {
+                    window.location.replace(ruta + "NetWork");
+                }
+            });
+        }
+    });
+
+    $(".btn-eliminar-tema").on("click", function () {
+        let id = $(this).attr("id");
+        if (id !== undefined) {
+            $.ajax({
+                url: 'eliminarTema.php',
+                type: 'POST',
+                data: 'IDTEMA=' + id,
+                success: function (rpt) {
+                    window.location.replace(ruta + "NetWork");
+                }
+            });
+        }
+
+    });
+
+    $("#btn-crear-tema").on("click", function(){
+        let tit = $("#inTemaTitulo").val();
+        let desc = $("#inTemaDesc").val();
+        $.ajax({
+            url: 'CrearTema.php',
+            type: 'POST',
+            data: 'Titulo3=' + tit + '&Descripcion3=' + desc,
+            success: function (rpt) {                
+                console.log(rpt);
+                if(rpt === "Aceptado"){
+                    window.location.replace(ruta + "NetWork");
+                }
+                else{
+                    console.log(rpt);
+                }
+            }
+        });
+    });
+
+    $(".btn-ver-tema").on('click', function () {
+        const idTema = $(this).attr('id');
+        setTema(idTema, 'tema');
+    });
+
+    //Ajax con temas grupales
+
+    $("#btn-crear-temagrupal").on("click", function(){
+        let tit = $("#inTemaTitulo").val();
+        let desc = $("#inTemaDesc").val();
+        $.ajax({
+            url: 'CrearTema.php',
+            type: 'POST',
+            data: 'Titulo3=' + tit + '&Descripcion3=' + desc,
+            success: function (rpt) {
+                window.location.replace(ruta + "NetWorkGrupal");
+            }
+        });
+    });   
+
+    //Funciones de la barra principal
 
     $(".btn-guardar").on("click", function () {
 
@@ -149,16 +278,32 @@ $(function () {
 
     })
 
-    $(".btn-ver-tema").on('click', function () {
-        const idTema = $(this).attr('id');
-        setTema(idTema, 'tema');
-    });
+    // Ajax con grupos
+    
 
     $(".btn-ver-grupo").on('click', function () {
         let idGrupo = $(this).attr('id');
         idGrupo = parseInt(idGrupo.substring(4));
         setTema(idGrupo, 'grupo');
     });
+
+    $(".btn-crear-grupo").on('click', function(){
+        let tit = $("#inGrupoTitulo").val();
+        let desc = $("#inGrupoDesc").val();
+
+        $.ajax({
+            url: 'crearGrupo.php',
+            type: 'POST',
+            data: 'Titulo4=' + tit + '&Descripcion4=' + desc,
+            success: function(rpt){
+                if(rpt === "Aceptado"){
+                    window.location.replace(ruta + "MisEquipos");
+                }
+                else{
+                    console.log(rpt);
+                }
+            }
+        });
 
     $(".btn-eliminar-migrupo").on('click', function () {
         
@@ -174,7 +319,7 @@ $(function () {
             } 
            
         });
-    
+
     });
 
     function setTema(id, variable) {

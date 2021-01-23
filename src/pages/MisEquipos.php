@@ -60,19 +60,6 @@
                 </li>
             </ul>
 
-
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
@@ -169,22 +156,21 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form action="crearGrupo.php" method="POST" id="CTema">
+                                        <form action="#" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo4" maxlength="128" minlength="4" required
-                                                    class=" form-control" id="inTemaTitulo"
-                                                    placeholder="Nombre del grupo">
+                                                    class=" form-control" id="inGrupoTitulo"
+                                                    placeholder="Nombre">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion4" maxlength="256" rows="4"
-                                                    class="form-control" id="inTemaDesc" value="Descripcion"
-                                                    placeholder="Descripcion"></textarea>
+                                                    class="form-control" id="inGrupoDesc" value="Descripcion"
+                                                    placeholder="Descripci&oacute;n"></textarea>
 
                                             </div>
 
-                                            <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearGrupo" value="Crear grupo" />
-
+                                            <input type="button" class="btn btn-config btn-light btn-block btn-crear-grupo"
+                                                name="CrearGrupo" value="Crear equipo" />
                                         </form>
 
                                     </div>
@@ -194,8 +180,9 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-sm-6 row main-details-team">
-                            <h1 class="m-0 text-dark"> Mis Equipos </h1>
+                        <div class="col-sm-6 row">
+                            
+                            <h1 class="text-dark titulo-principal"> Mis Equipos </h1>
                             <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
 
@@ -204,8 +191,8 @@
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tema </li>
+                                <li class="breadcrumb-item active"><a href="NetWork"> Mis Equipos </a></li>
+                                <li class="breadcrumb-item"> Temas del equipo </li>n
                             </ol>
                         </div>
 
@@ -221,7 +208,7 @@
                         while($row = $resultado_misgrupos->fetch(PDO::FETCH_ASSOC)) {                            
                     ?>
                     <div class="unidad-grupo">
-                        <div class="small-box bg-info miTema">
+                        <div class="small-box bg-info miGrupo">
                             <div class="titulo-grupo">
                                 <i class="fas fa-users"></i>
                                 <h3><?php print_r($row['Nombre']); ?></h3>

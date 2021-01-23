@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     require "conexion.php";
     session_start();           
     
@@ -33,22 +33,25 @@
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../../plugins/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../styles/chat.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    
-    <div class="wrapper">
 
+    <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -56,25 +59,11 @@
                 </li>
             </ul>
 
-            <!--
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            -->
-
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
+                        Todo Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -95,71 +84,16 @@
                         <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="perfilusuario" class="d-block"> 
+                        <a href="perfilusuario" class="d-block">
                             <?php                                  
                                print_r($uNombre);
-                            ?> 
+                            ?>
                         </a>
                     </div>
                 </div>
 
                 <nav class="mt-2">
-                    <!--
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Tablero
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                                
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Mis Equipos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="../../index" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>
-                                    Salir
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                    -->
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
@@ -168,15 +102,15 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li class="text-wrap"> 
+                                <li class="text-wrap">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
+                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <li class="nav-li">
@@ -186,30 +120,30 @@
                                 <i class="fas fa-angle-left right desplegador"></i>
                             </div>
                             <ul class="nav desplegable">
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">PrimeroPrimeroP(19)</a>
                                 </li>
-                                <li> 
+                                <li>
                                     <i class="far fa-circle nav-icon"></i>
                                     <a href="#">Primero</a>
                                 </li>
-                               
+
                             </ul>
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
                             ?>
-                            <li class="nav-li">
-                                <div class="nav-arbol-hoja">
-                                    <i class="fas fa-users-cog"></i>
-                                    <a href="panelAdmin"> Administrador </a>                                    
-                                </div>                               
-                            </li>
-                            <?php
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-users-cog"></i>
+                                <a href="panelAdmin"> Administrador </a>
+                            </div>
+                        </li>
+                        <?php
                             }              
                                    
-                        ?>  
+                        ?>
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -217,7 +151,7 @@
 
                             </div>
                         </li>
-                    </ul>                   
+                    </ul>
                 </nav>
             </div>
         </aside>
@@ -267,7 +201,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
                             <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
-                            <p class="mx-2 text-muted pt-2"><?php print_r(" $descripcionTema ")?></p>
+                            <p class="mx-2 text-muted pt-2">«<?php print_r(" $descripcionTema ");?>»</p>
                         </div>
                         <div class="col-sm-6">
 
@@ -283,7 +217,7 @@
                                     <!-- sugerencia usar la clase col-md-4--><!-- aqui para lo de reconocimiento de voz-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="#" method = "POST" id="formGuardarTarea">
+                                        <form action="#" method="POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
@@ -297,14 +231,14 @@
                                                     class="form-control" placeholder="Descripci&oacute;n"
                                                     required></textarea>
                                                     <button type="button" id="descripButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
-                                                    
+                                                   
                                             </div>
                                             <div class="form-group">
-                                                <input type="date" id="inFecha" name="fecha"
-                                                    class=" form-control" placeholder=" Fecha L&iacute;mite">
+                                                <input type="date" id="inFecha" name="fecha" class=" form-control"
+                                                    placeholder=" Fecha L&iacute;mite">
                                             </div>
-                                            <input type="button" class="btn btn-success btn-guardar btn-block" id="btnGuardarTarea"
-                                                name = "guardarTarea" value ="Guardar Tarea">
+                                            <input type="button" class="btn btn-success btn-guardar btn-block"
+                                                id="btnGuardarTarea" name="guardarTarea" value="Guardar Tarea">
 
                                         </form>
                                     </div>
@@ -315,12 +249,13 @@
                                             <tr>
                                                 <th class="text-center">T&iacute;tulo</th>
                                                 <th class="text-center">Descripci&oacute;n</th>
-                                                <th class="text-center" style="min-width: 100px;">Fecha L&iacute;mite</th>
-                                                <th class="text-center" style="min-width: 45px;"></th>
+                                                <th class="text-center" style="min-width: 100px;">Fecha L&iacute;mite
+                                                </th>
+                                                <th class="text-center" style="min-width: 45px;"> Opciones </th>
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-                                        <?php
+                                            <?php
                                            
                                             if($filas != 0){
                                                 $query = "SELECT * FROM tareas WHERE eltema = :tema";
@@ -329,32 +264,34 @@
                                                 $resultado_tarea->bindValue(":tema", $tema);
                                                 $resultado_tarea->execute();
                                                 while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
-                                                    <tr class="item-tarea">
-                                                        <td><?php print_r($row['title']); ?></td>
-                                                        <td><?php print_r($row['description']); ?></td>
-                                                        <td><?php print_r($row['limit_date']); ?></td>
-                                                        <td>
-                                                            
-                                                            <span class="span-btn-opciones"><i
-                                                                    class="fa fa-ellipsis-v btn-opciones"
-                                                                    data-tid="<?php print_r($row['id_task']);?>"
-                                                                    aria-hidden="true"></i></span>
-                                                        </td>
-                                                    </tr>
-                                                <?php 
+                                            <tr class="item-tarea">
+                                                <td><?php print_r($row['title']); ?></td>
+                                                <td><?php print_r($row['description']); ?></td>
+                                                <td class="text-center"><?php print_r($row['limit_date']); ?></td>
+                                                <td class="text-center">
+
+                                                    <span class="span-btn-opciones"><i
+                                                            class="fa fa-ellipsis-v btn-opciones"
+                                                            data-tid="<?php print_r($row['id_task']);?>"
+                                                            aria-hidden="true"></i></span>
+                                                </td>
+                                            </tr>
+                                            <?php 
                                                 }
                                             }
                                             else{
                                                 ?>
-                                                <script>
-                                                    function getAbsolutePath() {
-                                                        var loc = window.location;
-                                                        var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-                                                        return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-                                                    }
-                                                    window.location.replace(getAbsolutePath() + "MisEquipos");
-                                                </script>                                              
-                                                <?php    
+                                            <script>
+                                            function getAbsolutePath() {
+                                                var loc = window.location;
+                                                var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') +
+                                                    1);
+                                                return loc.href.substring(0, loc.href.length - ((loc.pathname + loc
+                                                    .search + loc.hash).length - pathName.length));
+                                            }
+                                            window.location.replace(getAbsolutePath() + "MisEquipos");
+                                            </script>
+                                            <?php    
                                             }
                                         ?>
                                         </tbody>
@@ -388,20 +325,21 @@
                                                     <input type="date" name="fecha2" id="inEditFecha"
                                                         class=" form-control">
                                                 </div>
-                                                <input type="button" class="btn btn-config btn-editar btn-light btn-block"
-                                                    name="update" value="Editar Tarea" />
+                                                <input type="button"
+                                                    class="btn btn-config btn-editar btn-light btn-block" name="update"
+                                                    value="Editar Tarea" />
 
                                             </form>
 
                                         </div>
                                         <div class="botones-popup col-2">
                                             <div class="popup-boton">
-                                                <a href="#" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
-                                                        aria-hidden="true"></i> Eliminar </a>
+                                                <a href="#" class="btn-eliminar btn btn-secondary"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i> Eliminar </a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
-                                                        aria-hidden="true"></i> Archivar </a>
+                                                <a href="#" class=" btn-archivar btn btn-secondary"><i
+                                                        class="fa fa-archive" aria-hidden="true"></i> Archivar </a>
                                             </div>
                                             <div class="popup-boton">
                                                 <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
@@ -436,24 +374,100 @@
 
         </div>
 
-        <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
-            Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
+        <?php 
+
+            if(!empty($_SESSION['grupo'])){
+            ?>
+        <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
+            <span class="notificaciones"></span>
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        <div id="Michat">
+            <div class='opciones-chat'>
+                <i class='fas fa-minus' id='minimizar-chat'></i>
             </div>
-        </footer>
+
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <ul class="list-group" id="listaOnline"></ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-grupal-todo cuerpo-chat">
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <ul class="chatpluginchat">
+
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="txtMensaje" type="text" class="form-control input-sm"
+                                placeholder="Escribe un mensaje..." />
+                            <span class="emojis">
+                                <i class="fas fa-smile-beam"></i>
+                                <emoji-picker></emoji-picker>
+                            </span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li class="left clearfix itemtemplate" style="display:none">
+                <span class="chat-img pull-left">
+                    <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
+                        <small class="pull-right text-muted">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            <span id="Tiempo">12 mins ago</span>
+                        </small>
+                    </div>
+                    <p id="Contenido">Contenido</p>
+                </div>
+            </li>
+        </div>
+
+        <?php
+            }            
+            ?>
+
 
     </div>
+
+
+    <footer class="main-footer">
+        <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+        Todos los derechos reservados.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Versi&oacute;n</b> 2.0
+        </div>
+    </footer>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="../scripts/Tarea.js"></script>
-                                
+    <?php 
+
+        if(!empty($_SESSION['grupo'])){
+        ?>
+    <script src="../scripts/MiChat.js"></script>
+    <?php
+        }
+    ?>
+
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
-    
+
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
@@ -467,33 +481,33 @@
     <script src="../../dist/js/adminlte.js"></script>
     <script src="../../dist/js/demo.js"></script>
     <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
-    <script src="../scripts/activadorPopUp.js"></script>                                                         
+    <script src="../scripts/activadorPopUp.js"></script>
     <script>
-    $(document).ready(function(){
-		$('#mitabla').DataTable({
-			//"order": [[1, "asc"]],
-			"language":{
+    $(document).ready(function() {
+        $('#mitabla').DataTable({
+            //"order": [[1, "asc"]],
+            "language": {
                 "EmptyTable": 'No existen tareas',
                 "lengthMenu": "Mostrar _MENU_ tareas",
                 "info": "",
-				"infoEmpty": "",
-				"infoFiltered": "",
-				"loadingRecords": "Cargando...",
-				"processing":     "Procesando...",
+                "infoEmpty": "",
+                "infoFiltered": "",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
                 "search": "",
                 "searchPlaceholder": "Buscar",
-				"zeroRecords":    "No se encontraron tareas",
+                "zeroRecords": "No se encontraron tareas",
                 "paginate": {
-                    "next":       ">",
-					"previous":   "<"
-                },					
-			}
-		});	
-	});	
+                    "next": ">",
+                    "previous": "<"
+                },
+            }
+        });
+    });
     </script>
 
     <script src="../scripts/reconocimientoPorVoz.js"></script>
     <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
 </body>
-</html>
 
+</html>

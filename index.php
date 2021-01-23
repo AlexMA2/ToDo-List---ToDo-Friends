@@ -64,7 +64,7 @@
         <div class="textos">
             <h1 class="titulo">TO DO LIST</h1>
             <h3 class="subtitulo">Te ayudamos a organizarte mejor</h3>
-            <a href="src/pages/login.html">Comenzar</a>
+            <a href="src/pages/login">Comenzar</a>
         </div>
     </header>
         

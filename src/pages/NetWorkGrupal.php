@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="../styles/chat.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -64,24 +66,11 @@
                 </li>
             </ul>
 
-<!--
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
--->
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
+                        Todo Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -174,20 +163,19 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form
-                                            action="CrearTema.php?grupo=<?php print_r(filter_input(INPUT_GET, 'grupo', FILTER_SANITIZE_NUMBER_INT))?>"
-                                            method="POST" id="CTema">
+                                        <form action="" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo3" maxlength="16" minlength="4"
-                                                    class=" form-control" id="inTemaTitulo" placeholder=" T&iacute;tulo">
+                                                    class=" form-control" id="inTemaTitulo"
+                                                    placeholder=" T&iacute;tulo">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion3" maxlength="32" rows="4"
                                                     class="form-control" id="inTemaDesc"
                                                     placeholder="Descripci&oacute;n"></textarea>
                                             </div>
-                                            <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearTema" value="Crear Tema" />
+                                            <input type="button" class="btn btn-config btn-light btn-block"
+                                                name="CrearTema" id="btn-crear-temagrupal" value="Crear Tema" />
 
                                         </form>
 
@@ -199,22 +187,19 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
-                        <!--
+
+                            <h1 class="text-dark titulo-principal"> Temas de Trabajo de Equipo </h1>
                             <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
-                            <h1 class="m-0 text-dark"> Temas de Trabajo </h1>
-                        -->
                             <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
                             <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Temas del equipo</li> 
+                                <li class="breadcrumb-item"><a href="MisEquipos"> Equipos </a></li>
+                                <li class="breadcrumb-item active"> Temas del equipo </li>
                             </ol>
                         </div>
-
-
 
                     </div>
                 </div>
@@ -240,12 +225,13 @@
                     </div>
                     <?php } ?>
 
+
                 </div>
 
 
             </div>
             <!-- aqui comienza añadir integrante -->
-            <div class="card card-body col-4">
+            <div class="card card-body col-4 add-member">
                 <table class="table table-bordered " class="display" id="mitabla">
                     <h4 class="text-center"> Integrantes</h4>
                     <thead class="thead-dark">
@@ -274,14 +260,18 @@
                             <td>
                                 <!-- aqui pongan su wea-->
                                 <div class="float-left">
-                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i class="fas fa-comment"></i></a>
-                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i class="fas fa-comment-slash"></i></a>
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
+                                            class="fas fa-comment"></i></a>
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
+                                            class="fas fa-comment-slash"></i></a>
                                 </div>
                                 <div class="float-right">
-                                    <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i class="fas fa-trash"></i> </a> 
+                                    <a style="text-decoration:none" class="btn btn-danger btn-sm"
+                                        href="eliminarIntegrante.php?IDdelete=<?php print_r($uID5);?>"><i
+                                            class="fas fa-trash"></i> </a>
                                 </div>
-                                </td>
-                                <?php                                
+                            </td>
+                            <?php                                
                                 }
                                 ?>
                         </tr>
@@ -305,17 +295,21 @@
                             <?php
                                     if($_SESSION['user']==$uID5){
                             ?>
-                                <td>
-                                    <!-- aqui pongan su wea-->
-                                    <div class="float-left">
-                                        <a style="text-decoration:none" class="btn btn-sm" href=""><i class="fas fa-comment"></i></a>
-                                        <a style="text-decoration:none" class="btn btn-sm" href=""><i class="fas fa-comment-slash"></i></a>
-                                    </div>
-                                    <div class="float-right">
-                                        <a style="text-decoration:none" class="btn btn-danger btn-sm" href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i class="fas fa-trash"></i> </a> 
-                                    </div>    
-                                    </td>
-                                <?php                                
+                            <td>
+                                <!-- aqui pongan su wea-->
+                                <div class="float-left">
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
+                                            class="fas fa-comment"></i></a>
+                                    <a style="text-decoration:none" class="btn btn-sm" href=""><i
+                                            class="fas fa-comment-slash"></i></a>
+                                </div>
+                                <div class="float-right">
+                                    <a style="text-decoration:none" class="btn btn-danger btn-sm"
+                                        href="eliminarIntegrante.php?IDdelete=<?php print_r($uID2);?>"><i
+                                            class="fas fa-trash"></i> </a>
+                                </div>
+                            </td>
+                            <?php                                
                                     }
                                 ?>
                         </tr>
@@ -369,19 +363,77 @@
                 <?php                                
             }else{?>
                 <a style="text-decoration:none" class="btn btn-danger"
-                                    href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i class="fas fa-sign-out-alt"></i> Salir del grupo </a>
-            <?php
+                    href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i
+                        class="fas fa-sign-out-alt"></i> Salir del grupo </a>
+                <?php
             }
             ?>
             </div>
+
             <!-- aqui termina añadir contactos-->
-            <div id="Elchat"></div>
+
+        </div>
+
+        <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
+            <span class="notificaciones"></span>
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        <div id="Michat">
+            <div class='opciones-chat'>
+                <i class='fas fa-minus' id='minimizar-chat'></i>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <ul class="list-group" id="listaOnline"></ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-grupal-todo cuerpo-chat">
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <ul class="chatpluginchat">
+
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="txtMensaje" type="text" class="form-control input-sm"
+                                placeholder="Escribe un mensaje..." />
+                            <span class="emojis">
+                                <i class="fas fa-smile-beam"></i>
+                                <emoji-picker></emoji-picker>
+                            </span>
+                            
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li class="left clearfix itemtemplate" style="display:none">
+                <span class="chat-img pull-left">
+                    <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
+                        <small class="pull-right text-muted">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            <span id="Tiempo">12 mins ago</span>
+                        </small>
+                    </div>
+                    <p id="Contenido">Contenido</p>
+                </div>
+            </li>
         </div>
 
     </div>
-
-
-
 
     <footer class="main-footer">
         <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
@@ -400,29 +452,7 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="../../chatSocketAchex/chatSocketAchex.js"></script>
-    <script>
-    $('#Elchat').ChatSocket({
-        elnombre: '<?php print_r($uNombre)?>',
-        Room: '<?php print_r($gNombre . "-" . $gID)?>',
-        lblTitulChat: " Chat Grupal ",
-        lblCampoEntrada: "Escribe un mensaje...",
-        lblEnviar: "Enviar",
-        urlImg: '<?php print_r($uFoto)?>',
-        btnEntrar: "btnEntrar",
-        btnEnviar: "btnEnviar",
-        lblBtnEnviar: "Enviar",
-        lblTxtEntrar: "txtEntrar",
-        lblTxtEnviar: "txtMensaje",
-        lblBtnEntrar: "Entrar al chat",
-        idDialogo: "DialogoEntrada",
-        classChat: "chat-grupal-todo",
-        idOnline: "ListaOnline",
-        lblUsuariosOnline: "Usuarios Conectados",
-        lblEntradaNombre: "Nombre:",
-        panelColor: "success",
-    });
-    </script>
+    <script src="../scripts/MiChat.js"></script>
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -439,8 +469,8 @@
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
-
     <script>
+    /*
     var laid = "tema";
     $(".miTema").on("click", function() {
         laid = $(this).attr("id");
@@ -494,7 +524,7 @@
         console.log(color);
         var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
         $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });
+    });*/
     </script>
 </body>
 

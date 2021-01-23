@@ -1,15 +1,42 @@
-#Elchat{
-    max-width: 325px;
-    position: sticky;
-    top: 75%;
-    left: 72%;
+#Michat{
+    display: none;
+    width: 325px;
+    position: fixed;
+    bottom: 65px;    
+    right: 50px;
+    z-index: 2000;
 }
 
-.chat-grupal-todo{
-    
+.btn-chat {    
+    width: 50px;    
+    position: fixed;
+    display: flex;
+    bottom: 65px;    
+    right: 50px;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
 
-.chatpluginchat{
+.btn-chat span{
+    visibility: hidden;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #d84126;
+    margin-bottom: 2px;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.btn-chat i{
+    font-size: 30px;
+}
+
+.chatpluginchat {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -18,35 +45,81 @@
     overflow-y: scroll;
 }
 
-.chatpluginchat li{
+.chatpluginchat li {
     display: flex;
     flex-direction: row;
     padding: 0px 10px;
     justify-content: space-evenly;
     align-items: center;
+    border-bottom: 1px solid #acacac;
 }
 
-.chat-img{
+.chat-img {
     width: 30;
 }
 
-.chatpluginchat li span img{
+.chatpluginchat li span img {
     width: 45px;
     height: 45px;
 }
 
-.chat-body{
-    width: 60%;   
+.chat-body {
+    width: 60%;
 }
 
-.panel-body{
+.panel-body {
     background-color: #fff;
 }
 
-.chat-body div strong{
+.chat-body div strong {
     padding-right: 15px;
 }
 
-#Contenido{
+#Contenido {
     word-break: break-all;
+}
+
+.opciones-chat {
+    background-color: #0F0F0F;
+    display: block;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.opciones-chat i {
+    color: #fff;
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+.chat-grupal-todo {
+    overflow: hidden;
+}
+
+.label-success {
+    color: #45a727;
+}
+
+#btnEnviar{
+    margin-top: 3px;
+    margin-left: 2px;
+}
+
+emoji-picker{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    bottom: 110px;
+    right: 40px;
+    
+}
+
+.emojis{
+    margin: 5px 5px 0px 5px;    
+}
+
+.emojis i{
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(114, 116, 26);
 }
