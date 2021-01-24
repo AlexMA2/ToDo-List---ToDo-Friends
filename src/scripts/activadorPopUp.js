@@ -17,8 +17,8 @@ $(function () {
         $("#inEditFecha").val(fechaLimite);
     });
     $(".btn-cerrar-popup").on("click", function () {
-        $("#overlay").removeClass("active");
-        $("#popup").removeClass("active");
+        $(".overlay").removeClass("active");
+        $(".popup").removeClass("active");
     });
 
     function getAbsolutePath() {
@@ -42,9 +42,13 @@ $(function () {
             url: 'guardartarea.php',
             type: 'POST',
             data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
-            success: function (rpt) {
-                console.log(rpt);
-                //window.location.replace(ruta + "TareasGrupales");
+            success: function (rpt) {                
+                if(rpt === "Aceptado"){
+                    window.location.replace(ruta + "TareasGrupales");
+                }
+                else{
+                    console.log(rpt);
+                }
             }
         });
 
@@ -61,7 +65,6 @@ $(function () {
                 type: 'POST',
                 data: "idTarea=" + id + "&titulo2=" + inEditTitulo + "&descripcion2=" + inEditDesc + "&fecha2=" + inEditFecha,
                 success: function (rpt) {
-
                     window.location.replace(ruta + "TareasGrupales");
                 }
             });
@@ -90,6 +93,7 @@ $(function () {
                 data: 'idTarea=' + id + "&titulo=" + titulo + "&desc=" + descripcion,
                 success: function (rpt) {
                     window.location.replace(ruta + "TareasGrupales");
+                    console.log(rpt);
                 }
             });
         }
@@ -102,7 +106,7 @@ $(function () {
             url: 'eliminartarea.php',
             type: 'POST',
             data: 'idTarea=' + idFinalArch + "&lugar=A",
-            success: function (rpt) {
+            success: function (rpt) {                
                 $("#" + idArch).remove();
             }
         });
@@ -113,17 +117,23 @@ $(function () {
         let deArchivado = $(this).parent().parent().siblings("td:nth-child(2)").text();
         let idArch = $(this).parent().parent().parent().attr('id');
         let idFinalArch = idArch.substring(3);
+        console.log(idFinalArch);
         $.ajax({
             url: 'recuperarTareasArchivadas.php',
             type: 'POST',
             data: 'idArch=' + idFinalArch + '&titulo=' + tiArchivado + '&desc=' + deArchivado,
-            success: function (rpt) {
+            success: function (rpt) {                
                 let elemento = '<tr class="item-tarea"><td>' + tiArchivado + '</td><td>' + deArchivado + '</td><td class="text-center"> Sin fecha límite </td><td class="text-center"><span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones" data-tid="' + rpt + '" aria-hidden="true"></i></span></td></tr>';
                 $("#" + idArch).remove();
-                $(".lista-tareas").append();
+                $(".lista-tareas").append(elemento);
             }
         });
 
+    });
+
+    $(".btn-recup-front").on('click', function(){
+        $("#overlayArchiv").addClass("active");
+        $("#popupArchiv").addClass("active");
     });
 
     $("#r1").on("click", function () {
@@ -233,25 +243,6 @@ $(function () {
     });
 
     //Funciones de la barra principal
-
-    $(".btn-guardar").on("click", function () {
-
-
-        let inTitulo = $("#inTitulo").val();
-        let inDesc = $("#inDesc").val();
-        let inFecha = $("#inFecha").val();
-
-        $.ajax({
-            url: 'guardartarea.php',
-            type: 'POST',
-            data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
-            success: function (rpt) {
-                //console.log(rpt);
-                window.location.replace(ruta + "TareasGrupales");
-            }
-        });
-
-    });
 
     $(".desplegador").on("click", function () {
         let valor = $(this).parent().siblings(".desplegable").css("display");

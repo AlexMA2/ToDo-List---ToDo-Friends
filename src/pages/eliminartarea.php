@@ -3,7 +3,7 @@
 require "conexion.php";
 session_start();      
 $id = filter_input(INPUT_POST, 'idTarea', FILTER_SANITIZE_NUMBER_INT);
-$LUGAR = filter_input(INPUT_POST, 'lugar');
+$lugar = filter_input(INPUT_POST, 'lugar');
 if(!empty($id)) {
     if($lugar === "N"){
         try{        
@@ -11,18 +11,19 @@ if(!empty($id)) {
             $resultadousuario = $conection->prepare($query);
             $resultadousuario->bindValue(":id", $id);
             $resultadousuario->execute();
-            header('Location: TareasGrupales');
+           
         }catch(Exception $ex){
             
         }
     }
     else if($lugar === "A"){
+        
         try{        
             $query = "DELETE FROM `tareas_archivadas` WHERE `ID_ARCHIVADO` = :id";
             $resultadousuario = $conection->prepare($query);
             $resultadousuario->bindValue(":id", $id);
             $resultadousuario->execute();
-            header('Location: TareasGrupales');
+            
         }catch(Exception $ex){
             
         }

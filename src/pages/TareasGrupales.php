@@ -202,6 +202,7 @@
                         <div class="col-sm-6 row">
                             <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
                             <p class="mx-2 text-muted pt-2">«<?php print_r(" $descripcionTema ");?>»</p>
+                            <button class="btn btn-primary btn-recup-front"> Recuperar tareas </button>
                         </div>
                         <div class="col-sm-6">
 
@@ -241,7 +242,7 @@
                                                     placeholder=" Fecha L&iacute;mite">
                                             </div>
                                             <input type="button" class="btn btn-success btn-guardar btn-block"
-                                                id="btnGuardarTarea" name="guardarTarea" value="Guardar Tarea">
+                                                name="guardarTarea" value="Guardar Tarea">
 
                                         </form>
                                     </div>
@@ -370,39 +371,47 @@
                         </div>
                         <!--Aqui termina el formulario-->
                         <div class="overlay " id="overlayArchiv">
-                            <div class="popup " id="popupArchiv">                                
-                                <div class="tareas-archivadas">
-                                    <table class="table table-bordered mis-tareas" class="display">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th class="text-center">T&iacute;tulo</th>
-                                                <th class="text-center">Descripci&oacute;n</th>                                                
-                                                <th class="text-center" style="min-width: 45px;"> Opciones </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="lista-tareas">
-                                            <?php
+                            <div class="popup " id="popupArchiv">
+                                <div class="col sm-4">
+                                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                                    <div class="tareas-archivadas">
+                                        <table class="table table-bordered mis-tareas" class="display">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="text-center">T&iacute;tulo</th>
+                                                    <th class="text-center">Descripci&oacute;n</th>
+                                                    <th class="text-center" style="min-width: 45px;"> Opciones </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                             $query = "SELECT * FROM tareas_archivadas WHERE Creador = :us";
                                             $resultado_tarea = $conection->prepare($query);                                            
                                             $resultado_tarea->bindValue(":us", $_SESSION['user']);
                                             $resultado_tarea->execute();
 
                                             while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
-                                            <tr class="item-tarea" id="ar-<?php print_r($row['ID_ARCHIVADO'])?>">
-                                                <td><?php print_r($row['Titulo']); ?></td>
-                                                <td><?php print_r($row['Descripcion']); ?></td>                                                
-                                                <td class="text-center">
-                                                    <span><i class="fas fa-recycle btn-recuperar-archivadas"></i></span>
-                                                    <span><i class="fa fa-trash btn-eliminar-archivado"></i></span>
-                                                </td>
-                                            </tr>
-                                            <?php 
+                                                <tr class="item-tarea" id="ar-<?php print_r($row['ID_ARCHIVADO'])?>">
+                                                    <td><?php print_r($row['Titulo']); ?></td>
+                                                    <td><?php print_r($row['Descripcion']); ?></td>
+                                                    <td class="text-center">
+                                                        <span class="mx-1">
+                                                            <i class="fas fa-recycle btn-recuperar-archivadas"></i>
+                                                        </span>
+                                                        <span class="mx-1">
+                                                            <i class="fa fa-trash btn-eliminar-archivado"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <?php 
                                             }                                                                                      
                                              
                                         ?>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+
                             </div>
 
                         </div>
