@@ -192,7 +192,7 @@
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item active"><a href="NetWork"> Mis Equipos </a></li>
-                                <li class="breadcrumb-item"> Temas del equipo </li>n
+                                <li class="breadcrumb-item"> Temas del equipo </li>
                             </ol>
                         </div>
 
@@ -324,15 +324,14 @@
     </div>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
-
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
 
-
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
     <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
@@ -342,8 +341,10 @@
     <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="../../dist/js/adminlte.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    
+    <script src="../../dist/js/adminlte.js"></script>
+    
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script>
