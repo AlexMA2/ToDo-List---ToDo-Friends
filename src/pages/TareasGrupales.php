@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="../../plugins/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../styles/chat.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    
+
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 
 </head>
@@ -214,7 +214,8 @@
                         <div class="container p-4">
                             <div class="row">
                                 <div class="container">
-                                    <!-- sugerencia usar la clase col-md-4--><!-- aqui para lo de reconocimiento de voz-->
+                                    <!-- sugerencia usar la clase col-md-4-->
+                                    <!-- aqui para lo de reconocimiento de voz-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
                                         <form action="#" method="POST" id="formGuardarTarea">
@@ -222,16 +223,18 @@
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
                                                     required>
-                                                    
-                                                    <button type="button" id="titleButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
-                                                    
+
+                                                <button type="button" id="titleButton" class="btn btn-info mic"><i
+                                                        class="fas fa-microphone"></i></button>
+
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
                                                     class="form-control" placeholder="Descripci&oacute;n"
                                                     required></textarea>
-                                                    <button type="button" id="descripButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
-                                                   
+                                                <button type="button" id="descripButton" class="btn btn-info mic"><i
+                                                        class="fas fa-microphone"></i></button>
+
                                             </div>
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha" class=" form-control"
@@ -366,7 +369,43 @@
 
                         </div>
                         <!--Aqui termina el formulario-->
+                        <div class="overlay " id="overlayArchiv">
+                            <div class="popup " id="popupArchiv">                                
+                                <div class="tareas-archivadas">
+                                    <table class="table table-bordered mis-tareas" class="display">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="text-center">T&iacute;tulo</th>
+                                                <th class="text-center">Descripci&oacute;n</th>                                                
+                                                <th class="text-center" style="min-width: 45px;"> Opciones </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="lista-tareas">
+                                            <?php
+                                            $query = "SELECT * FROM tareas_archivadas WHERE Creador = :us";
+                                            $resultado_tarea = $conection->prepare($query);                                            
+                                            $resultado_tarea->bindValue(":us", $_SESSION['user']);
+                                            $resultado_tarea->execute();
 
+                                            while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                            <tr class="item-tarea" id="ar-<?php print_r($row['ID_ARCHIVADO'])?>">
+                                                <td><?php print_r($row['Titulo']); ?></td>
+                                                <td><?php print_r($row['Descripcion']); ?></td>                                                
+                                                <td class="text-center">
+                                                    <span><i class="fas fa-recycle btn-recuperar-archivadas"></i></span>
+                                                    <span><i class="fa fa-trash btn-eliminar-archivado"></i></span>
+                                                </td>
+                                            </tr>
+                                            <?php 
+                                            }                                                                                      
+                                             
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
