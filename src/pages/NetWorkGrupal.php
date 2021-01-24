@@ -362,6 +362,18 @@
                 </div>
                 <?php                                
             }else{?>
+
+                <div class="card card-body">
+                    <form action="soliciarIntegrante.php"method="POST" id="solicitarAmigo">
+                    <p class="text-center">¿Deseas unir algún integrante?</p>
+                        <div class="form-group">
+                            <input type="email" name="idEmailSolicitud" class="form-control" id="idEmailSolicitud"
+                                placeholder="Escribe el correo">
+                        </div>
+                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnSolicitar" id="btnSolicitar"
+                            value="Solicitar" />
+                    </form>
+                </div>
                 <a style="text-decoration:none" class="btn btn-danger"
                     href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i
                         class="fas fa-sign-out-alt"></i> Salir del grupo </a>
@@ -452,8 +464,8 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="../scripts/MiChat.js"></script>
-
+    <!--<script src="../scripts/MiChat.js"></script> -->
+    <!--<script src="../scripts/solicitarUnirInttegrante.js"></script>-->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
