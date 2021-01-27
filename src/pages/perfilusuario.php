@@ -49,7 +49,8 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="" role="button">
+                    <i class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
@@ -83,9 +84,9 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link">
+            <a href="" class="brand-link">
                 <img src="../../res/favicon1.png" alt="Todo List" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Todo List</span>
+                <span class="brand-text font-weight-light">ToDo List</span>
             </a>
 
             <div class="sidebar">
@@ -244,10 +245,10 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
+                <!--<b>Versi&oacute;n</b> 2.0-->
             </div>
         </footer>
 

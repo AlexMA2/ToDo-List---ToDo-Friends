@@ -27,7 +27,7 @@
 </head>
 <?php
     require "conexion.php";
-    $mensaje = "REGISTRATE";
+    $mensaje = "REGÍSTRATE";
     if(!empty(filter_input(INPUT_POST, 'registrar'))){
         try{                    
                 
@@ -129,7 +129,7 @@
             <li class="nav-item text-center"><a class="nav-link" href="tutorial"> Tutorial </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="equipos"> Trabajos en Equipo </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="login"> Iniciar Sesi&oacute;n </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="registro">Registrarse </a> </li>
+            <li class="nav-item text-center"><a class="nav-link" href="registro">Regístrate </a> </li>
         </nav>
 
     </header>
@@ -169,7 +169,7 @@
                         <input type="password" name="passr" placeholder="Repetir contraseña" minlength="5" maxlength="200" required />
                     </div>
                 </div>                
-                <input type="submit" name="registrar" class="btn" value="Registrarse">
+                <input type="submit" name="registrar" class="btn" value="Registrarte">
 
             </form>
         </div>

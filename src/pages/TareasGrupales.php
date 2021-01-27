@@ -50,20 +50,18 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="" role="button">
+                        <i class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
-
                 </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        Todo Friends
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">ToDo
+                        Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -72,13 +70,12 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link">
+            <a href="" class="brand-link">
                 <img src="../../res/favicon1.png" alt="Todo List" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Todo List</span>
+                <span class="brand-text font-weight-light">ToDo List</span>
             </a>
 
             <div class="sidebar">
-
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
@@ -93,7 +90,6 @@
                 </div>
 
                 <nav class="mt-2">
-
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
@@ -133,7 +129,7 @@
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
-                            ?>
+                        ?>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users-cog"></i>
@@ -141,14 +137,12 @@
                             </div>
                         </li>
                         <?php
-                            }              
-                                   
+                            }                     
                         ?>
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
                     </ul>
@@ -157,9 +151,8 @@
         </aside>
 
         <?php
-            
             $tema = $_SESSION['tema'];
-            
+
             if(empty($_SESSION['grupo'])){
                 // Validar que el tema pertenece al usuario
                 $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
@@ -172,7 +165,6 @@
                     $nombreTema = $otrosDatos['Titulo'];
                     $descripcionTema = $otrosDatos['Descripcion'];
                 }
-
                 $filas = $esteResultado->rowCount();
             }
             else{
@@ -187,17 +179,13 @@
                     $nombreTema = $otrosDatos['Titulo'];
                     $descripcionTema = $otrosDatos['Descripcion'];
                 }
-
                 $filas = $esteResultado->rowCount();
             }
-            
         ?>
 
         <div class="content-wrapper">
-
             <div class="content-header">
                 <div class="container-fluid">
-
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
                             <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
@@ -205,10 +193,9 @@
                             <button class="btn btn-primary btn-recup-front"> Recuperar tareas </button>
                         </div>
                         <div class="col-sm-6">
-
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tareas </li>
+                                <li class="breadcrumb-item"> Tareas </li>
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
@@ -224,26 +211,25 @@
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
                                                     required>
-
                                                 <button type="button" id="titleButton" class="btn btn-info mic"><i
                                                         class="fas fa-microphone"></i></button>
-
                                             </div>
+
                                             <div class="form-group">
                                                 <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
                                                     class="form-control" placeholder="Descripci&oacute;n"
                                                     required></textarea>
                                                 <button type="button" id="descripButton" class="btn btn-info mic"><i
                                                         class="fas fa-microphone"></i></button>
-
                                             </div>
+
                                             <div class="form-group">
                                                 <input type="date" id="inFecha" name="fecha" class=" form-control"
                                                     placeholder=" Fecha L&iacute;mite">
                                             </div>
+
                                             <input type="button" class="btn btn-success btn-guardar btn-block"
                                                 name="guardarTarea" value="Guardar Tarea">
-
                                         </form>
                                     </div>
                                 </div>
@@ -260,31 +246,29 @@
                                         </thead>
                                         <tbody class="lista-tareas">
                                             <?php
-                                           
-                                            if($filas != 0){
-                                                $query = "SELECT * FROM tareas WHERE eltema = :tema";
-                                                $resultado_tarea = $conection->prepare($query);
-                                                
-                                                $resultado_tarea->bindValue(":tema", $tema);
-                                                $resultado_tarea->execute();
-                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                if($filas != 0){
+                                                    $query = "SELECT * FROM tareas WHERE eltema = :tema";
+                                                    $resultado_tarea = $conection->prepare($query);
+                                                    $resultado_tarea->bindValue(":tema", $tema);
+                                                    $resultado_tarea->execute();
+                                                    while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
                                             <tr class="item-tarea">
                                                 <td><?php print_r($row['title']); ?></td>
                                                 <td><?php print_r($row['description']); ?></td>
                                                 <td class="text-center"><?php print_r($row['limit_date']); ?></td>
                                                 <td class="text-center">
-
                                                     <span class="span-btn-opciones"><i
                                                             class="fa fa-ellipsis-v btn-opciones"
                                                             data-tid="<?php print_r($row['id_task']);?>"
-                                                            aria-hidden="true"></i></span>
+                                                            aria-hidden="true"></i>
+                                                    </span>
                                                 </td>
                                             </tr>
                                             <?php 
+                                                    }
                                                 }
-                                            }
-                                            else{
-                                                ?>
+                                                else{
+                                                    ?>
                                             <script>
                                             function getAbsolutePath() {
                                                 var loc = window.location;
@@ -296,24 +280,20 @@
                                             window.location.replace(getAbsolutePath() + "MisEquipos");
                                             </script>
                                             <?php    
-                                            }
-                                        ?>
+                                                }
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
-
                         </div>
                         <!--opcion de editar-->
                         <div class="overlay " id="overlay">
                             <div class="popup " id="popup">
-
                                 <div class="col sm-4">
                                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                                     <div class="row">
                                         <div class="card card-body col-10">
-
                                             <form action="#" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
                                                     <input type="text" name="titulo2" maxlength="128" minlength="4"
@@ -323,7 +303,6 @@
                                                     <textarea name="descripcion2" maxlength="256" rows="4"
                                                         class="form-control" id="inEditDesc" placeholder="Descripcion">
                                                     </textarea>
-
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="date" name="fecha2" id="inEditFecha"
@@ -332,9 +311,7 @@
                                                 <input type="button"
                                                     class="btn btn-config btn-editar btn-light btn-block" name="update"
                                                     value="Editar Tarea" />
-
                                             </form>
-
                                         </div>
                                         <div class="botones-popup col-2">
                                             <div class="popup-boton">
@@ -364,10 +341,8 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                         <!--Aqui termina el formulario-->
                         <div class="overlay " id="overlayArchiv">
@@ -385,12 +360,11 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                            $query = "SELECT * FROM tareas_archivadas WHERE Creador = :us";
-                                            $resultado_tarea = $conection->prepare($query);                                            
-                                            $resultado_tarea->bindValue(":us", $_SESSION['user']);
-                                            $resultado_tarea->execute();
-
-                                            while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                    $query = "SELECT * FROM tareas_archivadas WHERE Creador = :us";
+                                                    $resultado_tarea = $conection->prepare($query);                                            
+                                                    $resultado_tarea->bindValue(":us", $_SESSION['user']);
+                                                    $resultado_tarea->execute();
+                                                    while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
                                                 <tr class="item-tarea" id="ar-<?php print_r($row['ID_ARCHIVADO'])?>">
                                                     <td><?php print_r($row['Titulo']); ?></td>
                                                     <td><?php print_r($row['Descripcion']); ?></td>
@@ -404,9 +378,8 @@
                                                     </td>
                                                 </tr>
                                                 <?php 
-                                            }                                                                                      
-                                             
-                                        ?>
+                                                    }                                                                                      
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -417,15 +390,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
         <?php 
-
             if(!empty($_SESSION['grupo'])){
-            ?>
+        ?>
         <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
             <span class="notificaciones"></span>
             <i class="fas fa-comment-dots"></i>
@@ -434,7 +403,6 @@
             <div class='opciones-chat'>
                 <i class='fas fa-minus' id='minimizar-chat'></i>
             </div>
-
             <div class="panel panel-success">
                 <div class="panel-body">
                     <ul class="list-group" id="listaOnline"></ul>
@@ -448,9 +416,7 @@
             <div class="chat-grupal-todo cuerpo-chat">
                 <div class="panel panel-success">
                     <div class="panel-body">
-                        <ul class="chatpluginchat">
-
-                        </ul>
+                        <ul class="chatpluginchat"></ul>
                     </div>
                     <div class="panel-footer">
                         <div class="input-group">
@@ -482,80 +448,70 @@
                     <p id="Contenido">Contenido</p>
                 </div>
             </li>
-        </div>
-
-        <?php
+            <!--aqui habia un div de cierre-->
+            <?php
             }            
-            ?>
-
-
-    </div>
-
-
-    <footer class="main-footer">
-        <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
-        Todos los derechos reservados.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Versi&oacute;n</b> 2.0
+        ?>
         </div>
-    </footer>
-
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/Tarea.js"></script>
-    <?php 
-
+        <footer class="main-footer">
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
+            Todos los derechos reservados.
+            <div class="float-right d-none d-sm-inline-block">
+                <!--<b>Versi&oacute;n</b> 2.0-->
+            </div>
+        </footer>
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="../scripts/Tarea.js"></script>
+        <?php 
         if(!empty($_SESSION['grupo'])){
         ?>
-    <script src="../scripts/MiChat.js"></script>
-    <?php
+        <script src="../scripts/MiChat.js"></script>
+        <?php
         }
     ?>
-
-    <script>
-    $.widget.bridge('uibutton', $.ui.button)
-    </script>
-
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../plugins/chart.js/Chart.min.js"></script>
-    <script src="../../plugins/sparklines/sparkline.js"></script>
-    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <script src="../../plugins/moment/moment.min.js"></script>
-    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="../../dist/js/adminlte.js"></script>
-    <script src="../../dist/js/demo.js"></script>
-    <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
-    <script src="../scripts/activadorPopUp.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('#mitabla').DataTable({
-            //"order": [[1, "asc"]],
-            "language": {
-                "EmptyTable": 'No existen tareas',
-                "lengthMenu": "Mostrar _MENU_ tareas",
-                "info": "",
-                "infoEmpty": "",
-                "infoFiltered": "",
-                "loadingRecords": "Cargando...",
-                "processing": "Procesando...",
-                "search": "",
-                "searchPlaceholder": "Buscar",
-                "zeroRecords": "No se encontraron tareas",
-                "paginate": {
-                    "next": ">",
-                    "previous": "<"
-                },
-            }
+        <script>
+        $.widget.bridge('uibutton', $.ui.button)
+        </script>
+        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../../plugins/chart.js/Chart.min.js"></script>
+        <script src="../../plugins/sparklines/sparkline.js"></script>
+        <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+        <script src="../../plugins/moment/moment.min.js"></script>
+        <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+        <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="../../dist/js/adminlte.js"></script>
+        <script src="../../dist/js/demo.js"></script>
+        <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
+        <script src="../scripts/activadorPopUp.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#mitabla').DataTable({
+                //"order": [[1, "asc"]],
+                "language": {
+                    "EmptyTable": 'No existen tareas',
+                    "lengthMenu": "Mostrar _MENU_ tareas",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "",
+                    "searchPlaceholder": "Buscar",
+                    "zeroRecords": "No se encontraron tareas",
+                    "paginate": {
+                        "next": ">",
+                        "previous": "<"
+                    },
+                }
+            });
         });
-    });
-    </script>
-
-    <script src="../scripts/reconocimientoPorVoz.js"></script>
-    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
+        </script>
+        <script src="../scripts/reconocimientoPorVoz.js"></script>
+        <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
 </body>
 
 </html>
