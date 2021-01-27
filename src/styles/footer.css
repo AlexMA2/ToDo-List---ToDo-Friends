@@ -3,8 +3,7 @@ footer {
   height: auto;
 }
 
-.titulo-footer,
-.subtitulo-footer {
+.titulo-footer, .subtitulo-footer {
   color: #fff;
   text-align: center;
   font-weight: 400;
@@ -24,8 +23,7 @@ form {
   margin: auto;
 }
 
-input[type="text"],
-input[type="email"] {
+input[type="text"], input[type="email"] {
   display: inline-block;
   width: 48%;
   padding: 13px;
@@ -37,9 +35,7 @@ input[type="email"] {
   border-top: 5px solid rgba(37, 37, 33, 0.7);
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus {
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
   border-top: 5px solid rgba(255, 255, 255, 0.7);
 }
 

@@ -1,24 +1,24 @@
-#Michat{
+#Michat {
     display: none;
     width: 325px;
     position: fixed;
-    bottom: 65px;    
+    bottom: 65px;
     right: 50px;
     z-index: 2000;
 }
 
-.btn-chat {    
-    width: 50px;    
+.btn-chat {
+    width: 50px;
     position: fixed;
     display: flex;
-    bottom: 65px;    
+    bottom: 65px;
     right: 50px;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
 }
 
-.btn-chat span{
+.btn-chat span {
     visibility: hidden;
     border-radius: 50%;
     width: 20px;
@@ -32,7 +32,7 @@
     line-height: 20px;
 }
 
-.btn-chat i{
+.btn-chat i {
     font-size: 30px;
 }
 
@@ -100,25 +100,24 @@
     color: #45a727;
 }
 
-#btnEnviar{
+#btnEnviar {
     margin-top: 3px;
     margin-left: 2px;
 }
 
-emoji-picker{
+emoji-picker {
     display: none;
     z-index: 1000;
     position: fixed;
     bottom: 110px;
     right: 40px;
-    
 }
 
-.emojis{
-    margin: 5px 5px 0px 5px;    
+.emojis {
+    margin: 5px 5px 0px 5px;
 }
 
-.emojis i{
+.emojis i {
     font-size: 25px;
     cursor: pointer;
     color: rgb(114, 116, 26);
