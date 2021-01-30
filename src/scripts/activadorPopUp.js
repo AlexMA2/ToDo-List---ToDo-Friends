@@ -54,6 +54,17 @@ $(function () {
 
     });
 
+    $(".btn-abrir-popupMover").on("click", function (ev) { //PorUp para mover tareas de un Tema a otro
+        ev.preventDefault();
+        $("#overlay3").addClass("active");
+        $("#popup3").addClass("active");
+        id1 = $(this).data("id1");
+    });
+    $(".btn-cerrar-popup3").on("click", function () {
+        $("#overlay3").removeClass("active");
+        $("#popup3").removeClass("active");
+    });
+
     $(".btn-editar").on("click", function () {
 
         if (id !== undefined) {
@@ -68,6 +79,24 @@ $(function () {
                     window.location.replace(ruta + "TareasGrupales");
                 }
             });
+        }
+    });
+
+
+    $(".btn-mover-tarea").on("click", function () {
+        id2 = $(this).data("tid2");
+        if (id2 !== undefined) {
+            console.log(id2 + " a br si funca");
+            $.ajax({
+                url: 'moverTarea.php',
+                type: 'POST',
+                data: "idTema=" + id2 + "&idTarea=" + id,
+                success: function (rpt) {
+                    window.location.replace(ruta + "TareasGrupales");
+                }
+            });
+        }else{
+            console.log("Ptmr, marge, no funca");
         }
     });
 
