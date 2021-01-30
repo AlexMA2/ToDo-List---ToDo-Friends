@@ -359,7 +359,7 @@
                                                         aria-hidden="true"></i> Adjuntar</a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
+                                                <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i class="fa fa-arrow-right"
                                                         aria-hidden="true"></i> Mover </a>
                                             </div>
                                         </div>
@@ -370,6 +370,74 @@
 
                         </div>
                         <!--Aqui termina el formulario-->
+
+                        <!--Inicio de Mover Tarea-->
+                        <div class="overlay " id="overlay3">
+                            <div class="popup " id="popup3">
+
+                                <div class="col sm-4">
+                                    Mover tarea<a href="#" class="btn-cerrar-popup3"><i
+                                            class="far fa-times-circle"></i></a>
+                                    <div class="row">
+                                        <table class="table table-bordered mis-tareas" class="display" id="mitabla">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="text-center">T&iacute;tulo del Tema</th>
+                                                    <th class="text-center">Descripci&oacute;n</th>
+                                                    <th class="text-center" style="min-width: 45px;">Acci&oacute;n</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="lista-temas">
+                                                <?php
+                                                if($filas != 0){
+                                                    $peticion = "SELECT * FROM temas";
+                                                    $resultado_tema = $conection->prepare($peticion);
+                                                    $resultado_tema->execute();
+                                                    while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                        if($row['IDTEMA'] != $tema){
+                                                            if($row['Usuario'] == $_SESSION['user']){
+                                                ?>
+                                                <tr class="item-tema">
+                                                    <td><?php print_r($row['Titulo']); ?></td>
+                                                    <td><?php print_r($row['Descripcion']); ?></td>
+                                                    <td class="text-center">
+                                                        <span class="span-btn-opciones"><i
+                                                                class="fas fa-exchange-alt btn-mover-tarea"
+                                                                data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                aria-hidden="true"></i></span>
+                                                    </td>
+                                                </tr>
+                                                <?php 
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else{
+                                                ?>
+                                                <script>
+                                                function getAbsolutePath() {
+                                                    var loc = window.location;
+                                                    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf(
+                                                            '/') +
+                                                        1);
+                                                    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc
+                                                        .search + loc.hash).length - pathName.length));
+                                                }
+                                                window.location.replace(getAbsolutePath() + "MisEquipos");
+                                                </script>
+                                                <?php    
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin formulario Mover Tarea-->
+
+
                         <div class="overlay " id="overlayArchiv">
                             <div class="popup " id="popupArchiv">
                                 <div class="col sm-4">
@@ -556,5 +624,4 @@
     });
     </script>
 </body>
-
 </html>
