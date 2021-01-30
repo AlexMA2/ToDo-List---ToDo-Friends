@@ -455,7 +455,14 @@
 
 
         </div>
-
+    </footer>
+    
+    <script src="../scripts/reconocimientoPorVoz.js"></script>
+    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../scripts/Tarea.js"></script>
+    <?php 
 
         <footer class="main-footer">
             <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
@@ -513,9 +520,8 @@
                 }
             });
         });
-        </script>
-        <script src="../scripts/reconocimientoPorVoz.js"></script>
-        <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
+    });
+    </script>
 </body>
 
 </html>

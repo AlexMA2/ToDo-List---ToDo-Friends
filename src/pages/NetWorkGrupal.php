@@ -312,7 +312,9 @@
                             <?php                                
                                     }
                                 ?>
+
                         </tr>
+                        
                         <?php 
                             }
                         }
@@ -336,6 +338,47 @@
                 <?php
             if($_SESSION['user']==$uID5){
             ?>
+                <table class="table table-bordered " class="display" id="mitabla">
+                
+                    <h4 class="text-center"> Solicitudes de ingreso</h4>
+                    <thead class="thead-dark">
+                    
+                    </thead>
+                    <tbody class="lista-tareas">
+                    <?php
+                                           
+                                           if($_SESSION['grupo'] != 0){
+                                               $query = "SELECT * FROM solicitudes WHERE IDGrupo = :grupo";
+                                               $resultado_tarea = $conection->prepare($query);
+                                               
+                                               $resultado_tarea->bindValue(":grupo", $_SESSION['grupo']);
+                                               $resultado_tarea->execute();
+                                               while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) {
+                                                   list ($uIDSte, $uNombreSte, $uCorreoSte, $uFotoSte) = getInfoSobre($row['IDSolicitante']);
+                                                   list ($uIDSdo, $uNombreSdo, $uCorreoSdo, $uFotoSdo) = getInfoSobre($row['IDSolicitado']);
+                                                   
+                                                   ?>
+                   
+                                           <tr class="item-tarea">
+                                                <td><?php print_r($uNombreSte); ?> <i class="fas fa-arrow-circle-right"></i> <?php print_r($uNombreSdo); ?> </td>
+                                                <td>
+                                                <a style="text-decoration:none" class="btn btn-success"
+                                                    href="aceptarSolicitud.php?IDSoldo=<?php print_r($uIDSdo);?>"><i class="fas fa-check-circle"></i></a>
+                                                <a style="text-decoration:none" class="btn btn-danger"
+                                                    href="denegarSolicitud.php?IDSoldo=<?php print_r($uIDSdo);?>"><i class="fas fa-times-circle"></i></a>
+
+                                                </td>
+                                           </tr>
+                                           
+                                                
+                                           <?php 
+                                               }
+                                           }
+                                           ?>
+                                          
+                    </tbody>
+                            
+                </table>
                 <div class="card card-body">
 
                     <form action="agregarIntegrante.php" method="POST" id="guardarAmigo">
@@ -362,6 +405,18 @@
                 </div>
                 <?php                                
             }else{?>
+
+                <div class="card card-body">
+                    <form action="soliciarIntegrante.php"method="POST" id="solicitarAmigo">
+                    <p class="text-center">¿Deseas unir algún integrante?</p>
+                        <div class="form-group">
+                            <input type="email" name="idEmailSolicitud" class="form-control" id="idEmailSolicitud"
+                                placeholder="Escribe el correo">
+                        </div>
+                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnSolicitar" id="btnSolicitar"
+                            value="Solicitar" />
+                    </form>
+                </div>
                 <a style="text-decoration:none" class="btn btn-danger"
                     href="eliminarIntegrante.php?IDdelete=<?php print_r($_SESSION['user']);?>"><i
                         class="fas fa-sign-out-alt"></i> Salir del grupo </a>
@@ -452,8 +507,8 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="../scripts/MiChat.js"></script>
-
+    <!--<script src="../scripts/MiChat.js"></script> -->
+    <!--<script src="../scripts/solicitarUnirInttegrante.js"></script>-->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
@@ -469,63 +524,6 @@
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
-    <script>
-    /*
-    var laid = "tema";
-    $(".miTema").on("click", function() {
-        laid = $(this).attr("id");
-
-    });
-    var panel = document.getElementById(laid);
-    const pickr = Pickr.create({
-        el: '.color-picker',
-        theme: 'classic', // or 'monolith', or 'nano'
-
-        swatches: [
-            'rgba(244, 67, 54, 1)',
-            'rgba(233, 30, 99, 0.95)',
-            'rgba(156, 39, 176, 0.9)',
-            'rgba(103, 58, 183, 0.85)',
-            'rgba(63, 81, 181, 0.8)',
-            'rgba(33, 150, 243, 0.75)',
-            'rgba(3, 169, 244, 0.7)',
-            'rgba(0, 188, 212, 0.7)',
-            'rgba(0, 150, 136, 0.75)',
-            'rgba(76, 175, 80, 0.8)',
-            'rgba(139, 195, 74, 0.85)',
-            'rgba(205, 220, 57, 0.9)',
-            'rgba(255, 235, 59, 0.95)',
-            'rgba(255, 193, 7, 1)'
-        ],
-
-        components: {
-
-            // Main components
-            preview: true,
-            opacity: true,
-            hue: true,
-
-            // Input / output Options
-            interaction: {
-                hex: true,
-                rgba: false,
-                hsla: false,
-                hsva: false,
-                cmyk: false,
-                input: true,
-                clear: true,
-                save: true
-            }
-        }
-    });
-
-    pickr.on('change', (...args) => {
-        let color = args[0].toRGBA();
-        console.log(color);
-        var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
-        $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });*/
-    </script>
 </body>
 
 </html>

@@ -20,11 +20,18 @@ $(function () {
         $(".overlay").removeClass("active");
         $(".popup").removeClass("active");
     });
-
+    
     function getAbsolutePath() {
         var loc = window.location;
         var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-        return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+
+        var ref = loc.href;
+
+        if (ref.charAt(ref.length - 1) === '#') {
+            ref = ref.substring(0, ref.length - 1);           
+        }
+
+        return ref.substring(0, ref.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
     }
 
     const ruta = getAbsolutePath();
@@ -42,11 +49,11 @@ $(function () {
             url: 'guardartarea.php',
             type: 'POST',
             data: "titulo=" + inTitulo + "&descripcion=" + inDesc + "&fecha=" + inFecha,
-            success: function (rpt) {                
-                if(rpt === "Aceptado"){
+            success: function (rpt) {
+                if (rpt === "Aceptado") {
                     window.location.replace(ruta + "TareasGrupales");
                 }
-                else{
+                else {
                     console.log(rpt);
                 }
             }
@@ -106,7 +113,7 @@ $(function () {
             url: 'eliminartarea.php',
             type: 'POST',
             data: 'idTarea=' + idFinalArch + "&lugar=A",
-            success: function (rpt) {                
+            success: function (rpt) {
                 $("#" + idArch).remove();
             }
         });
@@ -122,7 +129,7 @@ $(function () {
             url: 'recuperarTareasArchivadas.php',
             type: 'POST',
             data: 'idArch=' + idFinalArch + '&titulo=' + tiArchivado + '&desc=' + deArchivado,
-            success: function (rpt) {                
+            success: function (rpt) {
                 let elemento = '<tr class="item-tarea"><td>' + tiArchivado + '</td><td>' + deArchivado + '</td><td class="text-center"> Sin fecha límite </td><td class="text-center"><span class="span-btn-opciones"><i class="fa fa-ellipsis-v btn-opciones" data-tid="' + rpt + '" aria-hidden="true"></i></span></td></tr>';
                 $("#" + idArch).remove();
                 $(".lista-tareas").append(elemento);
@@ -131,7 +138,7 @@ $(function () {
 
     });
 
-    $(".btn-recup-front").on('click', function(){
+    $(".btn-recup-front").on('click', function () {
         $("#overlayArchiv").addClass("active");
         $("#popupArchiv").addClass("active");
     });
@@ -343,6 +350,9 @@ $(function () {
             data: 'idGrupo=' + idGrupo,
             success: function (rpt) {
                 unidadGrupo.remove();
+                let esp = "    ";
+                let num = $("#contador").text().charAt(4);
+                $("#contador").html( "&nbsp;( " + (parseInt(num) - 1) + " )");
             }
 
         });
