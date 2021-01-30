@@ -248,7 +248,7 @@
                             </div>
                         </div>
                         <div class="botones-grupo">
-                            <a href="#" id="del-<?php print_r($row["IDGRUPO"]);?>"
+                            <a href="" id="del-<?php print_r($row["IDGRUPO"]);?>"
                                 class="small-box-footer btn-eliminar-migrupo"> Eliminar equipo
                                 <i class="fas fa-trash"></i>
                             </a>

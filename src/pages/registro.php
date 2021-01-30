@@ -78,26 +78,19 @@
                     $resultadousuario->bindValue(":pass", $contrasena_encriptada);
                     $resultadousuario->execute();
 
-                    if($resultadousuario > 0){
-                        $consulta = "SELECT `iduser` FROM `usuarios` where `username`= :user and `password`= :pass";
+                    $consulta = "SELECT `iduser` FROM `usuarios` where `username`= :user and `password`= :pass";
 
-                        $resultado = $conection->prepare($consulta);
+                    $resultado = $conection->prepare($consulta);
 
-                        $resultado->bindValue(":user", $usuario);
-                        $resultado->bindValue(":pass", $contrasena_encriptada);      
+                    $resultado->bindValue(":user", $usuario);
+                    $resultado->bindValue(":pass", $contrasena_encriptada);      
                         
-                        $resultado->execute();
+                    $resultado->execute();
 
-                        $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
-                        $_SESSION['user']=$rpta['iduser']; 
-                        $_SESSION['nivel'] = $rpta['Nivel'];
-                        header("location:NetWork");
-                    } 
-                    else{
-                        $mensaje = "No se pudo registrar tu cuenta. Intenta otra vez, porfavor.";
-                        //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR  
-                    }
-
+                    $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
+                    $_SESSION['user']=$rpta['iduser']; 
+                    $_SESSION['nivel'] = $rpta['Nivel'];
+                    header("location:NetWork");
                     $resultadousuario = null;
                 
                 }else {
@@ -115,6 +108,7 @@
 
 
 ?>
+
 <body>
     <header class="cabecera" style="height: 315px;">
         <div class="home">
@@ -146,29 +140,33 @@
                 <div class="input-div one">
                     <i class="fas fa-user"></i>
                     <div class="div">
-                        <input type="text" name="user" placeholder="Nombre de usuario" minlength="5" maxlength="32" required />
+                        <input type="text" name="user" placeholder="Nombre de usuario" minlength="5" maxlength="32"
+                            required />
                     </div>
                 </div>
 
                 <div class="input-div one">
                     <i class="fa fa-envelope"></i>
                     <div class="div">
-                        <input type="email" name="correo" placeholder="Correo Electrónico" minlength="5" maxlength="64"  required />
+                        <input type="email" name="correo" placeholder="Correo Electrónico" minlength="5" maxlength="64"
+                            required />
                     </div>
                 </div>
 
-                <div class="input-div pass">                   
-                    <i class="fas fa-lock"></i>                   
-                    <div class="div">                        
-                        <input type="password" name="pass" placeholder="Contraseña" minlength="5" maxlength="200" required />
+                <div class="input-div pass">
+                    <i class="fas fa-lock"></i>
+                    <div class="div">
+                        <input type="password" name="pass" placeholder="Contraseña" minlength="5" maxlength="200"
+                            required />
                     </div>
                 </div>
-                <div class="input-div pass">                   
-                    <i class="fas fa-lock"></i>                   
-                    <div class="div">                        
-                        <input type="password" name="passr" placeholder="Repetir contraseña" minlength="5" maxlength="200" required />
+                <div class="input-div pass">
+                    <i class="fas fa-lock"></i>
+                    <div class="div">
+                        <input type="password" name="passr" placeholder="Repetir contraseña" minlength="5"
+                            maxlength="200" required />
                     </div>
-                </div>                
+                </div>
                 <input type="submit" name="registrar" class="btn" value="Registrarte">
 
             </form>
@@ -179,4 +177,3 @@
 
 
 </html>
-
