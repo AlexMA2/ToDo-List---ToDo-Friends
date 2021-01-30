@@ -507,7 +507,7 @@
 
         if(!empty($_SESSION['grupo'])){
         ?>
-    <script src="../scripts/MiChat.js"></script>
+    <!--<script src="../scripts/MiChat.js"></script> -->
     <?php
         }
     ?>
