@@ -25,15 +25,19 @@ $(function () {
 
     $(".confirmar-eliminar-cuenta").on('click', function () {
         if (id !== undefined) {
-            console.log(id);
+            let razon = $("#razon-ban").val();
+            let tiempo = $("#tiempo-ban").val();
             $.ajax({
                 url: 'borrarCuenta.php',
                 type: 'POST',
-                data: 'iduser=' + id,
-                success: function () {
-                    $("#" + id).empty();
-                    $("#overlay").removeClass("active");
-                    $("#popup").removeClass("active");
+                data: 'iduser=' + id + "&razon=" + razon + "&tiempo=" + tiempo,
+                success: function (rpt) {
+                    console.log(rpt);
+                    if(rpt === "Aceptado"){
+                        $("#" + id).empty();
+                        $("#overlay").removeClass("active");
+                        $("#popup").removeClass("active");
+                    }                    
 
                 }
 
