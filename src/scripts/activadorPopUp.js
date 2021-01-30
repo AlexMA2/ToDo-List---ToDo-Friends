@@ -204,6 +204,8 @@ $(function () {
                 data: 'IDTEMA=' + id,
                 success: function (rpt) {
                     window.location.replace(ruta + "NetWork");
+                    let num = $("#contador").text().charAt(4);
+                    $("#contador").html( "&nbsp;( " + (parseInt(num) - 1) + " )");
                 }
             });
         }
@@ -349,8 +351,7 @@ $(function () {
             type: 'POST',
             data: 'idGrupo=' + idGrupo,
             success: function (rpt) {
-                unidadGrupo.remove();
-                let esp = "    ";
+                unidadGrupo.remove();                
                 let num = $("#contador").text().charAt(4);
                 $("#contador").html( "&nbsp;( " + (parseInt(num) - 1) + " )");
             }
