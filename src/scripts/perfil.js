@@ -32,9 +32,12 @@ $(function () {
                 type: 'POST',
                 data: 'iduser=' + id + "&razon=" + razon + "&tiempo=" + tiempo,
                 success: function (rpt) {
-                    $("#" + id).empty();
-                    $("#overlay").removeClass("active");
-                    $("#popup").removeClass("active");
+                    console.log(rpt);
+                    if(rpt === "Aceptado"){
+                        $("#" + id).empty();
+                        $("#overlay").removeClass("active");
+                        $("#popup").removeClass("active");
+                    }                    
 
                 }
 

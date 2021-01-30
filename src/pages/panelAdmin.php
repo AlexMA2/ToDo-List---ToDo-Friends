@@ -249,8 +249,18 @@
                                         $query = "SELECT * FROM usuarios";
                                         $resultado = $conection->query($query);                
                                         $resultado->execute();
+
+                                        $sql = "SELECT * FROM `expulsiones`";
+                                        $tabla = $conection->query($sql);
+
+                                        $datosEnExpulsiones = [];
+
+                                        while($tupla = $tabla->fetch(PDO::FETCH_ASSOC)){
+                                            array_push($datosEnExpulsiones, $tupla['FKUser']);                                            
+                                        }
+                                        
                                         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
-                                            if($row['iduser'] != $_SESSION['user']){
+                                            if($row['iduser'] != $_SESSION['user'] && !isInArray($datosEnExpulsiones, $row['iduser'])){
                                                 ?>
                                                 <tr id="<?php print_r($row['iduser']); ?>">
                                                     <td class="text-center"><?php print_r($row['iduser']); ?></td>
@@ -264,6 +274,16 @@
                                                 <?php 
                                             }
                                         
+                                        }
+
+                                        function isInArray($array, $valor){
+                                            
+                                            if(array_search($valor, $array) === false){
+                                                return false;
+                                            }
+                                            else{
+                                                return true;
+                                            }
                                         }
                                     ?>
                                 </tbody>
