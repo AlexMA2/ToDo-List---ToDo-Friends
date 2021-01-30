@@ -499,7 +499,9 @@
             <b>Versi&oacute;n</b> 2.0
         </div>
     </footer>
-
+    
+    <script src="../scripts/reconocimientoPorVoz.js"></script>
+    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="../scripts/Tarea.js"></script>
@@ -553,9 +555,6 @@
         });
     });
     </script>
-
-    <script src="../scripts/reconocimientoPorVoz.js"></script>
-    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
 </body>
 
 </html>
