@@ -88,7 +88,7 @@ $(function () {
         if (id2 !== undefined) {
             console.log(id2 + " a br si funca");
             $.ajax({
-                url: 'moverTarea.php',
+                url: 'moverTareas.php',
                 type: 'POST',
                 data: "idTema=" + id2 + "&idTarea=" + id,
                 success: function (rpt) {

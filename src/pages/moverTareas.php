@@ -14,12 +14,13 @@
                 $resultadousuario->bindValue(":ID", $id);
                 $resultadousuario->bindValue(":IDTema", $id2);
                 $resultadousuario->execute();
-
+                print_r("ptmr ahora kfue");
             }
 
         }catch(Exception $ex){
-
+            print_r("No entra al Try");
         }
-      
+        print_r("Entra al if, pero no al try ni al catch");
     }
+    print_r("Acá va cualquier cosa, qak.");
 ?>

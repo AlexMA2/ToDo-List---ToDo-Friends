@@ -400,7 +400,7 @@
                                                 <tr class="item-tema">
                                                     <td><?php print_r($row['Titulo']); ?></td>
                                                     <td><?php print_r($row['Descripcion']); ?></td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <span class="span-btn-opciones"><i
                                                                 class="fas fa-exchange-alt btn-mover-tarea"
                                                                 data-tid2="<?php print_r($row['IDTEMA']);?>"
@@ -624,5 +624,4 @@
     });
     </script>
 </body>
-
 </html>
