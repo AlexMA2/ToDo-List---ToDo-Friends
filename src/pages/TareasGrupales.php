@@ -425,7 +425,7 @@
         <?php 
 
             if(!empty($_SESSION['grupo'])){
-            ?>
+        ?>
         <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
             <span class="notificaciones"></span>
             <i class="fas fa-comment-dots"></i>
@@ -486,7 +486,7 @@
 
         <?php
             }            
-            ?>
+        ?>
 
 
     </div>

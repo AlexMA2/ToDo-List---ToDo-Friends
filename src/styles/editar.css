@@ -64,8 +64,7 @@
   background: rgba(94, 125, 227, 0.9);
 }
 
-#inDesc,
-#inEditDesc {
+#inDesc, #inEditDesc {
   overflow: hidden;
   resize: none;
 }
