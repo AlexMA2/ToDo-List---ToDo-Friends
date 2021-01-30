@@ -452,12 +452,16 @@
             <?php
             }            
         ?>
+
+
         </div>
+
+
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
             Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
-                <!--<b>Versi&oacute;n</b> 2.0-->
+                <b>Versi&oacute;n</b> 2.0
             </div>
         </footer>
         <script src="../../plugins/jquery/jquery.min.js"></script>

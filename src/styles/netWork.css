@@ -62,88 +62,87 @@
   text-align: left;
 }
 
-.grupo-temas{
+.grupo-temas {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin-left: 10px;
 }
 
-.unidad-tema{
+.unidad-tema {
   width: 24%;
-  margin: 5px 10px 10px 5px;    
+  margin: 5px 10px 10px 5px;
 }
 
-.unidad-tema div h3{
+.unidad-tema div h3 {
   overflow: hidden;
 }
 
-.nav-arbol{
+.nav-arbol {
   margin: 5px;
-  padding: 5px; 
+  padding: 5px;
   list-style: none;
   width: 100%;
 }
 
-.nav-li{
-  
+.nav-li {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-.nav-arbol-hoja{
+.nav-arbol-hoja {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   color: #fff;
-  font-size: 16px;  
+  font-size: 16px;
   padding: 10px;
 }
 
-.nav-arbol-hoja:hover{
-  background-color: rgba(0,0,0,0.5);
+.nav-arbol-hoja:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.nav-arbol-hoja a{
+.nav-arbol-hoja a {
   width: 50%;
   margin: -5px 60px 0px 13px;
 }
 
-.nav-arbol-hoja i{
+.nav-arbol-hoja i {
   cursor: pointer;
 }
 
-.desplegable{
+.desplegable {
   list-style: none;
   display: none;
   transition: 1s;
   padding: 10px;
 }
 
-.desplegable li{
+.desplegable li {
   color: #fff;
   font-size: 15px;
   width: 100%;
   padding: 5px;
 }
 
-.desplegable li i{
+.desplegable li i {
   margin-right: 15px;
 }
 
-.small-box h3{
+.small-box h3 {
   white-space: normal !important;
 }
 
-.add-member{
+.add-member {
   margin-bottom: -1rem;
 }
 
-.miTema > div{
+.miTema>div {
   overflow: hidden;
   min-height: 150px;
 }
 
-.titulo-principal{
+.titulo-principal {
   padding-left: 30px;
 }

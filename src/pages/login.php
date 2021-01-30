@@ -30,39 +30,73 @@
 require "conexion.php";
 $bienvenido = "BIENVENIDO";
 if(!empty(filter_input(INPUT_POST, 'logearte'))){
-  try{
-    session_start();
-    
-    $usuario = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
-    $contrasena = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_SPECIAL_CHARS);
-    $contrasena_encriptada = sha1($contrasena);        
+    try{
+        session_start();
+        
+        $usuario = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
+        $contrasena = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_SPECIAL_CHARS);
+        $contrasena_encriptada = sha1($contrasena);        
 
-    $consulta="SELECT * FROM `usuarios` where `correo`= :user and `password`= :pass";
-    $resultado = $conection->prepare($consulta);
+        $consulta="SELECT * FROM `usuarios` where `correo`= :user and `password`= :pass";
 
-    $resultado->bindValue(":user", $usuario);
-    $resultado->bindValue(":pass", $contrasena_encriptada);
+        $resultado = $conection->prepare($consulta);
+        $resultado->bindValue(":user", $usuario);
+        $resultado->bindValue(":pass", $contrasena_encriptada);
+        $resultado->execute();
 
-    $resultado->execute();
+        $filas = $resultado->rowCount();
 
-    $filas = $resultado->rowCount();
+        if($filas == 1){      
 
-    if($filas == 1){      
+            $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
+            $iduser = $rpta['iduser'];  
 
-      $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
-      $_SESSION['user'] = $rpta['iduser'];  
-      $_SESSION['nivel'] = $rpta['Nivel'];
-      header("location:NetWork");
+            $sql = "SELECT * FROM `expulsiones` WHERE `FKUser` = :fkuser";
+            $tabla = $conection->prepare($sql);
+            $tabla->bindValue(":fkuser", $iduser);           
+            $tabla->execute();
 
-    }else{      
-      $bienvenido = "Usuario No Registrado";
+            $tupla = $tabla->fetch(PDO::FETCH_ASSOC);
+            if(!empty($tupla)){
+                $tiempo = $tupla['Fecha'];  
+                if($tiempo === "Permanente"){
+                    $bienvenido = "Tu cuenta ha sido eliminada permanentemente";
+                    $query = "DELETE FROM `usuarios` WHERE `iduser` = :id";
+                    $resultadousuario = $conection->prepare($query);
+                    $resultadousuario->bindValue(":id", $iduser);
+                    $resultadousuario->execute();
+
+                }
+                else{
+                    $hoy = date("Y-m-d");
+                   
+                    if($tiempo > $hoy){
+                        $bienvenido = "Tu cuenta ha sido eliminada hasta el " . $tiempo;
+                    }
+                    else{
+                       
+                        $_SESSION['user'] = $iduser;  
+                        $_SESSION['nivel'] = $rpta['Nivel'];
+                        header("location:NetWork");
+                    }
+
+                }
+            }     
+            else{
+                $_SESSION['user'] = $iduser;  
+                $_SESSION['nivel'] = $rpta['Nivel'];
+                header("location:NetWork");
+            }   
+
+        }else{      
+            $bienvenido = "Usuario No Registrado";
+        }
+        
+        $resultado = null;    
     }
-    
-    $resultado = null;    
-  }
-  catch(Exception $ex){
-    $bienvenido = "Hubo problemas al iniciar sesión";
-  }
+    catch(Exception $ex){
+        $bienvenido = "Hubo problemas al iniciar sesión";
+    }
   
 }
 
@@ -93,7 +127,7 @@ if(!empty(filter_input(INPUT_POST, 'logearte'))){
             <img src="../../res/bg.svg">
         </div>
         <!--<div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>-->
-        
+
         <div class="login-content">
             <form action="login" method="POST">
                 <img src="../../res/avatar.svg">
@@ -101,13 +135,15 @@ if(!empty(filter_input(INPUT_POST, 'logearte'))){
                 <div class="input-div one">
                     <i class="fas fa-user"></i>
                     <div class="div">
-                        <input type="email" name="user" placeholder="Correo Electrónico" required="required" autocomplete="off" value=""/>                        
+                        <input type="email" name="user" placeholder="Correo Electrónico" required="required"
+                            autocomplete="off" value="" />
                     </div>
                 </div>
                 <div class="input-div pass">
                     <i class="fas fa-lock"></i>
-                    <div class="div">                        
-                        <input type="password" name="pass" placeholder="Contraseña" required="required"autocomplete="off" value=""/>
+                    <div class="div">
+                        <input type="password" name="pass" placeholder="Contraseña" required="required"
+                            autocomplete="off" value="" />
                     </div>
                 </div>
                 <a href="#">¿Olvidaste tu contraseña?</a>
@@ -117,14 +153,14 @@ if(!empty(filter_input(INPUT_POST, 'logearte'))){
     </div>
     <script type="text/javascript" src="../scripts/main.js"></script>
     <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId            : 'your-app-id',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v9.0'
-          });
-        };
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: 'your-app-id',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v9.0'
+        });
+    };
     </script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 </body>

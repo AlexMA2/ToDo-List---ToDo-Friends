@@ -177,11 +177,22 @@
                 <div class="col sm-2">
                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                    <div class="info-eliminar-cuenta">
-                        <h3> ¿Est&aacute;s seguro(a) de eliminar este usuario?</h3>
+                        <h3> ¿Est&aacute;s seguro de eliminar este usuario?</h3>
                         <p> 
                             No se podr&aacute; volver a recuperar el usuario y todos sus datos 
                             se perder&aacute;n.
                         </p>
+                        <div class="container"> 
+                            <div  class="form-group">
+                                <label for="razon-ban">Raz&oacute;n: </label>
+                                <input type="text" class="form-control" id="razon-ban" placeholder="Razón">
+                            </div>
+                            <div  class="form-group">
+                                <label for="tiempo-ban"> Tiempo de expulsi&oacute;n : (Si no se coloca, la expulsi&oacute;n ser&aacute; permanente) </label>
+                                <input type="date" class="form-control" id="tiempo-ban" placeholder="Permanente">
+                            </div>
+                        </div>
+
                        <div class="row">   
                             <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-cuenta">S&iacute;, estoy seguro(a)</a>    
                             <a href="panelAdmin" class="btn btn-primary mx-2">No, no quiero eliminarlo </a>      
@@ -238,8 +249,18 @@
                                         $query = "SELECT * FROM usuarios";
                                         $resultado = $conection->query($query);                
                                         $resultado->execute();
+
+                                        $sql = "SELECT * FROM `expulsiones`";
+                                        $tabla = $conection->query($sql);
+
+                                        $datosEnExpulsiones = [];
+
+                                        while($tupla = $tabla->fetch(PDO::FETCH_ASSOC)){
+                                            array_push($datosEnExpulsiones, $tupla['FKUser']);                                            
+                                        }
+                                        
                                         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
-                                            if($row['iduser'] != $_SESSION['user']){
+                                            if($row['iduser'] != $_SESSION['user'] && !isInArray($datosEnExpulsiones, $row['iduser'])){
                                                 ?>
                                                 <tr id="<?php print_r($row['iduser']); ?>">
                                                     <td class="text-center"><?php print_r($row['iduser']); ?></td>
@@ -253,6 +274,16 @@
                                                 <?php 
                                             }
                                         
+                                        }
+
+                                        function isInArray($array, $valor){
+                                            
+                                            if(array_search($valor, $array) === false){
+                                                return false;
+                                            }
+                                            else{
+                                                return true;
+                                            }
                                         }
                                     ?>
                                 </tbody>
