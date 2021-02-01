@@ -185,6 +185,37 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--Botón de editar Temas-->
+                    <div class="overlay " id="overlay2">
+                        <div class="popup " id="popup2">
+
+                            <div class="col sm-4">
+                                <a href="#" class=" btn-cerrar-popup2"><i class="far fa-times-circle"></i></a>
+                                <div class="row">
+                                    <div class="card card-body col-12">
+
+                                        <form action="#" method="POST" id="formEditarTema">
+                                            <div class="form-group">
+                                                <input type="text" name="Titulo4" maxlength="16" minlength="4"
+                                                    class=" form-control" id="editTemaTitulo"
+                                                    placeholder="Nuevo Título">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="Descripcion4" maxlength="32" rows="4"
+                                                    class="form-control" id="editTemaDesc"
+                                                    placeholder="Nueva Descripcion"></textarea>
+                                            </div>
+                                            <input type="button"
+                                                class="btn btn-config btn-editar-temaGrupal btn-light btn-block"
+                                                name="EditarTema" value="Editar Tema" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
 
@@ -213,7 +244,15 @@
                     <div class="unidad-tema">
                         <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDTEMA"]);?>">
                             <div class="inner">
-                                <h3><?php print_r($row['Titulo']); ?></h3>
+                                <div class="popup-boton row">
+                                    <h3><?php print_r($row['Titulo']); ?></h3>
+                                    <a href="#" data-id1="<?php print_r($row['IDTEMA']);?>"
+                                        class="btn-opcion2 btn btn-secondary text-center col-2"><i
+                                            class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" id="<?php print_r($row ["IDTEMA"]);?>"
+                                        class="btn-eliminar-temaGrupal btn btn-secondary text-center col-2"><i class="fas fa-times"
+                                            aria-hidden="true"></i></a>
+                                </div>
 
                                 <p><?php print_r($row['Descripcion']); ?></p>
                             </div>
@@ -314,7 +353,7 @@
                                 ?>
 
                         </tr>
-                        
+
                         <?php 
                             }
                         }
@@ -339,13 +378,13 @@
             if($_SESSION['user']==$uID5){
             ?>
                 <table class="table table-bordered " class="display" id="mitabla">
-                
+
                     <h4 class="text-center"> Solicitudes de ingreso</h4>
                     <thead class="thead-dark">
-                    
+
                     </thead>
                     <tbody class="lista-tareas">
-                    <?php
+                        <?php
                                            
                                            if($_SESSION['grupo'] != 0){
                                                $query = "SELECT * FROM solicitudes WHERE IDGrupo = :grupo";
@@ -358,26 +397,29 @@
                                                    list ($uIDSdo, $uNombreSdo, $uCorreoSdo, $uFotoSdo) = getInfoSobre($row['IDSolicitado']);
                                                    
                                                    ?>
-                   
-                                           <tr class="item-tarea">
-                                                <td><?php print_r($uNombreSte); ?> <i class="fas fa-arrow-circle-right"></i> <?php print_r($uNombreSdo); ?> </td>
-                                                <td>
-                                                <a style="text-decoration:none" class="btn btn-success"
-                                                    href="aceptarSolicitud.php?IDSoldo=<?php print_r($uIDSdo);?>"><i class="fas fa-check-circle"></i></a>
-                                                <a style="text-decoration:none" class="btn btn-danger"
-                                                    href="denegarSolicitud.php?IDSoldo=<?php print_r($uIDSdo);?>"><i class="fas fa-times-circle"></i></a>
 
-                                                </td>
-                                           </tr>
-                                           
-                                                
-                                           <?php 
+                        <tr class="item-tarea">
+                            <td><?php print_r($uNombreSte); ?> <i class="fas fa-arrow-circle-right"></i>
+                                <?php print_r($uNombreSdo); ?> </td>
+                            <td>
+                                <a style="text-decoration:none" class="btn btn-success"
+                                    href="aceptarSolicitud.php?IDSoldo=<?php print_r($uIDSdo);?>"><i
+                                        class="fas fa-check-circle"></i></a>
+                                <a style="text-decoration:none" class="btn btn-danger"
+                                    href="denegarSolicitud.php?IDSoldo=<?php print_r($uIDSdo);?>"><i
+                                        class="fas fa-times-circle"></i></a>
+
+                            </td>
+                        </tr>
+
+
+                        <?php 
                                                }
                                            }
                                            ?>
-                                          
+
                     </tbody>
-                            
+
                 </table>
                 <div class="card card-body">
 
@@ -407,14 +449,14 @@
             }else{?>
 
                 <div class="card card-body">
-                    <form action="soliciarIntegrante.php"method="POST" id="solicitarAmigo">
-                    <p class="text-center">¿Deseas unir algún integrante?</p>
+                    <form action="soliciarIntegrante.php" method="POST" id="solicitarAmigo">
+                        <p class="text-center">¿Deseas unir algún integrante?</p>
                         <div class="form-group">
                             <input type="email" name="idEmailSolicitud" class="form-control" id="idEmailSolicitud"
                                 placeholder="Escribe el correo">
                         </div>
-                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnSolicitar" id="btnSolicitar"
-                            value="Solicitar" />
+                        <input type="submit" class="btn btn-config btn-light btn-block" name="btnSolicitar"
+                            id="btnSolicitar" value="Solicitar" />
                     </form>
                 </div>
                 <a style="text-decoration:none" class="btn btn-danger"
@@ -463,7 +505,7 @@
                                 <i class="fas fa-smile-beam"></i>
                                 <emoji-picker></emoji-picker>
                             </span>
-                            
+
                             <span class="input-group-btn">
                                 <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
                             </span>
