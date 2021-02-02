@@ -90,7 +90,8 @@ body {
   transition: 0.3s;
 }
 
-.input-div:before, .input-div:after {
+.input-div:before, 
+.input-div:after {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -108,7 +109,8 @@ body {
   left: 50%;
 }
 
-.input-div.focus:before, .input-div.focus:after {
+.input-div.focus:before, 
+.input-div.focus:after {
   width: 50%;
 }
 
