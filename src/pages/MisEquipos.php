@@ -242,8 +242,8 @@
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
-                            <a href="#" id="edi-<?php print_r($row["IDGRUPO"]);?>"
-                                class="small-box-footer btn-editar-grupo"> Editar equipo
+                            <a href="#" data-id1="<?php print_r($row["IDGRUPO"]);?>"
+                                class="small-box-footer btn-opcion2 "> Editar equipo
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         </div>
@@ -253,6 +253,36 @@
                     <?php 
                         } 
                     ?>
+                    <!--Botón de editar grupos-->
+                    <div class="overlay " id="overlay2">
+                        <div class="popup " id="popup2">
+
+                            <div class="col sm-4">
+                                <a href="#" class=" btn-cerrar-popup2"><i class="far fa-times-circle"></i></a>
+                                <div class="row">
+                                    <div class="card card-body col-12">
+
+                                        <form action="#" method="POST" id="formEditarGrupo">
+                                            <div class="form-group">
+                                                <input type="text" name="Titulo4" maxlength="16" minlength="4"
+                                                    class=" form-control" id="editTemaTitulo"
+                                                    placeholder="Nuevo Título">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="Descripcion4" maxlength="32" rows="4"
+                                                    class="form-control" id="editTemaDesc"
+                                                    placeholder="Nueva Descripcion"></textarea>
+                                            </div>
+                                            <input type="button"
+                                                class="btn-editar-grupo btn btn-config btn-light btn-block"
+                                                name="EditarGrupo" value="Editar Grupo" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- aqui termina editar grupo-->    
                     <!-- Imprimir grupos donde tu eres un participante -->
                     <?php
                         $consulta="SELECT * FROM `otro_grupos` where `FKusuario`= :IDUser";

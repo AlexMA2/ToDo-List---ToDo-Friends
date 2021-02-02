@@ -246,6 +246,26 @@ $(function () {
         }
     });
 
+// esto es para editar grupo
+    $(".btn-editar-grupo").on("click", function () {
+        
+        if (id1 !== undefined) {
+            
+            let editTemaTitulo = $("#editTemaTitulo").val();
+            let editTemaDesc = $("#editTemaDesc").val();
+            
+            $.ajax({
+                url: 'editarGrupo.php',
+                type: 'POST',
+                data: "IDGrupo=" + id1 + "&Titulo4=" + editTemaTitulo + "&Descripcion4=" + editTemaDesc,
+                success: function (rpt) {
+                    
+                    window.location.replace(ruta + "MisEquipos");
+                }
+            });
+        }
+    });
+
     $(".btn-editar-temaGrupal").on("click", function () {
         if (id1 !== undefined) {
             let editTemaTitulo = $("#editTemaTitulo").val();
