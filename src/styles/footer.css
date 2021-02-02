@@ -3,7 +3,8 @@ footer {
   height: auto;
 }
 
-.titulo-footer, .subtitulo-footer {
+.titulo-footer, 
+.subtitulo-footer {
   color: #fff;
   text-align: center;
   font-weight: 400;
@@ -23,7 +24,8 @@ form {
   margin: auto;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"], 
+input[type="email"] {
   display: inline-block;
   width: 48%;
   padding: 13px;
