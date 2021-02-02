@@ -135,6 +135,12 @@ $(function () {
         }
     });
 
+    $(".btn-historial").on("click", function () {
+        if (id !== undefined) {
+            setTema(id, "task");
+        }
+    });
+
     $(".btn-eliminar-archivado").on('click', function () {
         let idArch = $(this).parent().parent().parent().attr('id');
         let idFinalArch = idArch.substring(3);
@@ -208,6 +214,22 @@ $(function () {
 
     //Ajax con temas
 
+    $(".btn-opcion2").on("click", function (ev) {
+        ev.preventDefault();
+        $("#overlay2").addClass("active");
+        $("#popup2").addClass("active");
+        id1 = $(this).data("id1");
+        /*let titulo2 = $(this).parent().parent().siblings("td:nth-child(1)").text();
+        let descripcion2 = $(this).parent().parent().siblings("td:nth-child(2)").text();
+        $("#editTemaTitulo").val(titulo2);
+        $("#editTemaDesc").text(descripcion2);*/
+    });
+    $(".btn-cerrar-popup2").on("click", function () {
+        $("#overlay2").removeClass("active");
+        $("#popup2").removeClass("active");
+    });
+
+
     $(".btn-editar-tema").on("click", function () {
         if (id1 !== undefined) {
             let editTemaTitulo = $("#editTemaTitulo").val();
@@ -224,6 +246,42 @@ $(function () {
         }
     });
 
+// esto es para editar grupo
+    $(".btn-editar-grupo").on("click", function () {
+        
+        if (id1 !== undefined) {
+            
+            let editTemaTitulo = $("#editTemaTitulo").val();
+            let editTemaDesc = $("#editTemaDesc").val();
+            
+            $.ajax({
+                url: 'editarGrupo.php',
+                type: 'POST',
+                data: "IDGrupo=" + id1 + "&Titulo4=" + editTemaTitulo + "&Descripcion4=" + editTemaDesc,
+                success: function (rpt) {
+                    
+                    window.location.replace(ruta + "MisEquipos");
+                }
+            });
+        }
+    });
+
+    $(".btn-editar-temaGrupal").on("click", function () {
+        if (id1 !== undefined) {
+            let editTemaTitulo = $("#editTemaTitulo").val();
+            let editTemaDesc = $("#editTemaDesc").val();
+            console.log(id1 + " xdxdxd ");
+            $.ajax({
+                url: 'editarTema.php',
+                type: 'POST',
+                data: "IDTEMA=" + id1 + "&Titulo4=" + editTemaTitulo + "&Descripcion4=" + editTemaDesc,
+                success: function (rpt) {
+                    window.location.replace(ruta + "NetWorkGrupal");
+                }
+            });
+        }
+    });
+
     $(".btn-eliminar-tema").on("click", function () {
         let id = $(this).attr("id");
         if (id !== undefined) {
@@ -233,6 +291,23 @@ $(function () {
                 data: 'IDTEMA=' + id,
                 success: function (rpt) {
                     window.location.replace(ruta + "NetWork");
+                    let num = $("#contador").text().charAt(4);
+                    $("#contador").html( "&nbsp;( " + (parseInt(num) - 1) + " )");
+                }
+            });
+        }
+
+    });
+
+    $(".btn-eliminar-temaGrupal").on("click", function () {
+        let id = $(this).attr("id");
+        if (id !== undefined) {
+            $.ajax({
+                url: 'eliminarTema.php',
+                type: 'POST',
+                data: 'IDTEMA=' + id,
+                success: function (rpt) {
+                    window.location.replace(ruta + "NetWorkGrupal");
                     let num = $("#contador").text().charAt(4);
                     $("#contador").html( "&nbsp;( " + (parseInt(num) - 1) + " )");
                 }
@@ -400,6 +475,9 @@ $(function () {
                 }
                 else if (variable == "grupo") {
                     window.location.replace(ruta + "NetWorkGrupal");
+                }
+                else if ( variable == "task"){
+                    window.location.replace(ruta + "Historial");
                 }
             }
         });

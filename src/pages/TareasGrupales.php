@@ -6,7 +6,7 @@
         header("location: ../..");
     }
     else{        
-        require "sacarDatos.php";       
+        require "sacarDatos.php";
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
  ?>
@@ -332,8 +332,8 @@
                                                 </div>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
-                                                        aria-hidden="true"></i> Adjuntar</a>
+                                                <a href="Historial" class="btn btn-secondary btn-historial"><i class="far fa-clipboard"
+                                                        aria-hidden="true"></i> Historial</a>
                                             </div>
                                             <div class="popup-boton">
                                                 <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i
@@ -364,49 +364,64 @@
                                             </thead>
                                             <tbody class="lista-temas">
                                                 <?php
-                                                if($filas != 0){
-                                                    $peticion = "SELECT * FROM temas";
-                                                    $resultado_tema = $conection->prepare($peticion);
-                                                    $resultado_tema->execute();
-                                                    while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
-                                                        if($row['IDTEMA'] != $tema){
-                                                            if($row['Usuario'] == $_SESSION['user']){
+                                                error_reporting(0);
+                                                if($_SESSION['grupo'] != null){
+                                                    if($filas != 0){
+                                                        $peticion = "SELECT * FROM `temas` WHERE `Grupo` = :idgru";
+                                                        $resultado_tema = $conection->prepare($peticion);
+                                                        $resultado_tema->bindValue(":idgru", $_SESSION['grupo']);
+                                                        $resultado_tema->execute();
+                                                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                            if($row['IDTEMA'] != $tema){
+                                                                if($row['Grupo'] == $_SESSION['grupo']){
                                                 ?>
-                                                <tr class="item-tema">
-                                                    <td><?php print_r($row['Titulo']); ?></td>
-                                                    <td><?php print_r($row['Descripcion']); ?></td>
-                                                    <td class="text-center">
-                                                        <span class="span-btn-opciones"><i
-                                                                class="fas fa-exchange-alt btn-mover-tarea"
-                                                                data-tid2="<?php print_r($row['IDTEMA']);?>"
-                                                                aria-hidden="true"></i></span>
-                                                    </td>
-                                                </tr>
-                                                <?php 
+                                                    <tr class="item-tema">
+                                                        <td><?php print_r($row['Titulo']); ?></td>
+                                                        <td><?php print_r($row['Descripcion']); ?></td>
+                                                        <td class="text-center">
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fas fa-exchange-alt btn-mover-tarea"
+                                                                    data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                                }
                                                             }
                                                         }
                                                     }
+                                                    error_reporting(-1);
                                                 }
                                                 else{
+                                                    if($filas != 0){
+                                                        $peticion = "SELECT * FROM `temas`";
+                                                        $resultado_tema = $conection->prepare($peticion);
+                                                        $resultado_tema->execute();
+                                                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                            if($row['IDTEMA'] != $tema){
+                                                                if($row['Usuario'] == $_SESSION['user']){
                                                 ?>
-                                                <script>
-                                                function getAbsolutePath() {
-                                                    var loc = window.location;
-                                                    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf(
-                                                            '/') +
-                                                        1);
-                                                    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc
-                                                        .search + loc.hash).length - pathName.length));
-                                                }
-                                                window.location.replace(getAbsolutePath() + "MisEquipos");
-                                                </script>
-                                                <?php    
+                                                    <tr class="item-tema">
+                                                        <td><?php print_r($row['Titulo']); ?></td>
+                                                        <td><?php print_r($row['Descripcion']); ?></td>
+                                                        <td class="text-center">
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fas fa-exchange-alt btn-mover-tarea"
+                                                                    data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    error_reporting(-1);
                                                 }
                                                 ?>
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
