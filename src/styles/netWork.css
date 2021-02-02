@@ -1,12 +1,77 @@
 .crearTarea {
   border: 1px solid transparent;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   overflow: hidden;
   position: relative;
   border-radius: 8px;
-  transition-duration: 0.218s;
+  -webkit-transition-duration: 0.218s;
+          transition-duration: 0.218s;
+  -webkit-transition-property: background, border, opacity, -webkit-box-shadow, -webkit-transform;
+  transition-property: background, border, opacity, -webkit-box-shadow, -webkit-transform;
   transition-property: background, border, opacity, box-shadow, transform;
-  transition-timing-function: ease-in;
+  transition-property: background, border, opacity, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+}
+
+.switch {
+  background: #343D5B;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+}
+
+.switch::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: #F1F1F1;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.switch.active {
+  background: orange;
+  color: #000000;
+}
+
+.switch.active::after {
+  right: 0;
+  left: unset;
+}
+
+.switch span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  background: none;
+  color: #fff;
+}
+
+.content-wrapper {
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+}
+
+body.dark .content-wrapper {
+  background: #1E2120;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
 }
 
 .trans {
@@ -43,12 +108,20 @@
 }
 
 /* Popup de panel de control */
-
 .botones-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .popup-boton {
@@ -66,93 +139,106 @@
   text-align: left;
 }
 
-.grupo-temas{
+.grupo-temas {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
 }
 
-.unidad-tema{
+.unidad-tema {
   width: 20%;
-  margin: 5px 10px 10px 5px;  
+  margin: 5px 10px 10px 5px;
 }
 
-.unidad-tema div h3{
+.unidad-tema div h3 {
   overflow: hidden;
 }
 
-.nav-arbol{
+.nav-arbol {
   margin: 5px;
-  padding: 5px; 
+  padding: 5px;
   list-style: none;
   width: 100%;
 }
 
-.nav-li{
-  
+.nav-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-bottom: 10px;
 }
 
-.nav-arbol-hoja{
+.nav-arbol-hoja {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;  
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   color: #fff;
-  font-size: 16px;  
+  font-size: 16px;
   padding: 10px;
 }
 
-.nav-arbol-hoja:hover{
-  background-color: rgba(0,0,0,0.5);
+.nav-arbol-hoja:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.nav-arbol-hoja a{
+.nav-arbol-hoja a {
   width: 50%;
   margin: -5px 60px 0px 13px;
 }
 
-.nav-arbol-hoja i{
+.nav-arbol-hoja i {
   cursor: pointer;
 }
 
-.desplegable{
+.desplegable {
   list-style: none;
   display: none;
+  -webkit-transition: 1s;
   transition: 1s;
   padding: 10px;
 }
 
-.desplegable li{
+.desplegable li {
   color: #fff;
   font-size: 15px;
   width: 100%;
   padding: 5px;
 }
 
-.desplegable li i{
+.desplegable li i {
   margin-right: 15px;
 }
 
-.small-box h3{
+.small-box h3 {
   white-space: normal !important;
 }
 
-.label-success{
+.label-success {
   color: #45a727;
 }
 
-.opciones-chat{
+.opciones-chat {
   display: none;
   text-align: right;
   margin-right: 5px;
-
 }
 
-.opciones-chat i{
+.opciones-chat i {
   cursor: pointer;
 }
 
-.chat-grupal-todo{
+.chat-grupal-todo {
   overflow: hidden;
 }
+/*# sourceMappingURL=netWork.css.map */
