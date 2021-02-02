@@ -159,7 +159,8 @@ body {
   border-color: transparent transparent #2c3e50 transparent;
 }
 
-.titulo-patrocinadores, .subtitulo-patrocinadores {
+.titulo-patrocinadores, 
+.subtitulo-patrocinadores {
   color: #fff;
   text-align: center;
 }
