@@ -1,4 +1,4 @@
-const $botonSolicitar = document.querySelector('#botonSolicitar')
+const $botonSolicitar = document.querySelector('#btnSolicitar')
 const $correo=document.querySelector('#idEmailSolicitud')
 const Solicitar =()=>{
     
