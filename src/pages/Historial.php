@@ -66,7 +66,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        Todo Friends
+                        ToDo Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -103,37 +103,13 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <i class="desplegador"></i>
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">Primero</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
-                            </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
@@ -153,7 +129,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
 
@@ -255,11 +230,8 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
-            </div>
         </footer>
 
     </div>

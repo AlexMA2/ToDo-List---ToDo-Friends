@@ -99,7 +99,8 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
-                                <a href="NetWork"> Tablero </a>                                
+                                <a href="NetWork"> Tablero </a>
+                                <i class="desplegador"></i>                                
                             </div>
                             
                         </li>
@@ -316,7 +317,7 @@
 
                             </div>
                         </div>
-                        <div class="botones-grupo">                            
+                        <div class="botones-grupo2">                            
                             <a href="NetWorkGrupal" id="ver-<?php print_r($row2["IDGRUPO"]);?>"
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>

@@ -102,7 +102,7 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                
+                                <i class="desplegador"></i>
                             </div>
                             
                         </li>
@@ -110,7 +110,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                               
                             </div>
                             
                         </li>
@@ -131,7 +130,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
                     </ul>

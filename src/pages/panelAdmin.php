@@ -111,37 +111,14 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <i class="desplegador"></i>
                             </div>
-                            <ul class="nav desplegable">
-                                <li class="text-wrap">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
@@ -149,7 +126,7 @@
                             <li class="nav-li">
                                 <div class="nav-arbol-hoja">
                                     <i class="fas fa-users-cog"></i>
-                                    <a href="panelAdmin"> Administrador </a>                                    
+                                    <a href="panelAdmin"> Administrador </a>                                 
                                 </div>                               
                             </li>
                             <?php
@@ -162,7 +139,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
                         
