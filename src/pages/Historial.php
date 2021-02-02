@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     session_start();    
     if(isset($_SESSION['grupo'])){      
        unset($_SESSION['grupo']);
@@ -197,87 +197,58 @@
                         </div>
                     </div>
 
-                    <!--Botón de editar Temas-->
-                    <div class="overlay " id="overlay2">
-                        <div class="popup " id="popup2">
-
-                            <div class="col sm-4">
-                                <a href="#" class=" btn-cerrar-popup2"><i class="far fa-times-circle"></i></a>
-                                <div class="row">
-                                    <div class="card card-body col-12">
-
-                                        <form action="#" method="POST" id="formEditarTema">
-                                            <div class="form-group">
-                                                <input type="text" name="Titulo4" maxlength="16" minlength="4"
-                                                    class=" form-control" id="editTemaTitulo"
-                                                    placeholder="Nuevo Título">
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea name="Descripcion4" maxlength="32" rows="4"
-                                                    class="form-control" id="editTemaDesc"
-                                                    placeholder="Nueva Descripcion"></textarea>
-                                            </div>
-                                            <input type="button"
-                                                class="btn btn-config btn-editar-tema btn-light btn-block"
-                                                name="EditarTema" value="Editar Tema" />
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
 
-                            <h1 class="text-dark titulo-principal"> Temas de Trabajo </h1>
-                            <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
+                            <h1 class="text-dark titulo-principal"> Historial de Tarea </h1>
 
-                            <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
-                            <!--div class="color-picker"></div-->
                         </div>
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tema </li>
+                                <li class="breadcrumb-item active"> Historial de modificaciones de la tarea </li>
                             </ol>
                         </div>
-
-
-
                     </div>
                 </div>
-                <div class="grupo-temas">
-
-                    <?php                                           
-                       
-                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {                            
-                        ?>
-
-                    <div class="unidad-tema">
-                        <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDTEMA"]);?>">
-                            <div class="inner">
-                                <div class="popup-boton row">
-                                    <h3><?php print_r($row['Titulo']); ?></h3>
-                                    <a href="#" data-id1="<?php print_r($row['IDTEMA']);?>"
-                                        class="btn-opcion2 btn btn-secondary text-center col-2"><i
-                                            class="fas fa-pencil-alt"></i></a>
-                                    <a href="#" id="<?php print_r($row ["IDTEMA"]);?>"
-                                        class="btn-eliminar-tema btn btn-secondary text-center col-2"><i class="fa fa-times"
-                                            aria-hidden="true"></i></a>
-                                </div>
-
-                                <p><?php print_r($row['Descripcion']); ?></p>
-                            </div>
-
-                            <a href="TareasGrupales" class="small-box-footer btn-ver-tema"
-                                id="<?php print_r($row["IDTEMA"]);?>"> Ver
-                                <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
+                <div class="row">
+                    <div class="container-fluid">
+                        <table class="table table-bordered mis-tareas" class="display" id="Historial">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width: 5%;" class="text-center">N&uacute;mero de cambio</th>
+                                    <th style="width: 15%;" class="text-center">T&iacute;tulo de la Tarea</th>
+                                    <th style="width: 30%;" class="text-center">Descripci&oacute;n</th>
+                                    <th style="width: 10%;" class="text-center">Fecha de entrega</th>
+                                    <th style="width: 10%;" class="text-center" style="min-width: 45px;">Autor</th>
+                                    <th style="width: 10%;" class="text-center">Fecha de Modificaci&oacute;n</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lista-temas">
+                                <tr class="item-tema">
+                                    <?php
+                                    $peticion = "SELECT * FROM `historial` WHERE `idTarea` = :idT";
+                                    $resultado_historial = $conection->prepare($peticion);
+                                    $resultado_historial->bindValue(":idT", $_SESSION['task']);
+                                    $resultado_historial->execute();
+                                    
+                                    while($row = $resultado_historial->fetch(PDO::FETCH_ASSOC)) {
+                                    ?>
+                                    <td class="text-center"> <?php print_r($row['Cambio']); ?></td>
+                                    <td><?php print_r($row['Titulo']); ?></td>
+                                    <td><?php print_r($row['Descripcion']); ?></td>
+                                    <td class="text-center"><?php print_r($row['Entrega']); ?></td>
+                                    <td class="text-center"><?php print_r($row['Autor']); ?></td>
+                                    <td class="text-center"><?php print_r($row['Modificacion']); ?></td>
+                                    </tr>
+                                    <?php
+                                    }
+                                    ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <?php } ?>
-
                 </div>
             </div>
 

@@ -6,7 +6,7 @@
         header("location: ../..");
     }
     else{        
-        require "sacarDatos.php";       
+        require "sacarDatos.php";
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
  ?>
@@ -264,7 +264,6 @@
                                             if($filas != 0){
                                                 $query = "SELECT * FROM tareas WHERE eltema = :tema";
                                                 $resultado_tarea = $conection->prepare($query);
-                                                
                                                 $resultado_tarea->bindValue(":tema", $tema);
                                                 $resultado_tarea->execute();
                                                 while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -355,11 +354,11 @@
                                                 </div>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
-                                                        aria-hidden="true"></i> Adjuntar</a>
+                                                <a href="Historial" class="btn btn-secondary btn-historial"><i class="far fa-clipboard"
+                                                        aria-hidden="true"></i> Historial</a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
+                                                <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i class="fa fa-arrow-right"
                                                         aria-hidden="true"></i> Mover </a>
                                             </div>
                                         </div>
@@ -370,6 +369,89 @@
 
                         </div>
                         <!--Aqui termina el formulario-->
+
+                        <!--Inicio de Mover Tarea-->
+                        <div class="overlay " id="overlay3">
+                            <div class="popup " id="popup3">
+
+                                <div class="col sm-4">
+                                    Mover tarea<a href="#" class="btn-cerrar-popup3"><i
+                                            class="far fa-times-circle"></i></a>
+                                    <div class="row">
+                                        <table class="table table-bordered mis-tareas" class="display" id="mitabla">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="text-center">T&iacute;tulo del Tema</th>
+                                                    <th class="text-center">Descripci&oacute;n</th>
+                                                    <th class="text-center" style="min-width: 45px;">Acci&oacute;n</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="lista-temas">
+                                                <?php
+                                                error_reporting(0);
+                                                if($_SESSION['grupo'] != null){
+                                                    if($filas != 0){
+                                                        $peticion = "SELECT * FROM `temas` WHERE `Grupo` = :idgru";
+                                                        $resultado_tema = $conection->prepare($peticion);
+                                                        $resultado_tema->bindValue(":idgru", $_SESSION['grupo']);
+                                                        $resultado_tema->execute();
+                                                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                            if($row['IDTEMA'] != $tema){
+                                                                if($row['Grupo'] == $_SESSION['grupo']){
+                                                ?>
+                                                    <tr class="item-tema">
+                                                        <td><?php print_r($row['Titulo']); ?></td>
+                                                        <td><?php print_r($row['Descripcion']); ?></td>
+                                                        <td class="text-center">
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fas fa-exchange-alt btn-mover-tarea"
+                                                                    data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    error_reporting(-1);
+                                                }
+                                                else{
+                                                    if($filas != 0){
+                                                        $peticion = "SELECT * FROM `temas`";
+                                                        $resultado_tema = $conection->prepare($peticion);
+                                                        $resultado_tema->execute();
+                                                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                            if($row['IDTEMA'] != $tema){
+                                                                if($row['Usuario'] == $_SESSION['user']){
+                                                ?>
+                                                    <tr class="item-tema">
+                                                        <td><?php print_r($row['Titulo']); ?></td>
+                                                        <td><?php print_r($row['Descripcion']); ?></td>
+                                                        <td class="text-center">
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fas fa-exchange-alt btn-mover-tarea"
+                                                                    data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    error_reporting(-1);
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin formulario Mover Tarea-->
+
+
                         <div class="overlay " id="overlayArchiv">
                             <div class="popup " id="popupArchiv">
                                 <div class="col sm-4">
@@ -556,5 +638,4 @@
     });
     </script>
 </body>
-
 </html>
