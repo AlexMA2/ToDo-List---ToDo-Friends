@@ -24,4 +24,4 @@ const tdescripcion=()=>{
 }
 
 
-$descripcion.addEventListener('click',tdescripcion)
+//$descripcion.addEventListener('click',tdescripcion)
