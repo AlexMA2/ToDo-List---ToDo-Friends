@@ -26,4 +26,4 @@ const Ttitulo=()=>{
     
 }
 
-//$titulo.addEventListener('click', Ttitulo)
+$titulo.addEventListener('click', Ttitulo)
