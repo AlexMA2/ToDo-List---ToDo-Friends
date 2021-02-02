@@ -279,7 +279,7 @@
                             if($_SESSION['user']==$uID5){
 
                         ?>
-                            <th class="text-center" style="width: 10%;"></th>
+                            <th class="text-center" style="width: 15%;"></th>
                             <?php                                
                         }
                         ?>
