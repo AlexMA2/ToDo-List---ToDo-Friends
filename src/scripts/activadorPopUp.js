@@ -135,6 +135,12 @@ $(function () {
         }
     });
 
+    $(".btn-historial").on("click", function () {
+        if (id !== undefined) {
+            setTema(id, "task");
+        }
+    });
+
     $(".btn-eliminar-archivado").on('click', function () {
         let idArch = $(this).parent().parent().parent().attr('id');
         let idFinalArch = idArch.substring(3);
@@ -469,6 +475,9 @@ $(function () {
                 }
                 else if (variable == "grupo") {
                     window.location.replace(ruta + "NetWorkGrupal");
+                }
+                else if ( variable == "task"){
+                    window.location.replace(ruta + "Historial");
                 }
             }
         });
