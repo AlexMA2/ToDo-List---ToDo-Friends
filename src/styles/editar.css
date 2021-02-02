@@ -36,6 +36,18 @@
   color: #000;
 }
 
+.btn-cerrar-popup3 {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  text-align: right;
+  color: #bbbbbb;
+}
+
+.btn-cerrar-popup3:hover {
+  color: #000;
+}
+
 .btn-cerrar-popupgrupo {
   font-size: 16px;
   line-height: 16px;
@@ -64,8 +76,7 @@
   background: rgba(94, 125, 227, 0.9);
 }
 
-#inDesc,
-#inEditDesc {
+#inDesc, #inEditDesc {
   overflow: hidden;
   resize: none;
 }

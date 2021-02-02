@@ -2,10 +2,20 @@
 
 require 'conexion.php';
 session_start(); 
-if (!empty(filter_input(INPUT_POST, 'CrearTema'))) {
-  try{    
-    $title = filter_input(INPUT_POST, 'Titulo3', FILTER_SANITIZE_SPECIAL_CHARS);
-    $description = filter_input(INPUT_POST, 'Descripcion3', FILTER_SANITIZE_SPECIAL_CHARS);
+
+try{    
+  $title = filter_input(INPUT_POST, 'Titulo3', FILTER_SANITIZE_SPECIAL_CHARS);
+  $description = filter_input(INPUT_POST, 'Descripcion3', FILTER_SANITIZE_SPECIAL_CHARS);
+  if(strlen($title) < 4 || strlen($title) > 16){
+    //Activar popup con el error
+    print_r("Error: El titulo debe tener entre 4 y 16 caracteres");
+  }
+  else if(strlen($description) > 64){
+    //Activar popup con el error
+    print_r("Error: La descripción debe tener menos de 64 caracteres");
+  }
+  else{
+    print_r("Aceptado");
     if(empty($_SESSION['grupo'])){
       $query = "INSERT INTO `temas` (`Titulo`, `Descripcion`, `Usuario`) VALUES (:titulo, :descripcion, :idusuario)";
       $resultado = $conection->prepare($query);
@@ -13,7 +23,7 @@ if (!empty(filter_input(INPUT_POST, 'CrearTema'))) {
       $resultado->bindValue(":descripcion", $description);
       $resultado->bindValue(":idusuario", $_SESSION['user']);
       $resultado->execute();
-      header("location:NetWork");
+     
     }
     else{
       $query = "INSERT INTO `temas` (`Titulo`, `Descripcion`, `Grupo`) VALUES (:titulo, :descripcion, :idgrupo)";
@@ -27,14 +37,15 @@ if (!empty(filter_input(INPUT_POST, 'CrearTema'))) {
       $resultado = $conection->prepare($query);      
       $resultado->bindValue(":idgru", $_SESSION['grupo']);  
       $resultado->execute();
-      header("location:NetWorkGrupal");
+      
     }
-        
-
-  }catch(Exception $ex){
-    
-  }  
+  }
   
-}
+      
+}catch(Exception $ex){
+  
+}  
+
+
 
 ?>

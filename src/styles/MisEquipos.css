@@ -1,6 +1,5 @@
 .unidad-grupo {
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   width: 40%;
   min-width: 530px;
   margin: 10px auto 10px 15px;
@@ -42,15 +41,15 @@
   padding: 15px;
 }
 
-.inner-derecha p{
-    color: #03212E;
-    font-weight: 600;
+.inner-derecha p {
+  color: #03212E;
+  font-weight: 600;
 }
 
-.inner-derecha p span{
-    color: #fff;
-    font-weight: normal;
-    text-align: center;
+.inner-derecha p span {
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
 }
 
 .inner-izquierda {
@@ -58,47 +57,74 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.main-details-team {
-  padding-left: 19px;
+.titulo-principal {
+  padding-left: 30px;
 }
 
 .btn-ver-grupo:hover {
   color: rgba(255, 255, 255);
 }
 
-.botones-grupo{
+.botones-grupo {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 
-.botones-grupo a{
+.botones-grupo a {
   background: rgb(36, 35, 35);
-  color: rgba(255, 255, 255, 0.8);  
+  color: rgba(255, 255, 255, 0.8);
   display: block;
   padding: 3px 0;
   position: relative;
   text-align: center;
   text-decoration: none;
-  z-index: 10;  
+  z-index: 10;
 }
 
-.botones-grupo a:hover{
+.botones-grupo a:hover {
   box-shadow: 0 0 3px #fff;
   z-index: 11;
 }
 
-.botones-grupo a:nth-child(1){
+.botones-grupo a:nth-child(1) {
   border-radius: 0 0 0 10px;
   width: 33%;
 }
 
-.botones-grupo a:nth-child(2){
+.botones-grupo a:nth-child(2) {
   border-radius: 0;
   width: 34%;
 }
 
-.botones-grupo a:nth-child(3){    
+.botones-grupo a:nth-child(3) {
   border-radius: 0 0 10px 0;
   width: 33%;
+}
+
+.botones-grupo2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.botones-grupo2 a {
+  background: rgb(36, 35, 35);
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+  padding: 3px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.botones-grupo2 a:hover {
+  box-shadow: 0 0 3px #fff;
+  z-index: 11;
+}
+
+.botones-grupo2 a:nth-child(1) {
+  border-radius: 0 0 10px 10px;
+  width: 100%;
 }

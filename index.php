@@ -57,14 +57,14 @@
             <li class="nav-item text-center"><a class="nav-link" href="src/pages/tutorial"> Tutorial </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="src/pages/equipos"> Trabajos en Equipo </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="src/pages/login"> Iniciar Sesi&oacute;n </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro">Registrarse </a> </li>
+            <li class="nav-item text-center"><a class="nav-link" href="src/pages/registro">Regístrate </a> </li>
             <div>
     </div>
         </nav>
         <div class="textos">
             <h1 class="titulo">TO DO LIST</h1>
             <h3 class="subtitulo">Te ayudamos a organizarte mejor</h3>
-            <a href="src/pages/login.html">Comenzar</a>
+            <a href="src/pages/login">Comenzar</a>
         </div>
     </header>
         

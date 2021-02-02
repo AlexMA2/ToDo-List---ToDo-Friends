@@ -50,7 +50,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button">
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="" role="button">
                     <i class="fas fa-bars"></i></a>
                 </li>
 
@@ -76,7 +76,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
+                    ToDo Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -85,16 +85,16 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link">
+            <a href="" class="brand-link">
                 <img src="../../res/favicon1.png" alt="Todo List" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Todo List</span>
+                <span class="brand-text font-weight-light">ToDo List</span>
             </a>
 
             <div class="sidebar">
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
+                        <img src="<?php print_r($uFoto)?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="perfilusuario" class="d-block">
@@ -111,37 +111,14 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <i class="desplegador"></i>
                             </div>
-                            <ul class="nav desplegable">
-                                <li class="text-wrap">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
@@ -149,7 +126,7 @@
                             <li class="nav-li">
                                 <div class="nav-arbol-hoja">
                                     <i class="fas fa-users-cog"></i>
-                                    <a href="panelAdmin"> Administrador </a>                                    
+                                    <a href="panelAdmin"> Administrador </a>                                 
                                 </div>                               
                             </li>
                             <?php
@@ -162,7 +139,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
                         
@@ -177,11 +153,22 @@
                 <div class="col sm-2">
                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                    <div class="info-eliminar-cuenta">
-                        <h3> ¿Est&aacute;s seguro(a) de eliminar este usuario?</h3>
+                        <h3> ¿Est&aacute;s seguro de eliminar este usuario?</h3>
                         <p> 
                             No se podr&aacute; volver a recuperar el usuario y todos sus datos 
                             se perder&aacute;n.
                         </p>
+                        <div class="container"> 
+                            <div  class="form-group">
+                                <label for="razon-ban">Raz&oacute;n: </label>
+                                <input type="text" class="form-control" id="razon-ban" placeholder="Razón">
+                            </div>
+                            <div  class="form-group">
+                                <label for="tiempo-ban"> Tiempo de expulsi&oacute;n : (Si no se coloca, la expulsi&oacute;n ser&aacute; permanente) </label>
+                                <input type="date" class="form-control" id="tiempo-ban" placeholder="Permanente">
+                            </div>
+                        </div>
+
                        <div class="row">   
                             <a href="#" class="btn btn-danger mx-2 confirmar-eliminar-cuenta">S&iacute;, estoy seguro(a)</a>    
                             <a href="panelAdmin" class="btn btn-primary mx-2">No, no quiero eliminarlo </a>      
@@ -238,8 +225,18 @@
                                         $query = "SELECT * FROM usuarios";
                                         $resultado = $conection->query($query);                
                                         $resultado->execute();
+
+                                        $sql = "SELECT * FROM `expulsiones`";
+                                        $tabla = $conection->query($sql);
+
+                                        $datosEnExpulsiones = [];
+
+                                        while($tupla = $tabla->fetch(PDO::FETCH_ASSOC)){
+                                            array_push($datosEnExpulsiones, $tupla['FKUser']);                                            
+                                        }
+                                        
                                         while($row = $resultado->fetch(PDO::FETCH_ASSOC)) { 
-                                            if($row['iduser'] != $_SESSION['user']){
+                                            if($row['iduser'] != $_SESSION['user'] && !isInArray($datosEnExpulsiones, $row['iduser'])){
                                                 ?>
                                                 <tr id="<?php print_r($row['iduser']); ?>">
                                                     <td class="text-center"><?php print_r($row['iduser']); ?></td>
@@ -253,6 +250,16 @@
                                                 <?php 
                                             }
                                         
+                                        }
+
+                                        function isInArray($array, $valor){
+                                            
+                                            if(array_search($valor, $array) === false){
+                                                return false;
+                                            }
+                                            else{
+                                                return true;
+                                            }
                                         }
                                     ?>
                                 </tbody>
@@ -305,11 +312,8 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
-            </div>
         </footer>
 
     </div>
