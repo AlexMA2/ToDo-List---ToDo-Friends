@@ -6,7 +6,7 @@
         header("location: ../..");
     }
     else{        
-        require "sacarDatos.php";       
+        require "sacarDatos.php";
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
  ?>
@@ -264,7 +264,6 @@
                                             if($filas != 0){
                                                 $query = "SELECT * FROM tareas WHERE eltema = :tema";
                                                 $resultado_tarea = $conection->prepare($query);
-                                                
                                                 $resultado_tarea->bindValue(":tema", $tema);
                                                 $resultado_tarea->execute();
                                                 while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -355,8 +354,8 @@
                                                 </div>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
-                                                        aria-hidden="true"></i> Adjuntar</a>
+                                                <a href="Historial" class="btn btn-secondary btn-historial"><i class="far fa-clipboard"
+                                                        aria-hidden="true"></i> Historial</a>
                                             </div>
                                             <div class="popup-boton">
                                                 <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i class="fa fa-arrow-right"

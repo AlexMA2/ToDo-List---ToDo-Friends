@@ -1,7 +1,8 @@
 <?php
-
+session_start();
 require 'conexion.php';
-session_start();      
+require "sacarDatos.php";
+$uNombre = getInfoSobre($_SESSION['user'])[1];
 
 try{    
   $title = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -35,7 +36,28 @@ try{
             $resultadousuario->bindValue(":descripcion", $description);
             $resultadousuario->bindValue(":fecha", $date);
             $resultadousuario->bindValue(":tema", $_SESSION['tema']);
-            $resultadousuario->execute();      
+            $resultadousuario->execute();
+
+            $anotherquery = "SELECT `id_task` FROM `tareas` WHERE `title` = :titulo AND `description` = :descripcion AND `limit_date` = :fecha AND `eltema` = :tema";
+            $resultado_id = $conection->prepare($anotherquery);
+
+            $resultado_id->bindValue(":titulo", $title);
+            $resultado_id->bindValue(":descripcion", $description);
+            $resultado_id->bindValue(":fecha", $date);
+            $resultado_id->bindValue(":tema", $_SESSION['tema']);
+            $resultado_id->execute();
+
+            $peticion = "INSERT INTO `historial` (`idTarea`, `Titulo`, `Descripcion`, `Entrega`, `Autor`, `Modificacion`) VALUES (:idTarea, :Titulo, :Descripcion, :Entrega, :Autor, :Modificacion)";
+            $resultado_historial = $conection->prepare($peticion);
+            $data = $resultado_id->fetch(PDO::FETCH_ASSOC);
+
+            $resultado_historial->bindValue(":idTarea", $data['id_task']);
+            $resultado_historial->bindValue(":Titulo", $title);
+            $resultado_historial->bindValue(":Descripcion", $description);
+            $resultado_historial->bindValue(":Entrega", $date);
+            $resultado_historial->bindValue(":Autor", $uNombre);
+            $resultado_historial->bindValue(":Modificacion", date("d") . "/" . date("m") . "/" . date("Y"));
+            $resultado_historial->execute();
           
           }
           else{
@@ -56,7 +78,28 @@ try{
         $resultadousuario->bindValue(":descripcion", $description);
         $resultadousuario->bindValue(":fecha", "Sin fecha límite");
         $resultadousuario->bindValue(":tema", $_SESSION['tema']);
-        $resultadousuario->execute();      
+        $resultadousuario->execute();
+
+        $anotherquery = "SELECT `id_task` FROM `tareas` WHERE `title` = :titulo AND `description` = :descripcion AND `limit_date` = :fecha AND `eltema` = :tema";
+        $resultado_id = $conection->prepare($anotherquery);
+
+        $resultado_id->bindValue(":titulo", $title);
+        $resultado_id->bindValue(":descripcion", $description);
+        $resultado_id->bindValue(":fecha", "Sin fecha límite");
+        $resultado_id->bindValue(":tema", $_SESSION['tema']);
+        $resultado_id->execute();
+
+        $peticion = "INSERT INTO `historial` (`idTarea`,`Titulo`, `Descripcion`, `Entrega`, `Autor`, `Modificacion`) VALUES (:idTarea, :Titulo, :Descripcion, :Entrega, :Autor, :Modificacion)";
+        $resultado_historial = $conection->prepare($peticion);
+        $data = $resultado_id->fetch(PDO::FETCH_ASSOC);
+
+        $resultado_historial->bindValue(":idTarea", $data);
+        $resultado_historial->bindValue(":Titulo", $title);
+        $resultado_historial->bindValue(":Descripcion", $description);
+        $resultado_historial->bindValue(":Entrega", "Sin fecha límite");
+        $resultado_historial->bindValue(":Autor", $uNombre);
+        $resultado_historial->bindValue(":Modificacion", date("d") . "/" . date("m") . "/" . date("Y"));
+        $resultado_historial->execute();
       }
       
     }else{     
