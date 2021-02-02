@@ -51,7 +51,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
 
@@ -60,24 +60,12 @@
                 </li>
             </ul>
 
-
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="" role="button">
+                        ToDo Friends
+                        <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
             </ul>
@@ -85,9 +73,9 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link">
+            <a href="" class="brand-link">
                 <img src="../../res/favicon1.png" alt="Todo List" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Todo List</span>
+                <span class="brand-text font-weight-light">ToDo List</span>
             </a>
 
             <div class="sidebar">
@@ -98,8 +86,7 @@
                     </div>
                     <div class="info">
                         <a href="perfilusuario" class="d-block">
-                            <?php        
-                                                     
+                            <?php                    
                                 print_r($uNombre);
                             ?>
                         </a>
@@ -112,39 +99,30 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
-                                <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <a href="NetWork"> Tablero </a>                                
                             </div>
-                            <ul class="nav desplegable">
-                                <li class="text-wrap">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
+                            
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <a href="MisEquipos"> Mis equipos </a>                               
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
+                           
                         </li>
+                        <?php
+                            if($_SESSION['nivel'] == 1){
+                            ?>
+                            <li class="nav-li">
+                                <div class="nav-arbol-hoja">
+                                    <i class="fas fa-users-cog"></i>
+                                    <a href="panelAdmin"> Administrador </a>                                    
+                                </div>                               
+                            </li>
+                            <?php
+                            }              
+                                   
+                        ?>
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -169,22 +147,20 @@
                                 <div class="row">
                                     <div class="card card-body col-12">
 
-                                        <form action="crearGrupo.php" method="POST" id="CTema">
+                                        <form action="#" method="POST" id="CTema">
                                             <div class="form-group">
                                                 <input type="text" name="Titulo4" maxlength="128" minlength="4" required
-                                                    class=" form-control" id="inTemaTitulo"
-                                                    placeholder="Nombre del grupo">
+                                                    class=" form-control" id="inGrupoTitulo"
+                                                    placeholder="Nombre">
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="Descripcion4" maxlength="256" rows="4"
-                                                    class="form-control" id="inTemaDesc" value="Descripcion"
-                                                    placeholder="Descripcion"></textarea>
+                                                    class="form-control" id="inGrupoDesc" value="Descripcion"
+                                                    placeholder="Descripci&oacute;n"></textarea>
 
                                             </div>
-
-                                            <input type="submit" class="btn btn-config btn-light btn-block"
-                                                name="CrearGrupo" value="Crear grupo" />
-
+                                            <input type="button" class="btn btn-config btn-light btn-block btn-crear-grupo"
+                                                name="CrearGrupo" value="Crear equipo" />
                                         </form>
 
                                     </div>
@@ -194,9 +170,10 @@
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-sm-6 row main-details-team">
-                            <h1 class="m-0 text-dark"> Mis Equipos </h1>
-                            <h3> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
+                        <div class="col-sm-6 row">
+                            
+                            <h1 class="text-dark titulo-principal"> Mis Equipos </h1>
+                            <h3 id="contador"> &nbsp;( <?php print_r($resultado_misgrupos->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Equipo </button>
 
                             <!--div class="color-picker"></div-->
@@ -204,8 +181,8 @@
                         <div class="col-sm-6">
 
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tema </li>
+                                <li class="breadcrumb-item active"> <a href="NetWork">Tablero</a></li>
+                                <li class="breadcrumb-item">Mis Equipos</li>
                             </ol>
                         </div>
 
@@ -221,7 +198,7 @@
                         while($row = $resultado_misgrupos->fetch(PDO::FETCH_ASSOC)) {                            
                     ?>
                     <div class="unidad-grupo">
-                        <div class="small-box bg-info miTema">
+                        <div class="small-box bg-info miGrupo">
                             <div class="titulo-grupo">
                                 <i class="fas fa-users"></i>
                                 <h3><?php print_r($row['Nombre']); ?></h3>
@@ -247,7 +224,7 @@
                             </div>
                         </div>
                         <div class="botones-grupo">
-                            <a href="#" id="del-<?php print_r($row["IDGRUPO"]);?>"
+                            <a href="" id="del-<?php print_r($row["IDGRUPO"]);?>"
                                 class="small-box-footer btn-eliminar-migrupo"> Eliminar equipo
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -255,8 +232,8 @@
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
-                            <a href="#" id="edi-<?php print_r($row["IDGRUPO"]);?>"
-                                class="small-box-footer btn-editar-grupo"> Editar equipo
+                            <a href="#" data-id1="<?php print_r($row["IDGRUPO"]);?>" style="margin-top: 0px !important;"
+                                class="small-box-footer btn-opcion2 "> Editar equipo
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                         </div>
@@ -266,6 +243,36 @@
                     <?php 
                         } 
                     ?>
+                    <!--Botón de editar grupos-->
+                    <div class="overlay " id="overlay2">
+                        <div class="popup " id="popup2">
+
+                            <div class="col sm-4">
+                                <a href="#" class=" btn-cerrar-popup2"><i class="far fa-times-circle"></i></a>
+                                <div class="row">
+                                    <div class="card card-body col-12">
+
+                                        <form action="#" method="POST" id="formEditarGrupo">
+                                            <div class="form-group">
+                                                <input type="text" name="Titulo4" maxlength="16" minlength="4"
+                                                    class=" form-control" id="editTemaTitulo"
+                                                    placeholder="Nuevo Título">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="Descripcion4" maxlength="32" rows="4"
+                                                    class="form-control" id="editTemaDesc"
+                                                    placeholder="Nueva Descripcion"></textarea>
+                                            </div>
+                                            <input type="button"
+                                                class="btn-editar-grupo btn btn-config btn-light btn-block"
+                                                name="EditarGrupo" value="Editar Grupo" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- aqui termina editar grupo-->    
                     <!-- Imprimir grupos donde tu eres un participante -->
                     <?php
                         $consulta="SELECT * FROM `otro_grupos` where `FKusuario`= :IDUser";
@@ -284,7 +291,7 @@
                         ?>
 
                     <div class="unidad-grupo">
-                        <div class="small-box bg-info miTema">
+                        <div class="small-box bg-info miGrupo">
                             <div class="titulo-grupo">
                                 <i class="fas fa-users"></i>
                                 <h3><?php print_r($row2['Nombre']); ?></h3>
@@ -327,25 +334,21 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
-            </div>
         </footer>
 
     </div>
 
     <script src="../../plugins/jquery/jquery.min.js"></script>
-
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
 
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
 
-
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../plugins/sparklines/sparkline.js"></script>
     <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
@@ -355,66 +358,13 @@
     <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="../../dist/js/adminlte.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    
+    <script src="../../dist/js/adminlte.js"></script>
+    
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-    <script>
-    /*var laid = "tema";
-    $(".miTema").on("click", function() {
-        laid = $(this).attr("id");
-
-    });
-    var panel = document.getElementById(laid);
-    const pickr = Pickr.create({
-        el: '.color-picker',
-        theme: 'classic', // or 'monolith', or 'nano'
-
-        swatches: [
-            'rgba(244, 67, 54, 1)',
-            'rgba(233, 30, 99, 0.95)',
-            'rgba(156, 39, 176, 0.9)',
-            'rgba(103, 58, 183, 0.85)',
-            'rgba(63, 81, 181, 0.8)',
-            'rgba(33, 150, 243, 0.75)',
-            'rgba(3, 169, 244, 0.7)',
-            'rgba(0, 188, 212, 0.7)',
-            'rgba(0, 150, 136, 0.75)',
-            'rgba(76, 175, 80, 0.8)',
-            'rgba(139, 195, 74, 0.85)',
-            'rgba(205, 220, 57, 0.9)',
-            'rgba(255, 235, 59, 0.95)',
-            'rgba(255, 193, 7, 1)'
-        ],
-
-        components: {
-
-            // Main components
-            preview: true,
-            opacity: true,
-            hue: true,
-
-            // Input / output Options
-            interaction: {
-                hex: true,
-                rgba: false,
-                hsla: false,
-                hsva: false,
-                cmyk: false,
-                input: true,
-                clear: true,
-                save: true
-            }
-        }
-    });
-
-    pickr.on('change', (...args) => {
-        let color = args[0].toRGBA();
-        console.log(color);
-        var color2 = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
-        $(panel).attr('style', 'background-color: ' + color2 + '!important');
-    });*/
-    </script>
+    
 </body>
 
 </html>

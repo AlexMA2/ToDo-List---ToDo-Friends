@@ -27,7 +27,7 @@
 </head>
 <?php
     require "conexion.php";
-    $mensaje = "REGISTRATE";
+    $mensaje = "REGÍSTRATE";
     if(!empty(filter_input(INPUT_POST, 'registrar'))){
         try{                    
                 
@@ -35,69 +35,80 @@
             $usuario = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
             $contrasena = filter_input(INPUT_POST, 'pass', FILTER_SANITIZE_SPECIAL_CHARS);
             $contra_repe = filter_input(INPUT_POST, 'passr', FILTER_SANITIZE_SPECIAL_CHARS);
-            if(!empty($correo) && !empty($usuario) && !empty($contrasena) && !empty($contra_repe)){
-                if($contrasena == $contra_repe){
-                    session_start();
-                    
-                    $contrasena_encriptada = sha1($contrasena);
-                    $sqluser = "SELECT `iduser` FROM `usuarios` WHERE `username` = :user OR `correo` = :correo";
+            if(!filter_var($correo, FILTER_VALIDATE_EMAIL)){
+               $mensaje = "El correo no es valido";   
+               //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR            
+            }
+            else if(strlen($correo) < 5 || strlen($correo) > 64){
+                $mensaje = "El correo debe tener una longitud entre 5 a 64 caracteres";
+                //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR    
+            }
+            else if(strlen($usuario) < 5 || strlen($usuario) > 64){
+                $mensaje = "El nombre de usuario debe tener una longitud entre 5 a 32 caracteres";
+                //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR    
+            }
+            else if(strlen($contrasena) < 5 || strlen($contrasena) > 64){
+                $mensaje = "La contraseña debe tener una longitud entre 5 a 200 caracteres";
+                //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR  
+            }
+            else if($contrasena != $contra_repe){
+                $mensaje = "Las contraseñas deben ser iguales";
+                //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR  
+            }
+            else{
+                session_start();
                 
-                    $resultado_user = $conection->prepare($sqluser);
-    
-                    $resultado_user->bindValue(":user", $usuario);
-                    $resultado_user->bindValue(":correo", $correo);
-                    $resultado_user->execute();
-    
-                    $filas = $resultado_user->rowCount();
-                    if($filas == 0) {
-                        //insertar información del usuario
-                        $sqlusuario = "INSERT INTO `usuarios` (`correo`, `username`, `password`) VALUES(:correo, :user, :pass)";
-                        $resultadousuario = $conection->prepare($sqlusuario);
-    
-                        $resultadousuario->bindValue(":correo", $correo);
-                        $resultadousuario->bindValue(":user", $usuario);
-                        $resultadousuario->bindValue(":pass", $contrasena_encriptada);
-                        $resultadousuario->execute();
-    
-                        if($resultadousuario > 0){
-                            $consulta = "SELECT `iduser` FROM `usuarios` where `username`= :user and `password`= :pass";
-    
-                            $resultado = $conection->prepare($consulta);
-    
-                            $resultado->bindValue(":user", $usuario);
-                            $resultado->bindValue(":pass", $contrasena_encriptada);      
-                            
-                            $resultado->execute();
+                $contrasena_encriptada = sha1($contrasena);
+                $sqluser = "SELECT `iduser` FROM `usuarios` WHERE `username` = :user OR `correo` = :correo";
+            
+                $resultado_user = $conection->prepare($sqluser);
 
-                            $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
-                            $_SESSION['user']=$rpta['iduser']; 
-                            $_SESSION['nivel'] = $rpta['Nivel'];
-                            header("location:NetWork");
-                        } 
-                        else{
-                            $mensaje = "Hubo un error al introducir tus datos.";
-                        }
-    
-                        $resultadousuario = null;
-                       
-                    }else {
-                        $resultado_user = null;
-                        $mensaje = "Usuario ya registrado";
-                    }
-                }
-                else{
-                    $mensaje = "Las contraseñas deben ser iguales";
+                $resultado_user->bindValue(":user", $usuario);
+                $resultado_user->bindValue(":correo", $correo);
+                $resultado_user->execute();
+
+                $filas = $resultado_user->rowCount();
+                if($filas == 0) {
+                    //insertar información del usuario
+                    $sqlusuario = "INSERT INTO `usuarios` (`correo`, `username`, `password`) VALUES(:correo, :user, :pass)";
+                    $resultadousuario = $conection->prepare($sqlusuario);
+
+                    $resultadousuario->bindValue(":correo", $correo);
+                    $resultadousuario->bindValue(":user", $usuario);
+                    $resultadousuario->bindValue(":pass", $contrasena_encriptada);
+                    $resultadousuario->execute();
+
+                    $consulta = "SELECT `iduser` FROM `usuarios` where `username`= :user and `password`= :pass";
+
+                    $resultado = $conection->prepare($consulta);
+
+                    $resultado->bindValue(":user", $usuario);
+                    $resultado->bindValue(":pass", $contrasena_encriptada);      
+                        
+                    $resultado->execute();
+
+                    $rpta = $resultado->fetch(PDO::FETCH_ASSOC);     
+                    $_SESSION['user']=$rpta['iduser']; 
+                    $_SESSION['nivel'] = $rpta['Nivel'];
+                    header("location:NetWork");
+                    $resultadousuario = null;
+                
+                }else {
+                    $resultado_user = null;
+                    $mensaje = "Usuario ya registrado";
+                    //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR  
                 }
             }
-            
-
         }   
         catch(Exception $ex){
             $mensaje = "Hubo un error al introducir tus datos.";
+            //ACTIVAR POPUP PARA VER ESTE MENSAJE PERO MEJOR  
         } 
     }
 
+
 ?>
+
 <body>
     <header class="cabecera" style="height: 315px;">
         <div class="home">
@@ -112,7 +123,7 @@
             <li class="nav-item text-center"><a class="nav-link" href="tutorial"> Tutorial </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="equipos"> Trabajos en Equipo </a></li>
             <li class="nav-item text-center"><a class="nav-link" href="login"> Iniciar Sesi&oacute;n </a></li>
-            <li class="nav-item text-center"><a class="nav-link" href="registro">Registrarse </a> </li>
+            <li class="nav-item text-center"><a class="nav-link" href="registro">Regístrate </a> </li>
         </nav>
 
     </header>
@@ -129,31 +140,34 @@
                 <div class="input-div one">
                     <i class="fas fa-user"></i>
                     <div class="div">
-                        <input type="text" name="user" placeholder="Nombre de usuario" required />
+                        <input type="text" name="user" placeholder="Nombre de usuario" minlength="5" maxlength="32"
+                            required />
                     </div>
                 </div>
 
                 <div class="input-div one">
                     <i class="fa fa-envelope"></i>
                     <div class="div">
-                        <input type="email" name="correo" placeholder="Correo Electrónico" required />
+                        <input type="email" name="correo" placeholder="Correo electrónico" minlength="5" maxlength="64"
+                            required />
                     </div>
                 </div>
 
-                <div class="input-div pass">                   
-                    <i class="fas fa-lock"></i>                   
-                    <div class="div">                        
-                        <input type="password" name="pass" placeholder="Contraseña" required />
+                <div class="input-div pass">
+                    <i class="fas fa-lock"></i>
+                    <div class="div">
+                        <input type="password" name="pass" placeholder="Contraseña" minlength="5" maxlength="200"
+                            required />
                     </div>
                 </div>
-                <div class="input-div pass">                   
-                    <i class="fas fa-lock"></i>                   
-                    <div class="div">                        
-                        <input type="password" name="passr" placeholder="Repetir contraseña" required />
+                <div class="input-div pass">
+                    <i class="fas fa-lock"></i>
+                    <div class="div">
+                        <input type="password" name="passr" placeholder="Repetir contraseña" minlength="5"
+                            maxlength="200" required />
                     </div>
                 </div>
-                <a href="#">¿Olvidaste tu contraseña?</a>
-                <input type="submit" name="registrar" class="btn" value="Registrarse">
+                <input type="submit" name="registrar" class="btn" value="Registrarte">
 
             </form>
         </div>
@@ -163,4 +177,3 @@
 
 
 </html>
-

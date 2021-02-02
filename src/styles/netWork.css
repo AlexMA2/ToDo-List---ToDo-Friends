@@ -23,11 +23,11 @@
 }
 
 .mis-tareas thead tr th:nth-child(2) {
-  width: 60%;
+  width: 59%;
 }
 
 .mis-tareas thead tr th:nth-child(3) {
-  width: 11%;
+  width: 12%;
 }
 
 .mis-tareas thead tr th:nth-child(4) {
@@ -36,10 +36,6 @@
 
 .btn-opciones {
   cursor: pointer;
-}
-
-.span-btn-opciones {
-  margin-left: 28px;
 }
 
 /* Popup de panel de control */
@@ -66,93 +62,112 @@
   text-align: left;
 }
 
-.grupo-temas{
+.grupo-temas {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-left: 10px;
 }
 
-.unidad-tema{
-  width: 20%;
-  margin: 5px 10px 10px 5px;  
+.unidad-tema {
+  width: 24%;
+  margin: 5px 10px 10px 5px;
 }
 
-.unidad-tema div h3{
+.unidad-tema div h3 {
   overflow: hidden;
 }
 
-.nav-arbol{
+.nav-arbol {
   margin: 5px;
-  padding: 5px; 
+  padding: 5px;
   list-style: none;
   width: 100%;
 }
 
-.nav-li{
-  
+.nav-li {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-.nav-arbol-hoja{
+.nav-arbol-hoja {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   color: #fff;
-  font-size: 16px;  
+  font-size: 16px;
   padding: 10px;
 }
 
-.nav-arbol-hoja:hover{
-  background-color: rgba(0,0,0,0.5);
+.nav-arbol-hoja:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.nav-arbol-hoja a{
+.nav-arbol-hoja a {
   width: 50%;
   margin: -5px 60px 0px 13px;
 }
 
-.nav-arbol-hoja i{
+.nav-arbol-hoja i {
   cursor: pointer;
 }
 
-.desplegable{
+.desplegable {
   list-style: none;
   display: none;
   transition: 1s;
   padding: 10px;
 }
 
-.desplegable li{
+.desplegable li {
   color: #fff;
   font-size: 15px;
   width: 100%;
   padding: 5px;
 }
 
-.desplegable li i{
+.desplegable li i {
   margin-right: 15px;
 }
 
-.small-box h3{
+.small-box h3 {
   white-space: normal !important;
 }
 
-.label-success{
-  color: #45a727;
+.add-member {
+  margin-bottom: -1rem;
 }
 
-.opciones-chat{
-  display: none;
-  text-align: right;
-  margin-right: 5px;
-
-}
-
-.opciones-chat i{
-  cursor: pointer;
-}
-
-.chat-grupal-todo{
+.miTema>div {
   overflow: hidden;
+  min-height: 150px;
+}
+
+.titulo-principal {
+  padding-left: 30px;
+}
+
+.btn-opcion2{  
+  color: #fff;
+  margin-top: 10px;
+  margin-right: -30px;
+}
+
+.btn-opcion2 i{
+  font-size: 20px;
+}
+
+.btn-eliminar-tema{  
+  color: #fff;
+  margin-top: 10px;
+}
+
+.btn-eliminar-tema i{
+  font-size: 20px;
+}
+
+.popup-boton{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

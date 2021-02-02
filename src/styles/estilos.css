@@ -159,7 +159,7 @@ body {
   border-color: transparent transparent #2c3e50 transparent;
 }
 
-.titulo-patrocinadores,
+.titulo-patrocinadores, 
 .subtitulo-patrocinadores {
   color: #fff;
   text-align: center;
@@ -226,38 +226,30 @@ body {
   .cabecera .textos {
     margin-top: 130px;
   }
-
   .cabecera .titulo {
     font-size: 75px;
   }
-
   .none {
     display: none;
   }
-
   .imagenes {
     flex-grow: 1;
   }
-
   .card {
     width: 90%;
   }
-
   .clientes {
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
   }
-  
   .cliente {
     margin-top: 25px;
     width: 70%;
   }
-
   .fondo {
     height: 1700px;
   }
-
   .cliente h4 {
     width: 200px;
     margin-left: 30px;
@@ -268,28 +260,22 @@ body {
   .cabecera .textos {
     margin-top: 100px;
   }
-
   .cabecera .titulo {
     font-size: 65px;
   }
-
   .cabecera .subtitulo {
     font-size: 25px;
     margin-bottom: 32px;
   }
-
   .sobre-nosotros {
     font-size: 46px;
   }
-
   .slogan {
     font-size: 20px;
   }
-
   .titulo-patrocinadores {
     font-size: 46px;
   }
-
   .subtitulo-patrocinadores {
     font-size: 20px;
   }

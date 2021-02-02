@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     require "conexion.php";
     session_start();           
     
@@ -6,7 +6,7 @@
         header("location: ../..");
     }
     else{        
-        require "sacarDatos.php";       
+        require "sacarDatos.php";
         list ($uID, $uNombre, $uCorreo, $uFoto) = getInfoSobre($_SESSION['user']);
     }
  ?>
@@ -33,48 +33,35 @@
     <link rel="stylesheet" href="../../plugins/jqvmap/jqvmap.min.css">
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <link rel="stylesheet" href="../../src/styles/netWork.css">
+    <link rel="stylesheet" href="../styles/netWork.css">
     <link rel="stylesheet" href="../../plugins/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../styles/chat.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    
-    <div class="wrapper">
 
+    <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link pushmen" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link pushmen" data-widget="pushmenu" href="" role="button">
+                        <i class="fas fa-bars"></i></a>
                 </li>
 
                 <li class="nav-item d-none d-sm-inline-block">
-
                 </li>
             </ul>
 
-            <!--
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            -->
-
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">ToDo
+                        Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -83,149 +70,69 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="#" class="brand-link">
+            <a href="" class="brand-link">
                 <img src="../../res/favicon1.png" alt="Todo List" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Todo List</span>
+                <span class="brand-text font-weight-light">ToDo List</span>
             </a>
 
             <div class="sidebar">
-
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
                     </div>
                     <div class="info">
-                        <a href="perfilusuario" class="d-block"> 
+                        <a href="perfilusuario" class="d-block">
                             <?php                                  
                                print_r($uNombre);
-                            ?> 
+                            ?>
                         </a>
                     </div>
                 </div>
 
                 <nav class="mt-2">
-                    <!--
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Tablero
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                                
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="tareas.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="horarios.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="guardado.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p> - </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                                <p>
-                                    Mis Equipos
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                            </ul>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="../../index" class="nav-link">
-                                <i class="fas fa-sign-out-alt"></i>
-                                <p>
-                                    Salir
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                    -->
                     <ul class="nav-arbol">
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                
                             </div>
-                            <ul class="nav desplegable">
-                                <li class="text-wrap"> 
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#"class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li> 
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-                               
-                            </ul>
+                            
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
-                            </div>
-                            <ul class="nav desplegable">
-                                <li> 
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li> 
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
                                
-                            </ul>
+                            </div>
+                           
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
-                            ?>
-                            <li class="nav-li">
-                                <div class="nav-arbol-hoja">
-                                    <i class="fas fa-users-cog"></i>
-                                    <a href="panelAdmin"> Administrador </a>                                    
-                                </div>                               
-                            </li>
-                            <?php
-                            }              
-                                   
-                        ?>  
+                        ?>
+                        <li class="nav-li">
+                            <div class="nav-arbol-hoja">
+                                <i class="fas fa-users-cog"></i>
+                                <a href="panelAdmin"> Administrador </a>
+                            </div>
+                        </li>
+                        <?php
+                            }                     
+                        ?>
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
-                    </ul>                   
+                    </ul>
                 </nav>
             </div>
         </aside>
 
         <?php
-            
             $tema = $_SESSION['tema'];
-            
+
             if(empty($_SESSION['grupo'])){
                 // Validar que el tema pertenece al usuario
                 $otraQuery = "SELECT * FROM temas WHERE Usuario = :id AND IDTEMA = :tema";
@@ -238,7 +145,6 @@
                     $nombreTema = $otrosDatos['Titulo'];
                     $descripcionTema = $otrosDatos['Descripcion'];
                 }
-
                 $filas = $esteResultado->rowCount();
             }
             else{
@@ -253,59 +159,57 @@
                     $nombreTema = $otrosDatos['Titulo'];
                     $descripcionTema = $otrosDatos['Descripcion'];
                 }
-
                 $filas = $esteResultado->rowCount();
             }
-            
         ?>
 
         <div class="content-wrapper">
-
             <div class="content-header">
                 <div class="container-fluid">
-
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
                             <h1 class="mx-2 text-dark"><?php print_r($nombreTema)?></h1>
-                            <p class="mx-2 text-muted pt-2"><?php print_r(" $descripcionTema ")?></p>
+                            <p class="mx-2 text-muted pt-2">«<?php print_r(" $descripcionTema ");?>»</p>
+                            <button class="btn btn-primary btn-recup-front"> Recuperar tareas </button>
                         </div>
                         <div class="col-sm-6">
-
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="NetWork"> Tablero </a></li>
-                                <li class="breadcrumb-item active"> Tareas </li>
+                                <li class="breadcrumb-item"> Tareas </li>
                             </ol>
                         </div>
                         <!-- aqui comienza el formulario-->
                         <div class="container p-4">
                             <div class="row">
                                 <div class="container">
-                                    <!-- sugerencia usar la clase col-md-4--><!-- aqui para lo de reconocimiento de voz-->
+                                    <!-- sugerencia usar la clase col-md-4-->
+                                    <!-- aqui para lo de reconocimiento de voz-->
                                     <div class="card card-body">
                                         <p>Crear Tarea</p>
-                                        <form action="#" method = "POST" id="formGuardarTarea">
+                                        <form action="#" method="POST" id="formGuardarTarea">
                                             <div class="form-group">
                                                 <input type="text" maxlength="128" minlength="4" id="inTitulo"
                                                     name="titulo" class=" form-control" placeholder=" T&iacute;tulo"
                                                     required>
-                                                    
-                                                    <button type="button" id="titleButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
-                                                    
+                                                <button type="button" id="titleButton" class="btn btn-info mic"><i
+                                                        class="fas fa-microphone"></i></button>
                                             </div>
+
                                             <div class="form-group">
                                                 <textarea name="descripcion" maxlength="256" id="inDesc" rows="4"
                                                     class="form-control" placeholder="Descripci&oacute;n"
                                                     required></textarea>
-                                                    <button type="button" id="descripButton" class="btn btn-info mic"><i class="fas fa-microphone"></i></button>
-                                                    
+                                                <button type="button" id="descripButton" class="btn btn-info mic"><i
+                                                        class="fas fa-microphone"></i></button>
                                             </div>
-                                            <div class="form-group">
-                                                <input type="date" id="inFecha" name="fecha"
-                                                    class=" form-control" placeholder=" Fecha L&iacute;mite">
-                                            </div>
-                                            <input type="button" class="btn btn-success btn-guardar btn-block" id="btnGuardarTarea"
-                                                name = "guardarTarea" value ="Guardar Tarea">
 
+                                            <div class="form-group">
+                                                <input type="date" id="inFecha" name="fecha" class=" form-control"
+                                                    placeholder=" Fecha L&iacute;mite">
+                                            </div>
+
+                                            <input type="button" class="btn btn-success btn-guardar btn-block"
+                                                name="guardarTarea" value="Guardar Tarea">
                                         </form>
                                     </div>
                                 </div>
@@ -315,64 +219,61 @@
                                             <tr>
                                                 <th class="text-center">T&iacute;tulo</th>
                                                 <th class="text-center">Descripci&oacute;n</th>
-                                                <th class="text-center" style="min-width: 100px;">Fecha L&iacute;mite</th>
-                                                <th class="text-center" style="min-width: 45px;"></th>
+                                                <th class="text-center" style="min-width: 100px;">Fecha L&iacute;mite
+                                                </th>
+                                                <th class="text-center" style="min-width: 45px;"> Opciones </th>
                                             </tr>
                                         </thead>
                                         <tbody class="lista-tareas">
-                                        <?php
-                                           
-                                            if($filas != 0){
-                                                $query = "SELECT * FROM tareas WHERE eltema = :tema";
-                                                $resultado_tarea = $conection->prepare($query);
-                                                
-                                                $resultado_tarea->bindValue(":tema", $tema);
-                                                $resultado_tarea->execute();
-                                                while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
-                                                    <tr class="item-tarea">
-                                                        <td><?php print_r($row['title']); ?></td>
-                                                        <td><?php print_r($row['description']); ?></td>
-                                                        <td><?php print_r($row['limit_date']); ?></td>
-                                                        <td>
-                                                            
-                                                            <span class="span-btn-opciones"><i
-                                                                    class="fa fa-ellipsis-v btn-opciones"
-                                                                    data-tid="<?php print_r($row['id_task']);?>"
-                                                                    aria-hidden="true"></i></span>
-                                                        </td>
-                                                    </tr>
-                                                <?php 
-                                                }
-                                            }
-                                            else{
-                                                ?>
-                                                <script>
-                                                    function getAbsolutePath() {
-                                                        var loc = window.location;
-                                                        var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-                                                        return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+                                            <?php
+                                                if($filas != 0){
+                                                    $query = "SELECT * FROM tareas WHERE eltema = :tema";
+                                                    $resultado_tarea = $conection->prepare($query);
+                                                    $resultado_tarea->bindValue(":tema", $tema);
+                                                    $resultado_tarea->execute();
+                                                    while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                            <tr class="item-tarea">
+                                                <td><?php print_r($row['title']); ?></td>
+                                                <td><?php print_r($row['description']); ?></td>
+                                                <td class="text-center"><?php print_r($row['limit_date']); ?></td>
+                                                <td class="text-center">
+                                                    <span class="span-btn-opciones"><i
+                                                            class="fa fa-ellipsis-v btn-opciones"
+                                                            data-tid="<?php print_r($row['id_task']);?>"
+                                                            aria-hidden="true"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <?php 
                                                     }
-                                                    window.location.replace(getAbsolutePath() + "MisEquipos");
-                                                </script>                                              
-                                                <?php    
+                                                }
+                                                else{
+                                                    ?>
+                                            <script>
+                                            function getAbsolutePath() {
+                                                var loc = window.location;
+                                                var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') +
+                                                    1);
+                                                return loc.href.substring(0, loc.href.length - ((loc.pathname + loc
+                                                    .search + loc.hash).length - pathName.length));
                                             }
-                                        ?>
+                                            window.location.replace(getAbsolutePath() + "MisEquipos");
+                                            </script>
+                                            <?php    
+                                                }
+                                                    ?>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
-
                         </div>
                         <!--opcion de editar-->
                         <div class="overlay " id="overlay">
                             <div class="popup " id="popup">
-
                                 <div class="col sm-4">
                                     <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
                                     <div class="row">
                                         <div class="card card-body col-10">
-
                                             <form action="#" method="POST" id="formEditarTarea">
                                                 <div class="form-group">
                                                     <input type="text" name="titulo2" maxlength="128" minlength="4"
@@ -382,26 +283,24 @@
                                                     <textarea name="descripcion2" maxlength="256" rows="4"
                                                         class="form-control" id="inEditDesc" placeholder="Descripcion">
                                                     </textarea>
-
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="date" name="fecha2" id="inEditFecha"
                                                         class=" form-control">
                                                 </div>
-                                                <input type="button" class="btn btn-config btn-editar btn-light btn-block"
-                                                    name="update" value="Editar Tarea" />
-
+                                                <input type="button"
+                                                    class="btn btn-config btn-editar btn-light btn-block" name="update"
+                                                    value="Editar Tarea" />
                                             </form>
-
                                         </div>
                                         <div class="botones-popup col-2">
                                             <div class="popup-boton">
-                                                <a href="#" class="btn-eliminar btn btn-secondary"><i class="fa fa-trash"
-                                                        aria-hidden="true"></i> Eliminar </a>
+                                                <a href="#" class="btn-eliminar btn btn-secondary"><i
+                                                        class="fa fa-trash" aria-hidden="true"></i> Eliminar </a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class=" btn-archivar btn btn-secondary"><i class="fa fa-archive"
-                                                        aria-hidden="true"></i> Archivar </a>
+                                                <a href="#" class=" btn-archivar btn btn-secondary"><i
+                                                        class="fa fa-archive" aria-hidden="true"></i> Archivar </a>
                                             </div>
                                             <div class="popup-boton">
                                                 <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
@@ -413,87 +312,271 @@
                                                 </div>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-paperclip"
-                                                        aria-hidden="true"></i> Adjuntar</a>
+                                                <a href="Historial" class="btn btn-secondary btn-historial"><i class="far fa-clipboard"
+                                                        aria-hidden="true"></i> Historial</a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-arrow-right"
-                                                        aria-hidden="true"></i> Mover </a>
+                                                <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i
+                                                        class="fa fa-arrow-right" aria-hidden="true"></i> Mover </a>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                         <!--Aqui termina el formulario-->
 
+                        <!--Inicio de Mover Tarea-->
+                        <div class="overlay " id="overlay3">
+                            <div class="popup " id="popup3">
+
+                                <div class="col sm-4">
+                                    Mover tarea<a href="#" class="btn-cerrar-popup3"><i
+                                            class="far fa-times-circle"></i></a>
+                                    <div class="row">
+                                        <table class="table table-bordered mis-tareas" class="display" id="mitabla">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="text-center">T&iacute;tulo del Tema</th>
+                                                    <th class="text-center">Descripci&oacute;n</th>
+                                                    <th class="text-center" style="min-width: 45px;">Acci&oacute;n</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="lista-temas">
+                                                <?php
+                                                error_reporting(0);
+                                                if($_SESSION['grupo'] != null){
+                                                    if($filas != 0){
+                                                        $peticion = "SELECT * FROM `temas` WHERE `Grupo` = :idgru";
+                                                        $resultado_tema = $conection->prepare($peticion);
+                                                        $resultado_tema->bindValue(":idgru", $_SESSION['grupo']);
+                                                        $resultado_tema->execute();
+                                                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                            if($row['IDTEMA'] != $tema){
+                                                                if($row['Grupo'] == $_SESSION['grupo']){
+                                                ?>
+                                                    <tr class="item-tema">
+                                                        <td><?php print_r($row['Titulo']); ?></td>
+                                                        <td><?php print_r($row['Descripcion']); ?></td>
+                                                        <td class="text-center">
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fas fa-exchange-alt btn-mover-tarea"
+                                                                    data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    error_reporting(-1);
+                                                }
+                                                else{
+                                                    if($filas != 0){
+                                                        $peticion = "SELECT * FROM `temas`";
+                                                        $resultado_tema = $conection->prepare($peticion);
+                                                        $resultado_tema->execute();
+                                                        while($row = $resultado_tema->fetch(PDO::FETCH_ASSOC)) {
+                                                            if($row['IDTEMA'] != $tema){
+                                                                if($row['Usuario'] == $_SESSION['user']){
+                                                ?>
+                                                    <tr class="item-tema">
+                                                        <td><?php print_r($row['Titulo']); ?></td>
+                                                        <td><?php print_r($row['Descripcion']); ?></td>
+                                                        <td class="text-center">
+                                                            <span class="span-btn-opciones"><i
+                                                                    class="fas fa-exchange-alt btn-mover-tarea"
+                                                                    data-tid2="<?php print_r($row['IDTEMA']);?>"
+                                                                    aria-hidden="true"></i></span>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    error_reporting(-1);
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin formulario Mover Tarea-->
+
+
+                        <div class="overlay " id="overlayArchiv">
+                            <div class="popup " id="popupArchiv">
+                                <div class="col sm-4">
+                                    <a href="#" class=" btn-cerrar-popup"><i class="far fa-times-circle"></i></a>
+                                    <div class="tareas-archivadas">
+                                        <table class="table table-bordered mis-tareas" class="display">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="text-center">T&iacute;tulo</th>
+                                                    <th class="text-center">Descripci&oacute;n</th>
+                                                    <th class="text-center" style="min-width: 45px;"> Opciones </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                    $query = "SELECT * FROM tareas_archivadas WHERE Creador = :us";
+                                                    $resultado_tarea = $conection->prepare($query);                                            
+                                                    $resultado_tarea->bindValue(":us", $_SESSION['user']);
+                                                    $resultado_tarea->execute();
+                                                    while($row = $resultado_tarea->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                <tr class="item-tarea" id="ar-<?php print_r($row['ID_ARCHIVADO'])?>">
+                                                    <td><?php print_r($row['Titulo']); ?></td>
+                                                    <td><?php print_r($row['Descripcion']); ?></td>
+                                                    <td class="text-center">
+                                                        <span class="mx-1">
+                                                            <i class="fas fa-recycle btn-recuperar-archivadas"></i>
+                                                        </span>
+                                                        <span class="mx-1">
+                                                            <i class="fa fa-trash btn-eliminar-archivado"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <?php 
+                                                    }                                                                                      
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
+        <?php 
+            if(!empty($_SESSION['grupo'])){
+        ?>
+        <div class="btn-chat" id="g-<?php print_r($_SESSION['grupo'])?>">
+            <span class="notificaciones"></span>
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        <div id="Michat">
+            <div class='opciones-chat'>
+                <i class='fas fa-minus' id='minimizar-chat'></i>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <ul class="list-group" id="listaOnline"></ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-grupal-todo cuerpo-chat">
+                <div class="panel panel-success">
+                    <div class="panel-body">
+                        <ul class="chatpluginchat"></ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="txtMensaje" type="text" class="form-control input-sm"
+                                placeholder="Escribe un mensaje..." />
+                            <span class="emojis">
+                                <i class="fas fa-smile-beam"></i>
+                                <emoji-picker></emoji-picker>
+                            </span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btnEnviar">Enviar</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li class="left clearfix itemtemplate" style="display:none">
+                <span class="chat-img pull-left">
+                    <img src="<?php print_r($uFoto)?>" alt="User Avatar" class="img-circle" id="Foto" />
+                </span>
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <strong class="primary-font" id="Nombre"><?php print_r($uNombre)?></strong>
+                        <small class="pull-right text-muted">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            <span id="Tiempo">12 mins ago</span>
+                        </small>
+                    </div>
+                    <p id="Contenido">Contenido</p>
+                </div>
+            </li>
+            <!--aqui habia un div de cierre-->
+            <?php
+            }            
+            ?>
+        </div>
+        <script src="../scripts/reconocimientoPorVoz.js"></script>
+        <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="../scripts/Tarea.js"></script>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
-            </div>
         </footer>
-
-    </div>
-
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/Tarea.js"></script>
-                                
-    <script>
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="../scripts/Tarea.js"></script>
+        <?php 
+            if(!empty($_SESSION['grupo'])){
+        ?>
+        <script src="../scripts/MiChat.js"></script>
+        <?php
+            }
+        ?>
+        <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../plugins/chart.js/Chart.min.js"></script>
-    <script src="../../plugins/sparklines/sparkline.js"></script>
-    <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <script src="../../plugins/moment/moment.min.js"></script>
-    <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="../../dist/js/adminlte.js"></script>
-    <script src="../../dist/js/demo.js"></script>
-    <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
-    <script src="../scripts/activadorPopUp.js"></script>                                                         
-    <script>
-    $(document).ready(function(){
-		$('#mitabla').DataTable({
-			//"order": [[1, "asc"]],
-			"language":{
-                "EmptyTable": 'No existen tareas',
-                "lengthMenu": "Mostrar _MENU_ tareas",
-                "info": "",
-				"infoEmpty": "",
-				"infoFiltered": "",
-				"loadingRecords": "Cargando...",
-				"processing":     "Procesando...",
-                "search": "",
-                "searchPlaceholder": "Buscar",
-				"zeroRecords":    "No se encontraron tareas",
-                "paginate": {
-                    "next":       ">",
-					"previous":   "<"
-                },					
-			}
-		});	
-	});	
-    </script>
-
-    <script src="../scripts/reconocimientoPorVoz.js"></script>
-    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
+        </script>
+        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../../plugins/chart.js/Chart.min.js"></script>
+        <script src="../../plugins/sparklines/sparkline.js"></script>
+        <script src="../../plugins/jqvmap/jquery.vmap.min.js"></script>
+        <script src="../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+        <script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+        <script src="../../plugins/moment/moment.min.js"></script>
+        <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+        <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="../../dist/js/adminlte.js"></script>
+        <script src="../../dist/js/demo.js"></script>
+        <script src="../../plugins/datatable/jquery.dataTables.min.js"></script>
+        <script src="../scripts/activadorPopUp.js"></script>
+        <script>
+        $(document).ready(function() {
+            $('#mitabla').DataTable({
+                //"order": [[1, "asc"]],
+                "language": {
+                    "EmptyTable": 'No existen tareas',
+                    "lengthMenu": "Mostrar _MENU_ tareas",
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "",
+                    "searchPlaceholder": "Buscar",
+                    "zeroRecords": "No se encontraron tareas",
+                    "paginate": {
+                        "next": ">",
+                        "previous": "<"
+                    },
+                }
+            });
+        });
+        </script>
+    </div>
 </body>
-</html>
 
+</html>
