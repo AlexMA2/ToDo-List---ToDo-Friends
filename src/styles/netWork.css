@@ -154,7 +154,7 @@
 }
 
 .btn-opcion2 i{
-  font-size: 20px;
+  font-size: 20x;
 }
 
 .btn-eliminar-tema{  
@@ -163,6 +163,15 @@
 }
 
 .btn-eliminar-tema i{
+  font-size: 20px;
+}
+
+.btn-eliminar-temaGrupal{  
+  color: #fff;
+  margin-top: 10px;
+}
+
+.btn-eliminar-temaGrupal i{
   font-size: 20px;
 }
 

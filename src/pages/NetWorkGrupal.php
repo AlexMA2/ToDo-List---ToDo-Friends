@@ -106,7 +106,7 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                
+                                <i class="desplegador"></i>
                             </div>
                             
                         </li>
@@ -114,7 +114,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                                
                             </div>
                             
                         </li>
@@ -135,7 +134,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
                                 <a href="../../"> Salir </a>
-
                             </div>
                         </li>
                     </ul>
@@ -211,7 +209,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6 row">
 
-                            <h1 class="text-dark titulo-principal"> Temas de Trabajo de Equipo </h1>
+                            <h1 class="text-dark titulo-principal"> Temas de Trabajo del Equipo </h1>
                             <h3> &nbsp;( <?php print_r($resultado_tema->rowCount())?> )</h3>
                             <button class="btn-opciones btn btn-success mx-2"> Crear Tema </button>
                             <!--div class="color-picker"></div-->
@@ -220,7 +218,7 @@
 
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item active"> <a href="MisEquipos">Mis Equipos</a></li>
-                                <li class="breadcrumb-item">Temas del equipo</li>
+                                <li class="breadcrumb-item">Temas de Trabajo del Equipo</li>
                             </ol>
                         </div>
 
@@ -239,10 +237,10 @@
                                 <div class="popup-boton row">
                                     <h3><?php print_r($row['Titulo']); ?></h3>
                                     <a href="#" data-id1="<?php print_r($row['IDTEMA']);?>"
-                                        class="btn-opcion2 btn btn-secondary text-center col-2"><i
+                                        class="btn-opcion2  text-center col-2"><i
                                             class="fas fa-pencil-alt"></i></a>
                                     <a href="#" id="<?php print_r($row ["IDTEMA"]);?>"
-                                        class="btn-eliminar-temaGrupal btn btn-secondary text-center col-2"><i
+                                        class="btn-eliminar-temaGrupal text-center col-2"><i
                                             class="fas fa-times" aria-hidden="true"></i></a>
                                 </div>
 
