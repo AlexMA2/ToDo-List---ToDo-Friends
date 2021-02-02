@@ -95,7 +95,7 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                
+                                <i class="desplegador"></i>
                             </div>
                             
                         </li>
@@ -103,7 +103,6 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                               
                             </div>
                            
                         </li>
@@ -204,7 +203,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="date" id="inFecha" name="fecha" class=" form-control"
+                                                <input type="date" id="inFecha" name="fecha" class="form-control"
                                                     placeholder=" Fecha L&iacute;mite">
                                             </div>
 
@@ -303,14 +302,15 @@
                                                         class="fa fa-archive" aria-hidden="true"></i> Archivar </a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-secondary"><i class="fa fa-circle"
-                                                        aria-hidden="true"></i> Estado </a>
-                                                <div class="nombre-estados">
+                                                <a href="#" class="btn btn-secondary"><i 
+                                                        class="fa fa-circle" aria-hidden="true"></i> Estado </a>
+                                                
+                                            </div>
+                                            <div class="nombre-estados">
                                                     <input type="radio" name="estado" value="Sin hacer"> Sin hacer<br>
                                                     <input type="radio" name="estado" value="Haciendo"> Haciendo<br>
                                                     <input type="radio" name="estado" value="Hecho"> Hecho<br>
                                                 </div>
-                                            </div>
                                             <div class="popup-boton">
                                                 <a href="Historial" class="btn btn-secondary btn-historial"><i class="far fa-clipboard"
                                                         aria-hidden="true"></i> Historial</a>
@@ -331,7 +331,7 @@
                             <div class="popup " id="popup3">
 
                                 <div class="col sm-4">
-                                    Mover tarea<a href="#" class="btn-cerrar-popup3"><i
+                                    Mover tarea <a href="#" class="btn-cerrar-popup3"><i
                                             class="far fa-times-circle"></i></a>
                                     <div class="row">
                                         <table class="table table-bordered mis-tareas" class="display" id="mitabla">
@@ -567,7 +567,7 @@
                     "processing": "Procesando...",
                     "search": "",
                     "searchPlaceholder": "Buscar",
-                    "zeroRecords": "No se encontraron tareas",
+                    "zeroRecords": " ",
                     "paginate": {
                         "next": ">",
                         "previous": "<"
