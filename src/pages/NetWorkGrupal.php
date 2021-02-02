@@ -250,8 +250,8 @@
                                         class="btn-opcion2 btn btn-secondary text-center col-2"><i
                                             class="fas fa-pencil-alt"></i></a>
                                     <a href="#" id="<?php print_r($row ["IDTEMA"]);?>"
-                                        class="btn-eliminar-temaGrupal btn btn-secondary text-center col-2"><i class="fas fa-times"
-                                            aria-hidden="true"></i></a>
+                                        class="btn-eliminar-temaGrupal btn btn-secondary text-center col-2"><i
+                                            class="fas fa-times" aria-hidden="true"></i></a>
                                 </div>
 
                                 <p><?php print_r($row['Descripcion']); ?></p>
