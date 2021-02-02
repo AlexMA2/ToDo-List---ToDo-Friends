@@ -102,37 +102,17 @@
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
                                 <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">Primero</a>
-                                </li>
-
-                            </ul>
+                            
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
                                 <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                               
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
+                            
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
@@ -255,13 +235,13 @@
                     <div class="unidad-tema">
                         <div class="small-box bg-info miTema" id="tema-<?php print_r($row ["IDTEMA"]);?>">
                             <div class="inner">
-                                <div class="popup-boton row">
+                                <div class="popup-boton">
                                     <h3><?php print_r($row['Titulo']); ?></h3>
                                     <a href="#" data-id1="<?php print_r($row['IDTEMA']);?>"
-                                        class="btn-opcion2 btn btn-secondary text-center col-2"><i
+                                        class="btn-opcion2 text-center col-2"><i
                                             class="fas fa-pencil-alt"></i></a>
                                     <a href="#" id="<?php print_r($row ["IDTEMA"]);?>"
-                                        class="btn-eliminar-tema btn btn-secondary text-center col-2"><i class="fa fa-times"
+                                        class="btn-eliminar-tema text-center col-2"><i class="fa fa-times"
                                             aria-hidden="true"></i></a>
                                 </div>
 

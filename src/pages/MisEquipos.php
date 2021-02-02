@@ -99,38 +99,16 @@
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-table"></i>
-                                <a href="NetWork"> Tablero </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <a href="NetWork"> Tablero </a>                                
                             </div>
-                            <ul class="nav desplegable">
-                                <li class="text-wrap">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#" class="text-truncate">Primero</a>
-                                </li>
-
-                            </ul>
+                            
                         </li>
                         <li class="nav-li">
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-users"></i>
-                                <a href="MisEquipos"> Mis equipos </a>
-                                <i class="fas fa-angle-left right desplegador"></i>
+                                <a href="MisEquipos"> Mis equipos </a>                               
                             </div>
-                            <ul class="nav desplegable">
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">PrimeroPrimeroP(19)</a>
-                                </li>
-                                <li>
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
-                                </li>
-
-                            </ul>
+                           
                         </li>
                         <?php
                             if($_SESSION['nivel'] == 1){
@@ -254,7 +232,7 @@
                                 class="small-box-footer btn-ver-grupo"> Ver equipo
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
-                            <a href="#" data-id1="<?php print_r($row["IDGRUPO"]);?>"
+                            <a href="#" data-id1="<?php print_r($row["IDGRUPO"]);?>" style="margin-top: 0px !important;"
                                 class="small-box-footer btn-opcion2 "> Editar equipo
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
