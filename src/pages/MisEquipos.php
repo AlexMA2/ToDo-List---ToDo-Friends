@@ -86,8 +86,7 @@
                     </div>
                     <div class="info">
                         <a href="perfilusuario" class="d-block">
-                            <?php        
-                                                     
+                            <?php                    
                                 print_r($uNombre);
                             ?>
                         </a>
@@ -110,7 +109,7 @@
                                 </li>
                                 <li>
                                     <i class="far fa-circle nav-icon"></i>
-                                    <a href="#">Primero</a>
+                                    <a href="#" class="text-truncate">Primero</a>
                                 </li>
 
                             </ul>
@@ -182,7 +181,6 @@
                                                     placeholder="Descripci&oacute;n"></textarea>
 
                                             </div>
-
                                             <input type="button" class="btn btn-config btn-light btn-block btn-crear-grupo"
                                                 name="CrearGrupo" value="Crear equipo" />
                                         </form>
@@ -285,7 +283,7 @@
                         ?>
 
                     <div class="unidad-grupo">
-                        <div class="small-box bg-info miTema">
+                        <div class="small-box bg-info miGrupo">
                             <div class="titulo-grupo">
                                 <i class="fas fa-users"></i>
                                 <h3><?php print_r($row2['Nombre']); ?></h3>
@@ -328,11 +326,8 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="">ToDo Friends</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <!--<b>Versi&oacute;n</b> 2.0-->
-            </div>
         </footer>
 
     </div>

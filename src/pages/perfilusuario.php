@@ -58,24 +58,11 @@
                 </li>
             </ul>
 
-<!--
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
--->
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                    Todo Friends
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" role="button">
+                    ToDo Friends
                         <i class="fas fa-check-circle"></i>
                     </a>
                 </li>
@@ -93,7 +80,7 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
+                        <img src="<?php print_r($uFoto)?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="perfilusuario" class="d-block">
@@ -245,11 +232,8 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="">ToDo Friends</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <!--<b>Versi&oacute;n</b> 2.0-->
-            </div>
         </footer>
 
     </div>

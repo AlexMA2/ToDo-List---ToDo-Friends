@@ -35,6 +35,12 @@
                 $resultadousuario->bindValue(":IDGrupo", $_SESSION['grupo']);
                 $resultadousuario->bindValue(":IDUser", $_GET['IDSoldo']);
                 $resultadousuario->execute();
+
+                
+                $query2 = "UPDATE `grupos` SET `Miembros`= `Miembros` + 1 WHERE `IDGRUPO` = :idgru";
+                $resultado = $conection->prepare($query2);      
+                $resultado->bindValue(":idgru", $_SESSION['grupo']);  
+                $resultado->execute();
                 
                 header("location: NetWorkGrupal");
             }

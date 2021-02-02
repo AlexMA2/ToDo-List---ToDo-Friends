@@ -94,7 +94,7 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php print_r($uFoto)?>" alt="User Image" class="img-circle elevation-2">
+                        <img src="<?php print_r($uFoto)?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="perfilusuario" class="d-block">
@@ -336,11 +336,8 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="">ToDo Friends</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <!--<b>Versi&oacute;n</b> 2.0-->
-            </div>
         </footer>
 
     </div>

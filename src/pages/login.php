@@ -135,7 +135,7 @@ if(!empty(filter_input(INPUT_POST, 'logearte'))){
                 <div class="input-div one">
                     <i class="fas fa-user"></i>
                     <div class="div">
-                        <input type="email" name="user" placeholder="Correo Electrónico" required="required"
+                        <input type="email" name="user" placeholder="Correo electrónico" required="required"
                             autocomplete="off" value="" />
                     </div>
                 </div>

@@ -148,7 +148,7 @@
                 <div class="input-div one">
                     <i class="fa fa-envelope"></i>
                     <div class="div">
-                        <input type="email" name="correo" placeholder="Correo Electrónico" minlength="5" maxlength="64"
+                        <input type="email" name="correo" placeholder="Correo electrónico" minlength="5" maxlength="64"
                             required />
                     </div>
                 </div>

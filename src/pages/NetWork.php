@@ -88,8 +88,7 @@
                     </div>
                     <div class="info">
                         <a href="perfilusuario" class="d-block">
-                            <?php        
-                                                     
+                            <?php               
                                 print_r($uNombre);
                             ?>
                         </a>
@@ -148,7 +147,6 @@
                             }              
                                    
                         ?>                       
-                        
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -156,7 +154,6 @@
 
                             </div>
                         </li>
-                        
                     </ul>
                 </nav>
             </div>
@@ -244,11 +241,8 @@
         </div>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="">ToDo Friends</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <!--<b>Versi&oacute;n</b> 2.0-->
-            </div>
         </footer>
 
     </div>

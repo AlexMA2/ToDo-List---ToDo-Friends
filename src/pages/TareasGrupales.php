@@ -336,8 +336,8 @@
                                                         aria-hidden="true"></i> Adjuntar</a>
                                             </div>
                                             <div class="popup-boton">
-                                                <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i class="fa fa-arrow-right"
-                                                        aria-hidden="true"></i> Mover </a>
+                                                <a href="#" class="btn btn-abrir-popupMover btn-secondary"><i
+                                                        class="fa fa-arrow-right" aria-hidden="true"></i> Mover </a>
                                             </div>
                                         </div>
                                     </div>
@@ -519,36 +519,28 @@
             <!--aqui habia un div de cierre-->
             <?php
             }            
-        ?>
-
-
+            ?>
         </div>
-    </footer>
-    
-    <script src="../scripts/reconocimientoPorVoz.js"></script>
-    <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../scripts/Tarea.js"></script>
-    <?php 
+        <script src="../scripts/reconocimientoPorVoz.js"></script>
+        <script src="../scripts/reconocimientoDeVozDescripcion.js"></script>
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="../scripts/Tarea.js"></script>
 
         <footer class="main-footer">
-            <strong> &copy; 2020-2021 <a href="#">Todo List</a>.</strong>
+            <strong> &copy; 2020-2021 <a href="#">ToDo Friends</a>.</strong>
             Todos los derechos reservados.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versi&oacute;n</b> 2.0
-            </div>
         </footer>
         <script src="../../plugins/jquery/jquery.min.js"></script>
         <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
         <script src="../scripts/Tarea.js"></script>
         <?php 
-        if(!empty($_SESSION['grupo'])){
+            if(!empty($_SESSION['grupo'])){
         ?>
         <script src="../scripts/MiChat.js"></script>
         <?php
-        }
-    ?>
+            }
+        ?>
         <script>
         $.widget.bridge('uibutton', $.ui.button)
         </script>
@@ -588,7 +580,8 @@
                 }
             });
         });
-    });
-    </script>
+        </script>
+    </div>
 </body>
+
 </html>
