@@ -88,11 +88,11 @@ body.dark .content-wrapper {
 }
 
 .mis-tareas thead tr th:nth-child(2) {
-  width: 59%;
+  width: 60%;
 }
 
 .mis-tareas thead tr th:nth-child(3) {
-  width: 12%;
+  width: 11%;
 }
 
 .mis-tareas thead tr th:nth-child(4) {
@@ -101,6 +101,10 @@ body.dark .content-wrapper {
 
 .btn-opciones {
   cursor: pointer;
+}
+
+.span-btn-opciones {
+  margin-left: 28px;
 }
 
 /* Popup de panel de control */
@@ -136,15 +140,16 @@ body.dark .content-wrapper {
 }
 
 .grupo-temas {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;
-  margin-left: 10px;
 }
 
 .unidad-tema {
-  width: 24%;
+  width: 20%;
   margin: 5px 10px 10px 5px;
 }
 
@@ -160,6 +165,8 @@ body.dark .content-wrapper {
 }
 
 .nav-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -169,8 +176,13 @@ body.dark .content-wrapper {
 }
 
 .nav-arbol-hoja {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   color: #fff;
   font-size: 16px;
   padding: 10px;
@@ -212,49 +224,21 @@ body.dark .content-wrapper {
   white-space: normal !important;
 }
 
-.add-member {
-  margin-bottom: -1rem;
+.label-success {
+  color: #45a727;
 }
 
-.miTema>div {
+.opciones-chat {
+  display: none;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.opciones-chat i {
+  cursor: pointer;
+}
+
+.chat-grupal-todo {
   overflow: hidden;
-  min-height: 150px;
 }
-
-.titulo-principal {
-  padding-left: 30px;
-}
-
-.btn-opcion2{  
-  color: #fff;
-  margin-top: 10px;
-  margin-right: -30px;
-}
-
-.btn-opcion2 i{
-  font-size: 20x;
-}
-
-.btn-eliminar-tema{  
-  color: #fff;
-  margin-top: 10px;
-}
-
-.btn-eliminar-tema i{
-  font-size: 20px;
-}
-
-.btn-eliminar-temaGrupal{  
-  color: #fff;
-  margin-top: 10px;
-}
-
-.btn-eliminar-temaGrupal i{
-  font-size: 20px;
-}
-
-.popup-boton{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+/*# sourceMappingURL=netWork.css.map */
