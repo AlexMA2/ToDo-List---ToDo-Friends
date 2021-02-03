@@ -44,7 +44,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body>
 
     <div class="wrapper">
 
@@ -125,7 +125,12 @@
                         <?php
                             }              
                                    
-                        ?>                       
+                        ?>
+                        <button id="switch" class="switch">
+                            <span><i class="fas fa-sun"></i></span>
+                            <span><i class="fas fa-moon"></i></span>
+                        </button>
+                        
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -285,6 +290,7 @@
     <script src="../../dist/js/adminlte.js"></script>
     <script src="../../dist/js/demo.js"></script>
     <script src="../scripts/activadorPopUp.js"></script>
+    <script src="../scripts/darktheme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 
 </body>

@@ -1,12 +1,77 @@
 .crearTarea {
   border: 1px solid transparent;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   overflow: hidden;
   position: relative;
   border-radius: 8px;
-  transition-duration: 0.218s;
+  -webkit-transition-duration: 0.218s;
+          transition-duration: 0.218s;
+  -webkit-transition-property: background, border, opacity, -webkit-box-shadow, -webkit-transform;
+  transition-property: background, border, opacity, -webkit-box-shadow, -webkit-transform;
   transition-property: background, border, opacity, box-shadow, transform;
-  transition-timing-function: ease-in;
+  transition-property: background, border, opacity, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
+  -webkit-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+}
+
+.switch {
+  background: #343D5B;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+}
+
+.switch::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: #F1F1F1;
+  top: 0;
+  left: 0;
+  right: unset;
+  border-radius: 100px;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.switch.active {
+  background: orange;
+  color: #000000;
+}
+
+.switch.active::after {
+  right: 0;
+  left: unset;
+}
+
+.switch span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: block;
+  background: none;
+  color: #fff;
+}
+
+.content-wrapper {
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+}
+
+body.dark .content-wrapper {
+  background: #1E2120;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
 }
 
 .trans {
@@ -23,11 +88,11 @@
 }
 
 .mis-tareas thead tr th:nth-child(2) {
-  width: 59%;
+  width: 60%;
 }
 
 .mis-tareas thead tr th:nth-child(3) {
-  width: 12%;
+  width: 11%;
 }
 
 .mis-tareas thead tr th:nth-child(4) {
@@ -38,13 +103,25 @@
   cursor: pointer;
 }
 
-/* Popup de panel de control */
+.span-btn-opciones {
+  margin-left: 28px;
+}
 
+/* Popup de panel de control */
 .botones-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .popup-boton {
@@ -63,14 +140,16 @@
 }
 
 .grupo-temas {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
-  margin-left: 10px;
 }
 
 .unidad-tema {
-  width: 24%;
+  width: 20%;
   margin: 5px 10px 10px 5px;
 }
 
@@ -86,14 +165,24 @@
 }
 
 .nav-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-bottom: 10px;
 }
 
 .nav-arbol-hoja {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   color: #fff;
   font-size: 16px;
   padding: 10px;
@@ -115,6 +204,7 @@
 .desplegable {
   list-style: none;
   display: none;
+  -webkit-transition: 1s;
   transition: 1s;
   padding: 10px;
 }
@@ -134,49 +224,21 @@
   white-space: normal !important;
 }
 
-.add-member {
-  margin-bottom: -1rem;
+.label-success {
+  color: #45a727;
 }
 
-.miTema>div {
+.opciones-chat {
+  display: none;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.opciones-chat i {
+  cursor: pointer;
+}
+
+.chat-grupal-todo {
   overflow: hidden;
-  min-height: 150px;
 }
-
-.titulo-principal {
-  padding-left: 30px;
-}
-
-.btn-opcion2{  
-  color: #fff;
-  margin-top: 10px;
-  margin-right: -30px;
-}
-
-.btn-opcion2 i{
-  font-size: 20x;
-}
-
-.btn-eliminar-tema{  
-  color: #fff;
-  margin-top: 10px;
-}
-
-.btn-eliminar-tema i{
-  font-size: 20px;
-}
-
-.btn-eliminar-temaGrupal{  
-  color: #fff;
-  margin-top: 10px;
-}
-
-.btn-eliminar-temaGrupal i{
-  font-size: 20px;
-}
-
-.popup-boton{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+/*# sourceMappingURL=netWork.css.map */

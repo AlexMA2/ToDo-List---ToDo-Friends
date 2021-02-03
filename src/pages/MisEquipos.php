@@ -124,6 +124,10 @@
                             }              
                                    
                         ?>
+                        <button id="switch" class="switch">
+                            <span><i class="fas fa-sun"></i></span>
+                            <span><i class="fas fa-moon"></i></span>
+                        </button>
                         <li>
                             <div class="nav-arbol-hoja">
                                 <i class="fas fa-door-open"></i>
@@ -359,6 +363,7 @@
     <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="../scripts/darktheme.js"></script>
     <script src="../../dist/js/demo.js"></script>
     
     <script src="../../dist/js/adminlte.js"></script>
