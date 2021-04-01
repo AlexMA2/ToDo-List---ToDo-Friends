@@ -276,6 +276,19 @@
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
+    <script>
+        $( function() {
+            $( ".grupo-temas" ).sortable({
+                revert: true
+            });
+            // $( "#draggable" ).draggable({
+            //     connectToSortable: "#sortable",
+            //     helper: "clone",
+            //     revert: "invalid"
+            // });
+            // $( "ul, li" ).disableSelection();
+        } );
+  </script>
 
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/chart.js/Chart.min.js"></script>
@@ -292,7 +305,7 @@
     <script src="../scripts/activadorPopUp.js"></script>
     <script src="../scripts/darktheme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-
+    
 </body>
 
 </html>
